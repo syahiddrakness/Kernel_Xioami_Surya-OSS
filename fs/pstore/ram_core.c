@@ -542,6 +542,7 @@ void persistent_ram_free(struct persistent_ram_zone *prz)
 		}
 		prz->vaddr = NULL;
 	}
+
 	if (prz->rs_decoder) {
 		free_rs(prz->rs_decoder);
 		prz->rs_decoder = NULL;
