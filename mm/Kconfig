@@ -852,6 +852,10 @@ config FORCE_ALLOC_FROM_DMA_ZONE
 
 	  If unsure, say "n".
 
+config VMSTAT_INTERVAL
+	int "Default interval in seconds to update vmstat"
+	default 1
+	
 config ZRAM_SWAPPINESS
 	int "swappiness setting into the kernel by default"
 	range 1 100
