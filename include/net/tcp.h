@@ -1147,6 +1147,7 @@ void deepcc_update_cwnd(struct sock *sk);
 void deepcc_pkts_acked(struct sock *sk, const struct ack_sample *sample);
 
 /* From tcp_rate.c */
+void tcp_set_tx_in_flight(struct sock *sk, struct sk_buff *skb);
 void tcp_rate_skb_sent(struct sock *sk, struct sk_buff *skb);
 void tcp_rate_skb_delivered(struct sock *sk, struct sk_buff *skb,
 			    struct rate_sample *rs);
