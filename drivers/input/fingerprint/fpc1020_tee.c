@@ -538,6 +538,12 @@ static const struct attribute_group attribute_group = {
 	.attrs = attributes,
 };
 
+static void notification_work(struct work_struct *work)
+{
+	pr_debug("fpc %s:unblank\n", __func__);
+	dsi_bridge_interface_enable(FP_UNLOCK_REJECTION_TIMEOUT);
+ }
+
 static irqreturn_t fpc1020_irq_handler(int irq, void *handle)
 {
 	struct fpc1020_data *fpc1020 = handle;
