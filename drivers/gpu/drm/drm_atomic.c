@@ -30,6 +30,7 @@
 #include <drm/drm_atomic.h>
 #include <drm/drm_mode.h>
 #include <drm/drm_print.h>
+#include <linux/pm_qos.h>
 #include <linux/sync_file.h>
 #include <linux/devfreq_boost.h>
 #include <linux/cpu_input_boost.h>
@@ -2218,12 +2219,17 @@ static void complete_crtc_signaling(struct drm_device *dev,
 	kfree(fence_state);
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_KPROFILES
 extern int kp_active_mode(void);
 #endif
 
 int drm_mode_atomic_ioctl(struct drm_device *dev,
 			  void *data, struct drm_file *file_priv)
+=======
+static int __drm_mode_atomic_ioctl(struct drm_device *dev, void *data,
+				   struct drm_file *file_priv)
+>>>>>>> dcced93fc1ed9 (drm: Reduce latency while processing atomic ioctls)
 {
 	struct drm_mode_atomic *arg = data;
 	uint32_t __user *objs_ptr = (uint32_t __user *)(unsigned long)(arg->objs_ptr);
@@ -2421,6 +2427,31 @@ out:
 
 	drm_modeset_drop_locks(&ctx);
 	drm_modeset_acquire_fini(&ctx);
+
+	return ret;
+}
+
+int drm_mode_atomic_ioctl(struct drm_device *dev, void *data,
+			  struct drm_file *file_priv)
+{
+	struct cpumask qos_cpus;
+	struct pm_qos_request req;
+	int ret;
+	/*
+	 * Optimistically assume the current task won't migrate to another CPU
+	 * and restrict the current CPU to shallow idle states so that it won't
+	 * take too long to finish running the ioctl whenever the ioctl runs a
+	 * command that sleeps, such as for an "atomic" commit.
+	 */
+	cpumask_copy(&qos_cpus, cpumask_of(raw_smp_processor_id()));
+	req = (typeof(req)){
+		.type = PM_QOS_REQ_AFFINE_CORES,
+		.cpus_affine = qos_cpus,
+	};
+
+	pm_qos_add_request(&req, PM_QOS_CPU_DMA_LATENCY, 100);
+	ret = __drm_mode_atomic_ioctl(dev, data, file_priv);
+	pm_qos_remove_request(&req);
 
 	return ret;
 }
