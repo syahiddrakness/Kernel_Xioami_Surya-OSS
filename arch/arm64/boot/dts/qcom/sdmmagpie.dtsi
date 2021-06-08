@@ -3205,6 +3205,7 @@
 
 #include "sdmmagpie-gdsc.dtsi"
 #include "sdmmagpie-bus.dtsi"
+#include "sdmmagpie-coresight.dtsi"
 #include "sdmmagpie-qupv3.dtsi"
 #include "sdmmagpie-vidc.dtsi"
 #include "sdmmagpie-sde-pll.dtsi"
