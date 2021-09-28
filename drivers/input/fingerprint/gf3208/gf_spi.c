@@ -644,6 +644,68 @@ static const struct file_operations proc_file_ops = {
 	.release = single_release,
 };
 
+static void set_fingerprintd_nice(int nice)
+{
+	struct task_struct *p;
+
+	read_lock(&tasklist_lock);
+	for_each_process(p) {
+		if (strstr(p->comm, "erprint"))
+			set_user_nice(p, nice);
+	}
+	read_unlock(&tasklist_lock);
+}
+
+static int goodix_fb_state_chg_callback(struct notifier_block *nb,
+		unsigned long val, void *data)
+{
+	struct gf_dev *gf_dev;
+	struct fb_event *evdata = data;
+	int *blank;
+	char msg[2] = { 0x0 };
+
+	if (val != MSM_DRM_EVENT_BLANK && val != MSM_DRM_EARLY_EVENT_BLANK)
+		return 0;
+	pr_debug("[info] %s go to the goodix_fb_state_chg_callbacking value = %d\n",
+			__func__, (int)val);
+	gf_dev = container_of(nb, struct gf_dev, notifier);
+	if (evdata && evdata->data && val == MSM_DRM_EVENT_BLANK && gf_dev) {
+		blank = evdata->data;
+		if (gf_dev->device_available == 1 && *blank == MSM_DRM_BLANK_UNBLANK) {
+				set_fingerprintd_nice(0);
+				gf_dev->fb_black = 0;
+#if defined(GF_NETLINK_ENABLE)
+				msg[0] = GF_NET_EVENT_FB_UNBLACK;
+				sendnlmsg(msg);
+#elif defined(GF_FASYNC)
+				if (gf_dev->async)
+					kill_fasync(&gf_dev->async, SIGIO, POLL_IN);
+#endif
+			}
+
+	}else if(evdata && evdata->data && val == MSM_DRM_EARLY_EVENT_BLANK && gf_dev){
+		blank = evdata->data;
+			if (gf_dev->device_available == 1 && *blank == MSM_DRM_BLANK_POWERDOWN) {
+				set_fingerprintd_nice(MIN_NICE);
+				gf_dev->fb_black = 1;
+				gf_dev->wait_finger_down = true;
+#if defined(GF_NETLINK_ENABLE)
+				msg[0] = GF_NET_EVENT_FB_BLACK;
+				sendnlmsg(msg);
+#elif defined(GF_FASYNC)
+				if (gf_dev->async)
+					kill_fasync(&gf_dev->async, SIGIO, POLL_IN);
+#endif
+			}
+
+	}
+	return NOTIFY_OK;
+}
+
+static struct notifier_block goodix_noti_block = {
+	.notifier_call = goodix_fb_state_chg_callback,
+};
+
 static struct class *gf_class;
 #if defined(USE_SPI_BUS)
 static int gf_probe(struct spi_device *spi)
