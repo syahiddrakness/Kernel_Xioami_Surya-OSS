@@ -31,6 +31,8 @@
 #include <drm/drm_mode.h>
 #include <drm/drm_print.h>
 #include <linux/devfreq_boost.h>
+#include <linux/cpu_input_boost.h>
+#include <linux/kprofiles.h>
 #include <linux/pm_qos.h>
 #include <linux/sync_file.h>
 
@@ -2206,6 +2208,10 @@ static void complete_crtc_signaling(struct drm_device *dev,
 	kfree(fence_state);
 }
 
+#ifdef CONFIG_KPROFILES
+extern int kp_active_mode(void);
+#endif
+
 static int __drm_mode_atomic_ioctl(struct drm_device *dev, void *data,
 				   struct drm_file *file_priv)
 {
@@ -2250,8 +2256,33 @@ static int __drm_mode_atomic_ioctl(struct drm_device *dev, void *data,
 		return -EINVAL;
 
 	if (!(arg->flags & DRM_MODE_ATOMIC_TEST_ONLY)) {
-		devfreq_boost_kick(DEVFREQ_MSM_CPUBW);
-		devfreq_boost_kick(DEVFREQ_MSM_LLCCBW);
+
+#ifdef CONFIG_KPROFILES
+		switch (kp_active_mode()) {
+		case 0:
+		case 1:
+			cpu_input_boost_kick_max(30);
+			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 30);
+			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 30);
+			break;
+		case 2:
+			cpu_input_boost_kick_max(60);
+			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 60);
+			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 60);
+			break;
+		case 3:
+			cpu_input_boost_kick_max(120);
+			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 120);
+			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 120);
+			break;
+		default:
+			break;
+		}
+#else
+		cpu_input_boost_kick_max(60);
+		devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 50);
+		devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 50);
+#endif
 	}
 
 	drm_modeset_acquire_init(&ctx, 0);
