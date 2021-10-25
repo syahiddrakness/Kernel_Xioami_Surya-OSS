@@ -289,6 +289,7 @@ int load_fw(struct npu_device *npu_dev)
 static void complete_pending_commands(struct npu_host_ctx *host_ctx)
 {
 	struct npu_network *network = NULL;
+	struct npu_kevent kevt;
 	struct npu_network_cmd *cmd;
 	struct npu_misc_cmd *misc_cmd;
 	int i;
