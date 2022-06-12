@@ -458,6 +458,7 @@
 
 	chosen {
 		bootargs = "rcu_nocbs=0-7 noirqdebug kpti=off";
+		rng-seed = <0x12345678>;
 	};
 
 	soc: soc { };
