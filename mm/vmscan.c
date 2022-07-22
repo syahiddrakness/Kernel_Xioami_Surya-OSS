@@ -161,15 +161,10 @@ struct scan_control {
  * From 0 .. 100.  Higher means more swappy.
  */
 int vm_swappiness = CONFIG_ZRAM_SWAPPINESS;
-/*
- * Direct reclaim swappiness, values range from 0 .. 60. Higher means more swappy.
- */
-int direct_vm_swappiness = 60;
 #endif /* CONFIG_OPLUS_MM_HACKS */
 #else
 int vm_swappiness = 190;
 #endif
->>>>>>> 94181990a4ea (mm: Import oplus memory management hacks)
 /*
  * The total number of pages which are beyond the high watermark within all
  * zones.
