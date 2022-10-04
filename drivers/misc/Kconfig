@@ -85,36 +85,76 @@ config ATMEL_TCB_CLKSRC_BLOCK
 	  interval timing.
 
 config KPROFILES
-	bool "A kernel space profile changing driver"
+	tristate "Kprofiles Kernel Module"
+	default y
 	help
-	  This driver creates a sysfs toggle that can be Enabled/Disabled via userspace,
-	  It provies 4 modes:
-	  (0, 1, 2, 3) which are (Disabled, Battery, Balanced, Performance) respectively
+	  This allows you to regulate in-kernel activities in a profile-oriented manner.
+	  It creates a sysfs node which can be used to change profiles via userspace.
+	  It provides 4 profile modes: Disabled, Battery, Balanced and Performance.
 
-	  The former can be used to disable/enable or tune kernel features
-	  according to a profile mode
+	  The former can be used to disable/enable or tune kernel activities according
+	  to a profile mode. Check the README.md for more information.
 
-	  If in doubt, say N.
+	  It's safe to say Y here, as the driver isn't very demanding and is only
+	  used when developer uses the exported API functions in an another driver.
+
+if KPROFILES
+
+config DEFAULT_KP_MODE
+	int "Default mode number for kp_mode"
+	range 0 3
+	default 0
+	help
+	  Kprofiles will activate this mode during boot-up.
+
+config AUTO_KPROFILES
+	bool
+	help
+	  This option is selected if one of the Auto Kprofiles options is enabled.
+
+choice
+	prompt "Auto Kprofiles support"
+	default AUTO_KPROFILES_NONE
 
 config AUTO_KPROFILES_MSM_DRM
-	bool "Enable auto kprofiles for msm drm notifier"
-	depends on KPROFILES && DRM_MSM
-	default n
+	bool "Auto Kprofiles using msm_drm_notifier"
+	depends on DRM_MSM
+	select AUTO_KPROFILES
 	help
-	  Select this to enable automatic kprofiles switching via msm_drm_notifier API,
-	  When this option is enabled kprofiles will automatically switch to 
-	  battery mode when device screen turns off and switch back
-	  to the previously used profile when screen turns on.
+	  Select this to enable Kprofile's automatic mode changer via msm_drm_notifier.
+	  When this option is enabled, Kprofiles will automatically switch to battery
+	  mode when device screen turns off and will switch back to previously active
+	  mode when the device wakes up.
+
+config AUTO_KPROFILES_MI_DRM
+	bool "Auto Kprofiles using mi_drm_notifier"
+	depends on !DRM_MSM
+	select AUTO_KPROFILES
+	help
+	  Select this to enable Kprofile's automatic mode changer via mi_drm_notifier.
+	  When this option is enabled, Kprofiles will automatically switch to battery
+	  mode when device screen turns off and will switch back to previously active
+	  mode when the device wakes up.
 
 config AUTO_KPROFILES_FB
-	bool "Enable auto kprofiles for fb notifier"
-	depends on KPROFILES && !AUTO_KPROFILES_MSM_DRM
-	default n
+	bool "Auto Kprofiles using fb_notifier"
+	depends on FB
+	select AUTO_KPROFILES
 	help
-	  Select this to enable automatic kprofiles switching via fb_notifier API,
-	  When this option is enabled kprofiles will automatically switch to 
-	  battery mode when device screen turns off and switch back
-	  to the previously used profile when screen turns on.
+	  Select this to enable Kprofile's automatic mode changer via fb_notifier.
+	  When this option is enabled, Kprofiles will automatically switch to
+	  battery mode when device screen turns off and will switch back to
+	  previously active mode when the device wakes up.
+
+config AUTO_KPROFILES_NONE
+	bool "None"
+	help
+	  Select this to build Kprofiles without auto Kprofiles.
+
+endchoice
+
+endif # if KPROFILES
+
 
 config DUMMY_IRQ
 	tristate "Dummy IRQ handler"
