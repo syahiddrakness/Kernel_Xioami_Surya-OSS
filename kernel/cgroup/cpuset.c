@@ -1795,9 +1795,13 @@ static ssize_t cpuset_write_resmask_wrapper(struct kernfs_open_file *of,
 		{ "background",		CONFIG_CPUSET_BG },
 		{ "camera-daemon",	CONFIG_CPUSET_CAMERA },
 		{ "foreground",		CONFIG_CPUSET_FG },
+		{ "game",		CONFIG_CPUSET_GAME },
+		{ "gamelite",		CONFIG_CPUSET_GAMELITE },
+		{ "global",		CONFIG_CPUSET_GLOBAL },
 		{ "restricted",		CONFIG_CPUSET_RESTRICTED },
 		{ "system-background",	CONFIG_CPUSET_SYSTEM_BG },
 		{ "top-app",		CONFIG_CPUSET_TOP_APP },
+		{ "vr", 		CONFIG_CPUSET_VR },
 	};
 	struct cpuset *cs = css_cs(of_css(of));
 	int i;
