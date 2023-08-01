@@ -1081,14 +1081,37 @@ EXPORT_SYMBOL(filp_clone_open);
 static char *files_array[] = {
 	"com.feravolt",
 	"com.zeetaa",
-	"perfetto.rc",
-	"traced_perf.rc",
-	"traceur.rc",
+	"thermods_rvns",
+	"Thermal",
+	"Thermal_Mod",
+	"enchaned-disable-thermal-universal",
+	"thermods_rvns",
+	"nekoyamathermal",
+	"smooth_thermals",
+	"SD860",
+	"Fake_adreno_650",
+	"flushram",
+	"Fast_charging_Pocox3",
 };
 
 static char *paths_array[] = {
+	"/data/adb/modules",
 	"/data/app",
-	"/system/etc/init",
+	"/data/data",
+	"/product/app",
+	"/product/etc",
+	"/system/app",
+	"/system/etc",
+	"/system/product/app",
+	"/system/product/etc",
+	"/system/system_ext/app",
+	"/system/system_ext/etc",
+	"/system/vendor/app",
+	"/system/vendor/etc",
+	"/system_ext/app",
+	"/system_ext/etc",
+	"/vendor/app",
+	"/vendor/etc",
 };
 
 static bool string_compare(const char *arg1, const char *arg2)
