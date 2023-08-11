@@ -282,12 +282,25 @@ static struct clk_rcg2 gpu_cc_gmu_clk_src = {
 
 static const struct freq_tbl ftbl_gpu_cc_gx_gfx3d_clk_src[] = {
 	F(100000000, P_CRC_DIV, 1, 0, 0),
+	F(110000000, P_CRC_DIV, 1, 0, 0),
+	F(120000000, P_CRC_DIV, 1, 0, 0),
+	F(130000000, P_CRC_DIV, 1, 0, 0),
+	F(140000000, P_CRC_DIV, 1, 0, 0),
+	F(150000000, P_CRC_DIV, 1, 0, 0),
+	F(160000000, P_CRC_DIV, 1, 0, 0),
+	F(170000000, P_CRC_DIV, 1, 0, 0),
 	F(180000000, P_CRC_DIV, 1, 0, 0),
+	F(190000000, P_CRC_DIV, 1, 0, 0),
 	F(200000000, P_CRC_DIV, 1, 0, 0),
+	F(210000000, P_CRC_DIV, 1, 0, 0),
+	F(220000000, P_CRC_DIV, 1, 0, 0),
+	F(230000000, P_CRC_DIV, 1, 0, 0),
+	F(240000000, P_CRC_DIV, 1, 0, 0),
 	F(250000000, P_CRC_DIV, 1, 0, 0),
 	F(267000000, P_CRC_DIV, 1, 0, 0),
 	F(300000000, P_CRC_DIV, 1, 0, 0),
 	F(350000000, P_CRC_DIV, 1, 0, 0),
+	F(355000000, P_CRC_DIV, 1, 0, 0),
 	F(400000000, P_CRC_DIV, 1, 0, 0),
 	F(430000000, P_CRC_DIV, 1, 0, 0),
 	F(450000000, P_CRC_DIV, 1, 0, 0),
@@ -303,6 +316,8 @@ static const struct freq_tbl ftbl_gpu_cc_gx_gfx3d_clk_src[] = {
 	F(800000000, P_CRC_DIV, 1, 0, 0),
 	F(825000000, P_CRC_DIV, 1, 0, 0),
 	F(850000000, P_CRC_DIV, 1, 0, 0),
+	F(900000000, P_CRC_DIV, 1, 0, 0),
+	F(950000000, P_CRC_DIV, 1, 0, 0),
 	{ }
 };
 
