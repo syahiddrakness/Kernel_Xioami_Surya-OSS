@@ -42,8 +42,6 @@
 
 #define FPC1020_NAME "fpc1020"
 
-#define FPC1020_NAME "fpc1020"
-
 #define FPC_TTW_HOLD_TIME 2000
 #define FP_UNLOCK_REJECTION_TIMEOUT (FPC_TTW_HOLD_TIME - 500)
 #define RESET_LOW_SLEEP_MIN_US 5000
@@ -94,21 +92,9 @@ struct fpc1020_data {
 	struct mutex lock; /* To set/get exported values in sysfs */
 	bool prepared;
 	atomic_t wakeup_enabled; /* Used both in ISR and non-ISR */
-<<<<<<< HEAD
 	struct input_handler input_handler;
 };
 
-=======
-	struct notifier_block fb_notifier;
-	bool fb_black;
-	bool wait_finger_down;
-	struct work_struct work;
-
-	struct input_handler input_handler;
-};
-
-
->>>>>>> fe081029b753 (input: fpc1020: Allow filtering of key events)
 static int input_connect(struct input_handler *handler,
 		struct input_dev *dev, const struct input_device_id *id) {
 	int rc;
