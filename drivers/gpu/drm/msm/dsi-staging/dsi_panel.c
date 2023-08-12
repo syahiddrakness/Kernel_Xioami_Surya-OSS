@@ -3326,15 +3326,6 @@ struct dsi_panel *dsi_panel_get(struct device *parent,
 				"qcom,mdss-dsi-panel-physical-type", NULL);
 	if (panel_physical_type && !strcmp(panel_physical_type, "oled"))
 		panel->panel_type = DSI_DISPLAY_PANEL_TYPE_OLED;
-	dispparam_enabled = utils->read_bool(utils->data,
-				"qcom,dispparam-enabled");
-	if (dispparam_enabled) {
-		pr_info("[LCD]%s:%d Dispparam enabled.\n", __func__, __LINE__);
-		panel->dispparam_enabled = true;
-	} else {
-		pr_info("[LCD]%s:%d Dispparam disabled.\n", __func__, __LINE__);
-		panel->dispparam_enabled = false;
-	}
 
 	rc = dsi_panel_parse_host_config(panel);
 	if (rc) {
