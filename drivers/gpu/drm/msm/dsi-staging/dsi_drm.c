@@ -1113,11 +1113,5 @@ void dsi_drm_bridge_cleanup(struct dsi_bridge *bridge)
 	if (bridge && bridge->base.encoder)
 		bridge->base.encoder->bridge = NULL;
 
-	if (bridge == gbridge) {
-		atomic_set(&prim_panel_is_on, false);
-		cancel_delayed_work_sync(&prim_panel_work);
-		wakeup_source_trash(&prim_panel_wakelock);
-	}
-
 	kfree(bridge);
 }
