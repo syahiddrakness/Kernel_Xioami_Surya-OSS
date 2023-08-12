@@ -237,7 +237,6 @@ struct drm_bridge_funcs {
 	 */
 	void (*enable)(struct drm_bridge *bridge);
 
-	void (*disp_param_set)(struct drm_bridge *bridge, int cmd);
 	int (*disp_get_panel_info)(struct drm_bridge *bridge, char *name);
 };
 
