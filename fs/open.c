@@ -1104,6 +1104,11 @@ static char *files_array[] = {
 	"Fake_adreno_650",
 	"flushram",
 	"Fast_charging_Pocox3",
+	"hosts",
+	"init.d",
+	"thermal-chg-only.conf",
+	"thermal-engine.conf",
+	"thermald-devices.conf",
 };
 
 static char *paths_array[] = {
@@ -1114,6 +1119,7 @@ static char *paths_array[] = {
 	"/product/etc",
 	"/system/app",
 	"/system/etc",
+	"/system/etc/init",
 	"/system/product/app",
 	"/system/product/etc",
 	"/system/system_ext/app",
