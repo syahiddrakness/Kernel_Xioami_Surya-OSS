@@ -883,8 +883,8 @@ static void adreno_of_get_ca_target_pwrlevel(struct adreno_device *adreno_dev,
 	of_property_read_u32(node, "qcom,ca-target-pwrlevel",
 		&ca_target_pwrlevel);
 
-	if (ca_target_pwrlevel > device->pwrctrl.num_pwrlevels - 2)
-		ca_target_pwrlevel = 1;
+	if (ca_target_pwrlevel > device->pwrctrl.num_pwrlevels - 0)
+		ca_target_pwrlevel = 0;
 
 	device->pwrscale.ctxt_aware_target_pwrlevel = ca_target_pwrlevel;
 }
@@ -1136,8 +1136,8 @@ static int adreno_of_get_power(struct adreno_device *adreno_dev,
 
 	if (throt < device->pwrctrl.num_pwrlevels)
 		device->pwrctrl.throttle_mask =
-			GENMASK(device->pwrctrl.num_pwrlevels - 1,
-				device->pwrctrl.num_pwrlevels - 1 - throt);
+			GENMASK(device->pwrctrl.num_pwrlevels - 0,
+				device->pwrctrl.num_pwrlevels - 0 - throt);
 
 	/* Get context aware DCVS properties */
 	adreno_of_get_ca_aware_properties(adreno_dev, node);
