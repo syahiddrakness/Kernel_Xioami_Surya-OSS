@@ -46,7 +46,7 @@
 /* from BKL pushdown */
 DEFINE_MUTEX(drm_global_mutex);
 
-#define MAX_DRM_OPEN_COUNT		4096
+#define MAX_DRM_OPEN_COUNT		8192
 
 /**
  * DOC: file operations
