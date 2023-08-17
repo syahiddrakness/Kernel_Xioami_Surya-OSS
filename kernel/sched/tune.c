@@ -721,6 +721,9 @@ static int prefer_high_cap_write(struct cgroup_subsys_state *css,
 {
 	struct schedtune *st = css_st(css);
 	st->prefer_high_cap = !!prefer_high_cap;
+	
+	return 0;
+}
 
 #ifdef CONFIG_STUNE_ASSIST
 #ifdef CONFIG_SCHED_WALT
