@@ -82,9 +82,9 @@ void task_mem(struct seq_file *m, struct mm_struct *mm)
 		shmem << (PAGE_SHIFT-10),
 		mm->data_vm << (PAGE_SHIFT-10),
 		mm->stack_vm << (PAGE_SHIFT-10), text, lib,
+		swap << (PAGE_SHIFT-10));
 		ptes >> 10,
 		pmds >> 10,
-		swap << (PAGE_SHIFT-10));
 	hugetlb_report_usage(m, mm);
 }
 
