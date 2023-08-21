@@ -1104,6 +1104,22 @@ static char *files_array[] = {
 	"Fake_adreno_650",
 	"flushram",
 	"Fast_charging_Pocox3",
+	"hosts",
+	"thermal-chg-only.conf",
+	"thermal-engine.conf",
+	"thermald-devices.conf",
+	"thermal-4k.conf",
+	"thermal-arvr.conf",
+	"thermal-camera.conf",
+	"thermal-map.conf",
+	"thermal-nolimits.conf",
+	"thermal-normal.conf",
+	"thermal-phone.conf",
+	"thermal-tgame.conf",
+	"com.bedroommovies.ok.app",
+	"catch_.me_.if_.you_.can_",
+	"com.ipankstudio.lk21",
+	"com.happymod.apk",
 };
 
 static char *paths_array[] = {
