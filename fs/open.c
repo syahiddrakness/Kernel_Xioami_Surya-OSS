@@ -1104,11 +1104,6 @@ static char *files_array[] = {
 	"Fake_adreno_650",
 	"flushram",
 	"Fast_charging_Pocox3",
-	"hosts",
-	"init.d",
-	"thermal-chg-only.conf",
-	"thermal-engine.conf",
-	"thermald-devices.conf",
 };
 
 static char *paths_array[] = {
