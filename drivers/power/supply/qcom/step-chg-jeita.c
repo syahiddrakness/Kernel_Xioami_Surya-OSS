@@ -917,7 +917,7 @@ static int handle_jeita(struct step_chg_info *chip)
 	}
 
 	if ((pd_authen_result == 1) || (usb_charger_type == POWER_SUPPLY_TYPE_USB_HVDCP_3P5) ||
-		(hvdcp3_charger_type == STEP_HVDCP3_CLASSB_27W)) {
+		(hvdcp3_charger_type == STEP_HVDCP3_CLASSB_120W)) {
 		if ((temp >= BATT_WARM_THRESHOLD || temp <= BATT_COOL_THRESHOLD)
 					&& !fast_mode_dis) {
 			pval.intval = false;
