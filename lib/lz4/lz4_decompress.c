@@ -89,7 +89,7 @@ static FORCE_INLINE int LZ4_decompress_generic(
 	static const int dec64table[] = { 0, 0, 0, -1, 0, 1, 2, 3 };
 
 	const int safeDecode = (endOnInput == endOnInputSize);
-	const int checkOffset = ((safeDecode) && (dictSize < (int)(64 * KB)));
+	const int checkOffset = ((safeDecode) && (dictSize < (int)(512 * KB)));
 
 	/* Special cases */
 	/* targetOutputSize too high => decode everything */

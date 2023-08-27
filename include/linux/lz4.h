@@ -55,7 +55,7 @@
  * Reduced memory usage can improve speed, due to cache effect
  * Default value is 14, for 16KB, which nicely fits into Intel x86 L1 cache
  */
-#define LZ4_MEMORY_USAGE 14
+#define LZ4_MEMORY_USAGE 20
 
 #define LZ4_MAX_INPUT_SIZE	0x7E000000 /* 2 113 929 216 bytes */
 #define LZ4_COMPRESSBOUND(isize)	(\
@@ -85,8 +85,8 @@
 #define LZ4_STREAMSIZE_U64 ((1 << (LZ4_MEMORY_USAGE - 3)) + 4)
 #define LZ4_STREAMSIZE	(LZ4_STREAMSIZE_U64 * sizeof(unsigned long long))
 
-#define LZ4_STREAMHCSIZE        262192
-#define LZ4_STREAMHCSIZE_SIZET (262192 / sizeof(size_t))
+#define LZ4_STREAMHCSIZE        402192
+#define LZ4_STREAMHCSIZE_SIZET (402192 / sizeof(size_t))
 
 #define LZ4_STREAMDECODESIZE_U64	4
 #define LZ4_STREAMDECODESIZE		 (LZ4_STREAMDECODESIZE_U64 * \

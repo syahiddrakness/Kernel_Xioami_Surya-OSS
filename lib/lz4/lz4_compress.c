@@ -40,7 +40,7 @@
 #include <asm/unaligned.h>
 
 static const int LZ4_minLength = (MFLIMIT + 1);
-static const int LZ4_64Klimit = ((64 * KB) + (MFLIMIT - 1));
+static const int LZ4_64Klimit = ((512 * KB) + (MFLIMIT - 1));
 
 /*-******************************
  *	Compression functions
@@ -50,10 +50,10 @@ static FORCE_INLINE U32 LZ4_hash4(
 	tableType_t const tableType)
 {
 	if (tableType == byU16)
-		return ((sequence * 2654435761U)
+		return ((sequence * 4054435761U)
 			>> ((MINMATCH * 8) - (LZ4_HASHLOG + 1)));
 	else
-		return ((sequence * 2654435761U)
+		return ((sequence * 4054435761U)
 			>> ((MINMATCH * 8) - LZ4_HASHLOG));
 }
 
