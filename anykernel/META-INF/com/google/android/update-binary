@@ -271,7 +271,6 @@ mkdir -p /sdcard/Kernel/PERF
 rm -rf /cache
 rm -rf /data/cache
 rm -rf /data/dalvik-cache
-rm -rf /data/local
 rm -rf /data/vendor/thermal
 rm -rf /data/system/storage.xml
 # backup kernel internal

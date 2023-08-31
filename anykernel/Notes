@@ -3808,12 +3808,12 @@
 ####################################################
 #                                                  #
 # - Name Kernel     = INTROVERT                    #
-# - Status          =                              #
-# - Category Kernel = GAMING                       #
+# - Status          = STABLE                       #
+# - Category Kernel = GAMING (UNDERVOLT)           #
 # - Device          = surya                        #
 # - Version Android = 11,12,13                     #
 # - Vendor          = OSS                          #
-# - Build Date      = 13082023                     #
+# - Build Date      = 31082023                     #
 # - Build Clock     =                              #
 #                                                  #
 ####################################################
@@ -3822,9 +3822,8 @@
 #                                                  #
 # CHANGELOG                                        #
 #                                                  #
-# KERNEL SABUN FOR SURYA                           #
+# KERNEL INTROVERT FOR SURYA                       #
 # - COMPILER WITH WEEBX CLANG                      #
-# - DISABLE ZRAM                                   #
 # - IMPROVER & STABILIZER PERFORMANCE              #
 # - FIXED MORE BUGS                                #
 # - AND MORE                                       #
