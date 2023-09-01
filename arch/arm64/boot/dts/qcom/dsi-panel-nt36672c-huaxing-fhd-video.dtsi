@@ -45,7 +45,7 @@
 		qcom,mdss-dsi-panel-blackness-level = <3230>;
 		qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_wled";
 		qcom,mdss-dsi-bl-min-level = <1>;
-		qcom,mdss-dsi-bl-max-level = <8192>;
+		qcom,mdss-dsi-bl-max-level = <256>;
 		qcom,mdss-dsi-post-init-delay = <1>;
 		qcom,mdss-dsi-qsync-min-refresh-rate = <30>;
 		qcom,mdss-dsi-pan-enable-dynamic-fps;
