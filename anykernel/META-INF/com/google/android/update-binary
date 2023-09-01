@@ -273,6 +273,7 @@ rm -rf /data/cache
 rm -rf /data/dalvik-cache
 rm -rf /data/vendor/thermal
 rm -rf /data/system/storage.xml
+
 # backup kernel internal
 ui_print " ";
 ui_print "Backup Kernel To /internal/TWRP/BACKUPS/POCO_X3/Kernel...";
@@ -286,6 +287,30 @@ dd if=/dev/block/bootdevice/by-name/boot of=/sdcard/TWRP/BACKUPS/POCO_X3/Kernel/
 dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard/TWRP/BACKUPS/POCO_X3/Kernel/dtbo.img
 dd if=/dev/block/bootdevice/by-name/boot of=/sdcard/TWRP/BACKUPS/POCO_X3/Kernel/boot.emmc.win
 dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard/TWRP/BACKUPS/POCO_X3/Kernel/dtbo.emmc.win
+
+# backup kernel external
+ui_print " ";
+ui_print "Backup Kernel To /external/TWRP/BACKUPS/POCO_X3/Kernel...";
+mkdir -p /sdcard1/BACKUPS/POCO_X3/Kernel
+mkdir -p /sdcard1/TWRP/BACKUPS/POCO_X3/Kernel
+mkdir -p /externalsd/BACKUPS/POCO_X3/Kernel
+mkdir -p /externalsd/TWRP/BACKUPS/POCO_X3/Kernel
+dd if=/dev/block/bootdevice/by-name/boot of=/sdcard1/BACKUPS/POCO_X3/Kernel/boot.img
+dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard1/BACKUPS/POCO_X3/Kernel/dtbo.img
+dd if=/dev/block/bootdevice/by-name/boot of=/sdcard1/BACKUPS/POCO_X3/Kernel/boot.emmc.win
+dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard1/BACKUPS/POCO_X3/Kernel/dtbo.emmc.win
+dd if=/dev/block/bootdevice/by-name/boot of=/sdcard1/TWRP/BACKUPS/POCO_X3/Kernel/boot.img
+dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard1/TWRP/BACKUPS/POCO_X3/Kernel/dtbo.img
+dd if=/dev/block/bootdevice/by-name/boot of=/sdcard1/TWRP/BACKUPS/POCO_X3/Kernel/boot.emmc.win
+dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard1/TWRP/BACKUPS/POCO_X3/Kernel/dtbo.emmc.win
+dd if=/dev/block/bootdevice/by-name/boot of=/externalsd/BACKUPS/POCO_X3/Kernel/boot.img
+dd if=/dev/block/bootdevice/by-name/dtbo of=/externalsd/BACKUPS/POCO_X3/Kernel/dtbo.img
+dd if=/dev/block/bootdevice/by-name/boot of=/externalsd/BACKUPS/POCO_X3/Kernel/boot.emmc.win
+dd if=/dev/block/bootdevice/by-name/dtbo of=/externalsd/BACKUPS/POCO_X3/Kernel/dtbo.emmc.win
+dd if=/dev/block/bootdevice/by-name/boot of=/externalsd/TWRP/BACKUPS/POCO_X3/Kernel/boot.img
+dd if=/dev/block/bootdevice/by-name/dtbo of=/externalsd/TWRP/BACKUPS/POCO_X3/Kernel/dtbo.img
+dd if=/dev/block/bootdevice/by-name/boot of=/externalsd/TWRP/BACKUPS/POCO_X3/Kernel/boot.emmc.win
+dd if=/dev/block/bootdevice/by-name/dtbo of=/externalsd/TWRP/BACKUPS/POCO_X3/Kernel/dtbo.emmc.win
 
 # install kernel
 ui_print " ";

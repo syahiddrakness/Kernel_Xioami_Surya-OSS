@@ -3809,11 +3809,11 @@
 #                                                  #
 # - Name Kernel     = INTROVERT                    #
 # - Status          = STABLE                       #
-# - Category Kernel = GAMING (UNDERVOLT)           #
+# - Category Kernel = GAMING (OVERVOLT)            #
 # - Device          = surya                        #
 # - Version Android = 11,12,13                     #
 # - Vendor          = OSS                          #
-# - Build Date      = 31082023                     #
+# - Build Date      = 01092023                     #
 # - Build Clock     =                              #
 #                                                  #
 ####################################################
