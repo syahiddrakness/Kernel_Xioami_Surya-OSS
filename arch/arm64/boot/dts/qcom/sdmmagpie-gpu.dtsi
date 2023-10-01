@@ -195,8 +195,8 @@
 
 				qcom,speed-bin = <0>;
 
-				qcom,initial-pwrlevel = <9>;
-				qcom,ca-target-pwrlevel = <9>;
+				qcom,initial-pwrlevel = <7>;
+				qcom,ca-target-pwrlevel = <7>;
 
 				qcom,gpu-pwrlevel@0 {
 					reg = <0>;
@@ -285,8 +285,8 @@
 
 				qcom,speed-bin = <172>;
 
-				qcom,initial-pwrlevel = <9>;
-				qcom,ca-target-pwrlevel = <9>;
+				qcom,initial-pwrlevel = <6>;
+				qcom,ca-target-pwrlevel = <6>;
 
 				qcom,gpu-pwrlevel@0 {
 					reg = <0>;
@@ -375,8 +375,8 @@
 
 				qcom,speed-bin = <146>;
 
-				qcom,initial-pwrlevel = <9>;
-				qcom,ca-target-pwrlevel = <9>;
+				qcom,initial-pwrlevel = <6>;
+				qcom,ca-target-pwrlevel = <6>;
 
 				qcom,gpu-pwrlevel@0 {
 					reg = <0>;
@@ -456,8 +456,8 @@
 
 				qcom,speed-bin = <128>;
 
-				qcom,initial-pwrlevel = <9>;
-				qcom,ca-target-pwrlevel = <9>;
+				qcom,initial-pwrlevel = <5>;
+				qcom,ca-target-pwrlevel = <5>;
 
 				/* NOM_L1 */
 				qcom,gpu-pwrlevel@0 {
@@ -529,8 +529,8 @@
 
 				qcom,speed-bin = <167>;
 
-				qcom,initial-pwrlevel = <9>;
-				qcom,ca-target-pwrlevel = <9>;
+				qcom,initial-pwrlevel = <7>;
+				qcom,ca-target-pwrlevel = <7>;
 
 				/* NOM_L2 */
 				qcom,gpu-pwrlevel@0 {
