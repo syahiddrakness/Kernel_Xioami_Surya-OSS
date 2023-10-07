@@ -42,7 +42,7 @@
 		opp-2500 { opp-hz = /bits/ 64 < 12000 >; }; /* 14.DDR:2500 MHz */
 		opp-2700 { opp-hz = /bits/ 64 < 15000 >; }; /* 15.DDR:2700 MHz */
 		opp-3000 { opp-hz = /bits/ 64 < 17000 >; }; /* 16.DDR:3000 MHz */
-		opp-3200 { opp-hz = /bits/ 64 < 32000 >; }; /* 17.DDR:3200 MHz */
+		opp-3200 { opp-hz = /bits/ 64 < 20000 >; }; /* 17.DDR:3200 MHz */
 	};
 
 	gpubw: qcom,gpubw {
