@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=Kernel Kernel Introvert by syahid
+kernel.string=Kernel Kernel Caba Rawit by syahid
 do.devicecheck=1
 do.modules=0
 do.cleanup=1
@@ -1123,7 +1123,7 @@ device.name1231=
 device.name1232=
 device.name1233=
 device.name1234=
-supported.versions=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20
+supported.versions=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20,21,22,23,24,25,26,27,28,29,30
 '; } # end properties
 
 # shell variables
@@ -1147,7 +1147,7 @@ mkdir /data/adb/service.d;
 fi;
 replace_file /data/adb/service.d/init.qcom.post_boot.sh 0777 init.qcom.post_boot.sh;
 if [ -d $ramdisk/.backup ]; then
-  ui_print " "; ui_print "Reinstall Magisk.zip!!!!!...";
+  ui_print " "; ui_print "Update Magisk V26.3 (stable)...";
   patch_cmdline "skip_override" "skip_override";
 else
   patch_cmdline "skip_override" "";

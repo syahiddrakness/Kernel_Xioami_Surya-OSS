@@ -151,7 +151,7 @@ if [ -f version ]; then
   ui_printfile version;
   ui_print " ";
 fi;
-ui_print " " "KERNEL INTROVERT FOR VENDOR OSS ONLY" " " " ";
+ui_print " " "KERNEL CABAI RAWIT FOR VENDOR OSS & MIUI " " " " ";
 
 $BOOTMODE || $bb mount -o bind /dev/urandom /dev/random;
 umount_all;
@@ -279,38 +279,12 @@ ui_print " ";
 ui_print "Backup Kernel To /internal/TWRP/BACKUPS/POCO_X3/Kernel...";
 mkdir -p /sdcard/BACKUPS/POCO_X3/Kernel
 mkdir -p /sdcard/TWRP/BACKUPS/POCO_X3/Kernel
-dd if=/dev/block/bootdevice/by-name/boot of=/sdcard/BACKUPS/POCO_X3/Kernel/boot.img
-dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard/BACKUPS/POCO_X3/Kernel/dtbo.img
-dd if=/dev/block/bootdevice/by-name/boot of=/sdcard/BACKUPS/POCO_X3/Kernel/boot.emmc.win
-dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard/BACKUPS/POCO_X3/Kernel/dtbo.emmc.win
 dd if=/dev/block/bootdevice/by-name/boot of=/sdcard/TWRP/BACKUPS/POCO_X3/Kernel/boot.img
 dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard/TWRP/BACKUPS/POCO_X3/Kernel/dtbo.img
+dd if=/dev/block/bootdevice/by-name/recovery of=/sdcard/TWRP/BACKUPS/POCO_X3/Kernel/recovery.img
 dd if=/dev/block/bootdevice/by-name/boot of=/sdcard/TWRP/BACKUPS/POCO_X3/Kernel/boot.emmc.win
 dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard/TWRP/BACKUPS/POCO_X3/Kernel/dtbo.emmc.win
-
-# backup kernel external
-ui_print " ";
-ui_print "Backup Kernel To /external/TWRP/BACKUPS/POCO_X3/Kernel...";
-mkdir -p /sdcard1/BACKUPS/POCO_X3/Kernel
-mkdir -p /sdcard1/TWRP/BACKUPS/POCO_X3/Kernel
-mkdir -p /externalsd/BACKUPS/POCO_X3/Kernel
-mkdir -p /externalsd/TWRP/BACKUPS/POCO_X3/Kernel
-dd if=/dev/block/bootdevice/by-name/boot of=/sdcard1/BACKUPS/POCO_X3/Kernel/boot.img
-dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard1/BACKUPS/POCO_X3/Kernel/dtbo.img
-dd if=/dev/block/bootdevice/by-name/boot of=/sdcard1/BACKUPS/POCO_X3/Kernel/boot.emmc.win
-dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard1/BACKUPS/POCO_X3/Kernel/dtbo.emmc.win
-dd if=/dev/block/bootdevice/by-name/boot of=/sdcard1/TWRP/BACKUPS/POCO_X3/Kernel/boot.img
-dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard1/TWRP/BACKUPS/POCO_X3/Kernel/dtbo.img
-dd if=/dev/block/bootdevice/by-name/boot of=/sdcard1/TWRP/BACKUPS/POCO_X3/Kernel/boot.emmc.win
-dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard1/TWRP/BACKUPS/POCO_X3/Kernel/dtbo.emmc.win
-dd if=/dev/block/bootdevice/by-name/boot of=/externalsd/BACKUPS/POCO_X3/Kernel/boot.img
-dd if=/dev/block/bootdevice/by-name/dtbo of=/externalsd/BACKUPS/POCO_X3/Kernel/dtbo.img
-dd if=/dev/block/bootdevice/by-name/boot of=/externalsd/BACKUPS/POCO_X3/Kernel/boot.emmc.win
-dd if=/dev/block/bootdevice/by-name/dtbo of=/externalsd/BACKUPS/POCO_X3/Kernel/dtbo.emmc.win
-dd if=/dev/block/bootdevice/by-name/boot of=/externalsd/TWRP/BACKUPS/POCO_X3/Kernel/boot.img
-dd if=/dev/block/bootdevice/by-name/dtbo of=/externalsd/TWRP/BACKUPS/POCO_X3/Kernel/dtbo.img
-dd if=/dev/block/bootdevice/by-name/boot of=/externalsd/TWRP/BACKUPS/POCO_X3/Kernel/boot.emmc.win
-dd if=/dev/block/bootdevice/by-name/dtbo of=/externalsd/TWRP/BACKUPS/POCO_X3/Kernel/dtbo.emmc.win
+dd if=/dev/block/bootdevice/by-name/recovery of=/sdcard/TWRP/BACKUPS/POCO_X3/Kernel/recovery.emmc.win
 
 # install kernel
 ui_print " ";

@@ -3807,13 +3807,13 @@
 #                                                  #
 ####################################################
 #                                                  #
-# - Name Kernel     = INTROVERT                    #
+# - Name Kernel     = CABAI RAWIT                  #
 # - Status          = STABLE                       #
-# - Category Kernel = GAMING (OVERVOLT)            #
+# - Category Kernel = BALANCE (OVERVOLT)           #
 # - Device          = surya                        #
-# - Version Android = 11,12,13                     #
-# - Vendor          = OSS                          #
-# - Build Date      = 01092023                     #
+# - Version Android = 11,12,13,14                  #
+# - Vendor          = OSS & MIUI                   #
+# - Build Date      = 12102023                     #
 # - Build Clock     =                              #
 #                                                  #
 ####################################################
@@ -3822,8 +3822,7 @@
 #                                                  #
 # CHANGELOG                                        #
 #                                                  #
-# KERNEL INTROVERT FOR SURYA                       #
-# - COMPILER WITH WEEBX CLANG                      #
+# KERNEL CABAI RAWIT FOR SURYA                     #
 # - IMPROVER & STABILIZER PERFORMANCE              #
 # - FIXED MORE BUGS                                #
 # - AND MORE                                       #
