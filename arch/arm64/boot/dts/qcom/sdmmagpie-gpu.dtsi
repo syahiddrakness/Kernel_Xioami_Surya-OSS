@@ -595,7 +595,7 @@
 					qcom,bus-max = <7>;
 				};
 
-				/* SVS2 */
+				/* MIN SVS */
 				qcom,gpu-pwrlevel@7 {
 					reg = <7>;
 					qcom,gpu-freq = <150000000>;
