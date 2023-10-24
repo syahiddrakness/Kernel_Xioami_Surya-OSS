@@ -395,7 +395,7 @@
 };
 
 &sde_dp {
-	qcom,dp-aux-switch = <&fsa5400>;
+	qcom,dp-aux-switch = <&fsa4480>;
 };
 
 &pm6150_qg {
