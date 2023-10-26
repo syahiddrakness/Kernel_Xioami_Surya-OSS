@@ -140,8 +140,8 @@ enum print_reason {
 
 enum hvdcp3_type {
 	HVDCP3_NONE = 0,
-	HVDCP3_CLASSA_28W,
-	HVDCP3_CLASSB_37W,
+	HVDCP3_CLASSA_18W,
+	HVDCP3_CLASSB_27W,
 };
 
 #define VBAT_TO_VRAW_ADC(v)		div_u64((u64)v * 1000000UL, 194637UL)
