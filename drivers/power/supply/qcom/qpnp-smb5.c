@@ -1056,7 +1056,7 @@ static int smb5_usb_get_prop(struct power_supply *psy,
 					val->intval = HVDCP3_NONE;
 			} else {/* for F10 */
 				if (chg->real_charger_type == POWER_SUPPLY_TYPE_USB_HVDCP_3)
-					val->intval = HVDCP3_CLASSA_18W; /* 18W hvdcp3 insert  */
+					val->intval = HVDCP3_CLASSB_27W; /* 27W hvdcp3 insert  */
 				else
 					val->intval = HVDCP3_NONE;
 			}

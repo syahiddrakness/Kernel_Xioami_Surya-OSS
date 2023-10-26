@@ -36,8 +36,8 @@ struct range_data {
 
 enum step_hvdcp3_type {
 	STEP_HVDCP3_NONE = 0,
-	STEP_HVDCP3_CLASSA_33W,
-	STEP_HVDCP3_CLASSB_900W,
+	STEP_HVDCP3_CLASSA_18W,
+	STEP_HVDCP3_CLASSB_27W,
 };
 
 int qcom_step_chg_init(struct device *dev,
