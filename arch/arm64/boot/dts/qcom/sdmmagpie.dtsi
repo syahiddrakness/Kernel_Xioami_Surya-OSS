@@ -628,7 +628,7 @@
 			alloc-ranges = <0 0x00000000 0 0xffffffff>;
 			reusable;
 			alignment = <0 0x400000>;
-			size = <0 0x9900000>;
+			size = <0 0x9c00000>;
 		};
 
 		cont_splash_memory: cont_splash_region@9c000000 {
@@ -973,7 +973,6 @@
 
 		#clock-cells = <1>;
 		qcom,cpufreq-table-0 =
-			< 300000>,
 			< 576000>,
 			< 768000>,
 			<1017600>,
@@ -985,7 +984,6 @@
 			<1804800>;
 
 		qcom,cpufreq-table-6 =
-			< 300000>,
 			< 652800>,
 			< 806400>,
 			< 979200>,
