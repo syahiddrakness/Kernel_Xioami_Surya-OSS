@@ -405,12 +405,12 @@
 	qcom,linearize-soc;
 	qcom,cl-feedback-on;
 	qcom,tcss-enable;
-	qcom,vbatt-cutoff-mv = <1400>;
-	qcom,vbatt-low-mv = <1500>;
-	qcom,vbatt-low-cold-mv = <1700>;
-	qcom,vbatt-empty-mv = <1000>;
-	qcom,vbatt-empty-cold-mv = <1000>;
-	qcom,s3-entry-ibat-ua = <30000>;
+	qcom,vbatt-cutoff-mv = <4400>;
+	qcom,vbatt-low-mv = <4500>;
+	qcom,vbatt-low-cold-mv = <4700>;
+	qcom,vbatt-empty-mv = <4000>;
+	qcom,vbatt-empty-cold-mv = <4000>;
+	qcom,s3-entry-ibat-ua = <35000>;
 	qcom,s3-exit-ibat-ua = <48000>;
 	qcom,s3-entry-fifo-length = <2>;
 	qcom,qg-vadc = <&pm6150_vadc>;
