@@ -28,8 +28,8 @@
         cp_qc30 {
                 compatible = "xiaomi,cp-qc30";
                 status = "ok";
-                mi,qc3-bat-volt-max = <6000>;
-                mi,qc3-ffc-bat-volt-max = <6000>;
+                mi,qc3-bat-volt-max = <4480>;
+                mi,qc3-ffc-bat-volt-max = <4480>;
                 mi,qc3-bat-curr-max = <6000>;
                 mi,qc3-bus-volt-max = <12000>;
                 mi,qc3-bus-curr-max = <3000>;
