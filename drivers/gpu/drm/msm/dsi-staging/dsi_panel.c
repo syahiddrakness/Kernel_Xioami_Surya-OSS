@@ -1461,14 +1461,30 @@ static int dsi_panel_parse_dfps_caps(struct dsi_panel *panel)
 		goto error;
 	}
 
-	dfps_caps->dfps_list_len = 3;
+	dfps_caps->dfps_list_len = 19;
 
 	dfps_caps->dfps_list = kcalloc(dfps_caps->dfps_list_len, sizeof(u32),
 			GFP_KERNEL);
 
 	dfps_caps->dfps_list[0] = 120;
-	dfps_caps->dfps_list[1] = 90;
-	dfps_caps->dfps_list[2] = 60;
+	dfps_caps->dfps_list[1] = 115;
+	dfps_caps->dfps_list[2] = 110;
+	dfps_caps->dfps_list[3] = 105;
+	dfps_caps->dfps_list[4] = 100;
+	dfps_caps->dfps_list[5] = 95;
+	dfps_caps->dfps_list[6] = 90;
+	dfps_caps->dfps_list[7] = 85;
+	dfps_caps->dfps_list[8] = 80;
+	dfps_caps->dfps_list[9] = 75;
+	dfps_caps->dfps_list[10] = 70;
+	dfps_caps->dfps_list[11] = 65;
+	dfps_caps->dfps_list[12] = 60;
+	dfps_caps->dfps_list[13] = 55;
+	dfps_caps->dfps_list[14] = 50;
+	dfps_caps->dfps_list[15] = 45;
+	dfps_caps->dfps_list[16] = 40;
+	dfps_caps->dfps_list[17] = 35;
+	dfps_caps->dfps_list[18] = 30;
 
 	dfps_caps->dfps_support = true;
 
