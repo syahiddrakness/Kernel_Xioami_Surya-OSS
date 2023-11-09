@@ -2129,12 +2129,12 @@ static int qg_setprop_batt_age_level(struct qpnp_qg *chip, int batt_age_level)
 	return rc;
 }
 
-#define LOW_TEMP_FFC_BATT_FULL_CURRENT		1160000
-#define HIGH_TEMP_FFC_BATT_FULL_CURRENT		1160000
+#define LOW_TEMP_FFC_BATT_FULL_CURRENT		1400000
+#define HIGH_TEMP_FFC_BATT_FULL_CURRENT		1400000
 #define BATT6000MAH_FFC_BATT_FULL_CURRENT		820000
-#define LOW_TEMP_FFC_CHG_TERM_CURRENT		-710
-#define HIGH_TEMP_FFC_CHG_TERM_CURRENT		-760
-#define BATT6000MAH_FFC_CHG_TERM_CURRENT		-530
+#define LOW_TEMP_FFC_CHG_TERM_CURRENT		-910
+#define HIGH_TEMP_FFC_CHG_TERM_CURRENT		-960
+#define BATT6000MAH_FFC_CHG_TERM_CURRENT		-600
 static int qg_get_ffc_iterm_for_qg(struct qpnp_qg *chip)
 {
        int rc = 0;
@@ -2178,7 +2178,7 @@ static int qg_get_ffc_iterm_for_chg(struct qpnp_qg *chip)
        }
        if(profile_6000mah_judge)
 	       ffc_chg_iterm = BATT6000MAH_FFC_CHG_TERM_CURRENT;
-       else if (batt_temp < 350)
+       else if (batt_temp < 550)
                ffc_chg_iterm = LOW_TEMP_FFC_CHG_TERM_CURRENT;
        else
                ffc_chg_iterm = HIGH_TEMP_FFC_CHG_TERM_CURRENT;

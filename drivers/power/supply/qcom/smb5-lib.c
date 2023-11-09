@@ -8269,7 +8269,7 @@ static void smblib_six_pin_batt_step_chg_work(struct work_struct *work)
 		return;
 	}
 
-	/*if temp > 480 or temp < 150 do not set step charge work */
+	/*if temp > 550 or temp < 150 do not set step charge work */
 	rc = power_supply_get_property(chg->bms_psy,
 					POWER_SUPPLY_PROP_TEMP, &pval);
 	if (rc < 0) {
@@ -8277,7 +8277,7 @@ static void smblib_six_pin_batt_step_chg_work(struct work_struct *work)
 		return;
 	}
 
-	if  (pval.intval >= 480 || pval.intval <= 150) {
+	if  (pval.intval >= 550 || pval.intval <= 150) {
 		smblib_dbg(chg, PR_MISC, "temp:%d is abort"
 						"do not  set step charge work\n", pval.intval);
 		if (is_client_vote_enabled(chg->fv_votable,
