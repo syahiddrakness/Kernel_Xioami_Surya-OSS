@@ -98,8 +98,8 @@
 
 &thermal_zones {
 	aoss-0-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&tsens0 0>;
 		wake-capable-sensor;
@@ -118,8 +118,8 @@
 	};
 
 	cpu-0-0-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&tsens0 1>;
 		wake-capable-sensor;
@@ -138,8 +138,8 @@
 	};
 
 	cpu-0-1-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&tsens0 2>;
 		wake-capable-sensor;
@@ -158,8 +158,8 @@
 	};
 
 	cpu-0-2-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&tsens0 3>;
 		wake-capable-sensor;
@@ -178,8 +178,8 @@
 	};
 
 	cpu-0-3-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens0 4>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -198,8 +198,8 @@
 	};
 
 	cpu-0-4-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens0 5>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -218,8 +218,8 @@
 	};
 
 	cpu-0-5-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens0 6>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -238,8 +238,8 @@
 	};
 
 	cpuss-0-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens0 7>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -258,8 +258,8 @@
 	};
 
 	cpuss-1-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens0 8>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -278,8 +278,8 @@
 	};
 
 	cpu-1-0-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens0 9>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -298,8 +298,8 @@
 	};
 
 	cpu-1-1-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens0 10>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -318,8 +318,8 @@
 	};
 
 	cpu-1-2-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens0 11>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -338,8 +338,8 @@
 	};
 
 	cpu-1-3-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens0 12>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -358,8 +358,8 @@
 	};
 
 	gpuss-0-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens0 13>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -378,8 +378,8 @@
 	};
 
 	gpuss-1-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens0 14>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -398,8 +398,8 @@
 	};
 
 	aoss-1-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens1 0>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -418,8 +418,8 @@
 	};
 
 	cwlan-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens1 1>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -438,8 +438,8 @@
 	};
 
 	audio-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens1 2>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -458,8 +458,8 @@
 	};
 
 	ddr-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens1 3>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -478,8 +478,8 @@
 	};
 
 	q6-hvx-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens1 4>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -498,8 +498,8 @@
 	};
 
 	camera-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens1 5>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -518,8 +518,8 @@
 	};
 
 	mdm-core-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens1 6>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -538,8 +538,8 @@
 	};
 
 	mdm-dsp-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens1 7>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -558,8 +558,8 @@
 	};
 
 	npu-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens1 8>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -578,8 +578,8 @@
 	};
 
 	video-usr {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens1 9>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -598,8 +598,8 @@
 	};
 
 	xo-therm-adc {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&pm6150_adc_tm ADC_XO_THERM_PU2>;
 		wake-capable-sensor;
@@ -613,8 +613,8 @@
 	};
 
 	rf-pa0-therm-adc {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&pm6150_adc_tm ADC_AMUX_THM2_PU2>;
 		wake-capable-sensor;
@@ -628,8 +628,8 @@
 	};
 
 	rf-pa1-therm-adc {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&pm6150_adc_tm ADC_AMUX_THM3_PU2>;
 		wake-capable-sensor;
@@ -643,8 +643,8 @@
 	};
 
 	quiet-therm-adc {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&pm6150_adc_tm ADC_AMUX_THM4_PU2>;
 		wake-capable-sensor;
@@ -658,8 +658,8 @@
 	};
 
 	conn-therm-adc {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&pm6150l_adc_tm ADC_AMUX_THM1_PU2>;
 		wake-capable-sensor;
@@ -673,8 +673,8 @@
 	};
 
 	camera-ftherm-adc {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&pm6150l_adc_tm ADC_AMUX_THM3_PU2>;
 		wake-capable-sensor;
@@ -688,8 +688,8 @@
 	};
 
 	nvm-therm-adc {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&pm6150l_adc_tm ADC_GPIO4_PU2>;
 		wake-capable-sensor;
@@ -703,8 +703,8 @@
 	};
 
 	lmh-dcvs-00 {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&lmh_dcvs0>;
 		wake-capable-sensor;
@@ -719,8 +719,8 @@
 	};
 
 	lmh-dcvs-01 {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&lmh_dcvs1>;
 		wake-capable-sensor;
@@ -756,8 +756,8 @@
 	};
 
 	cpu-0-max-step {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
 		trips {
@@ -770,8 +770,8 @@
 	};
 
 	cpu-1-max-step {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
 		trips {
@@ -784,8 +784,8 @@
 	};
 
 	cpu-0-0-step {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&tsens0 1>;
 		wake-capable-sensor;
@@ -807,8 +807,8 @@
 	};
 
 	cpu-0-1-step {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&tsens0 2>;
 		wake-capable-sensor;
@@ -830,8 +830,8 @@
 	};
 
 	cpu-0-2-step {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&tsens0 3>;
 		wake-capable-sensor;
@@ -853,8 +853,8 @@
 	};
 
 	cpu-0-3-step {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&tsens0 4>;
 		wake-capable-sensor;
@@ -876,8 +876,8 @@
 	};
 
 	cpu-0-4-step {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&tsens0 5>;
 		wake-capable-sensor;
@@ -899,8 +899,8 @@
 	};
 
 	cpu-0-5-step {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&tsens0 6>;
 		wake-capable-sensor;
@@ -922,8 +922,8 @@
 	};
 
 	cpu-1-0-step {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&tsens0 9>;
 		wake-capable-sensor;
@@ -945,8 +945,8 @@
 	};
 
 	cpu-1-1-step {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&tsens0 10>;
 		wake-capable-sensor;
@@ -968,8 +968,8 @@
 	};
 
 	cpu-1-2-step {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&tsens0 11>;
 		wake-capable-sensor;
@@ -991,8 +991,8 @@
 	};
 
 	cpu-1-3-step {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&tsens0 12>;
 		wake-capable-sensor;
@@ -1014,8 +1014,8 @@
 	};
 
 	aoss-0-lowf {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "low_limits_floor";
 		thermal-sensors = <&tsens0 0>;
 		wake-capable-sensor;
@@ -1065,8 +1065,8 @@
 	};
 
 	cpu-0-0-lowf {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "low_limits_floor";
 		thermal-sensors = <&tsens0 1>;
 		wake-capable-sensor;
@@ -1116,8 +1116,8 @@
 	};
 
 	cpu-1-0-lowf {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "low_limits_floor";
 		thermal-sensors = <&tsens0 9>;
 		wake-capable-sensor;
@@ -1167,8 +1167,8 @@
 	};
 
 	gpuss-0-lowf {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "low_limits_floor";
 		thermal-sensors = <&tsens0 13>;
 		wake-capable-sensor;
@@ -1218,8 +1218,8 @@
 	};
 
 	cwlan-lowf {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "low_limits_floor";
 		thermal-sensors = <&tsens1 1>;
 		wake-capable-sensor;
@@ -1269,8 +1269,8 @@
 	};
 
 	audio-lowf {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "low_limits_floor";
 		thermal-sensors = <&tsens1 2>;
 		wake-capable-sensor;
@@ -1320,8 +1320,8 @@
 	};
 
 	ddr-lowf {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "low_limits_floor";
 		thermal-sensors = <&tsens1 3>;
 		wake-capable-sensor;
@@ -1371,8 +1371,8 @@
 	};
 
 	q6-hvx-lowf {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "low_limits_floor";
 		thermal-sensors = <&tsens1 4>;
 		wake-capable-sensor;
@@ -1422,8 +1422,8 @@
 	};
 
 	camera-lowf {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "low_limits_floor";
 		thermal-sensors = <&tsens1 5>;
 		wake-capable-sensor;
@@ -1473,8 +1473,8 @@
 	};
 
 	mdm-core-lowf {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "low_limits_floor";
 		thermal-sensors = <&tsens1 6>;
 		wake-capable-sensor;
@@ -1524,8 +1524,8 @@
 	};
 
 	mdm-dsp-lowf {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "low_limits_floor";
 		thermal-sensors = <&tsens1 7>;
 		wake-capable-sensor;
@@ -1575,8 +1575,8 @@
 	};
 
 	npu-lowf {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "low_limits_floor";
 		thermal-sensors = <&tsens1 8>;
 		wake-capable-sensor;
@@ -1626,8 +1626,8 @@
 	};
 
 	video-lowf {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "low_limits_floor";
 		thermal-sensors = <&tsens1 9>;
 		wake-capable-sensor;
@@ -1677,8 +1677,8 @@
 	};
 
 	backlight_therm {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&pm6150l_adc_tm ADC_GPIO1_PU2>;
 		trips {
@@ -1691,8 +1691,8 @@
 	};
 
 	npu-step {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens1 8>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -1714,8 +1714,8 @@
 	};
 
 	q6-hvx-step {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-sensors = <&tsens1 4>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
@@ -1758,8 +1758,8 @@
 	};
 
 	quiet-therm-step {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&pm6150_adc_tm ADC_AMUX_THM4_PU2>;
 		wake-capable-sensor;
