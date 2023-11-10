@@ -591,7 +591,7 @@
 		trips {
 			ibat_lvl1:ibat-lvl1 {
 				temperature = <6000>;
-				hysteresis = <200>
+				hysteresis = <200>;
 				type = "passive";
 			};
 		};
