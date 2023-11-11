@@ -297,6 +297,7 @@ void hdd_debugfs_process_radio_stats(struct hdd_adapter *adapter,
 					buffer,
 					DEBUGFS_LLSTATS_BUF_SIZE - ll_stats.len,
 					"tx time %u rx time %u",
+					chan_stat->tx_time, chan_stat->rx_time);
 			}
 		}
 
