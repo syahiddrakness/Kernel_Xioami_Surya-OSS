@@ -406,13 +406,13 @@
 	qcom,cl-feedback-on;
 	qcom,tcss-enable;
 	qcom,bass-enable;
-	qcom,vbatt-cutoff-mv = <1400>;
-	qcom,vbatt-low-mv = <1500>;
-	qcom,vbatt-low-cold-mv = <1700>;
-	qcom,vbatt-empty-mv = <1000>;
-	qcom,vbatt-empty-cold-mv = <1000>;
-	qcom,s3-entry-ibat-ua = <20000>;
-	qcom,s3-exit-ibat-ua = <40000>;
+	qcom,vbatt-cutoff-mv = <3400>;
+	qcom,vbatt-low-mv = <3500>;
+	qcom,vbatt-low-cold-mv = <3700>;
+	qcom,vbatt-empty-mv = <3000>;
+	qcom,vbatt-empty-cold-mv = <3000>;
+	qcom,s3-entry-ibat-ua = <25000>;
+	qcom,s3-exit-ibat-ua = <44000>;
 	qcom,s3-entry-fifo-length = <2>;
 	qcom,qg-vadc = <&pm6150_vadc>;
 	qcom,qg-ext-sns;
@@ -451,23 +451,24 @@
 			   "vph_voltage";
 	qcom,battery-data = <&mtp_batterydata>;
 	qcom,usb-icl-ua = <3000000>;
-	qcom,auto-recharge-soc = <95>;
+	qcom,auto-recharge-soc = <99>;
 	qcom,fcc-max-ua = <6000000>;
 	qcom,fv-max-uv = <4480000>;
 	qcom,chg-term-src = <1>;
-	qcom,chg-term-current-ma = <(-1000)>;
+	qcom,chg-term-current-ma = <(-10)>;
 	qcom,sw-jeita-enable;
 	//qcom,fcc-stepping-enable;
 	qcom,suspend-input-on-debug-batt;
 	qcom,sec-charger-config = <0>;
 	qcom,thermal-mitigation = <6000000 5500000 4900000 4600000 4500000 4400000 4200000
 				   3800000 3800000 3600000 3400000 3200000 3000000 2200000
-				   800000 700000 600000 500000 400000 300000 200000 100000>;
+				   800000 700000 600000 500000 400000 300000 200000 100000
+				   90000 80000 70000 60000 50000 40000 30000 20000 10000>;
 	dpdm-supply = <&qusb_phy0>;
 	qcom,charger-temp-max = <1500>;
 	qcom,smb-temp-max = <1500>;
-	qcom,fcc-step-delay-ms = <100>;
-	qcom,fcc-step-size-ua = <300000>;
+	qcom,fcc-step-delay-ms = <10>;
+	qcom,fcc-step-size-ua = <100000>;
 	qcom,disable-sw-thermal-regulation;
 	qcom,disable-fcc-restriction;
 	qcom,smb-internal-pull-kohm = <0>;
@@ -490,9 +491,9 @@
 &pm6150_pdphy {
 	mi,non-qcom-pps-ctrl;
 	mi,pd_curr_limit = <1>;
-	mi,pd_max_curr_limit = <4480000>;
+	mi,pd_max_curr_limit = <4000000>;
 	mi,limit_pd_unverified_pps_vbus = <1>;
-	mi,pd_unverified_pps_max_vbus_limit = <10000000>;
+	mi,pd_unverified_pps_max_vbus_limit = <9500000>;
 };
 
 &pm6150_gpios {
