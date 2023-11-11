@@ -73,7 +73,7 @@
 		qcom,gpu-quirk-secvid-set-once;
 
 		/* <HZ/12> */
-		qcom,idle-timeout = <30>;
+		qcom,idle-timeout = <80>;
 
 		qcom,highest-bank-bit = <14>;
 
@@ -135,8 +135,8 @@
 		cache-slices = <&llcc 12>, <&llcc 11>;
 
 		/* CPU latency parameter */
-		qcom,pm-qos-active-latency = <15>;
-		qcom,pm-qos-wakeup-latency = <15>;
+		qcom,pm-qos-active-latency = <80>;
+		qcom,pm-qos-wakeup-latency = <80>;
 
 		/* Enable context aware freq. scaling */
 		qcom,enable-ca-jump;
