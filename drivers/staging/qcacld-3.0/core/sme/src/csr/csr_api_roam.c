@@ -10239,8 +10239,6 @@ csr_roaming_state_config_cnf_processor(struct mac_context *mac_ctx,
 	if (!local_ies) {
 		status = csr_get_parsed_bss_description_ies(mac_ctx, bss_desc,
 							    &local_ies);
-		if (!QDF_IS_STATUS_SUCCESS(status))
-			return;
 		is_ies_malloced = true;
 	}
 
