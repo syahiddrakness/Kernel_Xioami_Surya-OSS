@@ -3021,7 +3021,7 @@ cppflags-$(CONFIG_WLAN_HANG_EVENT) += -DDP_SUPPORT_RECOVERY_NOTIFY
 #endof dummy flags
 
 ifndef CONFIG_CC_OPTIMIZE_FOR_SIZE
-ccflags-y += -O2
+ccflags-y += -O3
 endif
 
 # DFS component
