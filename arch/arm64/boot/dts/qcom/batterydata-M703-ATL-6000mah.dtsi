@@ -12,9 +12,9 @@
  */
 
 qcom,m703-atl-6000mah {
-	qcom,max-voltage-uv = <6000000>;
-	qcom,ffc-max-voltage-uv = <6000000>;
-	//qcom,fg-cc-cv-threshold-uv = <6000000>;
+	qcom,max-voltage-uv = <4480000>;
+	qcom,ffc-max-voltage-uv = <4480000>;
+	//qcom,fg-cc-cv-threshold-uv = <4480000>;
 	qcom,fastchg-current-ma = <6000>;
 	qcom,batt-id-kohm = <100>;
 	qcom,battery-beta = <4250>;
@@ -29,14 +29,14 @@ qcom,m703-atl-6000mah {
 				51  100  6000000
 				101 150  6000000
 				151 480  6000000
-				481 600  6000000>;
+				481 900  6000000>;
 
 	qcom,jeita-fv-ranges = <(-100)   0   6000000
                                 1   50   6000000
 				51  100  6000000
 				101 150  6000000
 				151 480  6000000
-				481 600  6000000>;
+				481 900  6000000>;
 
 	/* COOL = 15 degc, WARM = 55 degC */
 	qcom,jeita-soft-thresholds = <0x5521 0x1de6>;
