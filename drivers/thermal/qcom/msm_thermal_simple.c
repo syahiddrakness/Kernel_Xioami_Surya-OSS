@@ -81,7 +81,7 @@ static void thermal_throttle_worker(struct work_struct *work)
 	/* HQ autism coming up */
 	if (temp_batt <= 30000)
 		temp_avg = (temp_cpus_avg * 2 + temp_batt * 3) / 5;
-	else if (temp_batt > 30000 && temp_batt <= 40000)
+	else if (temp_batt > 10000 && temp_batt <= 40000)
 		temp_avg = (temp_cpus_avg * 3 + temp_batt * 2) / 5;
 	else if (temp_batt > 40000 && temp_batt <= 50000)
 		temp_avg = (temp_cpus_avg * 4 + temp_batt) / 5;
