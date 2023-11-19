@@ -98,6 +98,8 @@
 #include <linux/cpu_input_boost.h>
 #include <linux/scs.h>
 
+#include <linux/cpu_boost.h>
+
 #include <asm/pgtable.h>
 #include <asm/pgalloc.h>
 #include <linux/uaccess.h>
@@ -2239,6 +2241,9 @@ long _do_fork(unsigned long clone_flags,
 	struct task_struct *p;
 	int trace = 0;
 	long nr;
+	
+	if (is_zygote_pid(current->pid))
+		do_input_boost_max();
 
 	if (task_is_zygote(current)) {
 #ifdef CONFIG_KPROFILES
