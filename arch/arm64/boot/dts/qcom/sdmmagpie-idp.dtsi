@@ -28,7 +28,7 @@
         cp_qc30 {
                 compatible = "xiaomi,cp-qc30";
                 status = "ok";
-                mi,qc3-bat-volt-max = <4480>;
+                mi,qc3-bat-volt-max = <4450>;
                 mi,qc3-ffc-bat-volt-max = <4480>;
                 mi,qc3-bat-curr-max = <6000>;
                 mi,qc3-bus-volt-max = <12000>;
@@ -38,7 +38,7 @@
 	usbpd_pm {
 		compatible = "xiaomi,usbpd-pm";
 		status = "ok";
-		mi,pd-bat-volt-max = <4480>;
+		mi,pd-bat-volt-max = <4450>;
 		mi,pd-ffc-bat-volt-max = <4480>;
 		mi,pd-bat-curr-max = <6000>;
 		mi,pd-bus-volt-max = <12000>;
@@ -400,7 +400,7 @@
 
 &pm6150_qg {
 	qcom,battery-data = <&mtp_batterydata>;
-	qcom,qg-iterm-ma = <600>;
+	qcom,qg-iterm-ma = <100>;
 	qcom,hold-soc-while-full;
 	qcom,linearize-soc;
 	qcom,cl-feedback-on;
@@ -455,7 +455,7 @@
 	qcom,fcc-max-ua = <6000000>;
 	qcom,fv-max-uv = <4480000>;
 	qcom,chg-term-src = <1>;
-	qcom,chg-term-current-ma = <(-3000)>;
+	qcom,chg-term-current-ma = <(-100)>;
 	qcom,sw-jeita-enable;
 	//qcom,fcc-stepping-enable;
 	qcom,suspend-input-on-debug-batt;
@@ -491,7 +491,7 @@
 &pm6150_pdphy {
 	mi,non-qcom-pps-ctrl;
 	mi,pd_curr_limit = <1>;
-	mi,pd_max_curr_limit = <4480000>;
+	mi,pd_max_curr_limit = <4000000>;
 	mi,limit_pd_unverified_pps_vbus = <1>;
 	mi,pd_unverified_pps_max_vbus_limit = <9500000>;
 };
@@ -585,7 +585,7 @@
 			ti,bq2597x,die-therm-disable;
 
 			ti,bq2597x,bat-ovp-threshold = <4550>;
-			ti,bq2597x,bat-ovp-alarm-threshold = <4480>;
+			ti,bq2597x,bat-ovp-alarm-threshold = <4450>;
 			//ti,bq2597x,bat-ocp-threshold = <5000>;
 			//ti,bq2597x,bat-ocp-alarm-threshold = <4500>;
 
