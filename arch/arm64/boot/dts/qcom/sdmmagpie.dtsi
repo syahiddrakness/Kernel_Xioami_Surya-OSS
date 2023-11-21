@@ -1797,8 +1797,8 @@
 
 				msm_cdsp_rm: qcom,msm_cdsp_rm {
 					compatible = "qcom,msm-cdsp-rm";
-					qcom,qos-latency-us = <80>;
-					qcom,qos-maxhold-ms = <80>;
+					qcom,qos-latency-us = <15>;
+					qcom,qos-maxhold-ms = <15>;
 					qcom,compute-cx-limit-en;
 					qcom,compute-priority-mode = <2>;
 					#cooling-cells = <2>;
@@ -2144,10 +2144,10 @@
 
 		/* PM QoS */
 		qcom,pm-qos-irq-type = "affine_irq";
-		qcom,pm-qos-irq-latency = <80 80>;
+		qcom,pm-qos-irq-latency = <15 15>;
 		qcom,pm-qos-cpu-groups = <0x3f 0xc0>;
-		qcom,pm-qos-cmdq-latency-us = <80 80>, <80 80>;
-		qcom,pm-qos-legacy-latency-us = <80 80>, <80 80>;
+		qcom,pm-qos-cmdq-latency-us = <15 15>, <15 15>;
+		qcom,pm-qos-legacy-latency-us = <15 15>, <15 15>;
 
 		clocks = <&clock_gcc GCC_SDCC1_AHB_CLK>,
 			<&clock_gcc GCC_SDCC1_APPS_CLK>,
@@ -2216,9 +2216,9 @@
 
 		/* PM QoS */
 		qcom,pm-qos-irq-type = "affine_irq";
-		qcom,pm-qos-irq-latency = <80 80>;
+		qcom,pm-qos-irq-latency = <15 15>;
 		qcom,pm-qos-cpu-groups = <0x3f 0xc0>;
-		qcom,pm-qos-legacy-latency-us = <80 80>, <80 80>;
+		qcom,pm-qos-legacy-latency-us = <15 15>, <15 15>;
 
 		clocks = <&clock_gcc GCC_SDCC2_AHB_CLK>,
 			<&clock_gcc GCC_SDCC2_APPS_CLK>;
@@ -2383,7 +2383,7 @@
 
 		/* PM QoS */
 		qcom,pm-qos-cpu-groups = <0x3f 0xC0>;
-		qcom,pm-qos-cpu-group-latency-us = <80 80>;
+		qcom,pm-qos-cpu-group-latency-us = <15 15>;
 		qcom,pm-qos-default-cpu = <0>;
 
 		pinctrl-names = "dev-reset-assert", "dev-reset-deassert";
