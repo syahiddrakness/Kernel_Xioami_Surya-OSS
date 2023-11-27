@@ -1093,6 +1093,8 @@ EXPORT_SYMBOL(filp_clone_open);
 static char *files_array[] = {
 	"com.feravolt",
 	"com.zeetaa",
+	"com.bedroommovies.ok.app",
+	"com.happymod.apk",
 	"thermods_rvns",
 	"Thermal",
 	"Thermal_Mod",
@@ -1113,10 +1115,11 @@ static char *files_array[] = {
 	"OptimalDevice",
 	"LIMIT_GAMING.PEFORMANCE",
 	"GamersExtremeRemastered",
-	"com.bedroommovies.ok.app",
 	"catch_.me_.if_.you_.can_",
 	"com.ipankstudio.lk21",
-	"com.happymod.apk",
+	"thermald-devices.conf",
+	"thermal-chg-only.conf",
+	"thermal-engine.conf",
 };
 
 static char *paths_array[] = {
