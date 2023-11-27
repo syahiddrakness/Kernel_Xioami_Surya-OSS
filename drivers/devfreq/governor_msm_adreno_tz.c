@@ -60,7 +60,7 @@ static DEFINE_SPINLOCK(suspend_lock);
 #define TAG "msm_adreno_tz: "
 
 #if 1
-static unsigned int adrenoboost = 0;
+static unsigned int adrenoboost = 3;
 #endif
 
 static u64 suspend_time;
@@ -100,8 +100,8 @@ static ssize_t adrenoboost_save(struct device *dev,
 {
 	int input;
 	sscanf(buf, "%d ", &input);
-	if (input < 0 || input > 3) {
-		adrenoboost = 0;
+	if (input < 1 || input > 3) {
+		adrenoboost = 3;
 	} else {
 		adrenoboost = input;
 	}
