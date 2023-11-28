@@ -1577,7 +1577,7 @@
 
 	qcom,msm_fastrpc {
 		compatible = "qcom,msm-fastrpc-compute";
-		qcom,rpc-latency-us = <800>;
+		qcom,rpc-latency-us = <120>;
 		qcom,adsp-remoteheap-vmid = <22 37>;
 		qcom,fastrpc-adsp-audio-pdr;
 		qcom,fastrpc-adsp-sensors-pdr;
