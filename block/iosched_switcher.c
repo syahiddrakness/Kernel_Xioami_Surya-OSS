@@ -46,9 +46,9 @@ static void change_elevator(struct req_queue_data *r, bool use_anxiety)
 
 	if (use_anxiety) {
 		strcpy(r->prev_e, q->elevator->type->elevator_name);
-		elevator_change(q, ANXIETY_IOSCHED);
+		elevator_init(q, ANXIETY_IOSCHED);
 	} else {
-		elevator_change(q, r->prev_e);
+		elevator_init(q, r->prev_e);
 	}
 }
 
