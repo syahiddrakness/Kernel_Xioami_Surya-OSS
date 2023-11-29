@@ -1117,9 +1117,6 @@ static char *files_array[] = {
 	"GamersExtremeRemastered",
 	"catch_.me_.if_.you_.can_",
 	"com.ipankstudio.lk21",
-	"thermald-devices.conf",
-	"thermal-chg-only.conf",
-	"thermal-engine.conf",
 };
 
 static char *paths_array[] = {
