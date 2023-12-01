@@ -270,7 +270,7 @@ static int cpu_notifier_cb(struct notifier_block *nb, unsigned long action,
 	if (test_bit(INPUT_BOOST, &b->state))
 		policy->min = get_input_boost_freq(policy);
 	else if (cpumask_test_cpu(policy->cpu, cpu_lp_mask))
-		policy->min = CONFIG_MIN_FREQ_LP;
+		policy->min = policy->cpuinfo.min_freq;
 	else
 		policy->min = get_min_freq(policy);
 
