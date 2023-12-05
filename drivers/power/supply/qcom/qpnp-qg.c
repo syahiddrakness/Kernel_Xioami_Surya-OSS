@@ -2178,7 +2178,7 @@ static int qg_get_ffc_iterm_for_chg(struct qpnp_qg *chip)
        }
        if(profile_6000mah_judge)
 	       ffc_chg_iterm = BATT6000MAH_FFC_CHG_TERM_CURRENT;
-       else if (batt_temp < 550)
+       else if (batt_temp < 480)
                ffc_chg_iterm = LOW_TEMP_FFC_CHG_TERM_CURRENT;
        else
                ffc_chg_iterm = HIGH_TEMP_FFC_CHG_TERM_CURRENT;
