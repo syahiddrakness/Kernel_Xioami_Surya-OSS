@@ -2839,6 +2839,8 @@
 	ddr_bw_opp_table: ddr-bw-opp-table {
 		compatible = "operating-points-v2";
 		BW_OPP_ENTRY(   0, 4); /*     0 MB/s */
+		BW_OPP_ENTRY( 100, 4); /*   381 MB/s */
+		BW_OPP_ENTRY( 200, 4); /*   762 MB/s */
 		BW_OPP_ENTRY( 300, 4); /*  1144 MB/s */
 		BW_OPP_ENTRY( 451, 4); /*  1720 MB/s */
 		BW_OPP_ENTRY( 547, 4); /*  2086 MB/s */
@@ -2883,6 +2885,8 @@
 	suspendable_ddr_bw_opp_table: suspendable-ddr-bw-opp-table {
 		compatible = "operating-points-v2";
 		BW_OPP_ENTRY(   0, 4); /*     0 MB/s */
+		BW_OPP_ENTRY( 100, 4); /*   381 MB/s */
+		BW_OPP_ENTRY( 200, 4); /*   762 MB/s */
 		BW_OPP_ENTRY( 300, 4); /*  1144 MB/s */
 		BW_OPP_ENTRY( 451, 4); /*  1720 MB/s */
 		BW_OPP_ENTRY( 547, 4); /*  2086 MB/s */
