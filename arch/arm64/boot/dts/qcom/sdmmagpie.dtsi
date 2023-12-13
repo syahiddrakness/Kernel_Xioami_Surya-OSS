@@ -2996,7 +2996,7 @@
 			< 1324000 MHZ_TO_MBPS(1300, 16) >,
 			< 1708800 MHZ_TO_MBPS(1700, 16) >,
 			< 2169600 MHZ_TO_MBPS(2500, 16) >,
-			< 2304000 MHZ_TO_MBPS(4000, 16) >;
+			< 2304000 MHZ_TO_MBPS(3000, 16) >;
 	};
 
 	cpu0_llcc_ddr_lat: qcom,cpu0-llcc-ddr-lat {
@@ -3014,10 +3014,16 @@
 		qcom,target-dev = <&cpu0_llcc_ddr_lat>;
 		qcom,cachemiss-ev = <0x1000>;
 		qcom,core-dev-table =
-			< 1017600 MHZ_TO_MBPS(1555, 4) >,
-			< 1248000 MHZ_TO_MBPS(1804, 4) >,
-			< 1497000 MHZ_TO_MBPS(3000, 4) >,
-			< 1804800 MHZ_TO_MBPS(4000, 4) >;
+			<  300000 MHZ_TO_MBPS( 451, 4) >,
+			<  576000 MHZ_TO_MBPS( 681, 4) >,
+			<  768000 MHZ_TO_MBPS( 768, 4) >,
+			< 1017600 MHZ_TO_MBPS(1017, 4) >,
+			< 1248000 MHZ_TO_MBPS(1353, 4) >,
+			< 1324800 MHZ_TO_MBPS(1555, 4) >,
+			< 1497600 MHZ_TO_MBPS(1804, 4) >,
+			< 1612800 MHZ_TO_MBPS(2092, 4) >,
+			< 1708800 MHZ_TO_MBPS(2500, 4) >,
+			< 1804800 MHZ_TO_MBPS(3200, 4) >;
 	};
 
 	cpu6_llcc_ddr_lat: qcom,cpu6-llcc-ddr-lat {
@@ -3035,9 +3041,19 @@
 		qcom,target-dev = <&cpu6_llcc_ddr_lat>;
 		qcom,cachemiss-ev = <0x1000>;
 		qcom,core-dev-table =
-			< 1094000 MHZ_TO_MBPS(1555, 4) >,
-			< 1324000 MHZ_TO_MBPS(2092, 4) >,
-			< 1708800 MHZ_TO_MBPS(3700, 4) >,
+			<  300000 MHZ_TO_MBPS( 451, 4) >,
+			<  652800 MHZ_TO_MBPS( 547, 4) >,
+			<  806400 MHZ_TO_MBPS( 681, 4) >,
+			<  979200 MHZ_TO_MBPS( 768, 4) >,
+			< 1094400 MHZ_TO_MBPS(1017, 4) >,
+			< 1209600 MHZ_TO_MBPS(1353, 4) >,
+			< 1324800 MHZ_TO_MBPS(1555, 4) >,
+			< 1555200 MHZ_TO_MBPS(1804, 4) >,
+			< 1708800 MHZ_TO_MBPS(2092, 4) >,
+			< 1843200 MHZ_TO_MBPS(2500, 4) >,
+			< 1939200 MHZ_TO_MBPS(3000, 4) >,
+			< 2169600 MHZ_TO_MBPS(3500, 4) >,
+			< 2208000 MHZ_TO_MBPS(4000, 4) >,
 			< 2304000 MHZ_TO_MBPS(4500, 4) >;
 	};
 
@@ -3055,10 +3071,16 @@
 		qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5>;
 		qcom,target-dev = <&cpu0_cpu_ddr_latfloor>;
 		qcom,core-dev-table =
-			< 1017600 MHZ_TO_MBPS(1555, 4) >,
-			< 1248000 MHZ_TO_MBPS(1804, 4) >,
-			< 1497000 MHZ_TO_MBPS(3000, 4) >,
-			< 1804800 MHZ_TO_MBPS(4000, 4) >;
+			<  300000 MHZ_TO_MBPS( 451, 4) >,
+			<  576000 MHZ_TO_MBPS( 681, 4) >,
+			<  768000 MHZ_TO_MBPS( 768, 4) >,
+			< 1017600 MHZ_TO_MBPS(1017, 4) >,
+			< 1248000 MHZ_TO_MBPS(1353, 4) >,
+			< 1324800 MHZ_TO_MBPS(1555, 4) >,
+			< 1497600 MHZ_TO_MBPS(1804, 4) >,
+			< 1612800 MHZ_TO_MBPS(2092, 4) >,
+			< 1708800 MHZ_TO_MBPS(2500, 4) >,
+			< 1804800 MHZ_TO_MBPS(3200, 4) >;
 	};
 
 	cpu6_cpu_ddr_latfloor: qcom,cpu6-cpu-ddr-latfloor {
@@ -3075,9 +3097,19 @@
 		qcom,cpulist = <&CPU6 &CPU7>;
 		qcom,target-dev = <&cpu6_cpu_ddr_latfloor>;
 		qcom,core-dev-table =
-			< 1094000 MHZ_TO_MBPS(1555, 4) >,
-			< 1324000 MHZ_TO_MBPS(2092, 4) >,
-			< 1708800 MHZ_TO_MBPS(3700, 4) >,
+			<  300000 MHZ_TO_MBPS( 451, 4) >,
+			<  652800 MHZ_TO_MBPS( 547, 4) >,
+			<  806400 MHZ_TO_MBPS( 681, 4) >,
+			<  979200 MHZ_TO_MBPS( 768, 4) >,
+			< 1094400 MHZ_TO_MBPS(1017, 4) >,
+			< 1209600 MHZ_TO_MBPS(1353, 4) >,
+			< 1324800 MHZ_TO_MBPS(1555, 4) >,
+			< 1555200 MHZ_TO_MBPS(1804, 4) >,
+			< 1708800 MHZ_TO_MBPS(2092, 4) >,
+			< 1843200 MHZ_TO_MBPS(2500, 4) >,
+			< 1939200 MHZ_TO_MBPS(3000, 4) >,
+			< 2169600 MHZ_TO_MBPS(3500, 4) >,
+			< 2208000 MHZ_TO_MBPS(4000, 4) >,
 			< 2304000 MHZ_TO_MBPS(4500, 4) >;
 	};
 
