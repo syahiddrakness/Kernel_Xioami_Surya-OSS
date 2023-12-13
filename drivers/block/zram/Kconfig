@@ -40,3 +40,13 @@ config ZRAM_MEMORY_TRACKING
 
 	  See Documentation/blockdev/zram.txt for more information.
 
+config ZRAM_FROM_8GB_RAM
+	int "zram for 8GB RAM set of kernels"
+	range 1 128
+	default 8
+
+config ZRAM_FROM_6GB_RAM
+	int "zram for 6GB RAM set of kernels"
+	range 1 64
+	default 6
+

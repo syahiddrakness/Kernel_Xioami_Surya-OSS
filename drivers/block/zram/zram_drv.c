@@ -1721,11 +1721,9 @@ static ssize_t disksize_store(struct device *dev,
 	static unsigned short create_disksize __read_mostly;
 	si_meminfo(&i);
 	if (i.totalram << (PAGE_SHIFT-10) > 6144ull * 1024) {
-	  // Use 4GB disk size for devices with more than 6GB of RAM
-	  create_disksize = 4;
+	  create_disksize = CONFIG_ZRAM_FROM_8GB_RAM;
 	} else {
-	   // Use 3GB disk size for devices with less than 6GB of RAM
-	  create_disksize = 3;
+	  create_disksize = CONFIG_ZRAM_FROM_6GB_RAM;
 	}
 	disksize = (u64)SZ_1G * create_disksize;
 
