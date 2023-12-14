@@ -412,7 +412,7 @@
 
 		CLUSTER_COST_0: cluster-cost0 {
 			busy-cost-data = <
-				300000	capacity-dmips-mhz = <2048>;10
+				300000	10
 				576000	20
 				768000	30
 				1017600	40
