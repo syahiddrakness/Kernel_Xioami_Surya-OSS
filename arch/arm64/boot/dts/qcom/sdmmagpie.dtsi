@@ -25,7 +25,7 @@
 #include <dt-bindings/clock/qcom,cpucc-sm8150.h>
 #include <dt-bindings/msm/msm-bus-ids.h>
 
-#define MHZ_TO_MBPS(mhz, w) ((mhz * 1000000 * w) / (2048 * 2048))
+#define MHZ_TO_MBPS(mhz, w) ((mhz * 10000000 * w) / (2048 * 2048))
 #define BW_OPP_ENTRY(mhz, w) opp-mhz {opp-hz = /bits/ 64 <MHZ_TO_MBPS(mhz, w)>;}
 
 / {
@@ -60,7 +60,7 @@
 			compatible = "arm,armv8";
 			reg = <0x0 0x0>;
 			enable-method = "psci";
-			capacity-dmips-mhz = <2048>;
+			capacity-dmips-mhz = <2666>;
 			sched-energy-costs = <&CPU_COST_0 &CLUSTER_COST_0>;
 			next-level-cache = <&L2_0>;
 			qcom,lmh-dcvs = <&lmh_dcvs0>;
@@ -96,7 +96,7 @@
 			compatible = "arm,armv8";
 			reg = <0x0 0x100>;
 			enable-method = "psci";
-			capacity-dmips-mhz = <2048>;
+			capacity-dmips-mhz = <2666>;
 			sched-energy-costs = <&CPU_COST_0 &CLUSTER_COST_0>;
 			next-level-cache = <&L2_100>;
 			qcom,lmh-dcvs = <&lmh_dcvs0>;
@@ -128,7 +128,7 @@
 			compatible = "arm,armv8";
 			reg = <0x0 0x200>;
 			enable-method = "psci";
-			capacity-dmips-mhz = <2048>;
+			capacity-dmips-mhz = <2666>;
 			sched-energy-costs = <&CPU_COST_0 &CLUSTER_COST_0>;
 			next-level-cache = <&L2_200>;
 			qcom,lmh-dcvs = <&lmh_dcvs0>;
@@ -159,7 +159,7 @@
 			compatible = "arm,armv8";
 			reg = <0x0 0x300>;
 			enable-method = "psci";
-			capacity-dmips-mhz = <2048>;
+			capacity-dmips-mhz = <2666>;
 			sched-energy-costs = <&CPU_COST_0 &CLUSTER_COST_0>;
 			next-level-cache = <&L2_300>;
 			qcom,lmh-dcvs = <&lmh_dcvs0>;
@@ -190,7 +190,7 @@
 			compatible = "arm,armv8";
 			reg = <0x0 0x400>;
 			enable-method = "psci";
-			capacity-dmips-mhz = <2048>;
+			capacity-dmips-mhz = <2666>;
 			sched-energy-costs = <&CPU_COST_0 &CLUSTER_COST_0>;
 			next-level-cache = <&L2_400>;
 			qcom,lmh-dcvs = <&lmh_dcvs0>;
@@ -221,7 +221,7 @@
 			compatible = "arm,armv8";
 			reg = <0x0 0x500>;
 			enable-method = "psci";
-			capacity-dmips-mhz = <2048>;
+			capacity-dmips-mhz = <2666>;
 			sched-energy-costs = <&CPU_COST_0 &CLUSTER_COST_0>;
 			next-level-cache = <&L2_500>;
 			qcom,lmh-dcvs = <&lmh_dcvs0>;
@@ -252,7 +252,7 @@
 			compatible = "arm,armv8";
 			reg = <0x0 0x600>;
 			enable-method = "psci";
-			capacity-dmips-mhz = <2666>;
+			capacity-dmips-mhz = <3200>;
 			sched-energy-costs = <&CPU_COST_1 &CLUSTER_COST_1>;
 			next-level-cache = <&L2_600>;
 			qcom,lmh-dcvs = <&lmh_dcvs1>;
@@ -292,7 +292,7 @@
 			compatible = "arm,armv8";
 			reg = <0x0 0x700>;
 			enable-method = "psci";
-			capacity-dmips-mhz = <2666>;
+			capacity-dmips-mhz = <3200>;
 			sched-energy-costs = <&CPU_COST_1 &CLUSTER_COST_1>;
 			next-level-cache = <&L2_700>;
 			qcom,lmh-dcvs = <&lmh_dcvs1>;
@@ -372,41 +372,41 @@
 
 		CPU_COST_0: core-cost0 {
 			busy-cost-data = <
-				300000	8
-				576000	16
-				768000	32
-				1017600	64
-				1248000	73
-				1324800	90
-				1497600	100
-				1612800	115
-				1708800	120
-				1804800	128
+				300000	300
+				576000	576
+				768000	768
+				1017600	1024
+				1248000	1128
+				1324800	1256
+				1497600	2300
+				1612800	2400
+				1708800	2500
+				1804800	2666
 			>;
 			idle-cost-data = <
-				1 2 3 4 5
+				80 80 80 80 80
 			>;
 		};
 
 		CPU_COST_1: core-cost1 {
 			busy-cost-data = <
-				300000	8
-				652800	16
-				806400	32
-				979200	64
-				1094400	73
-				1209600	80
-				1324800	90
-				1555200	100
-				1708800	120
-				1843200	128
-				1939200	150
-				2169600	175
-				2208000	240
-				2304000	256
+				300000	300
+				652800	652
+				806400	896
+				979200	979
+				1094400	1555
+				1209600	2048
+				1324800	2222
+				1555200	2300
+				1708800	2500
+				1843200	2666
+				1939200	2800
+				2169600	2900
+				2208000	3000
+				2304000	3200
 			>;
 			idle-cost-data = <
-				1 2 3 4 5
+				80 80 80 80 80
 			>;
 		};
 
