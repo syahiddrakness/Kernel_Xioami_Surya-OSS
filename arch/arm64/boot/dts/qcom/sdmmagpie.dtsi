@@ -25,7 +25,7 @@
 #include <dt-bindings/clock/qcom,cpucc-sm8150.h>
 #include <dt-bindings/msm/msm-bus-ids.h>
 
-#define MHZ_TO_MBPS(mhz, w) ((mhz * 1000000 * w) / (1024 * 1024))
+#define MHZ_TO_MBPS(mhz, w) ((mhz * 1000000 * w) / (2048 * 2048))
 #define BW_OPP_ENTRY(mhz, w) opp-mhz {opp-hz = /bits/ 64 <MHZ_TO_MBPS(mhz, w)>;}
 
 / {
@@ -973,7 +973,6 @@
 
 		#clock-cells = <1>;
 		qcom,cpufreq-table-0 =
-			< 300000>,
 			< 576000>,
 			< 768000>,
 			<1017600>,
@@ -985,7 +984,6 @@
 			<1804800>;
 
 		qcom,cpufreq-table-6 =
-			< 300000>,
 			< 652800>,
 			< 806400>,
 			< 979200>,
