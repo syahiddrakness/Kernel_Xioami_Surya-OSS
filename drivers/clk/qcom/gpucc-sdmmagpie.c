@@ -339,13 +339,13 @@ static struct clk_rcg2 gpu_cc_gx_gfx3d_clk_src = {
 		.vdd_class = &vdd_gx,
 		.num_rate_max = VDD_GX_NUM,
 		.rate_max = (unsigned long[VDD_GX_NUM]) {
-			[VDD_GX_LOWER] = 250000000,
+			[VDD_GX_MIN] = 250000000,
 			[VDD_GX_LOW] = 350000000,
 			[VDD_GX_LOW_L1] = 450000000,
-			[VDD_GX_NOMINAL] = 550000000,
-			[VDD_GX_NOMINAL_L1] = 650000000,
-			[VDD_GX_HIGH] = 750000000,
-			[VDD_GX_HIGH_L1] = 800000000},
+			[VDD_GX_LOW_L2] = 550000000,
+			[VDD_GX_NOMINAL] = 650000000,
+			[VDD_GX_NOMINAL_L1] = 750000000,
+			[VDD_GX_NOMINAL_L2] = 800000000},
 	},
 };
 
