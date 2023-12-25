@@ -28,7 +28,7 @@
         cp_qc30 {
                 compatible = "xiaomi,cp-qc30";
                 status = "ok";
-                mi,qc3-bat-volt-max = <4480>;
+                mi,qc3-bat-volt-max = <4450>;
                 mi,qc3-ffc-bat-volt-max = <4480>;
                 mi,qc3-bat-curr-max = <6000>;
                 mi,qc3-bus-volt-max = <12000>;
@@ -38,7 +38,7 @@
 	usbpd_pm {
 		compatible = "xiaomi,usbpd-pm";
 		status = "ok";
-		mi,pd-bat-volt-max = <4480>;
+		mi,pd-bat-volt-max = <4450>;
 		mi,pd-ffc-bat-volt-max = <4480>;
 		mi,pd-bat-curr-max = <6000>;
 		mi,pd-bus-volt-max = <12000>;
@@ -235,8 +235,8 @@
 	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
 	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_wled";
 	qcom,mdss-dsi-bl-min-level = <1>;
-	qcom,mdss-dsi-bl-max-level = <2048>;
-	qcom,mdss-brightness-max-level = <2048>;
+	qcom,mdss-dsi-bl-max-level = <4095>;
+	qcom,mdss-brightness-max-level = <4095>;
 	qcom,platform-te-gpio = <&tlmm 10 0>;
 	qcom,platform-reset-gpio = <&pm6150l_gpios 9 0>;
 	//qcom,platform-en-gpio = <&pm6150l_gpios 4 0>;
@@ -247,8 +247,8 @@
 	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
 	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_wled";
 	qcom,mdss-dsi-bl-min-level = <1>;
-	qcom,mdss-dsi-bl-max-level = <2048>;
-	qcom,mdss-brightness-max-level = <2048>;
+	qcom,mdss-dsi-bl-max-level = <4095>;
+	qcom,mdss-brightness-max-level = <4095>;
 	qcom,platform-te-gpio = <&tlmm 10 0>;
 	qcom,platform-reset-gpio = <&pm6150l_gpios 9 0>;
 	//qcom,platform-en-gpio = <&pm6150l_gpios 4 0>;
@@ -585,7 +585,7 @@
 			ti,bq2597x,die-therm-disable;
 
 			ti,bq2597x,bat-ovp-threshold = <4550>;
-			ti,bq2597x,bat-ovp-alarm-threshold = <4480>;
+			ti,bq2597x,bat-ovp-alarm-threshold = <4450>;
 			//ti,bq2597x,bat-ocp-threshold = <5000>;
 			//ti,bq2597x,bat-ocp-alarm-threshold = <4500>;
 
