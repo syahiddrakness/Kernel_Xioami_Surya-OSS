@@ -28,7 +28,7 @@
         cp_qc30 {
                 compatible = "xiaomi,cp-qc30";
                 status = "ok";
-                mi,qc3-bat-volt-max = <4450>;
+                mi,qc3-bat-volt-max = <4480>;
                 mi,qc3-ffc-bat-volt-max = <4480>;
                 mi,qc3-bat-curr-max = <6000>;
                 mi,qc3-bus-volt-max = <12000>;
@@ -38,7 +38,7 @@
 	usbpd_pm {
 		compatible = "xiaomi,usbpd-pm";
 		status = "ok";
-		mi,pd-bat-volt-max = <4450>;
+		mi,pd-bat-volt-max = <4480>;
 		mi,pd-ffc-bat-volt-max = <4480>;
 		mi,pd-bat-curr-max = <6000>;
 		mi,pd-bus-volt-max = <12000>;
@@ -585,7 +585,7 @@
 			ti,bq2597x,die-therm-disable;
 
 			ti,bq2597x,bat-ovp-threshold = <4550>;
-			ti,bq2597x,bat-ovp-alarm-threshold = <4450>;
+			ti,bq2597x,bat-ovp-alarm-threshold = <4480>;
 			//ti,bq2597x,bat-ocp-threshold = <5000>;
 			//ti,bq2597x,bat-ocp-alarm-threshold = <4500>;
 

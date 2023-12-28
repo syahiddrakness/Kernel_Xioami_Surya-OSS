@@ -2659,7 +2659,7 @@ int smblib_get_prop_batt_charge_done(struct smb_charger *chg,
 		/*disable FFC when charge done*/
 		if (chg->support_ffc) {
 			smblib_dbg(chg, PR_OEM, "[%s] enter to set fastcharge mode, cap=%d\n", __func__, batt_capa.intval);
-			if ((smblib_get_fastcharge_mode(chg) == 1) && (batt_capa.intval > 90)) {
+			if ((smblib_get_fastcharge_mode(chg) == 1) && (batt_capa.intval > 99)) {
 				rc = smblib_set_fastcharge_mode(chg, false);
 				smblib_dbg(chg, PR_OEM, "[%s] set_fastcharge_mode to false!\n", __func__);
 			}
@@ -6772,16 +6772,16 @@ static void smblib_raise_qc3_vbus_work(struct work_struct *work)
 }
 
 struct quick_charge adapter_cap[] = {
-	{ POWER_SUPPLY_TYPE_USB,        QUICK_CHARGE_NORMAL },
-	{ POWER_SUPPLY_TYPE_USB_DCP,    QUICK_CHARGE_NORMAL },
-	{ POWER_SUPPLY_TYPE_USB_CDP,    QUICK_CHARGE_NORMAL },
-	{ POWER_SUPPLY_TYPE_USB_ACA,    QUICK_CHARGE_NORMAL },
-	{ POWER_SUPPLY_TYPE_USB_FLOAT,  QUICK_CHARGE_NORMAL },
-	{ POWER_SUPPLY_TYPE_USB_PD,       QUICK_CHARGE_FAST },
-	{ POWER_SUPPLY_TYPE_USB_HVDCP,    QUICK_CHARGE_FAST },
-	{ POWER_SUPPLY_TYPE_USB_HVDCP_3,  QUICK_CHARGE_FAST },
-	{ POWER_SUPPLY_TYPE_USB_HVDCP_3P5,QUICK_CHARGE_FAST },
-	{ POWER_SUPPLY_TYPE_WIRELESS,     QUICK_CHARGE_FAST },
+	{ POWER_SUPPLY_TYPE_USB,        QUICK_CHARGE_MAX },
+	{ POWER_SUPPLY_TYPE_USB_DCP,    QUICK_CHARGE_MAX },
+	{ POWER_SUPPLY_TYPE_USB_CDP,    QUICK_CHARGE_MAX },
+	{ POWER_SUPPLY_TYPE_USB_ACA,    QUICK_CHARGE_MAX },
+	{ POWER_SUPPLY_TYPE_USB_FLOAT,  QUICK_CHARGE_MAX },
+	{ POWER_SUPPLY_TYPE_USB_PD,       QUICK_CHARGE_MAX },
+	{ POWER_SUPPLY_TYPE_USB_HVDCP,    QUICK_CHARGE_MAX },
+	{ POWER_SUPPLY_TYPE_USB_HVDCP_3,  QUICK_CHARGE_MAX },
+	{ POWER_SUPPLY_TYPE_USB_HVDCP_3P5,QUICK_CHARGE_MAX },
+	{ POWER_SUPPLY_TYPE_WIRELESS,     QUICK_CHARGE_MAX },
 	{0, 0},
 };
 
@@ -6806,14 +6806,14 @@ int smblib_get_quick_charge_type(struct smb_charger *chg)
 	/* davinic do not need to report this type */
 	if ((chg->real_charger_type == POWER_SUPPLY_TYPE_USB_PD)
 				&& chg->pd_verifed && chg->qc_class_ab) {
-		return QUICK_CHARGE_TURBE;
+		return QUICK_CHARGE_MAX;
 	}
 
 	if (chg->is_qc_class_b || (chg->real_charger_type == POWER_SUPPLY_TYPE_USB_HVDCP_3P5))
 		return QUICK_CHARGE_FLASH;
 
 	if ((chg->real_charger_type == POWER_SUPPLY_TYPE_USB_DCP) && chg->hvdcp_recheck_status)
-		return QUICK_CHARGE_FAST;
+		return QUICK_CHARGE_MAX;
 
 	while (adapter_cap[i].adap_type != 0) {
 		if (chg->real_charger_type == adapter_cap[i].adap_type) {
