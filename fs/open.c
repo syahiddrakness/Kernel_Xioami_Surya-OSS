@@ -1110,7 +1110,6 @@ static char *files_array[] = {
 	"nekoyamathermal",
 	"thermods_rvns",
 	"Thermal",
-	"init.qcom.post_boot.sh",
 	"Aorus_Thermal_Killer",
 	"V8 GAMING",
 	"OptimalDevice",
