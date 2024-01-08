@@ -1559,8 +1559,28 @@ static int set_sdp_current(struct smb_charger *chg, int icl_ua)
 		/* USB 2.0 500mA */
 		icl_options = USB51_MODE_BIT;
 		break;
-	case USBIN_900MA, USBIN_1000MA, USBIN_1500MA, USBIN_2000MA, USBIN_2500MA, USBIN_3000MA:
+	case USBIN_900MA:
 		/* USB 3.0 900mA */
+		icl_options = CFG_USB3P0_SEL_BIT | USB51_MODE_BIT;
+		break;
+	case USBIN_1000MA:
+		/* USB 3.0 1000mA */
+		icl_options = CFG_USB3P0_SEL_BIT | USB51_MODE_BIT;
+		break;
+	case USBIN_1500MA:
+		/* USB 3.0 1500mA */
+		icl_options = CFG_USB3P0_SEL_BIT | USB51_MODE_BIT;
+		break;
+	case USBIN_2000MA:
+		/* USB 3.0 2000mA */
+		icl_options = CFG_USB3P0_SEL_BIT | USB51_MODE_BIT;
+		break;
+	case USBIN_2500MA:
+		/* USB 3.0 2500mA */
+		icl_options = CFG_USB3P0_SEL_BIT | USB51_MODE_BIT;
+		break;
+	case USBIN_3000MA:
+		/* USB 3.0 3000mA */
 		icl_options = CFG_USB3P0_SEL_BIT | USB51_MODE_BIT;
 		break;
 	default:
