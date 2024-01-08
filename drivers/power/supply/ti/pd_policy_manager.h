@@ -70,13 +70,13 @@ enum pm_state {
 #define BQ_TAPER_FCC_VOTER	"BQ_TAPER_FCC_VOTER"
 
 /* defined for non_verified pps charger maxium fcc */
-#define NON_VERIFIED_PPS_FCC_MAX		3000
-#define MAX_THERMAL_LEVEL			13
+#define NON_VERIFIED_PPS_FCC_MAX		5000
+#define MAX_THERMAL_LEVEL			60
 /* jeita related */
 #define JEITA_WARM_THR			580
-#define JEITA_COOL_NOT_ALLOW_CP_THR			50
+#define JEITA_COOL_NOT_ALLOW_CP_THR			58
 #define COOL_HYS_THRESHOLDS			180
-#define WARM_HYS_THRESHOLDS			450
+#define WARM_HYS_THRESHOLDS			580
 #define PDO_MAX_NUM			7
 /*
  * add hysteresis for warm threshold to avoid flash
@@ -94,7 +94,7 @@ enum pm_state {
 #define STEP_MV			20
 #define TAPER_VOL_HYS			80
 #define TAPER_WITH_IBUS_HYS			60
-#define TAPER_IBUS_THR			450
+#define TAPER_IBUS_THR			580
 #define BQ_TAPER_HYS_MV			10
 #define BQ_TAPER_DECREASE_STEP_MA			200
 struct sw_device {
