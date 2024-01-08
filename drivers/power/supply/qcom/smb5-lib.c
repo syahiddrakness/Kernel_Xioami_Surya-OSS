@@ -1528,6 +1528,10 @@ static int smblib_get_pulse_cnt(struct smb_charger *chg, int *count)
 #define USBIN_500MA	500000
 #define USBIN_900MA	900000
 #define USBIN_1000MA	1000000
+#define USBIN_1500MA	1500000
+#define USBIN_2000MA	2000000
+#define USBIN_2500MA	2500000
+#define USBIN_3000MA	3000000
 static int set_sdp_current(struct smb_charger *chg, int icl_ua)
 {
 	int rc;
@@ -1535,9 +1539,9 @@ static int set_sdp_current(struct smb_charger *chg, int icl_ua)
 	const struct apsd_result *apsd_result = smblib_get_apsd_result(chg);
 
 #ifdef CONFIG_FORCE_FAST_CHARGE
-	if (force_fast_charge > 0 && icl_ua == USBIN_500MA)
+	if (force_fast_charge > 0 && icl_ua == USBIN_900MA)
 	{
-		icl_ua = USBIN_900MA;
+		icl_ua = USBIN_3000MA;
 	}
 #endif
 
@@ -1555,7 +1559,7 @@ static int set_sdp_current(struct smb_charger *chg, int icl_ua)
 		/* USB 2.0 500mA */
 		icl_options = USB51_MODE_BIT;
 		break;
-	case USBIN_900MA:
+	case USBIN_900MA, USBIN_1000MA, USBIN_1500MA, USBIN_2000MA, USBIN_2500MA, USBIN_3000MA:
 		/* USB 3.0 900mA */
 		icl_options = CFG_USB3P0_SEL_BIT | USB51_MODE_BIT;
 		break;
@@ -2370,7 +2374,7 @@ int smblib_get_prop_batt_status(struct smb_charger *chg,
 		 */
 		if (smblib_is_jeita_warm_charging(chg))
 			val->intval = POWER_SUPPLY_STATUS_CHARGING;
-		else if ((usb_online || vbus_now > 4000000) && (batt_temp > -100) && (batt_temp < 580) &&
+		else if ((usb_online || vbus_now > 6000000) && (batt_temp > -100) && (batt_temp < 580) &&
                      (POWER_SUPPLY_HEALTH_OVERHEAT != batt_health) && (POWER_SUPPLY_HEALTH_OVERVOLTAGE != batt_health)) {
 			val->intval = POWER_SUPPLY_STATUS_CHARGING;
 		} else
@@ -2425,7 +2429,7 @@ int smblib_get_prop_batt_status(struct smb_charger *chg,
 		if(POWER_SUPPLY_HEALTH_WARM == batt_health&& (val->intval == POWER_SUPPLY_STATUS_FULL)&&
 			((batt_capa.intval <= 99) && usb_online) && (batt_temp > -100)  && (batt_temp < 580)) {
 			val->intval = POWER_SUPPLY_STATUS_CHARGING;
-		}else if ((usb_online || vbus_now > 4000000) && (batt_temp > -100) && (batt_temp < 580) &&
+		}else if ((usb_online || vbus_now > 6000000) && (batt_temp > -100) && (batt_temp < 580) &&
 	                     (POWER_SUPPLY_HEALTH_OVERHEAT != batt_health) && (POWER_SUPPLY_HEALTH_OVERVOLTAGE != batt_health)) {
 			val->intval = POWER_SUPPLY_STATUS_CHARGING;
 		} else {
