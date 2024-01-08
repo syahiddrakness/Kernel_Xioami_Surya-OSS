@@ -93,7 +93,7 @@ static int suspend_sconfig = 16;
 module_param(suspend_sconfig, int, 0644);
 #endif
 
-static int lock_enable = 1;
+static int lock_enable = 0;
 static int lock_sconfig = 16;
 module_param(lock_enable, int, 0644);
 module_param(lock_sconfig, int, 0644);
