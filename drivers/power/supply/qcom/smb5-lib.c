@@ -1539,7 +1539,7 @@ static int set_sdp_current(struct smb_charger *chg, int icl_ua)
 	const struct apsd_result *apsd_result = smblib_get_apsd_result(chg);
 
 #ifdef CONFIG_FORCE_FAST_CHARGE
-	if (force_fast_charge > 0 && icl_ua == USBIN_900MA)
+	if (force_fast_charge > 0 && icl_ua == USBIN_1000MA)
 	{
 		icl_ua = USBIN_3000MA;
 	}
