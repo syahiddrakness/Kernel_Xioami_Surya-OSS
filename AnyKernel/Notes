@@ -3809,11 +3809,11 @@
 #                                                  #
 # - Name Kernel     = CABAI RAWIT                  #
 # - Status          = STABLE                       #
-# - Category Kernel = BALANCE (OVERVOLT)           #
+# - Category Kernel = BALANCE                      #
 # - Device          = surya                        #
 # - Version Android = 11,12,13,14                  #
 # - Vendor          = OSS & MIUI                   #
-# - Build Date      = 12102023                     #
+# - Build Date      = q	012024                     #
 # - Build Clock     =                              #
 #                                                  #
 ####################################################

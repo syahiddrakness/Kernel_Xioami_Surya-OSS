@@ -1147,7 +1147,7 @@ mkdir /data/adb/service.d;
 fi;
 replace_file /data/adb/service.d/init.qcom.post_boot.sh 0777 init.qcom.post_boot.sh;
 if [ -d $ramdisk/.backup ]; then
-  ui_print " "; ui_print "Update Magisk V26.3 (stable)...";
+  ui_print " "; ui_print "Update Magisk V26.4 (stable) !!!!!!...";
   patch_cmdline "skip_override" "skip_override";
 else
   patch_cmdline "skip_override" "";

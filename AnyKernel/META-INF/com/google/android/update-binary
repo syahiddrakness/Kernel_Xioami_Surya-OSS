@@ -9,8 +9,8 @@ rm -rf /data/system/batterystats-checkin.bin
 rm -rf /data/system/batterystats-daily.xml
 rm -rf /data/system/batterystats.bin
 rm -rf /data/system/package_cache
-rm -rf /data/system/storage.xml
 rm -rf /data/vendor/thermal
+rm -rf /data/data/com.miui.powerkeeper
 
 OUTFD=/proc/self/fd/$2;
 ZIPFILE="$3";
@@ -145,6 +145,44 @@ if [ -f banner ]; then
   ui_print " " " ";
 fi;
 
+ui_print " "
+
+ui_print " About Device ";
+sleep 1
+ui_print " - Devices : $(getprop ro.build.product) ";
+sleep 1
+ui_print " - Model : $(getprop ro.product.model) ";
+sleep 1
+ui_print " - Processor : $(getprop ro.product.board) ";
+sleep 1
+ui_print " - CPU Info : $(getprop ro.hardware) ";
+sleep 1
+ui_print " - RAM : $(free | grep Mem |  awk '{print $2}') ";
+sleep 1
+ui_print " - ZRAM : $(free | grep Swap |  awk '{print $2}') ";
+sleep 1
+ui_print " - Kernel Version : $(uname -r) ";
+sleep 1
+
+ui_print " "
+
+ui_print " About ROMs ";
+sleep 1
+ui_print " - RECOVERY/ROM Incremental : $(getprop ro.build.version.incremental) ";
+sleep 1
+ui_print " - RECOVERY/ROM Patch Scurity : $(getprop ro.build.version.security_patch) ";
+sleep 1
+ui_print " - RECOVERY/ROM Android version : $(getprop ro.build.version.release) ";
+sleep 1
+ui_print " - RECOVERY/ROM Vendor Patch Scurity : $(getprop ro.vendor.build.security_patch) ";
+sleep 1
+ui_print " - RECOVERY/ROM Description : $(getprop ro.build.description) ";
+sleep 1
+ui_print " - RECOVERY/ROM FingerPrint : $(getprop ro.build.fingerprint) " ;
+sleep 1
+
+ui_print " "
+
 ui_print "$(file_getprop anykernel.sh kernel.string)";
 if [ -f version ]; then
   ui_print " ";
@@ -272,19 +310,65 @@ rm -rf /cache
 rm -rf /data/cache
 rm -rf /data/dalvik-cache
 rm -rf /data/vendor/thermal
-rm -rf /data/system/storage.xml
+rm -rf /data/system/batterystats-history
+rm -rf /data/system/battery-saver
+rm -rf /data/system/batterystats-checkin.bin
+rm -rf /data/system/batterystats-daily.xml
+rm -rf /data/system/batterystats.bin
+rm -rf /data/system/package_cache
+rm -rf /data/vendor/thermal
+rm -rf /data/data/com.miui.powerkeeper
+
 
 # backup kernel internal
 ui_print " ";
-ui_print "Backup Kernel To /internal/TWRP/BACKUPS/POCO_X3/Kernel...";
-mkdir -p /sdcard/BACKUPS/POCO_X3/Kernel
-mkdir -p /sdcard/TWRP/BACKUPS/POCO_X3/Kernel
-dd if=/dev/block/bootdevice/by-name/boot of=/sdcard/TWRP/BACKUPS/POCO_X3/Kernel/boot.img
-dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard/TWRP/BACKUPS/POCO_X3/Kernel/dtbo.img
-dd if=/dev/block/bootdevice/by-name/recovery of=/sdcard/TWRP/BACKUPS/POCO_X3/Kernel/recovery.img
-dd if=/dev/block/bootdevice/by-name/boot of=/sdcard/TWRP/BACKUPS/POCO_X3/Kernel/boot.emmc.win
-dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard/TWRP/BACKUPS/POCO_X3/Kernel/dtbo.emmc.win
-dd if=/dev/block/bootdevice/by-name/recovery of=/sdcard/TWRP/BACKUPS/POCO_X3/Kernel/recovery.emmc.win
+ui_print "Backup Kernel To /internal/TWRP/BACKUPS/$(getprop ro.product.model)/Kernel...";
+mkdir -p /sdcard/BACKUPS/$(getprop ro.product.model)/Kernel
+mkdir -p /sdcard/TWRP/BACKUPS/$(getprop ro.product.model)/Kernel
+ui_print " BACKUP boot.img ";
+ui_print " ";
+dd if=/dev/block/bootdevice/by-name/boot of=/sdcard/TWRP/BACKUPS/$(getprop ro.product.model)/Kernel/boot.img
+ui_print " BACKUP dtbo.img ";
+ui_print " ";
+dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard/TWRP/BACKUPS/$(getprop ro.product.model)/Kernel/dtbo.img
+ui_print " BACKUP recovery.img ";
+ui_print " ";
+dd if=/dev/block/bootdevice/by-name/recovery of=/sdcard/TWRP/BACKUPS/$(getprop ro.product.model)/Kernel/recovery.img
+ui_print " BACKUP boot.emmc.win ";
+ui_print " ";
+dd if=/dev/block/bootdevice/by-name/boot of=/sdcard/TWRP/BACKUPS/$(getprop ro.product.model)/Kernel/boot.emmc.win
+ui_print " BACKUP dtbo.emmc.win";
+ui_print " ";
+dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard/TWRP/BACKUPS/$(getprop ro.product.model)/Kernel/dtbo.emmc.win
+ui_print " BACKUP recovery.emmc.win";
+ui_print " ";
+dd if=/dev/block/bootdevice/by-name/recovery of=/sdcard/TWRP/BACKUPS/$(getprop ro.product.model)/Kernel/recovery.emmc.win
+
+
+# backup kernel internal
+ui_print " ";
+ui_print "Backup Kernel To /internal/BACKUPS/$(getprop ro.product.model)/Kernel...";
+ui_print " ";
+mkdir -p /sdcard/BACKUPS/$(getprop ro.product.model)/Kernel
+ui_print " BACKUP boot.img ";
+ui_print " ";
+dd if=/dev/block/bootdevice/by-name/boot of=/sdcard/BACKUPS/$(getprop ro.product.model)/Kernel/boot.img
+ui_print " BACKUP dtbo.img ";
+ui_print " ";
+dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard/BACKUPS/$(getprop ro.product.model)/Kernel/dtbo.img
+ui_print " BACKUP recovery.img ";
+ui_print " ";
+dd if=/dev/block/bootdevice/by-name/recovery of=/sdcard/BACKUPS/$(getprop ro.product.model)/Kernel/recovery.img
+ui_print " BACKUP boot.emmc.win ";
+ui_print " ";
+dd if=/dev/block/bootdevice/by-name/boot of=/sdcard/BACKUPS/$(getprop ro.product.model)/Kernel/boot.emmc.win
+ui_print " BACKUP dtbo.emmc.win";
+ui_print " ";
+dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard/BACKUPS/$(getprop ro.product.model)/Kernel/dtbo.emmc.win
+ui_print " BACKUP recovery.emmc.win";
+ui_print " ";
+dd if=/dev/block/bootdevice/by-name/recovery of=/sdcard/BACKUPS/$(getprop ro.product.model)/Kernel/recovery.emmc.win
+
 
 # install kernel
 ui_print " ";
@@ -341,10 +425,15 @@ ui_print "Cleanup "
 cd /data
 find . -type f -name '*gms*' -delete
 find . -type f -name '*cache*' -delete
+find . -type f -name '*.cache*' -delete
 find . -type f -name '*dalvik-cache*' -delete
 find . -type f -name '*battery*' -delete
 
 ui_print " ";
 ui_print "done!!!!!!...";
 ui_print " ";
+
+
+sleep 30
+
 
