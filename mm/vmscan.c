@@ -1792,7 +1792,7 @@ putback_inactive_pages(struct lruvec *lruvec, struct list_head *page_list)
 		lruvec = mem_cgroup_page_lruvec(page, pgdat);
 
 		SetPageLRU(page);
-		lru = page_lru(page
+		lru = page_lru(page);
 		add_page_to_lru_list(page, lruvec, lru);
 
 		if (is_active_lru(lru)) {
