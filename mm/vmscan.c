@@ -1802,7 +1802,6 @@ putback_inactive_pages(struct lruvec *lruvec, struct list_head *page_list)
 		}
 		if (put_page_testzero(page)) {
 			__ClearPageLRU(page);
-			__ClearPageActive(page);
 			del_page_from_lru_list(page, lruvec, lru);
 
 			if (unlikely(PageCompound(page))) {
@@ -2040,7 +2039,6 @@ static unsigned move_active_pages_to_lru(struct lruvec *lruvec,
 
 		if (put_page_testzero(page)) {
 			__ClearPageLRU(page);
-			__ClearPageActive(page);
 			del_page_from_lru_list(page, lruvec, lru);
 
 			if (unlikely(PageCompound(page))) {
