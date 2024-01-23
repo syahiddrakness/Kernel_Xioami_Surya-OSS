@@ -130,7 +130,7 @@ static int __maybe_unused four = 4;
 static unsigned long zero_ul;
 static unsigned long one_ul = 1;
 static unsigned long long_max = LONG_MAX;
-static int one_hundred = 100;
+static int one_hundred = 200;
 #ifdef CONFIG_OPLUS_MM_HACKS
 extern int direct_vm_swappiness;
 static int two_hundred = 200;
