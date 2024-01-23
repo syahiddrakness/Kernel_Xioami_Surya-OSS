@@ -72,7 +72,8 @@ static __always_inline enum lru_list page_lru(struct page *page)
 {
 	enum lru_list lru;
 
-	return LRU_UNEVICTABLE;
+	if (PageUnevictable(page))
+		return LRU_UNEVICTABLE;
 
 	lru = page_is_file_cache(page) ? LRU_INACTIVE_FILE : LRU_INACTIVE_ANON;
 	if (PageActive(page))
