@@ -235,8 +235,8 @@
 	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
 	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_wled";
 	qcom,mdss-dsi-bl-min-level = <1>;
-	qcom,mdss-dsi-bl-max-level = <2048>;
-	qcom,mdss-brightness-max-level = <2048>;
+	qcom,mdss-dsi-bl-max-level = <4095>;
+	qcom,mdss-brightness-max-level = <4095>;
 	qcom,platform-te-gpio = <&tlmm 10 0>;
 	qcom,platform-reset-gpio = <&pm6150l_gpios 9 0>;
 	//qcom,platform-en-gpio = <&pm6150l_gpios 4 0>;
@@ -247,8 +247,8 @@
 	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
 	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_wled";
 	qcom,mdss-dsi-bl-min-level = <1>;
-	qcom,mdss-dsi-bl-max-level = <2048>;
-	qcom,mdss-brightness-max-level = <2048>;
+	qcom,mdss-dsi-bl-max-level = <4095>;
+	qcom,mdss-brightness-max-level = <4095>;
 	qcom,platform-te-gpio = <&tlmm 10 0>;
 	qcom,platform-reset-gpio = <&pm6150l_gpios 9 0>;
 	//qcom,platform-en-gpio = <&pm6150l_gpios 4 0>;
@@ -400,18 +400,18 @@
 
 &pm6150_qg {
 	qcom,battery-data = <&mtp_batterydata>;
-	qcom,qg-iterm-ma = <100>;
+	qcom,qg-iterm-ma = <1000>;
 	qcom,hold-soc-while-full;
 	qcom,linearize-soc;
 	qcom,cl-feedback-on;
 	qcom,tcss-enable;
-	qcom,vbatt-cutoff-mv = <3000>;
-	qcom,vbatt-low-mv = <3100>;
-	qcom,vbatt-low-cold-mv = <3500>;
-	qcom,vbatt-empty-mv = <2500>;
-	qcom,vbatt-empty-cold-mv = <2500>;
-	qcom,s3-entry-ibat-ua = <20000>;
-	qcom,s3-exit-ibat-ua = <40000>;
+	qcom,vbatt-cutoff-mv = <3400>;
+	qcom,vbatt-low-mv = <3500>;
+	qcom,vbatt-low-cold-mv = <3700>;
+	qcom,vbatt-empty-mv = <3000>;
+	qcom,vbatt-empty-cold-mv = <3000>;
+	qcom,s3-entry-ibat-ua = <25000>;
+	qcom,s3-exit-ibat-ua = <45000>;
 	qcom,s3-entry-fifo-length = <2>;
 	qcom,qg-vadc = <&pm6150_vadc>;
 	qcom,qg-ext-sns;
@@ -454,7 +454,7 @@
 	qcom,fcc-max-ua = <6000000>;
 	qcom,fv-max-uv = <4480000>;
 	qcom,chg-term-src = <1>;
-	qcom,chg-term-current-ma = <(-100)>;
+	qcom,chg-term-current-ma = <(-1000)>;
 	qcom,sw-jeita-enable;
 	//qcom,fcc-stepping-enable;
 	qcom,suspend-input-on-debug-batt;
@@ -465,10 +465,10 @@
 				   90000 80000 70000 60000 50000 40000 30000 20000 10000
 				   9000 8000 7000 6000 5000 4000 3000 2000 1000>;
 	dpdm-supply = <&qusb_phy0>;
-	qcom,charger-temp-max = <1500>;
-	qcom,smb-temp-max = <1500>;
+	qcom,charger-temp-max = <3500>;
+	qcom,smb-temp-max = <3500>;
 	qcom,fcc-step-delay-ms = <100>;
-	qcom,fcc-step-size-ua = <100000>;
+	qcom,fcc-step-size-ua = <300000>;
 	qcom,disable-sw-thermal-regulation;
 	qcom,disable-fcc-restriction;
 	qcom,smb-internal-pull-kohm = <0>;
