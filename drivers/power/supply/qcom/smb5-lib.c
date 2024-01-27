@@ -858,7 +858,7 @@ int smblib_set_fastcharge_mode(struct smb_charger *chg, bool enable)
 {
 	union power_supply_propval pval = {0,};
 	int rc = 0;
-	int termi = -220;
+	int termi = -580;
 
 	if (!chg->bms_psy)
 		return 0;
