@@ -157,7 +157,7 @@ static ssize_t suspend_time_show(struct device *dev,
 }
 
 #if 1
-static DEVICE_ATTR(adrenoboost, 0644,
+static DEVICE_ATTR(adrenoboost, 0444,
 		adrenoboost_show, adrenoboost_save);
 #endif
 

@@ -39,7 +39,7 @@
    Adreno idler will more actively try to ramp down the frequency
    if this is set to a higher value. */
 static unsigned long idleworkload = 5000;
-module_param_named(adreno_idler_idleworkload, idleworkload, ulong, 0664);
+module_param_named(adreno_idler_idleworkload, idleworkload, ulong, 0444);
 
 /* Number of events to wait before ramping down the frequency.
    The idlewait'th events before current one must be all idle before
@@ -48,15 +48,15 @@ module_param_named(adreno_idler_idleworkload, idleworkload, ulong, 0664);
    Adreno idler will more actively try to ramp down the frequency
    if this is set to a lower value. */
 static unsigned int idlewait = 15;
-module_param_named(adreno_idler_idlewait, idlewait, uint, 0664);
+module_param_named(adreno_idler_idlewait, idlewait, uint, 0444);
 
 /* Taken from ondemand */
 static unsigned int downdifferential = 20;
-module_param_named(adreno_idler_downdifferential, downdifferential, uint, 0664);
+module_param_named(adreno_idler_downdifferential, downdifferential, uint, 0444);
 
 /* Master switch to activate the whole routine */
 static bool adreno_idler_active = false;
-module_param_named(adreno_idler_active, adreno_idler_active, bool, 0664);
+module_param_named(adreno_idler_active, adreno_idler_active, bool, 0444);
 
 static unsigned int idlecount = 0;
 
