@@ -50,7 +50,7 @@ scm_version()
 		# Get branch name, get commit sha, leave.
 		if test "$CONFIG_LOCALVERSION_BRANCH_SHA" = "y"; then
 			branch_name=$(git rev-parse --abbrev-ref HEAD)
-			last_commit=$(git rev-parse --verify --short=10 HEAD)
+			last_commit=$(git rev-parse --verify --short=7 HEAD)
 			printf '%s' "-$branch_name-$last_commit"
 			return
 		fi
@@ -82,7 +82,7 @@ scm_version()
 			# If we don't have a tag at all we print -g{commitish},
 			# again using exactly 12 hex chars.
 			else
-				head="$(echo $head | cut -c1-8)"
+				head="$(echo $head | cut -c1-7)"
 				printf '%s%s' -@ $head
 			fi
 		fi
