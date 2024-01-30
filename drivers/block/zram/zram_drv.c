@@ -2146,7 +2146,7 @@ static void __exit zram_exit(void)
 module_init(zram_init);
 module_exit(zram_exit);
 
-module_param(num_devices, uint, 0);
+module_param(num_devices, uint, 0444);
 MODULE_PARM_DESC(num_devices, "Number of pre-created zram devices");
 
 MODULE_LICENSE("Dual BSD/GPL");
