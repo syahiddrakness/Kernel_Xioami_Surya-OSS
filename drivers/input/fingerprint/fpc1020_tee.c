@@ -581,56 +581,6 @@ static int fpc1020_request_named_gpio(struct fpc1020_data *fpc1020,
 	return 0;
 }
 
-static void set_fingerprintd_nice(int nice)
-{
-	struct task_struct *p;
-
-	read_lock(&tasklist_lock);
-	for_each_process(p) {
-		if (strstr(p->comm, "erprint"))
-			set_user_nice(p, nice);
-	}
-	read_unlock(&tasklist_lock);
-}
-
-static int fpc_fb_notif_callback(struct notifier_block *nb,
-		unsigned long val, void *data)
-{
-	struct fpc1020_data *fpc1020 = container_of(nb, struct fpc1020_data,
-			fb_notifier);
-	struct fb_event *evdata = data;
-	int *blank;
-
-	if (!fpc1020)
-		return 0;
-
-	if (val != MSM_DRM_EVENT_BLANK && val != MSM_DRM_EARLY_EVENT_BLANK)
-		return 0;
-
-	pr_debug("hml [info] %s value = %d\n", __func__, (int)val);
-
-
-    if (evdata && evdata->data && val == MSM_DRM_EVENT_BLANK) {
-		blank = evdata->data;
-		if (*blank == MSM_DRM_BLANK_UNBLANK) {
-			set_fingerprintd_nice(0);
-			fpc1020->fb_black = false;
-		}
-	} else if (evdata && evdata->data && val == MSM_DRM_EARLY_EVENT_BLANK) {
-		blank = evdata->data;
-		if (*blank == MSM_DRM_BLANK_POWERDOWN) {
-			set_fingerprintd_nice(MIN_NICE);
-			fpc1020->fb_black = true;
-		}
-	}
-	return NOTIFY_OK;
-}
-
-
-static struct notifier_block fpc_notif_block = {
-	.notifier_call = fpc_fb_notif_callback,
-};
-
 static int proc_show_ver(struct seq_file *file, void *v)
 {
 	seq_printf(file, "Fingerprint: FPC\n");
