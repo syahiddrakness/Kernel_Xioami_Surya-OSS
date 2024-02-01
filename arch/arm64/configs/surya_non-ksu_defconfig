@@ -43,7 +43,7 @@ CONFIG_BUILDTIME_EXTABLE_SORT=y
 CONFIG_THREAD_INFO_IN_TASK=y
 
 # KernelSU
-CONFIG_KSU=y
+# CONFIG_KSU is not set
 # CONFIG_KSU_DEBUG is not set
 
 # wl blocker
