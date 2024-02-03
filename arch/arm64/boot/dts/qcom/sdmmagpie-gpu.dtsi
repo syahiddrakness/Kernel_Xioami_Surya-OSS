@@ -135,8 +135,8 @@
 		cache-slices = <&llcc 12>, <&llcc 11>;
 
 		/* CPU latency parameter */
-		qcom,pm-qos-active-latency = <48>;
-		qcom,pm-qos-wakeup-latency = <48>;
+		qcom,pm-qos-active-latency = <30>;
+		qcom,pm-qos-wakeup-latency = <30>;
 
 		/* Enable context aware freq. scaling */
 		qcom,enable-ca-jump;
