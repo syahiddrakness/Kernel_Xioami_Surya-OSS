@@ -43,7 +43,7 @@ MODULE_AUTHOR("Zhang Rui");
 MODULE_DESCRIPTION("Generic thermal management sysfs support");
 MODULE_LICENSE("GPL v2");
 
-#define THERMAL_MAX_ACTIVE	16
+#define THERMAL_MAX_ACTIVE	50
 
 #define CPU_LIMITS_PARAM_NUM	2
 
@@ -88,13 +88,13 @@ static struct workqueue_struct *thermal_passive_wq;
  */
 
 #ifdef CONFIG_THERMAL_SUSPEND_RESUME
-static int prev_sconfig = 16;
-static int suspend_sconfig = 16;
+static int prev_sconfig = -1;
+static int suspend_sconfig = -1;
 module_param(suspend_sconfig, int, 0644);
 #endif
 
 static int lock_enable = 0;
-static int lock_sconfig = 16;
+static int lock_sconfig = -1;
 module_param(lock_enable, int, 0644);
 module_param(lock_sconfig, int, 0644);
 
