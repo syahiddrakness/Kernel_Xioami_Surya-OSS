@@ -50,7 +50,3 @@ config ZRAM_FROM_6GB_RAM
 	range 1 64
 	default 6
 
-config ZRAM_DEFAULT_COMPRESSION_ALGORITHM
-	int "setting zram default compression algorithm from the kernel"
-	default "lzo"
-
