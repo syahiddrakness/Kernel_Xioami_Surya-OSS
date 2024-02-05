@@ -221,7 +221,6 @@ static bool page_same_filled(void *ptr, unsigned long *element)
 
 	*element = val;
 
-Signed-off-by: Syahid <syahidselaluspd708@gmail.com>
 	return true;
 }
 
@@ -1831,7 +1830,7 @@ static const struct block_device_operations zram_devops = {
 };
 
 static DEVICE_ATTR_WO(compact);
-static DEVICE_ATTR_RO(disksize);
+static DEVICE_ATTR_RW(disksize);
 static DEVICE_ATTR_RO(initstate);
 static DEVICE_ATTR_WO(reset);
 static DEVICE_ATTR_WO(mem_limit);
