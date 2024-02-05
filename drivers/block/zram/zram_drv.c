@@ -221,6 +221,7 @@ static bool page_same_filled(void *ptr, unsigned long *element)
 
 	*element = val;
 
+Signed-off-by: Syahid <syahidselaluspd708@gmail.com>
 	return true;
 }
 
@@ -1830,14 +1831,14 @@ static const struct block_device_operations zram_devops = {
 };
 
 static DEVICE_ATTR_WO(compact);
-static DEVICE_ATTR_RW(disksize);
+static DEVICE_ATTR_RO(disksize);
 static DEVICE_ATTR_RO(initstate);
 static DEVICE_ATTR_WO(reset);
 static DEVICE_ATTR_WO(mem_limit);
 static DEVICE_ATTR_WO(mem_used_max);
 static DEVICE_ATTR_WO(idle);
 static DEVICE_ATTR_RW(max_comp_streams);
-static DEVICE_ATTR_RW(comp_algorithm);
+static DEVICE_ATTR_RO(comp_algorithm);
 #ifdef CONFIG_ZRAM_WRITEBACK
 static DEVICE_ATTR_RW(backing_dev);
 static DEVICE_ATTR_WO(writeback);
