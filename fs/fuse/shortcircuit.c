@@ -169,7 +169,7 @@ static void fuse_copyattr(struct file *dst_file, struct file *src_file)
 	i_size_write(dst, i_size_read(src));
 }
 
-static inline rwf_t iocb_to_rw_flags(int ifl)
+static inline rwf_t iocb_to_rw_flags(int ifl, int iocb_mask)
 {
 	rwf_t flags = 0;
 
