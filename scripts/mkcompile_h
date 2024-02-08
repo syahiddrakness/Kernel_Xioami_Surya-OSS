@@ -55,7 +55,7 @@ else
 	LINUX_COMPILE_HOST=$KBUILD_BUILD_HOST
 fi
 
-LINUX_COMPILE_BY="KernelCabaiRawitBuildBy"
+LINUX_COMPILE_BY="KernelCabaiRawitRasanyaManisBuildBy"
 LINUX_COMPILE_HOST="Syahid_Alim_Pamuji"
 
 UTS_VERSION="#$VERSION"
