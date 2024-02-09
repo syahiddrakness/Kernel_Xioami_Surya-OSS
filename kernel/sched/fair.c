@@ -188,46 +188,46 @@ unsigned int sysctl_sched_cfs_bandwidth_slice		= 1000UL;
  * The margin used when comparing utilization with CPU capacity:
  * util * margin < capacity * 1024
  *
- * (default: ~20%)
+ * (default: ~5%)
  */
-unsigned int capacity_margin				= 1280;
+unsigned int capacity_margin				= 1078;
 
 /* Migration margins */
 unsigned int sysctl_sched_capacity_margin_up[MAX_MARGIN_LEVELS] = {
-	[0 ... MAX_MARGIN_LEVELS - 1] = 1280
-}; /* ~20% margin */
+	[0 ... MAX_MARGIN_LEVELS - 1] = 1078
+}; /* ~5% margin */
 unsigned int sysctl_sched_capacity_margin_down[MAX_MARGIN_LEVELS] = {
-	[0 ... MAX_MARGIN_LEVELS - 1] = 1280
-}; /* ~20% margin */
+	[0 ... MAX_MARGIN_LEVELS - 1] = 1078
+}; /* ~5% margin */
 unsigned int sysctl_sched_capacity_margin_up_boosted[MAX_MARGIN_LEVELS] = {
-	[0 ... MAX_MARGIN_LEVELS-1] = 1280
-}; /* ~20% margin */
+	[0 ... MAX_MARGIN_LEVELS-1] = 1078
+}; /* ~5% margin */
 unsigned int sysctl_sched_capacity_margin_down_boosted[MAX_MARGIN_LEVELS] = {
-	1485, 1280
-}; /* ~31 margin for big, ~20% margin for big+ */
+	1078, 1078
+}; /* ~5 margin for big, ~20% margin for big+ */
 
 #if NR_CPUS == 8
 unsigned int sched_capacity_margin_up[NR_CPUS] = {
-	1280, 1280, 1280, 1280, 1280, 1280, 1280, 1078
-}; /* ~20% margin for small and big, 5% for big+ */
+	1078, 1078, 1078, 1078, 1078, 1078, 1078, 1078
+}; /* ~5% margin for small and big, 5% for big+ */
 unsigned int sched_capacity_margin_down[NR_CPUS] = {
-	[0 ... NR_CPUS-1] = 1280
-}; /* ~20% margin */
+	[0 ... NR_CPUS-1] = 1078
+}; /* ~5% margin */
 unsigned int sched_capacity_margin_up_boosted[NR_CPUS] = {
-	1280, 1280, 1280, 1280, 1280, 1280, 1280, 1078
-}; /* ~20% margin for small and big, 5% for big+ */
+	1078, 1078, 1078, 1078, 1078, 1078, 1078, 1078
+}; /* ~5% margin for small and big, 5% for big+ */
 unsigned int sched_capacity_margin_down_boosted[NR_CPUS] = {
-	1280, 1280, 1280, 1280, 1485, 1485, 1485, 1280
-}; /* not used for small cores, ~31% margin for big, ~20% margin for big+ */
+	1078, 1078, 1078, 1078, 1078, 1078, 1078, 1078
+}; /* not used for small cores, ~5% margin for big, ~5% margin for big+ */
 #else
 unsigned int sched_capacity_margin_up[NR_CPUS] = {
-	[0 ... NR_CPUS-1] = 1280}; /* ~20% margin */
+	[0 ... NR_CPUS-1] = 1078}; /* ~5% margin */
 unsigned int sched_capacity_margin_down[NR_CPUS] = {
-	[0 ... NR_CPUS-1] = 1280}; /* ~20% margin */
+	[0 ... NR_CPUS-1] = 1078}; /* ~5% margin */
 unsigned int sched_capacity_margin_up_boosted[NR_CPUS] = {
-	[0 ... NR_CPUS-1] = 1280}; /* ~20% margin */
+	[0 ... NR_CPUS-1] = 1078}; /* ~5% margin */
 unsigned int sched_capacity_margin_down_boosted[NR_CPUS] = {
-	[0 ... NR_CPUS-1] = 1280}; /* ~20% margin */
+	[0 ... NR_CPUS-1] = 1078}; /* ~5% margin */
 #endif
 
 
