@@ -5888,7 +5888,6 @@ static int _nfs4_proc_delegreturn(struct inode *inode, struct rpc_cred *cred, co
 		pnfs_roc_release(&data->lr.arg, &data->lr.res, 0);
 		data->lr.roc = false;
 	}
-			   0);
 	task_setup_data.callback_data = data;
 	msg.rpc_argp = &data->args;
 	msg.rpc_resp = &data->res;
