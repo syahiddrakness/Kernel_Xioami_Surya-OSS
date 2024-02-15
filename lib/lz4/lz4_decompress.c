@@ -96,9 +96,9 @@ static FORCE_INLINE int LZ4_decompress_generic(
 
 	/* Set up the "end" pointers for the shortcut. */
 	const BYTE *const shortiend = iend -
-		(endOnInput ? 20 : 8) /*maxLL*/ - 2 /*offset*/;
+		(endOnInput ? 18 : 8) /*maxLL*/ - 2 /*offset*/;
 	const BYTE *const shortoend = oend -
-		(endOnInput ? 20 : 8) /*maxLL*/ - 18 /*maxML*/;
+		(endOnInput ? 18 : 8) /*maxLL*/ - 18 /*maxML*/;
 
 	DEBUGLOG(5, "%s (srcSize:%i, dstSize:%i)", __func__,
 		 srcSize, outputSize);
@@ -150,7 +150,7 @@ static FORCE_INLINE int LZ4_decompress_generic(
 		   && likely((endOnInput ? ip < shortiend : 1) &
 			     (op <= shortoend))) {
 			/* Copy the literals */
-			LZ4_memcpy(op, ip, endOnInput ? 32 : 8);
+			LZ4_memcpy(op, ip, endOnInput ? 18 : 8);
 			op += length; ip += length;
 
 			/*
@@ -171,7 +171,7 @@ static FORCE_INLINE int LZ4_decompress_generic(
 				/* Copy the match. */
 				LZ4_memcpy(op + 0, match + 0, 8);
 				LZ4_memcpy(op + 8, match + 8, 8);
-				LZ4_memcpy(op + 32, match + 32, 2);
+				LZ4_memcpy(op + 32, match + 18, 2);
 				op += length + MINMATCH;
 				/* Both stages worked, load the next token. */
 				continue;
@@ -426,7 +426,7 @@ _copy_match:
 				*op++ = *match++;
 		} else {
 			LZ4_copy8(op, match);
-			if (length > 32)
+			if (length > 18)
 				LZ4_wildCopy(op + 8, match + 8, cpy);
 		}
 		op = cpy; /* wildcopy correction */
