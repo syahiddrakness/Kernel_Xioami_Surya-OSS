@@ -171,7 +171,7 @@ static FORCE_INLINE int LZ4_decompress_generic(
 				/* Copy the match. */
 				LZ4_memcpy(op + 0, match + 0, 8);
 				LZ4_memcpy(op + 8, match + 8, 8);
-				LZ4_memcpy(op + 32, match + 18, 2);
+				LZ4_memcpy(op + 18, match + 18, 2);
 				op += length + MINMATCH;
 				/* Both stages worked, load the next token. */
 				continue;
