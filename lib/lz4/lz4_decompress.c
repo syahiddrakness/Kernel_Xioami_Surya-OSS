@@ -96,9 +96,9 @@ static FORCE_INLINE int LZ4_decompress_generic(
 
 	/* Set up the "end" pointers for the shortcut. */
 	const BYTE *const shortiend = iend -
-		(endOnInput ? 18 : 8) /*maxLL*/ - 2 /*offset*/;
+		(endOnInput ? 14 : 8) /*maxLL*/ - 2 /*offset*/;
 	const BYTE *const shortoend = oend -
-		(endOnInput ? 18 : 8) /*maxLL*/ - 18 /*maxML*/;
+		(endOnInput ? 14 : 8) /*maxLL*/ - 18 /*maxML*/;
 
 	DEBUGLOG(5, "%s (srcSize:%i, dstSize:%i)", __func__,
 		 srcSize, outputSize);
@@ -133,7 +133,7 @@ static FORCE_INLINE int LZ4_decompress_generic(
 		/*
 		 * A two-stage shortcut for the most common case:
 		 * 1) If the literal length is 0..14, and there is enough
-		 * space, enter the shortcut and copy 32 bytes on behalf
+		 * space, enter the shortcut and copy 16 bytes on behalf
 		 * of the literals (in the fast mode, only 8 bytes can be
 		 * safely copied this way).
 		 * 2) Further if the match length is 4..18, copy 18 bytes
@@ -150,7 +150,7 @@ static FORCE_INLINE int LZ4_decompress_generic(
 		   && likely((endOnInput ? ip < shortiend : 1) &
 			     (op <= shortoend))) {
 			/* Copy the literals */
-			LZ4_memcpy(op, ip, endOnInput ? 18 : 8);
+			LZ4_memcpy(op, ip, endOnInput ? 16 : 8);
 			op += length; ip += length;
 
 			/*
@@ -171,7 +171,7 @@ static FORCE_INLINE int LZ4_decompress_generic(
 				/* Copy the match. */
 				LZ4_memcpy(op + 0, match + 0, 8);
 				LZ4_memcpy(op + 8, match + 8, 8);
-				LZ4_memcpy(op + 18, match + 18, 2);
+				LZ4_memcpy(op + 16, match + 16, 8);
 				op += length + MINMATCH;
 				/* Both stages worked, load the next token. */
 				continue;
@@ -426,7 +426,7 @@ _copy_match:
 				*op++ = *match++;
 		} else {
 			LZ4_copy8(op, match);
-			if (length > 18)
+			if (length > 16)
 				LZ4_wildCopy(op + 8, match + 8, cpy);
 		}
 		op = cpy; /* wildcopy correction */
