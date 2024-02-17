@@ -47,7 +47,7 @@ unsigned int rxrpc_soft_ack_delay = 1 * 1000;
  * further packets aren't immediately received to decide when to send an IDLE
  * ACK let the other end know that it can free up its Tx buffer space.
  */
-unsigned int rxrpc_idle_ack_delay = 0.5 * 1000;
+unsigned int rxrpc_idle_ack_delay = 1 * 1000;
 
 /*
  * Receive window size in packets.  This indicates the maximum number of
