@@ -35,7 +35,7 @@
 #define HYSTART_DELAY		2
 
 static int window __read_mostly = 8;
-static unsigned int backoff_beta __read_mostly = 1 * 1024; /* sqrt 0.5 */
+static unsigned int backoff_beta __read_mostly = 0.7071 * 1024; /* sqrt 0.5 */
 static unsigned int backoff_factor __read_mostly = 42;
 static unsigned int hystart_detect __read_mostly = 3;
 static unsigned int use_ineff __read_mostly = 5;
