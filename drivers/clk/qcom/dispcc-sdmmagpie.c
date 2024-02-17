@@ -277,8 +277,8 @@ static struct clk_rcg2 disp_cc_mdss_dp_aux_clk_src = {
 static const struct freq_tbl ftbl_disp_cc_mdss_dp_crypto_clk_src[] = {
 	F(108000, P_DP_PHY_PLL_LINK_CLK, 3, 0, 0),
 	F(180000, P_DP_PHY_PLL_LINK_CLK, 3, 0, 0),
-	F(360000, P_DP_PHY_PLL_LINK_CLK, 1.5, 0, 0),
-	F(540000, P_DP_PHY_PLL_LINK_CLK, 1.5, 0, 0),
+	F(360000, P_DP_PHY_PLL_LINK_CLK, 2, 0, 0),
+	F(540000, P_DP_PHY_PLL_LINK_CLK, 2, 0, 0),
 	{ }
 };
 
@@ -419,7 +419,7 @@ static const struct freq_tbl ftbl_disp_cc_mdss_mdp_clk_src[] = {
 	F(200000000, P_GPLL0_OUT_MAIN, 3, 0, 0),
 	F(286666667, P_DISP_CC_PLL0_OUT_MAIN, 3, 0, 0),
 	F(300000000, P_GPLL0_OUT_MAIN, 2, 0, 0),
-	F(344000000, P_DISP_CC_PLL0_OUT_MAIN, 2.5, 0, 0),
+	F(344000000, P_DISP_CC_PLL0_OUT_MAIN, 2, 0, 0),
 	F(430000000, P_DISP_CC_PLL0_OUT_MAIN, 2, 0, 0),
 	{ }
 };
@@ -492,7 +492,7 @@ static const struct freq_tbl ftbl_disp_cc_mdss_rot_clk_src[] = {
 	F(171428571, P_GPLL0_OUT_MAIN, 3.5, 0, 0),
 	F(200000000, P_GPLL0_OUT_MAIN, 3, 0, 0),
 	F(300000000, P_GPLL0_OUT_MAIN, 2, 0, 0),
-	F(344000000, P_DISP_CC_PLL0_OUT_MAIN, 2.5, 0, 0),
+	F(344000000, P_DISP_CC_PLL0_OUT_MAIN, 2, 0, 0),
 	F(430000000, P_DISP_CC_PLL0_OUT_MAIN, 2, 0, 0),
 	{ }
 };
