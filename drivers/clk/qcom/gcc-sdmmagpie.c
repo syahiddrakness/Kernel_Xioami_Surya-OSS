@@ -488,7 +488,7 @@ static const struct freq_tbl ftbl_gcc_qupv3_wrap0_s0_clk_src[] = {
 	F(102400000, P_GPLL0_OUT_EVEN, 1, 128, 375),
 	F(112000000, P_GPLL0_OUT_EVEN, 1, 28, 75),
 	F(117964800, P_GPLL0_OUT_EVEN, 1, 6144, 15625),
-	F(120000000, P_GPLL0_OUT_EVEN, 2.5, 0, 0),
+	F(120000000, P_GPLL0_OUT_EVEN, 2, 0, 0),
 	F(128000000, P_GPLL0_OUT_MAIN, 1, 16, 75),
 	{ }
 };
@@ -969,7 +969,7 @@ static const struct freq_tbl ftbl_gcc_ufs_phy_axi_clk_src[] = {
 	F(50000000, P_GPLL0_OUT_EVEN, 6, 0, 0),
 	F(100000000, P_GPLL0_OUT_MAIN, 6, 0, 0),
 	F(200000000, P_GPLL0_OUT_MAIN, 3, 0, 0),
-	F(240000000, P_GPLL0_OUT_MAIN, 2.5, 0, 0),
+	F(240000000, P_GPLL0_OUT_MAIN, 2, 0, 0),
 	{ }
 };
 
@@ -1072,10 +1072,10 @@ static struct clk_rcg2 gcc_ufs_phy_unipro_core_clk_src = {
 };
 
 static const struct freq_tbl ftbl_gcc_usb30_prim_master_clk_src[] = {
-	F(66666667, P_GPLL0_OUT_EVEN, 4.5, 0, 0),
-	F(133333333, P_GPLL0_OUT_MAIN, 4.5, 0, 0),
+	F(66666667, P_GPLL0_OUT_EVEN, 4, 0, 0),
+	F(133333333, P_GPLL0_OUT_MAIN, 4, 0, 0),
 	F(200000000, P_GPLL0_OUT_MAIN, 3, 0, 0),
-	F(240000000, P_GPLL0_OUT_MAIN, 2.5, 0, 0),
+	F(240000000, P_GPLL0_OUT_MAIN, 2, 0, 0),
 	{ }
 };
 
@@ -1104,7 +1104,7 @@ static struct clk_rcg2 gcc_usb30_prim_master_clk_src = {
 static const struct freq_tbl ftbl_gcc_usb30_prim_mock_utmi_clk_src[] = {
 	F(19200000, P_BI_TCXO, 1, 0, 0),
 	F(20000000, P_GPLL0_OUT_EVEN, 15, 0, 0),
-	F(40000000, P_GPLL0_OUT_EVEN, 7.5, 0, 0),
+	F(40000000, P_GPLL0_OUT_EVEN, 7, 0, 0),
 	F(60000000, P_GPLL0_OUT_MAIN, 10, 0, 0),
 	{ }
 };
