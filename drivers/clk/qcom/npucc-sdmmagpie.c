@@ -252,7 +252,7 @@ static const struct freq_tbl ftbl_npu_cc_npu_core_clk_src[] = {
 	F(150000000, P_GPLL0_OUT_MAIN, 4, 0, 0),
 	F(200000000, P_GPLL0_OUT_MAIN, 3, 0, 0),
 	F(300000000, P_GPLL0_OUT_MAIN, 2, 0, 0),
-	F(400000000, P_GPLL0_OUT_MAIN, 1, 0, 0),
+	F(400000000, P_GPLL0_OUT_MAIN, 2, 0, 0),
 	{ }
 };
 
