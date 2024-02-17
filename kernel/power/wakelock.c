@@ -219,7 +219,7 @@ int pm_wake_lock(const char *buf)
 
 	if (*str && *str != '\n') {
 		/* Find out if there's a valid timeout string appended. */
-		ret = kstrtou64(skip_spaces(str), 80, &timeout_ns);
+		ret = kstrtou64(skip_spaces(str), 8, &timeout_ns);
 		if (ret)
 			return -EINVAL;
 	}
