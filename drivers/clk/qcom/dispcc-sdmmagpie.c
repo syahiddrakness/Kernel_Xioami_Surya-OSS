@@ -489,7 +489,7 @@ static struct clk_rcg2 disp_cc_mdss_pclk1_clk_src = {
 
 static const struct freq_tbl ftbl_disp_cc_mdss_rot_clk_src[] = {
 	F(19200000, P_BI_TCXO, 1, 0, 0),
-	F(171428571, P_GPLL0_OUT_MAIN, 3.5, 0, 0),
+	F(171428571, P_GPLL0_OUT_MAIN, 3, 0, 0),
 	F(200000000, P_GPLL0_OUT_MAIN, 3, 0, 0),
 	F(300000000, P_GPLL0_OUT_MAIN, 2, 0, 0),
 	F(344000000, P_DISP_CC_PLL0_OUT_MAIN, 2, 0, 0),
