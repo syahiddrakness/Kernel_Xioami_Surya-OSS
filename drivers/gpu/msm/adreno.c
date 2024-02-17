@@ -139,7 +139,7 @@ static unsigned int adreno_ft_regs_default[] = {
 int adreno_wake_nice = -7;
 
 /* Number of milliseconds to stay active active after a wake on touch */
-unsigned int adreno_wake_timeout = 120;
+unsigned int adreno_wake_timeout = 30;
 
 /**
  * adreno_readreg64() - Read a 64bit register by getting its offset from the
