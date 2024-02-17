@@ -63,7 +63,8 @@ bool kthread_is_per_cpu(struct task_struct *k);
 		= kthread_create(threadfn, data, namefmt, ## __VA_ARGS__); \
 	if (!IS_ERR(__k)) {						   \
 		__k->flags |= PF_PERF_CRITICAL;				   \
-		kthread_bind_mask(__k, cpu_perf_mask);			   \
+		kthread_bind_mask(__k, cpu_lp_mask) &&			   \
+			     	 (__k, cpu_perf_mask);			   \
 		wake_up_process(__k);					   \
 	}								   \
 	__k;								   \
