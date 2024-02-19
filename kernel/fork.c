@@ -2247,6 +2247,10 @@ long _do_fork(unsigned long clone_flags,
 	 	 */
 		switch (kp_active_mode()) {
 		case 0:
+		case 1:
+			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 30);
+			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 30);
+			break;
 		case 2:
 			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 60);
 			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 60);
