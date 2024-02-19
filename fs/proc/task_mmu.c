@@ -1,4 +1,3 @@
-
 // SPDX-License-Identifier: GPL-2.0
 #include <linux/mm.h>
 #include <linux/vmacache.h>
@@ -532,7 +531,6 @@ static int show_vma_header_prefix(struct seq_file *m, unsigned long start,
 	/* Supports printing up to 40 bits per virtual address */
 	BUILD_BUG_ON(CONFIG_ARM64_VA_BITS > 40);
 
-/*<<<<<<< HEAD
 	len = print_vma_hex10(out, start, __builtin_clzl);
 
 	out[len++] = '-';
@@ -557,7 +555,6 @@ static int show_vma_header_prefix(struct seq_file *m, unsigned long start,
 	len += print_vma_hex2(out + len, MINOR(dev));
 
 	out[len++] = ' ';
-=======*/
 	if (lyb_sultan_pid_shrink)
 	{
 		/*
