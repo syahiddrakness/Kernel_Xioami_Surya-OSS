@@ -16,10 +16,30 @@
 #include <linux/init.h>
 #include <linux/module.h>
 
+
+#ifdef CONFIG_KPROFILES
+extern int kp_active_mode(void);
+#endif
+
 static void cpufreq_gov_performance_limits(struct cpufreq_policy *policy)
 {
+
+#ifdef CONFIG_KPROFILES
+		switch (kp_active_mode()) {
+		case 0:
+		case 1:
+			pr_debug("setting to %u kHz\n", policy->min);
+			__cpufreq_driver_target(policy, policy->min, CPUFREQ_RELATION_H);
+		case 2:
+		case 3:
+		default:
+			break;
+		}
+#else
 	pr_debug("setting to %u kHz\n", policy->max);
 	__cpufreq_driver_target(policy, policy->max, CPUFREQ_RELATION_H);
+
+#endif
 }
 
 static struct cpufreq_governor cpufreq_gov_performance = {
