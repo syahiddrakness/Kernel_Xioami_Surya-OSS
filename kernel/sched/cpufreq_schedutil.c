@@ -20,7 +20,7 @@
 #include <linux/sched/sysctl.h>
 #include "sched.h"
 
-#define SUGOV_KTHREAD_PRIORITY	25
+#define SUGOV_KTHREAD_PRIORITY	100
 
 struct sugov_tunables {
 	struct gov_attr_set attr_set;
@@ -252,7 +252,7 @@ static void sugov_update_commit(struct sugov_policy *sg_policy, u64 time,
 	}
 }
 
-#define TARGET_LOAD 50
+#define TARGET_LOAD 120
 /**
  * get_next_freq - Compute a new frequency for a given cpufreq policy.
  * @sg_policy: schedutil policy object to compute the new frequency for.
@@ -391,8 +391,8 @@ static bool sugov_cpu_is_busy(struct sugov_cpu *sg_cpu)
 static inline bool sugov_cpu_is_busy(struct sugov_cpu *sg_cpu) { return false; }
 #endif /* CONFIG_NO_HZ_COMMON */
 
-#define NL_RATIO 60
-#define DEFAULT_HISPEED_LOAD 60
+#define NL_RATIO 120
+#define DEFAULT_HISPEED_LOAD 120
 static void sugov_walt_adjust(struct sugov_cpu *sg_cpu, unsigned long *util,
 			      unsigned long *max)
 {
@@ -407,7 +407,7 @@ static void sugov_walt_adjust(struct sugov_cpu *sg_cpu, unsigned long *util,
 
 	is_hiload = (cpu_util >= mult_frac(sg_policy->avg_cap,
 					   sg_policy->tunables->hispeed_load,
-					   100));
+					   120));
 
 	if (is_hiload && !is_migration)
 		*util = max(*util, sg_policy->hispeed_util);
@@ -568,7 +568,7 @@ static void sugov_update_shared(struct update_util_data *hook, u64 time,
 		sg_policy->max = max;
 		hs_util = freq_to_util(sg_policy,
 					sg_policy->tunables->hispeed_freq);
-		hs_util = mult_frac(hs_util, TARGET_LOAD, 100);
+		hs_util = mult_frac(hs_util, TARGET_LOAD, 120);
 		sg_policy->hispeed_util = hs_util;
 	}
 
@@ -1029,7 +1029,7 @@ static int sugov_init(struct cpufreq_policy *policy)
 	tunables->down_rate_limit_us =
 				CONFIG_SCHEDUTIL_DOWN_RATE_LIMIT;
 	tunables->hispeed_load = DEFAULT_HISPEED_LOAD;
-	tunables->hispeed_freq = 1324800;
+	tunables->hispeed_freq = 1708800;
 	tunables->iowait_boost_enable = true;
 
 	policy->governor_data = sg_policy;
@@ -1163,7 +1163,7 @@ static void sugov_limits(struct cpufreq_policy *policy)
 		raw_spin_unlock_irqrestore(&sg_policy->update_lock, flags);
 	}
 
-	sg_policy->limits_changed = true;
+	sg_policy->limits_changed = false;
 }
 
 static struct cpufreq_governor schedutil_gov = {
