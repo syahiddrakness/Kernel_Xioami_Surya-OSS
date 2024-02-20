@@ -15,7 +15,6 @@
 #include <linux/cpufreq.h>
 #include <linux/init.h>
 #include <linux/module.h>
-#include <linux/kprofiles.h>
 
 static void cpufreq_gov_performance_limits(struct cpufreq_policy *policy)
 {
