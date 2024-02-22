@@ -13,6 +13,11 @@
 #include <linux/module.h>
 #include "governor.h"
 
+
+#ifdef CONFIG_KPROFILES
+extern int kp_active_mode(void);
+#endif
+
 static int devfreq_powersave_func(struct devfreq *df,
 				  unsigned long *freq)
 {
@@ -20,7 +25,26 @@ static int devfreq_powersave_func(struct devfreq *df,
 	 * target callback should be able to get ceiling value as
 	 * said in devfreq.h
 	 */
+
+#ifdef CONFIG_KPROFILES
+		switch (kp_active_mode()) {
+		case 0:
+		case 1:
+			*freq = df->min_freq;
+			break;
+		case 2:
+			*freq = df->max_freq;
+			break;
+		case 3:
+			*freq = df->max_freq;
+			break;
+		default:
+			break;
+		}
+#else
 	*freq = df->min_freq;
+
+#endif
 	return 0;
 }
 
