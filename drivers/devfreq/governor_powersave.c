@@ -38,6 +38,9 @@ static int devfreq_powersave_func(struct devfreq *df,
 		case 3:
 			*freq = df->max_freq;
 			break;
+		case 4:
+			*freq = df->max_freq;
+			break;
 		default:
 			break;
 		}
