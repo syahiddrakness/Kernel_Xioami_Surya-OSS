@@ -32,7 +32,17 @@ static void cpufreq_gov_performance_limits(struct cpufreq_policy *policy)
 			__cpufreq_driver_target(policy, policy->min, CPUFREQ_RELATION_H);
 			break;
 		case 2:
+			pr_debug("setting to %u kHz\n", policy->max);
+			__cpufreq_driver_target(policy, policy->max, CPUFREQ_RELATION_H);
+			break;
 		case 3:
+			pr_debug("setting to %u kHz\n", policy->max);
+			__cpufreq_driver_target(policy, policy->max, CPUFREQ_RELATION_H);
+			break;
+		case 4:
+			pr_debug("setting to %u kHz\n", policy->max);
+			__cpufreq_driver_target(policy, policy->max, CPUFREQ_RELATION_H);
+			break;
 		default:
 			break;
 		}
