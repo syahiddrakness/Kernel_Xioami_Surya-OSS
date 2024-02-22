@@ -88,14 +88,14 @@ static void kp_trigger_mode_change_event(void);
 
 /**
  * kp_set_mode_rollback - Change profile to a given mode for a specific duration
- * @level: The profile mode level to set (0-3)
+ * @level: The profile mode level to set (0-4)
  * @duration_ms: The duration to keep the profile mode in milliseconds
  *
  * This function changes the profile to the specified mode for a specific
  * duration during any in-kernel event, and then returns to the previously
  * active mode.
  *
- * Usage example: kp_set_mode_rollback(3, 55);
+ * Usage example: kp_set_mode_rollback(4, 55);
  */
 void kp_set_mode_rollback(unsigned int level, unsigned int duration_ms)
 {
@@ -112,7 +112,7 @@ void kp_set_mode_rollback(unsigned int level, unsigned int duration_ms)
 	}
 
 	mutex_lock(&kp_set_mode_rb_lock);
-	if (unlikely(level > 3)) {
+	if (unlikely(level > 4)) {
 		kp_err("Invalid mode requested, skipping mode change.\n");
 		return;
 	}
@@ -129,7 +129,7 @@ EXPORT_SYMBOL(kp_set_mode_rollback);
 
 static __always_inline int __kp_set_mode(unsigned int level)
 {
-	if (unlikely(level > 3))
+	if (unlikely(level > 4))
 		return -EINVAL;
 
 	kp_mode = level;
@@ -138,12 +138,12 @@ static __always_inline int __kp_set_mode(unsigned int level)
 
 /**
  * kp_set_mode - Change profile to a given mode
- * @level: The profile mode level to set (0-3)
+ * @level: The profile mode level to set (0-4)
  *
  * This function changes the profile to the specified mode during any
  * in-kernel event.
  *
- * Usage example: kp_set_mode(3);
+ * Usage example: kp_set_mode(4);
  */
 void kp_set_mode(unsigned int level)
 {
@@ -176,12 +176,12 @@ EXPORT_SYMBOL(kp_set_mode);
 /**
  * kp_active_mode - Get the currently active profile mode
  *
- * This function returns a number from 0 to 3 depending on the active profile mode.
+ * This function returns a number from 0 to 4 depending on the active profile mode.
  * The returned value can be used in conditions to disable/enable or tune kernel
  * features according to the profile mode.
  *
  * Return:
- * The currently active profile mode (0-3)
+ * The currently active profile mode (0-4)
  *
  * Usage example:
  *
@@ -194,6 +194,9 @@ EXPORT_SYMBOL(kp_set_mode);
  *     break;
  * case 3:
  *     // Things to be done when performance profile is active
+ *     break;
+ * case 4:
+ *     // Things to be done when gaming profile is active
  *     break;
  * default:
  *     // Things to be done when kprofiles is disabled
@@ -210,7 +213,7 @@ int kp_active_mode(void)
 	if (kp_override)
 		return kp_override_mode;
 
-	if (unlikely(kp_mode > 3)) {
+	if (unlikely(kp_mode > 4)) {
 		kp_mode = 0;
 		kp_trigger_mode_change_event();
 		kp_err("Invalid value passed, falling back to level 0\n");
