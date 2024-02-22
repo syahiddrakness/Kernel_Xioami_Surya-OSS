@@ -164,11 +164,38 @@ static inline bool use_pelt(void)
 #endif
 }
 
+
+#ifdef CONFIG_KPROFILES
+extern int kp_active_mode(void);
+#endif
+
 static unsigned long freq_to_util(struct sugov_policy *sg_policy,
 				  unsigned int freq)
 {
+
+#ifdef CONFIG_KPROFILES
+		switch (kp_active_mode()) {
+		case 0:
+		case 1:
+			return mult_frac(sg_policy->min, freq,
+			 sg_policy->policy->cpuinfo.min_freq);
+			break;
+		case 2:
+			return mult_frac(sg_policy->max, freq,
+			 sg_policy->policy->cpuinfo.max_freq);
+			break;
+		case 3:
+			return mult_frac(sg_policy->max, freq,
+			 sg_policy->policy->cpuinfo.max_freq);
+			break;
+		default:
+			break;
+		}
+#else
 	return mult_frac(sg_policy->max, freq,
 			 sg_policy->policy->cpuinfo.max_freq);
+
+#endif
 }
 
 #define KHZ 1000
