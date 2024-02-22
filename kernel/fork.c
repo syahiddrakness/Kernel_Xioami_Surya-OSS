@@ -2250,18 +2250,23 @@ long _do_fork(unsigned long clone_flags,
 		case 0:
 		case 1:
 			cpu_input_boost_kick_max(30);
-			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 30);
-			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 30);
+			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 0);
+			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 0);
 			break;
 		case 2:
-			cpu_input_boost_kick_max(60);
-			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 60);
-			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 60);
+			cpu_input_boost_kick_max(50);
+			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 50);
+			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 50);
 			break;
 		case 3:
 			cpu_input_boost_kick_max(120);
 			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 120);
 			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 120);
+			break;
+		case 4:
+			cpu_input_boost_kick_max(300);
+			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 300);
+			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 300);
 			break;
 		default:
 			break;
