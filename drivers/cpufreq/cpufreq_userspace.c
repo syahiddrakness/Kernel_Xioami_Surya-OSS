@@ -126,6 +126,10 @@ static void cpufreq_userspace_policy_limits(struct cpufreq_policy *policy)
 			pr_debug("limit event for cpu %u: %u - %u kHz, currently %u kHz, last set to %u kHz\n",
 			policy->cpu, policy->max, policy->max, policy->cur, *setspeed);
 			break;
+		case 4:
+			pr_debug("limit event for cpu %u: %u - %u kHz, currently %u kHz, last set to %u kHz\n",
+			policy->cpu, policy->max, policy->max, policy->cur, *setspeed);
+			break;
 		default:
 			break;
 		}
