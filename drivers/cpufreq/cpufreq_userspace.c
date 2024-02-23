@@ -99,15 +99,41 @@ static void cpufreq_userspace_policy_stop(struct cpufreq_policy *policy)
 	mutex_unlock(&userspace_mutex);
 }
 
+
+#ifdef CONFIG_KPROFILES
+extern int kp_active_mode(void);
+#endif
+
 static void cpufreq_userspace_policy_limits(struct cpufreq_policy *policy)
 {
 	unsigned int *setspeed = policy->governor_data;
 
 	mutex_lock(&userspace_mutex);
 
+
+#ifdef CONFIG_KPROFILES
+		switch (kp_active_mode()) {
+		case 0:
+		case 1:
+			pr_debug("limit event for cpu %u: %u - %u kHz, currently %u kHz, last set to %u kHz\n",
+			policy->cpu, policy->min, policy->min, policy->cur, *setspeed);
+			break;
+		case 2:
+			pr_debug("limit event for cpu %u: %u - %u kHz, currently %u kHz, last set to %u kHz\n",
+			policy->cpu, policy->min, policy->max, policy->cur, *setspeed);
+			break;
+		case 3:
+			pr_debug("limit event for cpu %u: %u - %u kHz, currently %u kHz, last set to %u kHz\n",
+			policy->cpu, policy->max, policy->max, policy->cur, *setspeed);
+			break;
+		default:
+			break;
+		}
+#else
 	pr_debug("limit event for cpu %u: %u - %u kHz, currently %u kHz, last set to %u kHz\n",
 		 policy->cpu, policy->min, policy->max, policy->cur, *setspeed);
 
+#endif
 	if (policy->max < *setspeed)
 		__cpufreq_driver_target(policy, policy->max, CPUFREQ_RELATION_H);
 	else if (policy->min > *setspeed)
