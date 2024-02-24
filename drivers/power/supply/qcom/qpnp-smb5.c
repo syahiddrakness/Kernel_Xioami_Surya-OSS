@@ -54,7 +54,7 @@ static struct smb_params smb5_pmi632_params = {
 		.name   = "fast charge current",
 		.reg    = CHGR_FAST_CHARGE_CURRENT_CFG_REG,
 		.min_u  = 0,
-		.max_u  = 3000000,
+		.max_u  = 6000000,
 		.step_u = 50000,
 	},
 	.fv			= {
@@ -68,28 +68,28 @@ static struct smb_params smb5_pmi632_params = {
 		.name   = "usb input current limit",
 		.reg    = USBIN_CURRENT_LIMIT_CFG_REG,
 		.min_u  = 0,
-		.max_u  = 3000000,
+		.max_u  = 6000000,
 		.step_u = 50000,
 	},
 	.icl_max_stat		= {
 		.name   = "dcdc icl max status",
 		.reg    = ICL_MAX_STATUS_REG,
 		.min_u  = 0,
-		.max_u  = 3000000,
+		.max_u  = 6000000,
 		.step_u = 50000,
 	},
 	.icl_stat		= {
 		.name   = "input current limit status",
 		.reg    = ICL_STATUS_REG,
 		.min_u  = 0,
-		.max_u  = 3000000,
+		.max_u  = 6000000,
 		.step_u = 50000,
 	},
 	.otg_cl			= {
 		.name	= "usb otg current limit",
 		.reg	= DCDC_OTG_CURRENT_LIMIT_CFG_REG,
 		.min_u	= 500000,
-		.max_u	= 1000000,
+		.max_u	= 6000000,
 		.step_u	= 250000,
 	},
 	.jeita_cc_comp_hot	= {
@@ -151,28 +151,28 @@ static struct smb_params smb5_pm8150b_params = {
 		.name   = "usb input current limit",
 		.reg    = USBIN_CURRENT_LIMIT_CFG_REG,
 		.min_u  = 0,
-		.max_u  = 5000000,
+		.max_u  = 6000000,
 		.step_u = 50000,
 	},
 	.icl_max_stat		= {
 		.name   = "dcdc icl max status",
 		.reg    = ICL_MAX_STATUS_REG,
 		.min_u  = 0,
-		.max_u  = 5000000,
+		.max_u  = 6000000,
 		.step_u = 50000,
 	},
 	.icl_stat		= {
 		.name   = "aicl icl status",
 		.reg    = AICL_ICL_STATUS_REG,
 		.min_u  = 0,
-		.max_u  = 5000000,
+		.max_u  = 6000000,
 		.step_u = 50000,
 	},
 	.otg_cl			= {
 		.name	= "usb otg current limit",
 		.reg	= DCDC_OTG_CURRENT_LIMIT_CFG_REG,
 		.min_u	= 500000,
-		.max_u	= 3000000,
+		.max_u	= 6000000,
 		.step_u	= 500000,
 	},
 	.dc_icl		= {
@@ -281,8 +281,8 @@ static const struct clamp_config clamp_levels[] = {
 	{ {0x11C6, 0x11F9, 0x13F1}, {0x60, 0x2B, 0x9C} },
 };
 
-#define PMI632_MAX_ICL_UA	3000000
-#define PM6150_MAX_FCC_UA	3000000
+#define PMI632_MAX_ICL_UA	6000000
+#define PM6150_MAX_FCC_UA	6000000
 static int smb5_chg_config_init(struct smb5 *chip)
 {
 	struct smb_charger *chg = &chip->chg;
@@ -1419,7 +1419,7 @@ static int smb5_usb_port_get_prop(struct power_supply *psy,
 			val->intval = 0;
 		break;
 	case POWER_SUPPLY_PROP_VOLTAGE_MAX:
-		val->intval = 5000000;
+		val->intval = 6000000;
 		break;
 	case POWER_SUPPLY_PROP_CURRENT_MAX:
 		rc = smblib_get_prop_input_current_settled(chg, val);
@@ -2144,7 +2144,7 @@ static int smb5_batt_set_prop(struct power_supply *psy,
 		break;
 	case POWER_SUPPLY_PROP_CURRENT_QNOVO:
 		vote(chg->pl_disable_votable, PL_QNOVO_VOTER,
-			val->intval != -EINVAL && val->intval < 2000000, 0);
+			val->intval != -EINVAL && val->intval < 6000000, 0);
 		if (val->intval == -EINVAL) {
 			vote(chg->fcc_votable, BATT_PROFILE_VOTER,
 					true, chg->batt_profile_fcc_ua);
