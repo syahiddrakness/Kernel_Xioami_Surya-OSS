@@ -858,7 +858,7 @@ int smblib_set_fastcharge_mode(struct smb_charger *chg, bool enable)
 {
 	union power_supply_propval pval = {0,};
 	int rc = 0;
-	int termi = -580;
+	int termi = -900;
 
 	if (!chg->bms_psy)
 		return 0;
@@ -2394,7 +2394,7 @@ int smblib_get_prop_batt_status(struct smb_charger *chg,
 		 */
 		if (smblib_is_jeita_warm_charging(chg))
 			val->intval = POWER_SUPPLY_STATUS_CHARGING;
-		else if ((usb_online || vbus_now > 6000000) && (batt_temp > -100) && (batt_temp < 580) &&
+		else if ((usb_online || vbus_now > 6000000) && (batt_temp > -100) && (batt_temp < 900) &&
                      (POWER_SUPPLY_HEALTH_OVERHEAT != batt_health) && (POWER_SUPPLY_HEALTH_OVERVOLTAGE != batt_health)) {
 			val->intval = POWER_SUPPLY_STATUS_CHARGING;
 		} else
@@ -2421,7 +2421,7 @@ int smblib_get_prop_batt_status(struct smb_charger *chg,
 	}
 
 	if(POWER_SUPPLY_HEALTH_WARM == batt_health && (val->intval == POWER_SUPPLY_STATUS_FULL) &&
-		((batt_capa.intval <= 99) && usb_online) && (batt_temp > -100)  && (batt_temp < 580))  {
+		((batt_capa.intval <= 99) && usb_online) && (batt_temp > -100)  && (batt_temp < 900))  {
 		val->intval = POWER_SUPPLY_STATUS_CHARGING;
 		return 0;
 	}
@@ -2447,9 +2447,9 @@ int smblib_get_prop_batt_status(struct smb_charger *chg,
 
     if (!stat){
 		if(POWER_SUPPLY_HEALTH_WARM == batt_health&& (val->intval == POWER_SUPPLY_STATUS_FULL)&&
-			((batt_capa.intval <= 99) && usb_online) && (batt_temp > -100)  && (batt_temp < 580)) {
+			((batt_capa.intval <= 99) && usb_online) && (batt_temp > -100)  && (batt_temp < 900)) {
 			val->intval = POWER_SUPPLY_STATUS_CHARGING;
-		}else if ((usb_online || vbus_now > 6000000) && (batt_temp > -100) && (batt_temp < 580) &&
+		}else if ((usb_online || vbus_now > 6000000) && (batt_temp > -100) && (batt_temp < 900) &&
 	                     (POWER_SUPPLY_HEALTH_OVERHEAT != batt_health) && (POWER_SUPPLY_HEALTH_OVERVOLTAGE != batt_health)) {
 			val->intval = POWER_SUPPLY_STATUS_CHARGING;
 		} else {
