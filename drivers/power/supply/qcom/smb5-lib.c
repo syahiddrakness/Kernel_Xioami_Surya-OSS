@@ -887,7 +887,7 @@ int smblib_set_fastcharge_mode(struct smb_charger *chg, bool enable)
 			"do not setfastcharge mode\n", pval.intval);
 		enable = false;
 	}
-	/*if temp > 480 or temp < 150 do not set fastcharge flag*/
+	/*if temp > 600 or temp < 150 do not set fastcharge flag*/
 	rc = power_supply_get_property(chg->bms_psy,
 					POWER_SUPPLY_PROP_TEMP, &pval);
 	if (rc < 0) {
@@ -895,7 +895,7 @@ int smblib_set_fastcharge_mode(struct smb_charger *chg, bool enable)
 			return rc;
 	}
 
-	if (enable && (pval.intval >= 480 || pval.intval <= 150)) {
+	if (enable && (pval.intval >= 600 || pval.intval <= 150)) {
 			smblib_dbg(chg, PR_MISC, "temp:%d is abort"
 							"do not setfastcharge mode\n", pval.intval);
 			enable = false;
@@ -2529,10 +2529,10 @@ int smblib_get_prop_batt_health(struct smb_charger *chg,
                                 smblib_err(chg, "Couldn't get bms temp:%d\n", rc);
                                 return rc;
                         }
-                        if (pval.intval>151 && pval.intval<480){
+                        if (pval.intval>151 && pval.intval<600){
                                 smblib_dbg(chg, PR_MISC, "temp:%d is abort"
                                            "do not  set step charge work\n", pval.intval);
-                                effective_fv_uv = 4480000;
+                                effective_fv_uv = 6000000;
                         }else{
                                 effective_fv_uv = get_effective_result_locked(chg->fv_votable);
                         }
@@ -6187,7 +6187,7 @@ static int check_reduce_fcc_condition(struct smb_charger *chg)
 		return 0;
 
 	ibat = val.intval/1000;
-	if (ibat > -450) {
+	if (ibat > -600) {
 		pr_info("Skip CHG ESR, Fails IBAT ibat(%d)\n", ibat);
 		return 0;
 	}
@@ -8293,7 +8293,7 @@ static void smblib_six_pin_batt_step_chg_work(struct work_struct *work)
 		return;
 	}
 
-	/*if temp > 480 or temp < 150 do not set step charge work */
+	/*if temp > 600 or temp < 150 do not set step charge work */
 	rc = power_supply_get_property(chg->bms_psy,
 					POWER_SUPPLY_PROP_TEMP, &pval);
 	if (rc < 0) {
@@ -8301,7 +8301,7 @@ static void smblib_six_pin_batt_step_chg_work(struct work_struct *work)
 		return;
 	}
 
-	if  (pval.intval >= 480 || pval.intval <= 150) {
+	if  (pval.intval >= 600 || pval.intval <= 150) {
 		smblib_dbg(chg, PR_MISC, "temp:%d is abort"
 						"do not  set step charge work\n", pval.intval);
 		if (is_client_vote_enabled(chg->fv_votable,
