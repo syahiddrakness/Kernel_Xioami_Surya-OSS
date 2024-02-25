@@ -482,7 +482,7 @@ static int blk_phys_contig_segment(struct request_queue *q, struct bio *bio,
 	return biovec_phys_mergeable(q, &end_bv, &nxt_bv);
 }
 
-static inline struct scatterlist *blk_next_sg(struct scatterlist **sg,
+static struct scatterlist *blk_next_sg(struct scatterlist **sg,
 		struct scatterlist *sglist)
 {
 	if (!*sg)
@@ -547,12 +547,7 @@ __blk_segment_map_sg(struct request_queue *q, struct bio_vec *bvec,
 		(*sg)->length += nbytes;
 	} else {
 new_segment:
-		if (bvec->bv_offset + bvec->bv_len <= PAGE_SIZE) {
-			*sg = blk_next_sg(sg, sglist);
-			sg_set_page(*sg, bvec->bv_page, nbytes, bvec->bv_offset);
-			(*nsegs) += 1;
-		} else
-			(*nsegs) += blk_bvec_map_sg(q, bvec, sglist, sg);
+		(*nsegs) += blk_bvec_map_sg(q, bvec, sglist, sg);
 	}
 	*bvprv = *bvec;
 }
