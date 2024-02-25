@@ -258,23 +258,21 @@ void blk_mq_sched_request_inserted(struct request *rq)
 EXPORT_SYMBOL_GPL(blk_mq_sched_request_inserted);
 
 static bool blk_mq_sched_bypass_insert(struct blk_mq_hw_ctx *hctx,
-				       bool has_sched,
 				       struct request *rq)
 {
-	/* dispatch flush rq directly */
-	if (rq->rq_flags & RQF_FLUSH_SEQ) {
-		spin_lock(&hctx->lock);
-		list_add(&rq->queuelist, &hctx->dispatch);
-		spin_unlock(&hctx->lock);
-		return true;
-	}
-
-	if (has_sched) {
+	if (rq->tag == -1) {
 		rq->rq_flags |= RQF_SORTED;
-		WARN_ON(rq->tag != -1);
+		return false;
 	}
 
-	return false;
+	/*
+	 * If we already have a real request tag, send directly to
+	 * the dispatch list.
+	 */
+	spin_lock(&hctx->lock);
+	list_add(&rq->queuelist, &hctx->dispatch);
+	spin_unlock(&hctx->lock);
+	return true;
 }
 
 /**
@@ -362,13 +360,12 @@ void blk_mq_sched_insert_request(struct request *rq, bool at_head,
 	struct blk_mq_ctx *ctx = rq->mq_ctx;
 	struct blk_mq_hw_ctx *hctx = blk_mq_map_queue(q, ctx->cpu);
 
-	/* flush rq in flush machinery need to be dispatched directly */
-	if (!(rq->rq_flags & RQF_FLUSH_SEQ) && op_is_flush(rq->cmd_flags)) {
+	if (rq->tag == -1 && op_is_flush(rq->cmd_flags)) {
 		blk_mq_sched_insert_flush(hctx, rq, can_block);
 		return;
 	}
 
-	if (blk_mq_sched_bypass_insert(hctx, !!e, rq))
+	if (e && blk_mq_sched_bypass_insert(hctx, rq))
 		goto run;
 
 	if (e && e->type->ops.mq.insert_requests) {
@@ -406,7 +403,7 @@ void blk_mq_sched_insert_requests(struct request_queue *q,
 		list_for_each_entry_safe(rq, next, list, queuelist) {
 			if (WARN_ON_ONCE(rq->tag != -1)) {
 				list_del_init(&rq->queuelist);
-				blk_mq_sched_bypass_insert(hctx, true, rq);
+				blk_mq_sched_bypass_insert(hctx, rq);
 			}
 		}
 	}
