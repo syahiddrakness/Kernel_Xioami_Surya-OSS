@@ -530,14 +530,6 @@ static unsigned blk_bvec_map_sg(struct request_queue *q,
 	return nsegs;
 }
 
-static inline int __blk_bvec_map_sg(struct bio_vec bv,
-		struct scatterlist *sglist, struct scatterlist **sg)
-{
-	*sg = blk_next_sg(sg, sglist);
-	sg_set_page(*sg, bv.bv_page, bv.bv_len, bv.bv_offset);
-	return 1;
-}
-
 static inline void
 __blk_segment_map_sg(struct request_queue *q, struct bio_vec *bvec,
 		     struct scatterlist *sglist, struct bio_vec *bvprv,
@@ -556,11 +548,21 @@ __blk_segment_map_sg(struct request_queue *q, struct bio_vec *bvec,
 	} else {
 new_segment:
 		if (bvec->bv_offset + bvec->bv_len <= PAGE_SIZE) {
-			(*nsegs) += __blk_bvec_map_sg(*bvec, sglist, sg);
+			*sg = blk_next_sg(sg, sglist);
+			sg_set_page(*sg, bvec->bv_page, nbytes, bvec->bv_offset);
+			(*nsegs) += 1;
 		} else
 			(*nsegs) += blk_bvec_map_sg(q, bvec, sglist, sg);
 	}
 	*bvprv = *bvec;
+}
+
+static inline int __blk_bvec_map_sg(struct bio_vec bv,
+		struct scatterlist *sglist, struct scatterlist **sg)
+{
+	*sg = sglist;
+	sg_set_page(*sg, bv.bv_page, bv.bv_len, bv.bv_offset);
+	return 1;
 }
 
 static int __blk_bios_map_sg(struct request_queue *q, struct bio *bio,
