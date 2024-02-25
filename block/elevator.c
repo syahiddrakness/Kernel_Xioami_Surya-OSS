@@ -83,16 +83,6 @@ bool elv_bio_merge_ok(struct request *rq, struct bio *bio)
 }
 EXPORT_SYMBOL(elv_bio_merge_ok);
 
-static bool elevator_match(const struct elevator_type *e, const char *name)
-{
-	if (!strcmp(e->elevator_name, name))
-		return true;
-	if (e->elevator_alias && !strcmp(e->elevator_alias, name))
-		return true;
-
-	return false;
-}
-
 /*
  * Return scheduler with name 'name' and with matching 'mq capability
  */
@@ -101,7 +91,7 @@ static struct elevator_type *elevator_find(const char *name, bool mq)
 	struct elevator_type *e;
 
 	list_for_each_entry(e, &elv_list, list) {
-		if (elevator_match(e, name) && (mq == e->uses_mq))
+		if (!strcmp(e->elevator_name, name) && (mq == e->uses_mq))
 			return e;
 	}
 
@@ -901,9 +891,9 @@ int elv_register(struct elevator_type *e)
 	spin_unlock(&elv_list_lock);
 
 	/* print pretty message */
-	if (elevator_match(e, chosen_elevator) ||
+	if (!strcmp(e->elevator_name, chosen_elevator) ||
 			(!*chosen_elevator &&
-			 elevator_match(e, CONFIG_DEFAULT_IOSCHED)))
+			 !strcmp(e->elevator_name, CONFIG_DEFAULT_IOSCHED)))
 				def = " (default)";
 
 	printk(KERN_INFO "io scheduler %s registered%s\n", e->elevator_name,
@@ -1096,7 +1086,8 @@ static int __elevator_change(struct request_queue *q, const char *name)
 	if (!e)
 		return -EINVAL;
 
-	if (q->elevator && elevator_match(q->elevator->type, elevator_name)) {
+	if (q->elevator &&
+	    !strcmp(elevator_name, q->elevator->type->elevator_name)) {
 		elevator_put(e);
 		return 0;
 	}
@@ -1132,7 +1123,6 @@ ssize_t elv_iosched_show(struct request_queue *q, char *name)
 	struct elevator_queue *e = q->elevator;
 	struct elevator_type *elv = NULL;
 	struct elevator_type *__e;
-	bool uses_mq = q->mq_ops != NULL;
 	int len = 0;
 
 	if (!blk_queue_stackable(q))
@@ -1145,8 +1135,7 @@ ssize_t elv_iosched_show(struct request_queue *q, char *name)
 
 	spin_lock(&elv_list_lock);
 	list_for_each_entry(__e, &elv_list, list) {
-		if (elv && elevator_match(elv, __e->elevator_name) &&
-		    (__e->uses_mq == uses_mq)) {
+		if (elv && !strcmp(elv->elevator_name, __e->elevator_name)) {
 			len += sprintf(name+len, "[%s] ", elv->elevator_name);
 			continue;
 		}
