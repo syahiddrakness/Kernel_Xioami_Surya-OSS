@@ -976,19 +976,23 @@ int elevator_init_mq(struct request_queue *q)
 	if (q->nr_hw_queues != 1)
 		return 0;
 
-	WARN_ON_ONCE(test_bit(QUEUE_FLAG_REGISTERED, &q->queue_flags));
-
+	/*
+	 * q->sysfs_lock must be held to provide mutual exclusion between
+	 * elevator_switch() and here.
+	 */
+	mutex_lock(&q->sysfs_lock);
 	if (unlikely(q->elevator))
-		goto out;
+		goto out_unlock;
 
 	e = elevator_get(q, "mq-deadline", false);
 	if (!e)
-		goto out;
+		goto out_unlock;
 
 	err = blk_mq_init_sched(q, e);
 	if (err)
 		elevator_put(e);
-out:
+out_unlock:
+	mutex_unlock(&q->sysfs_lock);
 	return err;
 }
 
