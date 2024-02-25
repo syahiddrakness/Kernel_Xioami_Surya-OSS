@@ -299,16 +299,7 @@ new_segment:
 		bvprv = bv;
 		bvprvp = &bvprv;
 
-		if (bv.bv_offset + bv.bv_len <= PAGE_SIZE) {
-			nsegs++;
-			seg_size = bv.bv_len;
-			sectors += bv.bv_len >> 9;
-			if (nsegs == 1 && seg_size > front_seg_size)
-				front_seg_size = seg_size;
-		} else if (bvec_split_segs(q, &bv, &nsegs, &seg_size,
-				    &front_seg_size, &sectors)) {
 			goto split;
-		}
 	}
 
 	do_split = false;
