@@ -301,16 +301,6 @@ static inline void req_set_nomerge(struct request_queue *q, struct request *req)
 }
 
 /*
- * The max size one bio can handle is UINT_MAX becasue bvec_iter.bi_size
- * is defined as 'unsigned int', meantime it has to aligned to with logical
- * block size which is the minimum accepted unit by hardware.
- */
-static inline unsigned int bio_allowed_max_sectors(struct request_queue *q)
-{
-	return round_down(UINT_MAX, queue_logical_block_size(q)) >> 9;
-}
-
-/*
  * Steal a bit from this field for legacy IO path atomic IO marking. Note that
  * setting the deadline clears the bottom bit, potentially clearing the
  * completed bit. The user has to be OK with this (current ones are fine).
