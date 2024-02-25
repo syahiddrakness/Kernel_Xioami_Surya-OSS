@@ -233,6 +233,7 @@ static void bsg_initialize_rq(struct request *req)
 	sreq->sense_len = SCSI_SENSE_BUFFERSIZE;
 
 	job->req = req;
+	job->reply = sense;
 	job->reply_len = sreq->sense_len;
 	job->dd_data = job + 1;
 }
