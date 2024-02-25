@@ -290,9 +290,6 @@ static struct bio *blk_bio_segment_split(struct request_queue *q,
 			bvprvp = &bvprv;
 			sectors += bv.bv_len >> 9;
 
-			if (nsegs == 1 && seg_size > front_seg_size)
-				front_seg_size = seg_size;
-
 			continue;
 		}
 new_segment:
@@ -426,10 +423,6 @@ static unsigned int __blk_recalc_rq_segments(struct request_queue *q,
 
 				seg_size += bv.bv_len;
 				bvprv = bv;
-
-				if (nr_phys_segs == 1 && seg_size >
-						front_seg_size)
-					front_seg_size = seg_size;
 
 				continue;
 			}
