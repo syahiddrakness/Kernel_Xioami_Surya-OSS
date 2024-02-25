@@ -279,10 +279,12 @@ queue_store_##name(struct request_queue *q, const char *page, size_t count) \
 	if (neg)							\
 		val = !val;						\
 									\
+	spin_lock_irq(q->queue_lock);					\
 	if (val)							\
-		blk_queue_flag_set(QUEUE_FLAG_##flag, q);		\
+		queue_flag_set(QUEUE_FLAG_##flag, q);			\
 	else								\
-		blk_queue_flag_clear(QUEUE_FLAG_##flag, q);		\
+		queue_flag_clear(QUEUE_FLAG_##flag, q);			\
+	spin_unlock_irq(q->queue_lock);					\
 	return ret;							\
 }
 
@@ -415,10 +417,12 @@ static ssize_t queue_poll_store(struct request_queue *q, const char *page,
 	if (ret < 0)
 		return ret;
 
+	spin_lock_irq(q->queue_lock);
 	if (poll_on)
-		blk_queue_flag_set(QUEUE_FLAG_POLL, q);
+		queue_flag_set(QUEUE_FLAG_POLL, q);
 	else
-		blk_queue_flag_clear(QUEUE_FLAG_POLL, q);
+		queue_flag_clear(QUEUE_FLAG_POLL, q);
+	spin_unlock_irq(q->queue_lock);
 
 	return ret;
 }
@@ -489,10 +493,12 @@ static ssize_t queue_wc_store(struct request_queue *q, const char *page,
 	if (set == -1)
 		return -EINVAL;
 
+	spin_lock_irq(q->queue_lock);
 	if (set)
-		blk_queue_flag_set(QUEUE_FLAG_WC, q);
+		queue_flag_set(QUEUE_FLAG_WC, q);
 	else
-		blk_queue_flag_clear(QUEUE_FLAG_WC, q);
+		queue_flag_clear(QUEUE_FLAG_WC, q);
+	spin_unlock_irq(q->queue_lock);
 
 	return count;
 }
@@ -948,7 +954,9 @@ void blk_unregister_queue(struct gendisk *disk)
 	 */
 	mutex_lock(&q->sysfs_lock);
 
-	blk_queue_flag_clear(QUEUE_FLAG_REGISTERED, q);
+	spin_lock_irq(q->queue_lock);
+	queue_flag_clear(QUEUE_FLAG_REGISTERED, q);
+	spin_unlock_irq(q->queue_lock);
 
 	/*
 	 * Remove the sysfs attributes before unregistering the queue data

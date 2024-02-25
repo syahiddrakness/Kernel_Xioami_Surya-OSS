@@ -57,10 +57,12 @@ ssize_t part_timeout_store(struct device *dev, struct device_attribute *attr,
 		char *p = (char *) buf;
 
 		val = simple_strtoul(p, &p, 10);
+		spin_lock_irq(q->queue_lock);
 		if (val)
-			blk_queue_flag_set(QUEUE_FLAG_FAIL_IO, q);
+			queue_flag_set(QUEUE_FLAG_FAIL_IO, q);
 		else
-			blk_queue_flag_clear(QUEUE_FLAG_FAIL_IO, q);
+			queue_flag_clear(QUEUE_FLAG_FAIL_IO, q);
+		spin_unlock_irq(q->queue_lock);
 	}
 
 	return count;
