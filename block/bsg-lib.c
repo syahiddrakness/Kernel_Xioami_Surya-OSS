@@ -132,7 +132,6 @@ static int bsg_prepare_job(struct device *dev, struct request *req)
 	struct bsg_job *job = blk_mq_rq_to_pdu(req);
 	int ret;
 
-	job->timeout = req->timeout;
 	job->request = rq->cmd;
 	job->request_len = rq->cmd_len;
 

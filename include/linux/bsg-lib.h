@@ -44,8 +44,6 @@ struct bsg_job {
 
 	struct kref kref;
 
-	unsigned int timeout;
-
 	/* Transport/driver specific request/reply structs */
 	void *request;
 	void *reply;
