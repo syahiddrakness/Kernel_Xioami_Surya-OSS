@@ -1855,9 +1855,9 @@ void dm_table_set_restrictions(struct dm_table *t, struct request_queue *q,
 	q->limits = *limits;
 
 	if (!dm_table_supports_discards(t))
-		blk_queue_flag_clear(QUEUE_FLAG_DISCARD, q);
+		queue_flag_clear_unlocked(QUEUE_FLAG_DISCARD, q);
 	else
-		blk_queue_flag_set(QUEUE_FLAG_DISCARD, q);
+		queue_flag_set_unlocked(QUEUE_FLAG_DISCARD, q);
 
 	if (dm_table_supports_flush(t, (1UL << QUEUE_FLAG_WC))) {
 		wc = true;
@@ -1867,18 +1867,18 @@ void dm_table_set_restrictions(struct dm_table *t, struct request_queue *q,
 	blk_queue_write_cache(q, wc, fua);
 
 	if (dm_table_supports_dax(t))
-		blk_queue_flag_set(QUEUE_FLAG_DAX, q);
+		queue_flag_set_unlocked(QUEUE_FLAG_DAX, q);
 	else
-		blk_queue_flag_clear(QUEUE_FLAG_DAX, q);
+		queue_flag_clear_unlocked(QUEUE_FLAG_DAX, q);
 
 	if (dm_table_any_dev_attr(t, device_dax_write_cache_enabled, NULL))
 		dax_write_cache(t->md->dax_dev, true);
 
 	/* Ensure that all underlying devices are non-rotational. */
 	if (dm_table_any_dev_attr(t, device_is_rotational, NULL))
-		blk_queue_flag_clear(QUEUE_FLAG_NONROT, q);
+		queue_flag_clear_unlocked(QUEUE_FLAG_NONROT, q);
 	else
-		blk_queue_flag_set(QUEUE_FLAG_NONROT, q);
+		queue_flag_set_unlocked(QUEUE_FLAG_NONROT, q);
 
 	if (!dm_table_supports_write_same(t))
 		q->limits.max_write_same_sectors = 0;
@@ -1886,9 +1886,9 @@ void dm_table_set_restrictions(struct dm_table *t, struct request_queue *q,
 		q->limits.max_write_zeroes_sectors = 0;
 
 	if (dm_table_any_dev_attr(t, queue_no_sg_merge, NULL))
-		blk_queue_flag_set(QUEUE_FLAG_NO_SG_MERGE, q);
+		queue_flag_set_unlocked(QUEUE_FLAG_NO_SG_MERGE, q);
 	else
-		blk_queue_flag_clear(QUEUE_FLAG_NO_SG_MERGE, q);
+		queue_flag_clear_unlocked(QUEUE_FLAG_NO_SG_MERGE, q);
 
 	dm_table_verify_integrity(t);
 
@@ -1914,7 +1914,7 @@ void dm_table_set_restrictions(struct dm_table *t, struct request_queue *q,
 	 */
 	if (blk_queue_add_random(q) &&
 	    dm_table_any_dev_attr(t, device_is_not_random, NULL))
-		blk_queue_flag_clear(QUEUE_FLAG_ADD_RANDOM, q);
+		queue_flag_clear_unlocked(QUEUE_FLAG_ADD_RANDOM, q);
 
 	/*
 	 * QUEUE_FLAG_STACKABLE must be set after all queue settings are
@@ -1927,7 +1927,7 @@ void dm_table_set_restrictions(struct dm_table *t, struct request_queue *q,
 	 */
 	smp_mb();
 	if (dm_table_request_based(t))
-		blk_queue_flag_set(QUEUE_FLAG_STACKABLE, q);
+		queue_flag_set_unlocked(QUEUE_FLAG_STACKABLE, q);
 
 	/* io_pages is used for readahead */
 	q->backing_dev_info->io_pages = limits->max_sectors >> (PAGE_SHIFT - 9);

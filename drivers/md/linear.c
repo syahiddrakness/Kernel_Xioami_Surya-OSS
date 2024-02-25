@@ -138,9 +138,9 @@ static struct linear_conf *linear_conf(struct mddev *mddev, int raid_disks)
 	}
 
 	if (!discard_supported)
-		blk_queue_flag_clear(QUEUE_FLAG_DISCARD, mddev->queue);
+		queue_flag_clear_unlocked(QUEUE_FLAG_DISCARD, mddev->queue);
 	else
-		blk_queue_flag_set(QUEUE_FLAG_DISCARD, mddev->queue);
+		queue_flag_set_unlocked(QUEUE_FLAG_DISCARD, mddev->queue);
 
 	/*
 	 * Here we calculate the device offsets.

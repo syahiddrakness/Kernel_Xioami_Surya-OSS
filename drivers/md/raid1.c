@@ -1765,7 +1765,7 @@ static int raid1_add_disk(struct mddev *mddev, struct md_rdev *rdev)
 		}
 	}
 	if (mddev->queue && blk_queue_discard(bdev_get_queue(rdev->bdev)))
-		blk_queue_flag_set(QUEUE_FLAG_DISCARD, mddev->queue);
+		queue_flag_set_unlocked(QUEUE_FLAG_DISCARD, mddev->queue);
 	print_conf(conf);
 	return err;
 }
@@ -3135,10 +3135,10 @@ static int raid1_run(struct mddev *mddev)
 
 	if (mddev->queue) {
 		if (discard_supported)
-			blk_queue_flag_set(QUEUE_FLAG_DISCARD,
+			queue_flag_set_unlocked(QUEUE_FLAG_DISCARD,
 						mddev->queue);
 		else
-			blk_queue_flag_clear(QUEUE_FLAG_DISCARD,
+			queue_flag_clear_unlocked(QUEUE_FLAG_DISCARD,
 						  mddev->queue);
 	}
 
