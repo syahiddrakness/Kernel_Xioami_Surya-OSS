@@ -802,7 +802,7 @@ static void free_request_size(void *element, void *data)
 int blk_init_rl(struct request_list *rl, struct request_queue *q,
 		gfp_t gfp_mask)
 {
-	if (unlikely(rl->rq_pool) || q->mq_ops)
+	if (unlikely(rl->rq_pool))
 		return 0;
 
 	rl->q = q;
