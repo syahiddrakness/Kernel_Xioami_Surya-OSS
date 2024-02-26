@@ -33,15 +33,15 @@ static void cpufreq_gov_powersave_limits(struct cpufreq_policy *policy)
 			break;
 		case 2:
 			pr_debug("setting to %u kHz\n", policy->max);
-			__cpufreq_driver_target(policy, policy->max, CPUFREQ_RELATION_L);
+			__cpufreq_driver_target(policy, policy->max, CPUFREQ_RELATION_H);
 			break;
 		case 3:
 			pr_debug("setting to %u kHz\n", policy->max);
-			__cpufreq_driver_target(policy, policy->max, CPUFREQ_RELATION_L);
+			__cpufreq_driver_target(policy, policy->max, CPUFREQ_RELATION_H);
 			break;
 		case 4:
 			pr_debug("setting to %u kHz\n", policy->max);
-			__cpufreq_driver_target(policy, policy->max, CPUFREQ_RELATION_L);
+			__cpufreq_driver_target(policy, policy->max, CPUFREQ_RELATION_H);
 			break;
 		default:
 			break;

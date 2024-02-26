@@ -614,7 +614,7 @@ static void sugov_work(struct kthread_work *work)
 			   sched_ktime_clock());
 	raw_spin_unlock_irqrestore(&sg_policy->update_lock, flags);
 	__cpufreq_driver_target(sg_policy->policy, sg_policy->next_freq,
-				CPUFREQ_RELATION_L);
+				CPUFREQ_RELATION_H);
 	mutex_unlock(&sg_policy->work_lock);
 
 	if (likely(use_pelt()))
