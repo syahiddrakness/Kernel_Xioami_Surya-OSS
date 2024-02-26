@@ -1119,7 +1119,7 @@ bool blk_mq_dispatch_rq_list(struct request_queue *q, struct list_head *list)
 		 * tag for the next request already, free it again.
 		 */
 		rq = list_first_entry(list, struct request, queuelist);
-		blk_mq_put_driver_tag
+		blk_mq_put_driver_tag;
 		spin_lock(&hctx->lock);
 		list_splice_init(list, &hctx->dispatch);
 		spin_unlock(&hctx->lock);

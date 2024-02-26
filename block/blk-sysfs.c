@@ -931,15 +931,12 @@ void blk_unregister_queue(struct gendisk *disk)
 	if (WARN_ON(!q))
 		return;
 
-	/* Return early if disk->queue was never registered. */
-	if (!blk_queue_registered(q))
-		return;
-
 	mutex_lock(&q->sysfs_lock);
 	queue_flag_clear_unlocked(QUEUE_FLAG_REGISTERED, q);
 	mutex_unlock(&q->sysfs_lock);
 
 	wbt_exit(q);
+
 
 	if (q->mq_ops)
 		blk_mq_unregister_dev(disk_to_dev(disk), q);

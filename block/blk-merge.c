@@ -235,8 +235,7 @@ static unsigned int __blk_recalc_rq_segments(struct request_queue *q,
 {
 	struct bio_vec bv, bvprv = { NULL };
 	int cluster, prev = 0;
-	unsigned front_seg_size = bio->bi_seg_front_size;
-	unsigned front_seg_size;
+	unsigned int seg_size, nr_phys_segs;
 	struct bio *fbio, *bbio;
 	struct bvec_iter iter;
 
@@ -276,7 +275,6 @@ static unsigned int __blk_recalc_rq_segments(struct request_queue *q,
 
 				seg_size += bv.bv_len;
 				bvprv = bv;
-
 				continue;
 			}
 new_segment:

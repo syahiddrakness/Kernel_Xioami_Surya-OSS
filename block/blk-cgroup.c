@@ -1022,7 +1022,6 @@ static struct cftype blkcg_legacy_files[] = {
 static void blkcg_css_offline(struct cgroup_subsys_state *css)
 {
 	struct blkcg *blkcg = css_to_blkcg(css);
-	struct blkcg_gq *blkg;
 
 	spin_lock_irq(&blkcg->lock);
 
@@ -1308,6 +1307,7 @@ int blkcg_activate_policy(struct request_queue *q,
 			  const struct blkcg_policy *pol)
 {
 	struct blkg_policy_data *pd_prealloc = NULL;
+	struct blkcg_gq *blkg;
 	int ret;
 
 	if (blkcg_policy_enabled(q, pol))
