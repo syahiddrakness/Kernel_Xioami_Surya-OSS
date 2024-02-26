@@ -355,14 +355,12 @@ static struct request *blk_mq_get_request(struct request_queue *q,
 	struct elevator_queue *e = q->elevator;
 	struct request *rq;
 	unsigned int tag;
-	bool put_ctx_on_error = false;
+	struct blk_mq_ctx *local_ctx = NULL;
 
 	blk_queue_enter_live(q);
 	data->q = q;
-	if (likely(!data->ctx)) {
-		data->ctx = blk_mq_get_ctx(q);
-		put_ctx_on_error = true;
-	}
+	if (likely(!data->ctx))
+		data->ctx = local_ctx = blk_mq_get_ctx(q);
 	if (likely(!data->hctx))
 		data->hctx = blk_mq_map_queue(q, data->ctx->cpu);
 	if (op & REQ_NOWAIT)
@@ -381,8 +379,8 @@ static struct request *blk_mq_get_request(struct request_queue *q,
 
 	tag = blk_mq_get_tag(data);
 	if (tag == BLK_MQ_TAG_FAIL) {
-		if (put_ctx_on_error) {
-			blk_mq_put_ctx(data->ctx);
+		if (local_ctx) {
+			blk_mq_put_ctx(local_ctx);
 			data->ctx = NULL;
 		}
 		blk_queue_exit(q);
