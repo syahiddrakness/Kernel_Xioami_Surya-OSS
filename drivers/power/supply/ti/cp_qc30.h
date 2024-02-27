@@ -82,14 +82,14 @@ enum hvdcp3_type {
 #define QC3P5_BQ_TAPER_DECREASE_STEP_MA                        200
 
 #define HVDCP3_CLASS_B_BAT_CURRENT_MA			6000
-#define HVDCP3_CLASS_B_BUS_CURRENT_MA			6000
-#define HVDCP3_CLASS_A_BAT_CURRENT_MA			6000
-#define HVDCP3_CLASS_A_BUS_CURRENT_MA			6000
-#define HVDCP3P5_BUS_CURRENT_MA                                6000
-#define HVDCP3P5_BAT_CURRENT_MA                                6000
-#define MAX_THERMAL_LEVEL			16
+#define HVDCP3_CLASS_B_BUS_CURRENT_MA			4800
+#define HVDCP3_CLASS_A_BAT_CURRENT_MA			4800
+#define HVDCP3_CLASS_A_BUS_CURRENT_MA			4800
+#define HVDCP3P5_BUS_CURRENT_MA                                4800
+#define HVDCP3P5_BAT_CURRENT_MA                                4800
+#define MAX_THERMAL_LEVEL			50
 /* jeita related */
-#define JEITA_WARM_THR			600
+#define JEITA_WARM_THR			480
 #define JEITA_COOL_NOT_ALLOW_CP_THR			100
 /*
  * add hysteresis for warm threshold to avoid flash
@@ -98,7 +98,7 @@ enum hvdcp3_type {
  */
 #define JEITA_HYSTERESIS			20
 
-#define HIGH_CAPACITY_TRH			90
+#define HIGH_CAPACITY_TRH			100
 
 
 struct flash2_policy {

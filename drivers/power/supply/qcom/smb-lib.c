@@ -2772,7 +2772,7 @@ int smblib_get_prop_die_health(struct smb_charger *chg,
 #define SDP_CURRENT_UA			500000
 #define CDP_CURRENT_UA			1500000
 #define DCP_CURRENT_UA			1500000
-#define HVDCP_CURRENT_UA		3000000
+#define HVDCP_CURRENT_UA		5000000
 #define TYPEC_DEFAULT_CURRENT_UA	900000
 #define TYPEC_MEDIUM_CURRENT_UA		1500000
 #define TYPEC_HIGH_CURRENT_UA		3000000
@@ -3995,15 +3995,15 @@ static void smblib_force_legacy_icl(struct smb_charger *chg, int pst)
 		 * limit ICL to 100mA, the USB driver will enumerate to check
 		 * if this is a SDP and appropriately set the current
 		 */
-		vote(chg->usb_icl_votable, LEGACY_UNKNOWN_VOTER, true, 100000);
+		vote(chg->usb_icl_votable, LEGACY_UNKNOWN_VOTER, true, 2000000);
 		break;
 	case POWER_SUPPLY_TYPE_USB_HVDCP:
 	case POWER_SUPPLY_TYPE_USB_HVDCP_3:
-		vote(chg->usb_icl_votable, LEGACY_UNKNOWN_VOTER, true, 3000000);
+		vote(chg->usb_icl_votable, LEGACY_UNKNOWN_VOTER, true, 5000000);
 		break;
 	default:
-		smblib_err(chg, "Unknown APSD %d; forcing 500mA\n", pst);
-		vote(chg->usb_icl_votable, LEGACY_UNKNOWN_VOTER, true, 500000);
+		smblib_err(chg, "Unknown APSD %d; forcing 3000mA\n", pst);
+		vote(chg->usb_icl_votable, LEGACY_UNKNOWN_VOTER, true, 3000000);
 		break;
 	}
 }
