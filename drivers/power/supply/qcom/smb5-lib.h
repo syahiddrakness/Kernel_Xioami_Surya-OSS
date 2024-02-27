@@ -199,8 +199,8 @@ enum hvdcp3_type {
 #define DYN_ADJ_FCC_OFFSET_UA		50000
 /* ffc related */
 #define NON_FFC_VFLOAT_VOTER			"NON_FFC_VFLOAT_VOTER"
-#define NON_FFC_VFLOAT_UV			6000000
-#define PD_UNVERIFED_CURRENT		6000000
+#define NON_FFC_VFLOAT_UV			4450000
+#define PD_UNVERIFED_CURRENT		4800000
 /* used for bq charge pump solution */
 #define MAIN_CHARGER_ICL	2000000
 #define QC3_CHARGER_ICL		500000
