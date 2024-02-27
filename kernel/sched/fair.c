@@ -89,8 +89,8 @@ walt_dec_cfs_rq_stats(struct cfs_rq *cfs_rq, struct task_struct *p) {}
  *
  * (default: 1ms * (1 + ilog(ncpus)), units: nanoseconds)
  */
-unsigned int sysctl_sched_latency			= 8000000ULL;
-unsigned int normalized_sysctl_sched_latency		= 8000000ULL;
+unsigned int sysctl_sched_latency			= 1000000ULL;
+unsigned int normalized_sysctl_sched_latency		= 1000000ULL;
 
 /*
  * Enable/disable honoring sync flag in energy-aware wakeups.
@@ -117,10 +117,10 @@ enum sched_tunable_scaling sysctl_sched_tunable_scaling = SCHED_TUNABLESCALING_L
 /*
  * Minimal preemption granularity for CPU-bound tasks:
  *
- * (default: 0.80 msec * (1 + ilog(ncpus)), units: nanoseconds)
+ * (default: 0.10 msec * (1 + ilog(ncpus)), units: nanoseconds)
  */
-unsigned int sysctl_sched_min_granularity		= 800000ULL;
-unsigned int normalized_sysctl_sched_min_granularity	= 800000ULL;
+unsigned int sysctl_sched_min_granularity		= 100000ULL;
+unsigned int normalized_sysctl_sched_min_granularity	= 100000ULL;
 
 /*
  * This value is kept at sysctl_sched_latency/sysctl_sched_min_granularity
@@ -145,12 +145,12 @@ unsigned int __read_mostly sysctl_sched_energy_aware = 1;
  * and reduces their over-scheduling. Synchronous workloads will still
  * have immediate wakeup/sleep latencies.
  *
- * (default: 8 msec * (1 + ilog(ncpus)), units: nanoseconds)
+ * (default: 1 msec * (1 + ilog(ncpus)), units: nanoseconds)
  */
-unsigned int sysctl_sched_wakeup_granularity		= 8000000UL;
-unsigned int normalized_sysctl_sched_wakeup_granularity	= 8000000UL;
+unsigned int sysctl_sched_wakeup_granularity		= 1000000UL;
+unsigned int normalized_sysctl_sched_wakeup_granularity	= 1000000UL;
 
-const_debug unsigned int sysctl_sched_migration_cost	= 800000UL;
+const_debug unsigned int sysctl_sched_migration_cost	= 100000UL;
 DEFINE_PER_CPU_READ_MOSTLY(int, sched_load_boost);
 
 #ifdef CONFIG_SCHED_WALT
@@ -179,9 +179,9 @@ int __weak arch_asym_cpu_priority(int cpu)
  * to consumption or the quota being specified to be smaller than the slice)
  * we will always only issue the remaining available time.
  *
- * (default: 8 msec, units: microseconds)
+ * (default: 1 msec, units: microseconds)
  */
-unsigned int sysctl_sched_cfs_bandwidth_slice		= 8000UL;
+unsigned int sysctl_sched_cfs_bandwidth_slice		= 1000UL;
 #endif
 
 /*
@@ -4479,11 +4479,11 @@ void cfs_bandwidth_usage_dec(void) {}
 
 /*
  * default period for cfs group bandwidth.
- * default: 0.8s, units: nanoseconds
+ * default: 0.1s, units: nanoseconds
  */
 static inline u64 default_cfs_period(void)
 {
-	return 800000000ULL;
+	return 100000000ULL;
 }
 
 static inline u64 sched_cfs_bandwidth_slice(void)
