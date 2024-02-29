@@ -21,7 +21,7 @@
 #include <linux/sched/sysctl.h>
 #include "sched.h"
 
-#define SUGOV_KTHREAD_PRIORITY	100
+#define SUGOV_KTHREAD_PRIORITY	25
 
 struct sugov_tunables {
 	struct gov_attr_set attr_set;
@@ -247,7 +247,7 @@ static void sugov_update_commit(struct sugov_policy *sg_policy, u64 time,
 	}
 }
 
-#define TARGET_LOAD 120
+#define TARGET_LOAD 25
 /**
  * get_next_freq - Compute a new frequency for a given cpufreq policy.
  * @sg_policy: blu_schedutil policy object to compute the new frequency for.
@@ -371,8 +371,8 @@ static bool sugov_cpu_is_busy(struct sugov_cpu *sg_cpu)
 static inline bool sugov_cpu_is_busy(struct sugov_cpu *sg_cpu) { return false; }
 #endif /* CONFIG_NO_HZ_COMMON */
 
-#define NL_RATIO 120
-#define DEFAULT_HISPEED_LOAD 120
+#define NL_RATIO 25
+#define DEFAULT_HISPEED_LOAD 25
 static void sugov_walt_adjust(struct sugov_cpu *sg_cpu, unsigned long *util,
 			      unsigned long *max)
 {
