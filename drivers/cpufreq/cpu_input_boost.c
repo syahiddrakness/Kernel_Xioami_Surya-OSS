@@ -81,6 +81,11 @@ static struct boost_drv boost_drv_g __read_mostly = {
 	.boost_waitq = __WAIT_QUEUE_HEAD_INITIALIZER(boost_drv_g.boost_waitq)
 };
 
+
+#ifdef CONFIG_KPROFILES
+extern int kp_active_mode(void);
+#endif
+
 static unsigned int get_input_boost_freq(struct cpufreq_policy *policy)
 {
 	unsigned int freq;
@@ -90,8 +95,34 @@ static unsigned int get_input_boost_freq(struct cpufreq_policy *policy)
 	else
 		freq = input_boost_freq_big;
 
+#ifdef CONFIG_KPROFILES
+		switch (kp_active_mode()) {
+		case 0:
+		case 1:
+			return min(freq, policy->min);
+			break;
+		case 2:
+			return min(freq, policy->max);
+			break;
+		case 3:
+			return min(freq, policy->max);
+			break;
+		case 4:
+			return min(freq, policy->max);
+			break;
+		default:
+			break;
+		}
+#else
 	return min(freq, policy->max);
+
+#endif
 }
+
+
+#ifdef CONFIG_KPROFILES
+extern int kp_active_mode(void);
+#endif
 
 static unsigned int get_max_boost_freq(struct cpufreq_policy *policy)
 {
@@ -102,7 +133,28 @@ static unsigned int get_max_boost_freq(struct cpufreq_policy *policy)
 	else
 		freq = max_boost_freq_big;
 
+#ifdef CONFIG_KPROFILES
+		switch (kp_active_mode()) {
+		case 0:
+		case 1:
+			return min(freq, policy->min);
+			break;
+		case 2:
+			return min(freq, policy->max);
+			break;
+		case 3:
+			return min(freq, policy->max);
+			break;
+		case 4:
+			return min(freq, policy->max);
+			break;
+		default:
+			break;
+		}
+#else
 	return min(freq, policy->max);
+
+#endif
 }
 
 static unsigned int get_min_freq(struct cpufreq_policy *policy)
