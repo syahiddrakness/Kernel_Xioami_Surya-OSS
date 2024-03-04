@@ -1539,7 +1539,7 @@ static int set_sdp_current(struct smb_charger *chg, int icl_ua)
 	const struct apsd_result *apsd_result = smblib_get_apsd_result(chg);
 
 #ifdef CONFIG_FORCE_FAST_CHARGE
-	if (force_fast_charge > 0 && icl_ua == USBIN_1000MA)
+	if (force_fast_charge > 0 && icl_ua == USBIN_2500MA)
 	{
 		icl_ua = USBIN_3000MA;
 	}
@@ -4660,8 +4660,8 @@ int smblib_get_prop_input_current_max(struct smb_charger *chg,
 		return rc;
 
 	if (is_override_vote_enabled_locked(chg->usb_icl_votable) &&
-					icl_ua < USBIN_1000MA) {
-		val->intval = USBIN_1000MA;
+					icl_ua < USBIN_3000MA) {
+		val->intval = USBIN_3000MA;
 		return 0;
 	}
 
