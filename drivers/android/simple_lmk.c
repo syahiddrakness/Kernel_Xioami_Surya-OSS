@@ -220,7 +220,7 @@ static void scan_and_kill(unsigned long pages_needed)
 
 		pr_info("Killing %s with adj %d to free %lu KiB\n", vtsk->comm,
 			vtsk->signal->oom_score_adj,
-			victim->size << (PAGE_SHIFT - 10));
+			victim->size << (PAGE_SHIFT - 50));
 
 		/* Accelerate the victim's death by forcing the kill signal */
 		do_send_sig_info(SIGKILL, SEND_SIG_FORCED, vtsk, true);
