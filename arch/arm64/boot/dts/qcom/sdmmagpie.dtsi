@@ -383,7 +383,7 @@
 				1804800	256
 			>;
 			idle-cost-data = <
-				120 120 120 120 120
+				5 4 3 2 1
 			>;
 		};
 
@@ -404,21 +404,21 @@
 				2304000	512
 			>;
 			idle-cost-data = <
-				120 120 120 120 120
+				5 4 3 2 1
 			>;
 		};
 
 		CLUSTER_COST_0: cluster-cost0 {
 			busy-cost-data = <
-				576000	20
-				768000	30
-				1017600	40
-				1248000	50
-				1324800	60
-				1497600	70
-				1612800	80
-				1708800	90
-				1804800	100
+				576000	2
+				768000	3
+				1017600	4
+				1248000	5
+				1324800	6
+				1497600	7
+				1612800	8
+				1708800	9
+				1804800	10
 			>;
 			idle-cost-data = <
 				5 4 3 2 1
@@ -427,19 +427,19 @@
 
 		CLUSTER_COST_1: cluster-cost1 {
 			busy-cost-data = <
-				652800	20
-				806400	30
-				979200	40
-				1094400	50
-				1209600	60
-				1324800	70
-				1555200	80
-				1708800	90
-				1843200	100
-				1939200	120
-				2169600	130
-				2208000	140
-				2304000	150
+				652800	2
+				806400	3
+				979200	4
+				1094400	5
+				1209600	6
+				1324800	7
+				1555200	8
+				1708800	9
+				1843200	10
+				1939200	12
+				2169600	13
+				2208000	14
+				2304000	15
 			>;
 			idle-cost-data = <
 				5 4 3 2 1
@@ -1585,7 +1585,7 @@
 
 	qcom,msm_fastrpc {
 		compatible = "qcom,msm-fastrpc-compute";
-		qcom,rpc-latency-us = <999>;
+		qcom,rpc-latency-us = <600>;
 		qcom,adsp-remoteheap-vmid = <22 37>;
 		qcom,fastrpc-adsp-audio-pdr;
 		qcom,fastrpc-adsp-sensors-pdr;
@@ -1800,8 +1800,8 @@
 
 				msm_cdsp_rm: qcom,msm_cdsp_rm {
 					compatible = "qcom,msm-cdsp-rm";
-					qcom,qos-latency-us = <120>;
-					qcom,qos-maxhold-ms = <120>;
+					qcom,qos-latency-us = <60>;
+					qcom,qos-maxhold-ms = <60>;
 					qcom,compute-cx-limit-en;
 					qcom,compute-priority-mode = <2>;
 					#cooling-cells = <2>;
@@ -2147,10 +2147,10 @@
 
 		/* PM QoS */
 		qcom,pm-qos-irq-type = "affine_irq";
-		qcom,pm-qos-irq-latency = <120 120>;
+		qcom,pm-qos-irq-latency = <60 60>;
 		qcom,pm-qos-cpu-groups = <0x3f 0xc0>;
-		qcom,pm-qos-cmdq-latency-us = <120 120>, <120 120>;
-		qcom,pm-qos-legacy-latency-us = <120 120>, <120 120>;
+		qcom,pm-qos-cmdq-latency-us = <60 60>, <60 60>;
+		qcom,pm-qos-legacy-latency-us = <60 60>, <60 60>;
 
 		clocks = <&clock_gcc GCC_SDCC1_AHB_CLK>,
 			<&clock_gcc GCC_SDCC1_APPS_CLK>,
@@ -2219,9 +2219,9 @@
 
 		/* PM QoS */
 		qcom,pm-qos-irq-type = "affine_irq";
-		qcom,pm-qos-irq-latency = <120 120>;
+		qcom,pm-qos-irq-latency = <60 60>;
 		qcom,pm-qos-cpu-groups = <0x3f 0xc0>;
-		qcom,pm-qos-legacy-latency-us = <120 120>, <120 120>;
+		qcom,pm-qos-legacy-latency-us = <60 60>, <60 60>;
 
 		clocks = <&clock_gcc GCC_SDCC2_AHB_CLK>,
 			<&clock_gcc GCC_SDCC2_APPS_CLK>;
@@ -2386,7 +2386,7 @@
 
 		/* PM QoS */
 		qcom,pm-qos-cpu-groups = <0x3f 0xC0>;
-		qcom,pm-qos-cpu-group-latency-us = <120 120>;
+		qcom,pm-qos-cpu-group-latency-us = <60 60>;
 		qcom,pm-qos-default-cpu = <0>;
 
 		pinctrl-names = "dev-reset-assert", "dev-reset-deassert";
