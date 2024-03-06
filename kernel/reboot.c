@@ -31,7 +31,6 @@ EXPORT_SYMBOL(cad_pid);
 #define DEFAULT_REBOOT_MODE
 #endif
 enum reboot_mode reboot_mode DEFAULT_REBOOT_MODE;
-EXPORT_SYMBOL_GPL(reboot_mode);
 
 /*
  * This variable is used privately to keep track of whether or not
