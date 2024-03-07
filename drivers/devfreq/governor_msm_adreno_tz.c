@@ -95,39 +95,13 @@ static ssize_t adrenoboost_show(struct device *dev,
 	return count;
 }
 
-
-#ifdef CONFIG_KPROFILES
-extern int kp_active_mode(void);
-#endif
-
 static ssize_t adrenoboost_save(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t count)
 {
 	int input;
 	sscanf(buf, "%d ", &input);
 	if (input < 0 || input > 3) {
-#ifdef CONFIG_KPROFILES
-		switch (kp_active_mode()) {
-		case 0:
-		case 1:
-			adrenoboost = 0;
-			break;
-		case 2:
-			adrenoboost = 2;
-			break;
-		case 3:
-			adrenoboost = 3;
-			break;
-		case 4:
-			adrenoboost = 3;
-			break;
-		default:
-			break;
-		}
-#else
 		adrenoboost = 0;
-
-#endif
 	} else {
 		adrenoboost = input;
 	}
