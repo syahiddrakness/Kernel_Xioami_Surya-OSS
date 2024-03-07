@@ -42,17 +42,17 @@ static unsigned short input_boost_duration __read_mostly =
 static unsigned short wake_boost_duration __read_mostly =
 	CONFIG_WAKE_BOOST_DURATION_MS;
 
-module_param(input_boost_freq_little, uint, 0444);
-module_param(input_boost_freq_big, uint, 0444);
-module_param(max_boost_freq_little, uint, 0444);
-module_param(max_boost_freq_big, uint, 0444);
-module_param(cpu_freq_min_little, uint, 0444);
-module_param(cpu_freq_min_big, uint, 0444);
-module_param(cpu_freq_idle_little, uint, 0444);
-module_param(cpu_freq_idle_big, uint, 0444);
+module_param(input_boost_freq_little, uint, 0644);
+module_param(input_boost_freq_big, uint, 0644);
+module_param(max_boost_freq_little, uint, 0644);
+module_param(max_boost_freq_big, uint, 0644);
+module_param(cpu_freq_min_little, uint, 0644);
+module_param(cpu_freq_min_big, uint, 0644);
+module_param(cpu_freq_idle_little, uint, 0644);
+module_param(cpu_freq_idle_big, uint, 0644);
 
-module_param(input_boost_duration, short, 0444);
-module_param(wake_boost_duration, short, 0444);
+module_param(input_boost_duration, short, 0644);
+module_param(wake_boost_duration, short, 0644);
 
 enum {
 	SCREEN_OFF,
