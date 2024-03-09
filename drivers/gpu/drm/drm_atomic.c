@@ -2265,9 +2265,9 @@ static int __drm_mode_atomic_ioctl(struct drm_device *dev, void *data,
 			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 0);
 			break;
 		case 2:
-			cpu_input_boost_kick_max(50);
-			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 50);
-			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 50);
+			cpu_input_boost_kick_max(60);
+			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 60);
+			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 60);
 			break;
 		case 3:
 			cpu_input_boost_kick_max(120);
