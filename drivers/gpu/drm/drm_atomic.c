@@ -2276,14 +2276,14 @@ static int __drm_mode_atomic_ioctl(struct drm_device *dev, void *data,
 			break;
 		case 4:
 			cpu_input_boost_kick_max(300);
-			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 300);
-			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 300);
+			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 240);
+			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 240);
 			break;
 		default:
 			break;
 		}
 #else
-		cpu_input_boost_kick_max(60);
+		cpu_input_boost_kick_max(50);
 		devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 50);
 		devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 50);
 #endif
