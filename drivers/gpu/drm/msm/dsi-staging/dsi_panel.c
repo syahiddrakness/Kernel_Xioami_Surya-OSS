@@ -4139,6 +4139,7 @@ int dsi_panel_prepare(struct dsi_panel *panel)
 			       panel->name, rc);
 			goto error;
 		}
+	}
 
 	rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_PRE_ON);
 	if (rc) {
