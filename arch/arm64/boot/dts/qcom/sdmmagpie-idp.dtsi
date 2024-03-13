@@ -32,8 +32,7 @@
                 mi,qc3-ffc-bat-volt-max = <4480>;
                 mi,qc3-bat-curr-max = <6000>;
                 mi,qc3-bus-volt-max = <12000>;
-                mi,qc3-bus-curr-max = <6000>;
-		mi,qc3-bus-curr-compensate = <100>;
+                mi,qc3-bus-curr-max = <3000>;
         };
 
 	usbpd_pm {
@@ -43,7 +42,7 @@
 		mi,pd-ffc-bat-volt-max = <4480>;
 		mi,pd-bat-curr-max = <6000>;
 		mi,pd-bus-volt-max = <12000>;
-		mi,pd-bus-curr-max = <6000>;
+		mi,pd-bus-curr-max = <3000>;
 		mi,pd-bus-curr-compensate = <100>;
 	};
 
@@ -401,7 +400,7 @@
 
 &pm6150_qg {
 	qcom,battery-data = <&mtp_batterydata>;
-	qcom,qg-iterm-ma = <3000>;
+	qcom,qg-iterm-ma = <480>;
 	qcom,hold-soc-while-full;
 	qcom,linearize-soc;
 	qcom,cl-feedback-on;
@@ -469,8 +468,8 @@
 	dpdm-supply = <&qusb_phy0>;
 	qcom,charger-temp-max = <15000>;
 	qcom,smb-temp-max = <15000>;
-	qcom,fcc-step-delay-ms = <2000>;
-	qcom,fcc-step-size-ua = <300000>;
+	qcom,fcc-step-delay-ms = <100>;
+	qcom,fcc-step-size-ua = <100000>;
 	qcom,disable-sw-thermal-regulation;
 	qcom,disable-fcc-restriction;
 	qcom,smb-internal-pull-kohm = <0>;
