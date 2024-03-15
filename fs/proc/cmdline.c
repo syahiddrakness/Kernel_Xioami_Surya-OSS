@@ -55,13 +55,6 @@ static int __init proc_cmdline_init(void)
 #ifdef CONFIG_INITRAMFS_IGNORE_SKIP_FLAG
 	proc_command_line_init();
 #endif
-
-	char *offset_addr;
-
-	offset_addr = strstr(saved_command_line, "androidboot.mode=reboot");
-	if (offset_addr != NULL)
-		strncpy(offset_addr + 17, "normal", 6);
-
 	proc_create("cmdline", 0, NULL, &cmdline_proc_fops);
 	return 0;
 }
