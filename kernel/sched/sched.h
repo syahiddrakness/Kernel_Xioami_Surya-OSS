@@ -2057,7 +2057,7 @@ static inline unsigned long __cpu_util(int cpu)
 			cpu_rq(cpu)->walt_stats.cumulative_runnable_avg_scaled;
 
 		return min_t(unsigned long, walt_cpu_util,
-				capacity_orig_of(cpu));
+				SCHED_CAPACITY_SCALE);
 	}
 #endif
 
@@ -2067,7 +2067,7 @@ static inline unsigned long __cpu_util(int cpu)
 	if (sched_feat(UTIL_EST))
 		util = max(util, READ_ONCE(cfs_rq->avg.util_est.enqueued));
 
-	return min_t(unsigned long, util, capacity_orig_of(cpu));
+	return min_t(unsigned long, util, SCHED_CAPACITY_SCALE);
 }
 
 struct sched_walt_cpu_load {
@@ -2080,7 +2080,7 @@ struct sched_walt_cpu_load {
 static inline unsigned long cpu_util_cum(int cpu, int delta)
 {
 	u64 util = cpu_rq(cpu)->cfs.avg.util_avg;
-	unsigned long capacity = capacity_orig_of(cpu);
+	unsigned long capacity = SCHED_CAPACITY_SCALE;
 
 #ifdef CONFIG_SCHED_WALT
 	if (unlikely(!walt_disabled && sysctl_sched_use_walt_cpu_util))
@@ -2104,7 +2104,7 @@ cpu_util_freq_walt(int cpu, struct sched_walt_cpu_load *walt_load)
 {
 	u64 util, util_unboosted;
 	struct rq *rq = cpu_rq(cpu);
-	unsigned long capacity = capacity_orig_of(cpu);
+	unsigned long capacity = SCHED_CAPACITY_SCALE;
 	int boost;
 
 	if (likely(walt_disabled || !sysctl_sched_use_walt_cpu_util))
@@ -2156,13 +2156,13 @@ static inline unsigned long cpu_util_rt(int cpu)
 
 static inline unsigned long cpu_util(int cpu)
 {
-	return min(__cpu_util(cpu) + cpu_util_rt(cpu), capacity_orig_of(cpu));
+	return min(__cpu_util(cpu) + cpu_util_rt(cpu), SCHED_CAPACITY_SCALE);
 }
 
 static inline unsigned long
 cpu_util_freq(int cpu, struct sched_walt_cpu_load *walt_load)
 {
-	return min(cpu_util(cpu), capacity_orig_of(cpu));
+	return min(cpu_util(cpu), SCHED_CAPACITY_SCALE);
 }
 
 
@@ -3038,7 +3038,7 @@ static inline bool is_min_capacity_cpu(int cpu)
 	int min_cpu = cpu_rq(cpu)->rd->min_cap_orig_cpu;
 
 	return unlikely(min_cpu == -1) ||
-		capacity_orig_of(cpu) == capacity_orig_of(min_cpu);
+		SCHED_CAPACITY_SCALE == capacity_orig_of(min_cpu);
 #else
 	return true;
 #endif
