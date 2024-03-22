@@ -1957,7 +1957,7 @@ extern unsigned long sched_get_rt_rq_util(int cpu);
 static __always_inline
 unsigned long arch_scale_freq_capacity(struct sched_domain *sd, int cpu)
 {
-	return capacity_orig_of(cpu);
+	return SCHED_CAPACITY_SCALE;
 }
 #endif
 
@@ -1965,7 +1965,7 @@ unsigned long arch_scale_freq_capacity(struct sched_domain *sd, int cpu)
 static __always_inline
 unsigned long arch_scale_max_freq_capacity(struct sched_domain *sd, int cpu)
 {
-	return capacity_orig_of(cpu);
+	return SCHED_CAPACITY_SCALE;
 }
 #endif
 
@@ -1976,7 +1976,7 @@ unsigned long arch_scale_cpu_capacity(struct sched_domain *sd, int cpu)
 	if (sd && (sd->flags & SD_SHARE_CPUCAPACITY) && (sd->span_weight > 1))
 		return sd->smt_gain / sd->span_weight;
 
-	return capacity_orig_of(cpu);
+	return SCHED_CAPACITY_SCALE;
 }
 #endif
 
@@ -3047,7 +3047,7 @@ static inline bool is_min_capacity_cpu(int cpu)
 #ifdef CONFIG_SMP
 static inline int cpu_capacity(int cpu)
 {
-	return capacity_orig_of(cpu);
+	return SCHED_CAPACITY_SCALE;
 }
 #endif
 
@@ -3091,7 +3091,7 @@ static inline void update_cpu_cluster_capacity(const cpumask_t *cpus) { }
 #ifdef CONFIG_SMP
 static inline unsigned long thermal_cap(int cpu)
 {
-	return capacity_orig_of(cpu);
+	return SCHED_CAPACITY_SCALE;
 }
 #endif
 
