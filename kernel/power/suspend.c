@@ -40,19 +40,19 @@ const char * const pm_labels[] = {
 	[PM_SUSPEND_STANDBY] = "standby",
 	[PM_SUSPEND_MEM] = "mem",
 };
-const char *pm_states[PM_SUSPEND_TO_IDLE];
+const char *pm_states[PM_SUSPEND_MAX];
 static const char * const mem_sleep_labels[] = {
 	[PM_SUSPEND_TO_IDLE] = "s2idle",
 	[PM_SUSPEND_STANDBY] = "shallow",
 	[PM_SUSPEND_MEM] = "deep",
 };
-const char *mem_sleep_states[PM_SUSPEND_TO_IDLE];
+const char *mem_sleep_states[PM_SUSPEND_MAX];
 
 suspend_state_t mem_sleep_current = PM_SUSPEND_TO_IDLE;
 #ifdef CONFIG_PREEMPT_RT_BASE
 suspend_state_t mem_sleep_default = PM_SUSPEND_TO_IDLE;
 #else
-suspend_state_t mem_sleep_default = PM_SUSPEND_TO_IDLE;
+suspend_state_t mem_sleep_default = PM_SUSPEND_MAX;
 #endif
 suspend_state_t pm_suspend_target_state;
 EXPORT_SYMBOL_GPL(pm_suspend_target_state);
@@ -624,7 +624,7 @@ int pm_suspend(suspend_state_t state)
 {
 	int error;
 
-	if (state <= PM_SUSPEND_ON || state >= PM_SUSPEND_TO_IDLE)
+	if (state <= PM_SUSPEND_ON || state >= PM_SUSPEND_MAX)
 		return -EINVAL;
 
 	pr_info("suspend entry (%s)\n", mem_sleep_labels[state]);
