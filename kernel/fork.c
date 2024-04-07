@@ -2264,7 +2264,7 @@ long _do_fork(unsigned long clone_flags,
 			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 120);
 			break;
 		case 4:
-			cpu_input_boost_kick_max(300);
+			cpu_input_boost_kick_max(240);
 			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 240);
 			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 240);
 			break;
