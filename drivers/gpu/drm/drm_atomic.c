@@ -2271,24 +2271,24 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
 		switch (kp_active_mode()) {
 		case 0:
 		case 1:
-			cpu_input_boost_kick(0);
-			devfreq_boost_kick(DEVFREQ_MSM_LLCCBW, 0);
-			devfreq_boost_kick(DEVFREQ_MSM_CPUBW, 0);
+			cpu_input_boost_kick_max(0);
+			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 0);
+			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 0);
 			break;
 		case 2:
-			cpu_input_boost_kick(60);
-			devfreq_boost_kick(DEVFREQ_MSM_LLCCBW, 60);
-			devfreq_boost_kick(DEVFREQ_MSM_CPUBW, 60);
+			cpu_input_boost_kick_max(60);
+			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 60);
+			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 60);
 			break;
 		case 3:
-			cpu_input_boost_kick(120);
-			devfreq_boost_kick(DEVFREQ_MSM_LLCCBW, 120);
-			devfreq_boost_kick(DEVFREQ_MSM_CPUBW, 120);
+			cpu_input_boost_kick_max(120);
+			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 120);
+			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 120);
 			break;
 		case 4:
-			cpu_input_boost_kick(240);
-			devfreq_boost_kick(DEVFREQ_MSM_LLCCBW, 240);
-			devfreq_boost_kick(DEVFREQ_MSM_CPUBW, 240);
+			cpu_input_boost_kick_max(240);
+			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 240);
+			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 240);
 			break;
 		default:
 			break;

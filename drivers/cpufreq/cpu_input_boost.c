@@ -242,11 +242,6 @@ static int cpu_boost_thread(void *data)
 	return 0;
 }
 
-
-#ifdef CONFIG_KPROFILES
-extern int kp_active_mode(void);
-#endif
-
 static int cpu_notifier_cb(struct notifier_block *nb, unsigned long action,
 			   void *data)
 {
@@ -264,28 +259,7 @@ static int cpu_notifier_cb(struct notifier_block *nb, unsigned long action,
 
 	/* Boost CPU to max frequency for max boost */
 	if (test_bit(MAX_BOOST, &b->state)) {
-
-#ifdef CONFIG_KPROFILES
-		switch (kp_active_mode()) {
-		case 0:
-		case 1:
-			policy->min = get_min_freq(policy);
-			break;
-		case 2:
-			policy->min = get_max_boost_freq(policy);
-			break;
-		case 3:
-			policy->min = get_max_boost_freq(policy);
-			break;
-		case 4:
-			policy->min = get_max_boost_freq(policy);
-		default:
-			break;
-		}
-#else
 		policy->min = get_max_boost_freq(policy);
-
-#endif
 		return NOTIFY_OK;
 	}
 

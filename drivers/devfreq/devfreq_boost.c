@@ -144,11 +144,6 @@ static void devfreq_max_unboost(struct work_struct *work)
 	wake_up(&b->boost_waitq);
 }
 
-
-#ifdef CONFIG_KPROFILES
-extern int kp_active_mode(void);
-#endif
-
 static void devfreq_update_boosts(struct boost_dev *b, unsigned long state)
 {
 	struct devfreq *df = b->df;
@@ -161,29 +156,7 @@ static void devfreq_update_boosts(struct boost_dev *b, unsigned long state)
 		df->min_freq = test_bit(INPUT_BOOST, &state) ?
 			       min(b->boost_freq, df->max_freq) :
 			       df->profile->freq_table[0];
-
-#ifdef CONFIG_KPROFILES
-		switch (kp_active_mode()) {
-		case 0:
-		case 1:
-			df->max_boost = false;
-			break;
-		case 2:
-			df->max_boost = test_bit(MAX_BOOST, &state);
-			break;
-		case 3:
-			df->max_boost = test_bit(MAX_BOOST, &state);
-			break;
-		case 4:
-			df->max_boost = test_bit(MAX_BOOST, &state);
-			break;
-		default:
-			break;
-		}
-#else
 		df->max_boost = test_bit(MAX_BOOST, &state);
-
-#endif
 	}
 	update_devfreq(df);
 	mutex_unlock(&df->lock);
