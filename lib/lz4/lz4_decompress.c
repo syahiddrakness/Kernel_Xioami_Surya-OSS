@@ -92,7 +92,7 @@ static FORCE_INLINE int LZ4_decompress_generic(
 	static const int dec64table[8] = {0, 0, 0, -1, -4, 1, 2, 3};
 
 	const int safeDecode = (endOnInput == endOnInputSize);
-	const int checkOffset = ((safeDecode) && (dictSize < (int)(512 * KB)));
+	const int checkOffset = ((safeDecode) && (dictSize < (int)(64 * KB)));
 
 	/* Set up the "end" pointers for the shortcut. */
 	const BYTE *const shortiend = iend -
@@ -469,7 +469,7 @@ int LZ4_decompress_fast(const char *source, char *dest, int originalSize)
 	return LZ4_decompress_generic(source, dest, 0, originalSize,
 				      endOnOutputSize, decode_full_block,
 				      withPrefix64k,
-				      (BYTE *)dest - 512 * KB, NULL, 0);
+				      (BYTE *)dest - 64 * KB, NULL, 0);
 }
 
 /* ===== Instantiate a few more decoding cases, used more than once. ===== */
@@ -481,7 +481,7 @@ int LZ4_decompress_safe_withPrefix64k(const char *source, char *dest,
 				      compressedSize, maxOutputSize,
 				      endOnInputSize, decode_full_block,
 				      withPrefix64k,
-				      (BYTE *)dest - 512 * KB, NULL, 0);
+				      (BYTE *)dest - 64 * KB, NULL, 0);
 }
 
 static int LZ4_decompress_safe_withSmallPrefix(const char *source, char *dest,
@@ -591,7 +591,7 @@ int LZ4_decompress_safe_continue(LZ4_streamDecode_t *LZ4_streamDecode,
 		lz4sd->prefixEnd = (BYTE *)dest + result;
 	} else if (lz4sd->prefixEnd == (BYTE *)dest) {
 		/* They're rolling the current segment. */
-		if (lz4sd->prefixSize >= 512 * KB - 1)
+		if (lz4sd->prefixSize >= 64 * KB - 1)
 			result = LZ4_decompress_safe_withPrefix64k(source, dest,
 				compressedSize, maxOutputSize);
 		else if (lz4sd->extDictSize == 0)
@@ -640,7 +640,7 @@ int LZ4_decompress_fast_continue(LZ4_streamDecode_t *LZ4_streamDecode,
 		lz4sd->prefixSize = originalSize;
 		lz4sd->prefixEnd = (BYTE *)dest + originalSize;
 	} else if (lz4sd->prefixEnd == (BYTE *)dest) {
-		if (lz4sd->prefixSize >= 512 * KB - 1 ||
+		if (lz4sd->prefixSize >= 64 * KB - 1 ||
 		    lz4sd->extDictSize == 0)
 			result = LZ4_decompress_fast(source, dest,
 						     originalSize);
@@ -673,7 +673,7 @@ int LZ4_decompress_safe_usingDict(const char *source, char *dest,
 		return LZ4_decompress_safe(source, dest,
 					   compressedSize, maxOutputSize);
 	if (dictStart+dictSize == dest) {
-		if (dictSize >= 512 * KB - 1)
+		if (dictSize >= 64 * KB - 1)
 			return LZ4_decompress_safe_withPrefix64k(source, dest,
 				compressedSize, maxOutputSize);
 		return LZ4_decompress_safe_withSmallPrefix(source, dest,
