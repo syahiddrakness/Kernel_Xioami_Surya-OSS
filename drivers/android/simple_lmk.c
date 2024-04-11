@@ -20,7 +20,7 @@
 #define MIN_FREE_PAGES (CONFIG_ANDROID_SIMPLE_LMK_MINFREE * SZ_1M / PAGE_SIZE)
 
 /* Kill up to this many victims per reclaim */
-#define MAX_VICTIMS 4096
+#define MAX_VICTIMS 128
 
 /* Timeout in jiffies for each reclaim */
 #define RECLAIM_EXPIRES msecs_to_jiffies(CONFIG_ANDROID_SIMPLE_LMK_TIMEOUT_MSEC)
@@ -368,7 +368,7 @@ static int simple_lmk_init_set(const char *val, const struct kernel_param *kp)
 	struct task_struct *thread;
 
 	if (!atomic_cmpxchg(&init_done, 0, 1)) {
-		thread = kthread_run_perf_critical(cpu_perf_mask, cpu_lp_mask, cpu_online_mask, 
+		thread = kthread_run_perf_critical(cpu_perf_mask, 
 						   simple_lmk_reclaim_thread,
 						   NULL, "simple_lmkd");
 		BUG_ON(IS_ERR(thread));
