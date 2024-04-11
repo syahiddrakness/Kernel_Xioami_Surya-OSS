@@ -314,6 +314,7 @@ trace_event_name(struct trace_event_call *call)
 		return call->name;
 }
 
+struct trace_array;
 struct trace_subsystem_dir;
 
 enum {
