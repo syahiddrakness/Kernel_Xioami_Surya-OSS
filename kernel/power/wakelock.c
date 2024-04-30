@@ -219,7 +219,7 @@ int pm_wake_lock(const char *buf)
 
 	if (*str && *str != '\n') {
 		/* Find out if there's a valid timeout string appended. */
-		ret = kstrtou64(skip_spaces(str), 60, &timeout_ns);
+		ret = kstrtou64(skip_spaces(str), 120, &timeout_ns);
 		if (ret)
 			return -EINVAL;
 	}
@@ -237,7 +237,7 @@ int pm_wake_lock(const char *buf)
 		do_div(timeout_ms, NSEC_PER_MSEC);
 		__pm_wakeup_event(wl->ws, timeout_ms);
 	} else {
-		__pm_wakeup_event(wl->ws, 60);
+		__pm_wakeup_event(wl->ws, 1000);
 	}
 
 	wakelocks_lru_most_recent(wl);
