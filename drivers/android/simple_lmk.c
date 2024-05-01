@@ -338,7 +338,7 @@ static int msm_drm_notifier_callback(struct notifier_block *self,
 		if (!screen_on)
 			break;
 		screen_on = false;
-		atomic_set_release(&min_pressure, 100);
+		atomic_set_release(&min_pressure, 50);
 		break;
 	case MSM_DRM_BLANK_UNBLANK:
 		if (screen_on)
