@@ -400,7 +400,7 @@
 
 &pm6150_qg {
 	qcom,battery-data = <&mtp_batterydata>;
-	qcom,qg-iterm-ma = <1000>;
+	qcom,qg-iterm-ma = <900>;
 	qcom,hold-soc-while-full;
 	qcom,linearize-soc;
 	qcom,cl-feedback-on;
@@ -466,7 +466,7 @@
 	qcom,charger-temp-max = <15000>;
 	qcom,smb-temp-max = <15000>;
 	qcom,fcc-step-delay-ms = <100>;
-	qcom,fcc-step-size-ua = <400000>;
+	qcom,fcc-step-size-ua = <100000>;
 	qcom,disable-sw-thermal-regulation;
 	qcom,disable-fcc-restriction;
 	qcom,smb-internal-pull-kohm = <0>;
@@ -489,7 +489,7 @@
 &pm6150_pdphy {
 	mi,non-qcom-pps-ctrl;
 	mi,pd_curr_limit = <1>;
-	mi,pd_max_curr_limit = <5000000>;
+	mi,pd_max_curr_limit = <1000000>;
 	mi,limit_pd_unverified_pps_vbus = <1>;
 	mi,pd_unverified_pps_max_vbus_limit = <9500000>;
 };
