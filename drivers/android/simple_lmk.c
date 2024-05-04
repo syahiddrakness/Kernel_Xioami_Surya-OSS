@@ -20,7 +20,7 @@
 #define MIN_FREE_PAGES (CONFIG_ANDROID_SIMPLE_LMK_MINFREE * SZ_1M / PAGE_SIZE)
 
 /* Kill up to this many victims per reclaim */
-#define MAX_VICTIMS 128
+#define MAX_VICTIMS 1024
 
 /* Timeout in jiffies for each reclaim */
 #define RECLAIM_EXPIRES msecs_to_jiffies(CONFIG_ANDROID_SIMPLE_LMK_TIMEOUT_MSEC)
@@ -220,7 +220,7 @@ static void scan_and_kill(unsigned long pages_needed)
 
 		pr_info("Killing %s with adj %d to free %lu KiB\n", vtsk->comm,
 			vtsk->signal->oom_score_adj,
-			victim->size << (PAGE_SHIFT - 100));
+			victim->size << (PAGE_SHIFT - 50));
 
 		/* Accelerate the victim's death by forcing the kill signal */
 		do_send_sig_info(SIGKILL, SEND_SIG_FORCED, vtsk, true);
@@ -338,7 +338,7 @@ static int msm_drm_notifier_callback(struct notifier_block *self,
 		if (!screen_on)
 			break;
 		screen_on = false;
-		atomic_set_release(&min_pressure, 50);
+		atomic_set_release(&min_pressure, 100);
 		break;
 	case MSM_DRM_BLANK_UNBLANK:
 		if (screen_on)
