@@ -233,7 +233,7 @@ unsigned int sched_capacity_margin_down_boosted[NR_CPUS] = {
 
 #ifdef CONFIG_SCHED_WALT
 /* 1ms default for 20ms window size scaled to 2048 */
-unsigned int sysctl_sched_min_task_util_for_boost = 60;
+unsigned int sysctl_sched_min_task_util_for_boost = 90;
 /* 0.68ms default for 20ms window size scaled to 2048 */
 unsigned int sysctl_sched_min_task_util_for_colocation = 90;
 #endif
