@@ -1524,7 +1524,7 @@ static int dsi_panel_parse_dfps_caps(struct dsi_panel *panel)
 
 	if (min_fps || max_fps) {
 		pr_info("DEBUG :: %s:%d :: OVERRIDE dfps_caps->dfps_list_len = 2.", __func__, __LINE__);
-		dfps_caps->dfps_list_len = 3;
+		dfps_caps->dfps_list_len = 19;
 
 		pr_info("DEBUG :: %s:%d :: OVERRIDE dfps_caps->min_refresh_rate = dfps_caps->dfps_list[0] = %lu.", __func__, __LINE__, min_fps);
 		dfps_caps->min_refresh_rate = dfps_caps->dfps_list[0] = (u32) min_fps;
