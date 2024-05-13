@@ -21,7 +21,7 @@
 #include <linux/sched/sysctl.h>
 #include "sched.h"
 
-#define SUGOV_KTHREAD_PRIORITY	100
+#define SUGOV_KTHREAD_PRIORITY	10
 
 struct sugov_tunables {
 	struct gov_attr_set attr_set;
@@ -688,7 +688,7 @@ static ssize_t hispeed_load_store(struct gov_attr_set *attr_set,
 	if (kstrtouint(buf, 10, &tunables->hispeed_load))
 		return -EINVAL;
 
-	tunables->hispeed_load = min(100U, tunables->hispeed_load);
+	tunables->hispeed_load = min(10U, tunables->hispeed_load);
 
 	return count;
 }
