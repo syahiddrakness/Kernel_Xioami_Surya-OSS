@@ -548,18 +548,18 @@
 
 		trips {
 			pm6150_trip0: trip0 {
-				temperature = <95000>;
-				hysteresis = <10000>;
+				temperature = <999000>;
+				hysteresis = <999000>;
 				type = "passive";
 			};
 			pm6150_trip1: trip1 {
-				temperature = <95000>;
-				hysteresis = <10000>;
+				temperature = <999000>;
+				hysteresis = <999000>;
 				type = "passive";
 			};
 			trip2 {
-				temperature = <95000>;
-				hysteresis = <10000>;
+				temperature = <999000>;
+				hysteresis = <999000>;
 				type = "passive";
 			};
 		};
@@ -574,8 +574,8 @@
 
 		trips {
 			ibat_lvl0:ibat-lvl0 {
-				temperature = <95000>;
-				hysteresis = <10000>;
+				temperature = <999000>;
+				hysteresis = <999000>;
 				type = "passive";
 			};
 		};
@@ -590,8 +590,8 @@
 
 		trips {
 			ibat_lvl1:ibat-lvl1 {
-				temperature = <95000>;
-				hysteresis = <10000>;
+				temperature = <999000>;
+				hysteresis = <999000>;
 				type = "passive";
 			};
 		};
@@ -657,8 +657,8 @@
 
 		trips {
 			bcl_lvl0: bcl-lvl0 {
-				temperature = <95000>;
-				hysteresis = <10000>;
+				temperature = <999000>;
+				hysteresis = <999000>;
 				type = "passive";
 			};
 		};
@@ -673,8 +673,8 @@
 
 		trips {
 			bcl_lvl1: bcl-lvl1 {
-				temperature = <95000>;
-				hysteresis = <10000>;
+				temperature = <999000>;
+				hysteresis = <999000>;
 				type = "passive";
 			};
 		};
@@ -689,8 +689,8 @@
 
 		trips {
 			bcl_lvl2: bcl-lvl2 {
-				temperature = <95000>;
-				hysteresis = <10000>;
+				temperature = <999000>;
+				hysteresis = <999000>;
 				type = "passive";
 			};
 		};
