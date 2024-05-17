@@ -4294,9 +4294,9 @@ extern int kp_active_mode(void);
 		switch (kp_active_mode()) {
 		case 0:
 		case 1:
-			cpu_input_boost_kick();
-			devfreq_boost_kick(DEVFREQ_MSM_LLCCBW);
-			devfreq_boost_kick(DEVFREQ_MSM_CPUBW);
+			cpu_input_boost_kick_max(60);
+			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 0);
+			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 0);
 			break;
 		case 2:
 			cpu_input_boost_kick_max(120);
@@ -4310,8 +4310,8 @@ extern int kp_active_mode(void);
 			break;
 		case 4:
 			cpu_input_boost_kick_max(300);
-			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 300);
-			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 300);
+			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 600);
+			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 600);
 			break;
 		default:
 			break;
