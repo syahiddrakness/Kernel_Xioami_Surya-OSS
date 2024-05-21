@@ -4316,22 +4316,22 @@ extern int kp_active_mode(void);
 		switch (kp_active_mode()) {
 		case 0:
 		case 1:
-			cpu_input_boost_kick_max(60);
+			cpu_input_boost_kick_max(0);
 			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 0);
 			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 0);
 			break;
 		case 2:
+			cpu_input_boost_kick_max(60);
+			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 60);
+			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 60);
+			break;
+		case 3:
 			cpu_input_boost_kick_max(120);
 			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 120);
 			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 120);
 			break;
-		case 3:
-			cpu_input_boost_kick_max(240);
-			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 240);
-			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 240);
-			break;
 		case 4:
-			cpu_input_boost_kick_max(300);
+			cpu_input_boost_kick_max(600);
 			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 600);
 			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 600);
 			break;
@@ -4339,10 +4339,10 @@ extern int kp_active_mode(void);
 			break;
 		}
 #else
-	/* Boost when memory is low so allocation latency doesn't get too bad */
-	cpu_input_boost_kick_max(100);
-	devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 100);
-	devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 100);
+		/* Boost Freq CPU & DDR bus when userspace */
+		cpu_input_boost_kick();
+		devfreq_boost_kick(DEVFREQ_MSM_LLCCBW);
+		devfreq_boost_kick(DEVFREQ_MSM_CPUBW);
 #endif
 
 	if (should_reclaim_retry(gfp_mask, order, ac, alloc_flags,
