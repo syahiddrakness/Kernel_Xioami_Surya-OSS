@@ -2219,17 +2219,12 @@ static void complete_crtc_signaling(struct drm_device *dev,
 	kfree(fence_state);
 }
 
-<<<<<<< HEAD
 #ifdef CONFIG_KPROFILES
 extern int kp_active_mode(void);
 #endif
 
-int drm_mode_atomic_ioctl(struct drm_device *dev,
-			  void *data, struct drm_file *file_priv)
-=======
 static int __drm_mode_atomic_ioctl(struct drm_device *dev, void *data,
 				   struct drm_file *file_priv)
->>>>>>> dcced93fc1ed9 (drm: Reduce latency while processing atomic ioctls)
 {
 	struct drm_mode_atomic *arg = data;
 	uint32_t __user *objs_ptr = (uint32_t __user *)(unsigned long)(arg->objs_ptr);
