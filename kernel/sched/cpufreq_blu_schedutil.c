@@ -21,7 +21,7 @@
 #include <linux/sched/sysctl.h>
 #include "sched.h"
 
-#define SUGOV_KTHREAD_PRIORITY	100
+#define SUGOV_KTHREAD_PRIORITY	1
 
 struct sugov_tunables {
 	struct gov_attr_set attr_set;
@@ -247,7 +247,7 @@ static void sugov_update_commit(struct sugov_policy *sg_policy, u64 time,
 	}
 }
 
-#define TARGET_LOAD 100
+#define TARGET_LOAD 10
 /**
  * get_next_freq - Compute a new frequency for a given cpufreq policy.
  * @sg_policy: blu_schedutil policy object to compute the new frequency for.
@@ -372,7 +372,7 @@ static inline bool sugov_cpu_is_busy(struct sugov_cpu *sg_cpu) { return false; }
 #endif /* CONFIG_NO_HZ_COMMON */
 
 #define NL_RATIO 100
-#define DEFAULT_HISPEED_LOAD 100
+#define DEFAULT_HISPEED_LOAD 10
 static void sugov_walt_adjust(struct sugov_cpu *sg_cpu, unsigned long *util,
 			      unsigned long *max)
 {
@@ -387,12 +387,12 @@ static void sugov_walt_adjust(struct sugov_cpu *sg_cpu, unsigned long *util,
 
 	is_hiload = (cpu_util >= mult_frac(sg_policy->avg_cap,
 					   sg_policy->tunables->hispeed_load,
-					   100));
+					   10));
 
 	if (is_hiload && !is_migration)
 		*util = max(*util, sg_policy->hispeed_util);
 
-	if (is_hiload && nl >= mult_frac(cpu_util, NL_RATIO, 100))
+	if (is_hiload && nl >= mult_frac(cpu_util, NL_RATIO, 10))
 		*util = *max;
 
 	if (sg_policy->tunables->pl)
@@ -431,7 +431,7 @@ static void sugov_update_single(struct update_util_data *hook, u64 time,
 			sg_policy->max = max;
 			hs_util = freq_to_util(sg_policy,
 					sg_policy->tunables->hispeed_freq);
-			hs_util = mult_frac(hs_util, TARGET_LOAD, 100);
+			hs_util = mult_frac(hs_util, TARGET_LOAD, 10);
 			sg_policy->hispeed_util = hs_util;
 		}
 
@@ -532,7 +532,7 @@ static void sugov_update_shared(struct update_util_data *hook, u64 time,
 		sg_policy->max = max;
 		hs_util = freq_to_util(sg_policy,
 					sg_policy->tunables->hispeed_freq);
-		hs_util = mult_frac(hs_util, TARGET_LOAD, 100);
+		hs_util = mult_frac(hs_util, TARGET_LOAD, 10);
 		sg_policy->hispeed_util = hs_util;
 	}
 
@@ -688,7 +688,7 @@ static ssize_t hispeed_load_store(struct gov_attr_set *attr_set,
 	if (kstrtouint(buf, 10, &tunables->hispeed_load))
 		return -EINVAL;
 
-	tunables->hispeed_load = min(100U, tunables->hispeed_load);
+	tunables->hispeed_load = min(10U, tunables->hispeed_load);
 
 	return count;
 }
@@ -717,7 +717,7 @@ static ssize_t hispeed_freq_store(struct gov_attr_set *attr_set,
 		raw_spin_lock_irqsave(&sg_policy->update_lock, flags);
 		hs_util = freq_to_util(sg_policy,
 					sg_policy->tunables->hispeed_freq);
-		hs_util = mult_frac(hs_util, TARGET_LOAD, 100);
+		hs_util = mult_frac(hs_util, TARGET_LOAD, 10);
 		sg_policy->hispeed_util = hs_util;
 		raw_spin_unlock_irqrestore(&sg_policy->update_lock, flags);
 	}
