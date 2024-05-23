@@ -32,7 +32,7 @@
                 mi,qc3-ffc-bat-volt-max = <4480>;
                 mi,qc3-bat-curr-max = <6000>;
                 mi,qc3-bus-volt-max = <12000>;
-                mi,qc3-bus-curr-max = <3000>;
+                mi,qc3-bus-curr-max = <6000>;
         };
 
 	usbpd_pm {
@@ -42,7 +42,7 @@
 		mi,pd-ffc-bat-volt-max = <4480>;
 		mi,pd-bat-curr-max = <6000>;
 		mi,pd-bus-volt-max = <12000>;
-		mi,pd-bus-curr-max = <3000>;
+		mi,pd-bus-curr-max = <6000>;
 		mi,pd-bus-curr-compensate = <100>;
 	};
 
@@ -235,8 +235,8 @@
 	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
 	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_wled";
 	qcom,mdss-dsi-bl-min-level = <1>;
-	qcom,mdss-dsi-bl-max-level = <4095>;
-	qcom,mdss-brightness-max-level = <4095>;
+	qcom,mdss-dsi-bl-max-level = <2048>;
+	qcom,mdss-brightness-max-level = <2048>;
 	qcom,platform-te-gpio = <&tlmm 10 0>;
 	qcom,platform-reset-gpio = <&pm6150l_gpios 9 0>;
 	//qcom,platform-en-gpio = <&pm6150l_gpios 4 0>;
@@ -247,8 +247,8 @@
 	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
 	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_wled";
 	qcom,mdss-dsi-bl-min-level = <1>;
-	qcom,mdss-dsi-bl-max-level = <4095>;
-	qcom,mdss-brightness-max-level = <4095>;
+	qcom,mdss-dsi-bl-max-level = <2048>;
+	qcom,mdss-brightness-max-level = <2048>;
 	qcom,platform-te-gpio = <&tlmm 10 0>;
 	qcom,platform-reset-gpio = <&pm6150l_gpios 9 0>;
 	//qcom,platform-en-gpio = <&pm6150l_gpios 4 0>;
