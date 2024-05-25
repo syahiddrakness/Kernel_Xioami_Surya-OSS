@@ -299,8 +299,8 @@
 
 					15 01 00 00 00 00 02 FF 10
 					15 01 00 00 00 00 02 FB 01
-					05 01 00 00 15 00 02 11 00
-					05 01 00 00 15 00 02 29 00
+					05 01 00 00 12 00 02 11 00
+					05 01 00 00 12 00 02 29 00
 
 					//give by nova, use for esd check begin
 					15 01 00 00 00 00 02 FF 27
@@ -404,7 +404,7 @@
                                 qcom,mdss-dsi-panel-xy-coordinate = <0x0F 0x18>;
                                 qcom,mdss-dsi-dispparam-xy-coordinate-command = [
                                         15 01 00 00 00 00 02 FF 10
-                                        06 01 00 01 05 00 02 A1 00
+                                        06 01 00 00 01 00 02 A1 00
                                 ];
                                 qcom,mdss-dsi-dispparam-xy-coordinate-command-state = "dsi_hs_mode";
 
