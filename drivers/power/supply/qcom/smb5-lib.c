@@ -7516,7 +7516,7 @@ static void typec_src_removal(struct smb_charger *chg)
 	chg->qc3p5_authenticated = false;
 	chg->qc3p5_auth_complete = false;
 	chg->qc3p5_authentication_started = false;
-	chg->qc3p5_power_limit_w = 18;
+	chg->qc3p5_power_limit_w = 27;
 
 	/*
 	 * if non-compliant charger caused UV, restore original max pulses
