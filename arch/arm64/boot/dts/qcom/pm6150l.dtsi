@@ -455,17 +455,17 @@
 
 		trips {
 			pm6150l_trip0: trip0 {
-				temperature = <100000>;
-				hysteresis = <1000>;
+				temperature = <80000>;
+				hysteresis = <1000>;z
 				type = "passive";
 			};
 			pm6150l_trip1: trip1 {
-				temperature = <100000>;
+				temperature = <80000>;
 				hysteresis = <1000>;
 				type = "passive";
 			};
 			trip2 {
-				temperature = <100000>;
+				temperature = <80000>;
 				hysteresis = <1000>;
 				type = "passive";
 			};
@@ -532,7 +532,7 @@
 
 		trips {
 			l_bcl_lvl0: l-bcl-lvl0 {
-				temperature = <100000>;
+				temperature = <80000>;
 				hysteresis = <1000>;
 				type = "passive";
 			};
@@ -548,7 +548,7 @@
 
 		trips {
 			l_bcl_lvl1: l-bcl-lvl1 {
-				temperature = <100000>;
+				temperature = <80000>;
 				hysteresis = <1000>;
 				type = "passive";
 			};
@@ -564,7 +564,7 @@
 
 		trips {
 			l_bcl_lvl2: l-bcl-lvl2 {
-				temperature = <100000>;
+				temperature = <80000>;
 				hysteresis = <1000>;
 				type = "passive";
 			};
