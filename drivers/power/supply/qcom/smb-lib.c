@@ -983,7 +983,7 @@ override_suspend_config:
 			/* For std cable with type = SDP never override */
 			override = false;
 		else if (chg->real_charger_type == POWER_SUPPLY_TYPE_USB_CDP
-			&& icl_ua == 1500000)
+			&& icl_ua == 2000000)
 			/*
 			 * For std cable with type = CDP override only if
 			 * current is not 1500mA
@@ -2770,12 +2770,12 @@ int smblib_get_prop_die_health(struct smb_charger *chg,
 }
 
 #define SDP_CURRENT_UA			500000
-#define CDP_CURRENT_UA			1500000
-#define DCP_CURRENT_UA			1500000
-#define HVDCP_CURRENT_UA		5000000
+#define CDP_CURRENT_UA			2000000
+#define DCP_CURRENT_UA			2000000
+#define HVDCP_CURRENT_UA		6000000
 #define TYPEC_DEFAULT_CURRENT_UA	900000
-#define TYPEC_MEDIUM_CURRENT_UA		1500000
-#define TYPEC_HIGH_CURRENT_UA		3000000
+#define TYPEC_MEDIUM_CURRENT_UA		2000000
+#define TYPEC_HIGH_CURRENT_UA		6000000
 static int get_rp_based_dcp_current(struct smb_charger *chg, int typec_mode)
 {
 	int rp_ua;
@@ -3623,10 +3623,10 @@ void smblib_usb_plugin_hard_reset_locked(struct smb_charger *chg)
 
 		smblib_cc2_sink_removal_exit(chg);
 	} else {
-		/* Force 1500mA FCC on USB removal if fcc stepper is enabled */
+		/* Force 2000mA FCC on USB removal if fcc stepper is enabled */
 		if (chg->fcc_stepper_enable)
 			vote(chg->fcc_votable, FCC_STEPPER_VOTER,
-							true, 1500000);
+							true, 2000000);
 
 		smblib_cc2_sink_removal_enter(chg);
 		if (chg->wa_flags & BOOST_BACK_WA) {
@@ -3698,10 +3698,10 @@ void smblib_usb_plugin_locked(struct smb_charger *chg)
 			}
 		}
 
-		/* Force 1500mA FCC on removal if fcc stepper is enabled */
+		/* Force 2000mA FCC on removal if fcc stepper is enabled */
 		if (chg->fcc_stepper_enable)
 			vote(chg->fcc_votable, FCC_STEPPER_VOTER,
-							true, 1500000);
+							true, 2000000);
 
 		rc = smblib_request_dpdm(chg, false);
 		if (rc < 0)
@@ -3983,7 +3983,7 @@ static void smblib_force_legacy_icl(struct smb_charger *chg, int pst)
 		vote(chg->usb_icl_votable, LEGACY_UNKNOWN_VOTER, false, 0);
 		break;
 	case POWER_SUPPLY_TYPE_USB_CDP:
-		vote(chg->usb_icl_votable, LEGACY_UNKNOWN_VOTER, true, 1500000);
+		vote(chg->usb_icl_votable, LEGACY_UNKNOWN_VOTER, true, 2000000);
 		break;
 	case POWER_SUPPLY_TYPE_USB_DCP:
 		typec_mode = smblib_get_prop_typec_mode(chg);
@@ -4002,8 +4002,8 @@ static void smblib_force_legacy_icl(struct smb_charger *chg, int pst)
 		vote(chg->usb_icl_votable, LEGACY_UNKNOWN_VOTER, true, 5000000);
 		break;
 	default:
-		smblib_err(chg, "Unknown APSD %d; forcing 3000mA\n", pst);
-		vote(chg->usb_icl_votable, LEGACY_UNKNOWN_VOTER, true, 3000000);
+		smblib_err(chg, "Unknown APSD %d; forcing 6000mA\n", pst);
+		vote(chg->usb_icl_votable, LEGACY_UNKNOWN_VOTER, true, 6000000);
 		break;
 	}
 }
