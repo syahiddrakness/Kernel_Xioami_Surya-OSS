@@ -456,7 +456,7 @@
 		trips {
 			pm6150l_trip0: trip0 {
 				temperature = <80000>;
-				hysteresis = <1000>;z
+				hysteresis = <1000>;
 				type = "passive";
 			};
 			pm6150l_trip1: trip1 {
