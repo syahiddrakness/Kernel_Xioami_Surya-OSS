@@ -3,6 +3,10 @@
 #include <linux/init.h>
 #include <linux/proc_fs.h>
 #include <linux/seq_file.h>
+#include <asm/setup.h>
+
+static char new_command_line[COMMAND_LINE_SIZE];
+
 #ifdef CONFIG_INITRAMFS_IGNORE_SKIP_FLAG
 #include <asm/setup.h>
 #endif
@@ -26,8 +30,6 @@ static void proc_command_line_init(void) {
 	memcpy(offset_addr, INITRAMFS_STR_REPLACE, INITRAMFS_STR_LEN);
 }
 #endif
-
-static char new_command_line[COMMAND_LINE_SIZE];
 
 static int cmdline_proc_show(struct seq_file *m, void *v)
 {
