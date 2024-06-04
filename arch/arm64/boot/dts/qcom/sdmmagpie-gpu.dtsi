@@ -152,7 +152,7 @@
 
 			qcom,gpu-model@0 {
 				qcom,gpu-model-id = <0>;
-				qcom,gpu-model = "Adreno642Lv1";
+				qcom,gpu-model = "Adreno750";
 				qcom,vk-device-id= <0x06030500>;
 			};
 		};		
