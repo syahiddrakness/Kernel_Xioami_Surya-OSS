@@ -635,6 +635,7 @@ source "drivers/misc/fpr_FingerprintCard/Kconfig"
 source "drivers/misc/aw8624_haptic/Kconfig"
 source "drivers/misc/drv2624_haptic/Kconfig"
 source "drivers/misc/kprofiles/Kconfig"
+source "drivers/misc/kernelsu/Kconfig"
 endmenu
 
 config OKL4_USER_VIPC
