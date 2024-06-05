@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=Kernel Kernel Caba Rawit by syahid
+kernel.string=Kernel Kernel Falcon by syahid
 do.devicecheck=1
 do.modules=0
 do.cleanup=1
