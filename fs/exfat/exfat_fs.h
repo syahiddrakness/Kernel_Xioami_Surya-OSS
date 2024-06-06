@@ -77,8 +77,8 @@ enum {
 #define MAX_NAME_LENGTH		255 /* max len of file name excluding NULL */
 #define MAX_VFSNAME_BUF_SIZE	((MAX_NAME_LENGTH + 1) * MAX_CHARSET_SIZE)
 
-/* Enough size to hold 256 dentry (even 512 Byte sector) */
-#define DIR_CACHE_SIZE		(256*sizeof(struct exfat_dentry)/512+1)
+/* Enough size to hold 512 dentry (even 512 Byte sector) */
+#define DIR_CACHE_SIZE		(512*sizeof(struct exfat_dentry)/512+1)
 
 #define EXFAT_HINT_NONE		-1
 #define EXFAT_MIN_SUBDIR	2
