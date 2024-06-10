@@ -235,8 +235,8 @@
 	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
 	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_wled";
 	qcom,mdss-dsi-bl-min-level = <1>;
-	qcom,mdss-dsi-bl-max-level = <2048>;
-	qcom,mdss-brightness-max-level = <2048>;
+	qcom,mdss-dsi-bl-max-level = <4095>;
+	qcom,mdss-brightness-max-level = <4095>;
 	qcom,platform-te-gpio = <&tlmm 10 0>;
 	qcom,platform-reset-gpio = <&pm6150l_gpios 9 0>;
 	//qcom,platform-en-gpio = <&pm6150l_gpios 4 0>;
@@ -247,8 +247,8 @@
 	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
 	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_wled";
 	qcom,mdss-dsi-bl-min-level = <1>;
-	qcom,mdss-dsi-bl-max-level = <2048>;
-	qcom,mdss-brightness-max-level = <2048>;
+	qcom,mdss-dsi-bl-max-level = <4095>;
+	qcom,mdss-brightness-max-level = <4095>;
 	qcom,platform-te-gpio = <&tlmm 10 0>;
 	qcom,platform-reset-gpio = <&pm6150l_gpios 9 0>;
 	//qcom,platform-en-gpio = <&pm6150l_gpios 4 0>;
@@ -400,7 +400,7 @@
 
 &pm6150_qg {
 	qcom,battery-data = <&mtp_batterydata>;
-	qcom,qg-iterm-ma = <50>;
+	qcom,qg-iterm-ma = <950>;
 	qcom,hold-soc-while-full;
 	qcom,linearize-soc;
 	qcom,cl-feedback-on;
@@ -449,12 +449,12 @@
 			   "sbux_res",
 			   "vph_voltage";
 	qcom,battery-data = <&mtp_batterydata>;
-	qcom,usb-icl-ua = <1000000>;
+	qcom,usb-icl-ua = <6000000>;
 	qcom,auto-recharge-soc = <99>;
 	qcom,fcc-max-ua = <6000000>;
 	qcom,fv-max-uv = <4480000>;
 	qcom,chg-term-src = <1>;
-	qcom,chg-term-current-ma = <(-100)>;
+	qcom,chg-term-current-ma = <(-950)>;
 	qcom,sw-jeita-enable;
 	//qcom,fcc-stepping-enable;
 	qcom,suspend-input-on-debug-batt;
@@ -465,8 +465,8 @@
 	dpdm-supply = <&qusb_phy0>;
 	qcom,charger-temp-max = <800>;
 	qcom,smb-temp-max = <800>;
-	qcom,fcc-step-delay-ms = <50>;
-	qcom,fcc-step-size-ua = <100000>;
+	qcom,fcc-step-delay-ms = <1000>;
+	qcom,fcc-step-size-ua = <400000>;
 	qcom,disable-sw-thermal-regulation;
 	qcom,disable-fcc-restriction;
 	qcom,smb-internal-pull-kohm = <0>;
@@ -489,7 +489,7 @@
 &pm6150_pdphy {
 	mi,non-qcom-pps-ctrl;
 	mi,pd_curr_limit = <1>;
-	mi,pd_max_curr_limit = <1000000>;
+	mi,pd_max_curr_limit = <4000000>;
 	mi,limit_pd_unverified_pps_vbus = <1>;
 	mi,pd_unverified_pps_max_vbus_limit = <9500000>;
 };

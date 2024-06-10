@@ -29,7 +29,7 @@
 		qcom,mdss-dsi-lane-1-state;
 		qcom,mdss-dsi-lane-2-state;
 		qcom,mdss-dsi-lane-3-state;
-		qcom,mdss-brightness-max-level = <2048>;
+		qcom,mdss-brightness-max-level = <4095>;
 		qcom,mdss-dsi-dma-trigger = "trigger_sw";
 		qcom,mdss-dsi-mdp-trigger = "none";
 		qcom,mdss-dsi-reset-sequence = <1 5>, <0 1>, <1 10>;
@@ -45,14 +45,14 @@
 		qcom,mdss-dsi-panel-blackness-level = <3230>;
 		qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_wled";
 		qcom,mdss-dsi-bl-min-level = <1>;
-		qcom,mdss-dsi-bl-max-level = <2048>;
+		qcom,mdss-dsi-bl-max-level = <4095>;
 		qcom,mdss-dsi-post-init-delay = <1>;
-		qcom,mdss-dsi-qsync-min-refresh-rate = <60>;
+		qcom,mdss-dsi-qsync-min-refresh-rate = <30>;
 		qcom,mdss-dsi-pan-enable-dynamic-fps;
 		qcom,mdss-dsi-pan-enable-smart-fps;
 		qcom,mdss-dsi-pan-fps-update =
 			"dfps_immediate_porch_mode_vfp";
-		qcom,dsi-supported-dfps-list = <120 90 60>;
+		qcom,dsi-supported-dfps-list = <120 115 110 105 100 95 90 85 80 75 70 65 60 55 50 45 40 35 30>;
 
 		qcom,mdss-dsi-display-timings {
 			timing@0{
@@ -175,8 +175,8 @@
 
 					15 01 00 00 00 00 02 FF 10
 					15 01 00 00 00 00 02 FB 01
-					05 01 00 00 15 00 02 11 00
-					05 01 00 00 15 00 02 29 00
+					05 01 00 00 60 00 02 11 00
+					05 01 00 00 60 00 02 29 00
 
 					//give by nova, use for esd check begin
 					15 01 00 00 00 00 02 FF 27
@@ -188,33 +188,33 @@
 				qcom,mdss-dsi-off-command = [
 					15 01 00 00 00 00 02 FF 10
 					15 01 00 00 00 00 02 FB 01
-					05 01 00 00 05 00 02 28 00
-					05 01 00 00 10 00 02 10 00
+					05 01 00 00 15 00 02 28 00
+					05 01 00 00 20 00 02 10 00
 				];
 
 				qcom,mdss-dsi-dispparam-cabcuion-command = [
 					15 01 00 00 00 00 02 FF 10
 					15 01 00 00 00 00 02 FB 01
 					15 01 00 00 00 00 02 53 2C
-					15 01 00 00 10 00 02 55 01
+					15 01 00 00 20 00 02 55 01
 				];
 				qcom,mdss-dsi-dispparam-cabcmovieon-command = [
 					15 01 00 00 00 00 02 FF 10
 					15 01 00 00 00 00 02 FB 01
 					15 01 00 00 00 00 02 53 2C
-					15 01 00 00 10 00 02 55 03
+					15 01 00 00 20 00 02 55 03
 				];
 				qcom,mdss-dsi-dispparam-cabcstillon-command = [
 					15 01 00 00 00 00 02 FF 10
 					15 01 00 00 00 00 02 FB 01
 					15 01 00 00 00 00 02 53 2C
-					15 01 00 00 10 00 02 55 02
+					15 01 00 00 20 00 02 55 02
 				];
 				qcom,mdss-dsi-dispparam-cabcoff-command = [
 					15 01 00 00 00 00 02 FF 10
 					15 01 00 00 00 00 02 FB 01
 					15 01 00 00 00 00 02 53 2C
-					15 01 00 00 10 00 02 55 00
+					15 01 00 00 20 00 02 55 00
 				];
 				qcom,mdss-dsi-dispparam-lcd-hbm-l1-on-command = [
 					15 01 00 00 00 00 02 FF 10
