@@ -482,8 +482,8 @@
 
 		trips {
 			vph_lvl0: vph-lvl0 {
-				temperature = <1000000>;
-				hysteresis = <1000000>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -499,8 +499,8 @@
 
 		trips {
 			vph_lvl1:vph-lvl1 {
-				temperature = <1000000>;
-				hysteresis = <1000000>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -516,8 +516,8 @@
 
 		trips {
 			vph_lvl2:vph-lvl2 {
-				temperature = <1000000>;
-				hysteresis = <1000000>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};

@@ -1022,8 +1022,8 @@
 		tracks-low;
 		trips {
 			aoss0_trip: aoss0-trip {
-				temperature = <1000000>;
-				hysteresis = <1000000>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -1073,8 +1073,8 @@
 		tracks-low;
 		trips {
 			cpu_0_0_trip: cpu-0-0-trip {
-				temperature = <1000000>;
-				hysteresis = <1000000>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -1124,8 +1124,8 @@
 		tracks-low;
 		trips {
 			cpu_1_0_trip: cpu-1-0-trip {
-				temperature = <1000000>;
-				hysteresis = <1000000>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -1175,8 +1175,8 @@
 		tracks-low;
 		trips {
 			gpuss_0_trip: gpuss-0-trip {
-				temperature = <1000000>;
-				hysteresis = <1000000>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -1226,8 +1226,8 @@
 		tracks-low;
 		trips {
 			cwlan_trip: cwlan-trip {
-				temperature = <1000000>;
-				hysteresis = <1000000>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -1277,8 +1277,8 @@
 		tracks-low;
 		trips {
 			audio_trip: audio-trip {
-				temperature = <1000000>;
-				hysteresis = <1000000>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -1328,8 +1328,8 @@
 		tracks-low;
 		trips {
 			ddr_trip: ddr-trip {
-				temperature = <1000000>;
-				hysteresis = <1000000>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -1379,8 +1379,8 @@
 		tracks-low;
 		trips {
 			q6_hvx_trip: q6-hvx-trip {
-				temperature = <1000000>;
-				hysteresis = <1000000>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -1430,8 +1430,8 @@
 		tracks-low;
 		trips {
 			camera_trip: camera-trip {
-				temperature = <1000000>;
-				hysteresis = <1000000>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -1481,8 +1481,8 @@
 		tracks-low;
 		trips {
 			mdm_core_trip: mdm-core-trip {
-				temperature = <1000000>;
-				hysteresis = <1000000>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -1532,8 +1532,8 @@
 		tracks-low;
 		trips {
 			mdm_dsp_trip: mdm-dsp-lowf-trip {
-				temperature = <1000000>;
-				hysteresis = <1000000>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -1583,8 +1583,8 @@
 		tracks-low;
 		trips {
 			npu_trip: npu-trip {
-				temperature = <1000000>;
-				hysteresis = <1000000>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -1634,8 +1634,8 @@
 		tracks-low;
 		trips {
 			video_trip: video-trip {
-				temperature = <1000000>;
-				hysteresis = <1000000>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
