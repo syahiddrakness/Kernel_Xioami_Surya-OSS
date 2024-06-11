@@ -454,7 +454,7 @@
 	qcom,fcc-max-ua = <6000000>;
 	qcom,fv-max-uv = <4480000>;
 	qcom,chg-term-src = <1>;
-	qcom,chg-term-current-ma = <(-950)>;
+	qcom,chg-term-current-ma = <(-1000)>;
 	qcom,sw-jeita-enable;
 	//qcom,fcc-stepping-enable;
 	qcom,suspend-input-on-debug-batt;
@@ -463,9 +463,9 @@
 				   3800000 3800000 3600000 3400000 3200000 3000000 2200000
 				   800000 700000>;
 	dpdm-supply = <&qusb_phy0>;
-	qcom,charger-temp-max = <800>;
-	qcom,smb-temp-max = <800>;
-	qcom,fcc-step-delay-ms = <1000>;
+	qcom,charger-temp-max = <10000>;
+	qcom,smb-temp-max = <10000>;
+	qcom,fcc-step-delay-ms = <5000>;
 	qcom,fcc-step-size-ua = <400000>;
 	qcom,disable-sw-thermal-regulation;
 	qcom,disable-fcc-restriction;
