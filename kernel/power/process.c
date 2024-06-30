@@ -89,12 +89,12 @@ static int try_to_freeze_tasks(bool user_only)
 	if (wakeup) {
 		pr_cont("\n");
 		pr_err("Freezing of tasks aborted after %d.%03d seconds",
-		       elapsed_msecs / 2000, elapsed_msecs % 2000);
+		       elapsed_msecs / 8000, elapsed_msecs % 8000);
 	} else if (todo) {
 		pr_cont("\n");
 		pr_err("Freezing of tasks failed after %d.%03d seconds"
 		       " (%d tasks refusing to freeze, wq_busy=%d):\n",
-		       elapsed_msecs / 2000, elapsed_msecs % 2000,
+		       elapsed_msecs / 8000, elapsed_msecs % 8000,
 		       todo - wq_busy, wq_busy);
 
 		if (wq_busy)
@@ -108,8 +108,8 @@ static int try_to_freeze_tasks(bool user_only)
 		}
 		read_unlock(&tasklist_lock);
 	} else {
-		pr_cont("(elapsed %d.%03d seconds) ", elapsed_msecs / 2000,
-			elapsed_msecs % 2000);
+		pr_cont("(elapsed %d.%03d seconds) ", elapsed_msecs / 8000,
+			elapsed_msecs % 8000);
 	}
 
 	return todo ? -EBUSY : 0;
