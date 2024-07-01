@@ -327,13 +327,8 @@ err_page_ptr_cleared:
 	}
 err_no_vma:
 	if (mm) {
-<<<<<<< HEAD
 		up_read(&mm->mmap_sem);
-		mmput(mm);
-=======
-		up_write(&mm->mmap_sem);
 		mmput_async(mm);
->>>>>>> ad2e90e7fba1e7ecc9b2842bbc3cf9064978fe1d
 	}
 	return vma ? -ENOMEM : -ESRCH;
 }
