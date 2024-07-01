@@ -1478,7 +1478,7 @@ static int aio_prep_rw(struct kiocb *req, struct iocb *iocb)
 		return -EBADF;
 	req->ki_complete = aio_complete_rw;
 	req->ki_pos = iocb->aio_offset;
-	req->ki_flags = iocb_flags(req->ki_filp); | IOCB_AIO_RW;
+	req->ki_flags = iocb_flags(req->ki_filp) | IOCB_AIO_RW;
 	if (iocb->aio_flags & IOCB_FLAG_RESFD)
 		req->ki_flags |= IOCB_EVENTFD;
 	req->ki_hint = ki_hint_validate(file_write_hint(req->ki_filp));
