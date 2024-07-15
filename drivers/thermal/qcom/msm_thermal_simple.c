@@ -79,17 +79,17 @@ static void thermal_throttle_worker(struct work_struct *work)
 	thermal_zone_get_temp(thermal_zone_get_zone_by_name("battery"), &temp_batt);
 
 	/* HQ autism coming up */
-	if (temp_batt <= 35000)
+	if (temp_batt <= 50000)
 		temp_avg = (temp_cpus_avg * 2 + temp_batt * 3) / 5;
-	else if (temp_batt > 35000 && temp_batt <= 40000)
+	else if (temp_batt > 50000 && temp_batt <= 60000)
 		temp_avg = (temp_cpus_avg * 3 + temp_batt * 2) / 5;
-	else if (temp_batt > 40000 && temp_batt <= 45000)
+	else if (temp_batt > 60000 && temp_batt <= 70000)
 		temp_avg = (temp_cpus_avg * 4 + temp_batt) / 5;
-	else if (temp_batt > 45000)
+	else if (temp_batt > 70000)
 		temp_avg = (temp_cpus_avg * 5 + temp_batt) / 6;
 
 	/* Emergency case */
-	if (temp_cpus_avg > 80000 || temp_batt > 45000)
+	if (temp_cpus_avg > 9999000 || temp_batt > 70000)
 		temp_avg = temp_cpus_avg;
 
 	old_zone = t->curr_zone;
