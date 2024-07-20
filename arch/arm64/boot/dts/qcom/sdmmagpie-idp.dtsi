@@ -418,11 +418,11 @@
 	mi,software-optimize-ffc-qg-iterm;
 	qcom,soc_decimal_rate = <
 		0  32
-		10 30
-		20 28
-		30 28
-		40 28
-		50 28
+		10 32
+		20 32
+		30 30
+		40 30
+		50 30
 		60 28
 		70 28
 		80 28
