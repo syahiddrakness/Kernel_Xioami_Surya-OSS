@@ -417,14 +417,14 @@
 	qcom,qg-ext-sns;
 	mi,software-optimize-ffc-qg-iterm;
 	qcom,soc_decimal_rate = <
-		0  32
-		10 32
-		20 32
-		30 30
-		40 30
-		50 30
-		60 28
-		70 28
+		0  40
+		10 40
+		20 35
+		30 35
+		40 32
+		50 32
+		60 30
+		70 30
 		80 28
 		90 26
 		95 10
@@ -463,10 +463,10 @@
 				   3800000 3800000 3600000 3400000 3200000 3000000 2200000
 				   800000 700000>;
 	dpdm-supply = <&qusb_phy0>;
-	qcom,charger-temp-max = <9900>;
-	qcom,smb-temp-max = <9900>;
-	qcom,fcc-step-delay-ms = <80>;
-	qcom,fcc-step-size-ua = <400000>;
+	qcom,charger-temp-max = <999900>;
+	qcom,smb-temp-max = <999900>;
+	qcom,fcc-step-delay-ms = <100>;
+	qcom,fcc-step-size-ua = <6000000>;
 	qcom,disable-sw-thermal-regulation;
 	qcom,disable-fcc-restriction;
 	qcom,smb-internal-pull-kohm = <0>;
