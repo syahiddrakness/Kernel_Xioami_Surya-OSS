@@ -384,7 +384,7 @@
 				1804800	3200
 			>;
 			idle-cost-data = <
-				80 80 80 80 80
+				120 120 120 120 120
 			>;
 		};
 
@@ -406,7 +406,7 @@
 				2304000	4800
 			>;
 			idle-cost-data = <
-				80 80 80 80 80
+				120 120 120 120 120
 			>;
 		};
 
@@ -475,7 +475,7 @@
 				vendor {
 					compatible = "android,vendor";
 					dev = "/dev/block/platform/soc/1d84000.ufshc/by-name/vendor";
-					type = "ext4,erofs,f2fs";
+					type = "ext4";
 					mnt_flags = "ro,barrier=1,discard";
 					fsmgr_flags = "wait,avb";
 					status = "ok";
@@ -1006,8 +1006,7 @@
 			<1939200>,
 			<2169600>,
 			<2208000>,
-			<2304000>,
-			<2400000>;
+			<2304000>;
 	};
 
 	cpucc_debug: syscon@182a0018 {
@@ -1592,7 +1591,7 @@
 
 	qcom,msm_fastrpc {
 		compatible = "qcom,msm-fastrpc-compute";
-		qcom,rpc-latency-us = <800>;
+		qcom,rpc-latency-us = <1000>;
 		qcom,adsp-remoteheap-vmid = <22 37>;
 		qcom,fastrpc-adsp-audio-pdr;
 		qcom,fastrpc-adsp-sensors-pdr;
@@ -1807,8 +1806,8 @@
 
 				msm_cdsp_rm: qcom,msm_cdsp_rm {
 					compatible = "qcom,msm-cdsp-rm";
-					qcom,qos-latency-us = <80>;
-					qcom,qos-maxhold-ms = <80>;
+					qcom,qos-latency-us = <120>;
+					qcom,qos-maxhold-ms = <120>;
 					qcom,compute-cx-limit-en;
 					qcom,compute-priority-mode = <2>;
 					#cooling-cells = <2>;
@@ -2154,10 +2153,10 @@
 
 		/* PM QoS */
 		qcom,pm-qos-irq-type = "affine_irq";
-		qcom,pm-qos-irq-latency = <80 80>;
+		qcom,pm-qos-irq-latency = <120 120>;
 		qcom,pm-qos-cpu-groups = <0x3f 0xc0>;
-		qcom,pm-qos-cmdq-latency-us = <80 80>, <80 80>;
-		qcom,pm-qos-legacy-latency-us = <80 80>, <80 80>;
+		qcom,pm-qos-cmdq-latency-us = <120 120>, <120 120>;
+		qcom,pm-qos-legacy-latency-us = <120 120>, <120 120>;
 
 		clocks = <&clock_gcc GCC_SDCC1_AHB_CLK>,
 			<&clock_gcc GCC_SDCC1_APPS_CLK>,
@@ -2226,9 +2225,9 @@
 
 		/* PM QoS */
 		qcom,pm-qos-irq-type = "affine_irq";
-		qcom,pm-qos-irq-latency = <80 80>;
+		qcom,pm-qos-irq-latency = <120 120>;
 		qcom,pm-qos-cpu-groups = <0x3f 0xc0>;
-		qcom,pm-qos-legacy-latency-us = <80 80>, <80 80>;
+		qcom,pm-qos-legacy-latency-us = <120 120>, <120 120>;
 
 		clocks = <&clock_gcc GCC_SDCC2_AHB_CLK>,
 			<&clock_gcc GCC_SDCC2_APPS_CLK>;
@@ -2393,7 +2392,7 @@
 
 		/* PM QoS */
 		qcom,pm-qos-cpu-groups = <0x3f 0xC0>;
-		qcom,pm-qos-cpu-group-latency-us = <80 80>;
+		qcom,pm-qos-cpu-group-latency-us = <120 120>;
 		qcom,pm-qos-default-cpu = <0>;
 
 		pinctrl-names = "dev-reset-assert", "dev-reset-deassert";
