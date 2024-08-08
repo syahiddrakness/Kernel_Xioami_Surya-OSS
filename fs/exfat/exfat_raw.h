@@ -32,8 +32,8 @@
 
 #define DENTRY_SIZE		32 /* directory entry size */
 #define DENTRY_SIZE_BITS	5
-/* exFAT allows 8388608(512MB) directory entries */
-#define MAX_EXFAT_DENTRIES	16388608
+/* exFAT allows 8388608(256MB) directory entries */
+#define MAX_EXFAT_DENTRIES	8388608
 
 /* dentry types */
 #define EXFAT_UNUSED		0x00	/* end of directory */
