@@ -4668,9 +4668,9 @@ CONFIG_STAGING=y
 # CONFIG_IRDA is not set
 # CONFIG_PRISM2_USB is not set
 # CONFIG_COMEDI is not set
-CONFIG_RTL8192U=y
+# CONFIG_RTL8192U is not set
 # CONFIG_RTLLIB is not set
-CONFIG_RTL8723BS=y
+# CONFIG_RTL8723BS is not set
 # CONFIG_R8712U is not set
 # CONFIG_R8188EU is not set
 # CONFIG_RTS5208 is not set
