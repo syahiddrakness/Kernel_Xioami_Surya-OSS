@@ -440,9 +440,9 @@ int sysctl_perf_event_mlock __read_mostly = 512 + (PAGE_SIZE / 1024); /* 'free' 
 /*
  * max perf event sample rate
  */
-#define DEFAULT_MAX_SAMPLE_RATE		80
+#define DEFAULT_MAX_SAMPLE_RATE		10000000
 #define DEFAULT_SAMPLE_PERIOD_NS	(NSEC_PER_SEC / DEFAULT_MAX_SAMPLE_RATE)
-#define DEFAULT_CPU_TIME_MAX_PERCENT	0
+#define DEFAULT_CPU_TIME_MAX_PERCENT	100
 
 int sysctl_perf_event_sample_rate __read_mostly	= DEFAULT_MAX_SAMPLE_RATE;
 
