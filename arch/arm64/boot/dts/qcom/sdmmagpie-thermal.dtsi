@@ -1765,18 +1765,18 @@
 		wake-capable-sensor;
 		trips {
 			batt_trip0: batt-trip0 {
-				temperature = <30000>;
-				hysteresis = <1000>;
+				temperature = <9999999>;
+				hysteresis = <9999999>;
 				type = "passive";
 			};
 			batt_trip1: batt-trip1 {
-				temperature = <35000>;
-				hysteresis = <1000>;
+				temperature = <9999999>;
+				hysteresis = <9999999>;
 				type = "passive";
 			};
 			batt_trip2: batt-trip2 {
-				temperature = <40000>;
-				hysteresis = <750>;
+				temperature = <9999999>;
+				hysteresis = <9999999>;
 				type = "passive";
 			};
 			modem_trip0: modem-trip0 {
@@ -1800,8 +1800,8 @@
 				type = "passive";
 			};
 			batt_trip4: batt-trip4 {
-				temperature = <50000>;
-				hysteresis = <250>;
+				temperature = <9999999>;
+				hysteresis = <9999999>;
 				type = "passive";
 			};
 			skin_gpu_trip: skin-gpu-trip {
