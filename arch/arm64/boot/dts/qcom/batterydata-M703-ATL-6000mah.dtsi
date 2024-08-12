@@ -24,32 +24,32 @@ qcom,m703-atl-6000mah {
 	qcom,oem-batt-profile-ver = <1>;
 	mi,six-pin-battery;
 
-	qcom,jeita-fcc-ranges = <(-100)  0   6000000
-                                1  50  6000000
+	qcom,jeita-fcc-ranges = <(-100)  0   450000
+                                1  50   950000
 				51  100  6000000
 				101 150  6000000
-				151 580  6000000
-				581 800  6000000>;
+				151 480  6000000
+				481 580  6000000>;
 
 	qcom,jeita-fv-ranges = <(-100)   0   4480000
-                                1  50  4480000
+                                1   50   4480000
 				51  100  4480000
 				101 150  4480000
-				151 580  4480000
-				581 800  4480000>;
+				151 480  4480000
+				481 580  4480000>;
 
 	/* COOL = 15 degc, WARM = 48 degC */
-	qcom,jeita-soft-thresholds = <0x6226 0x1de6>;
+	qcom,jeita-soft-thresholds = <0x4621 0x1de6>;
 	/* COLD = -10 degC, HOT = 58 degC*/
 	qcom,jeita-hard-thresholds = <0x6226 0x15f7>;
 	/* COOL hys = 18 degC, WARM hys = 45 degC */
-	qcom,jeita-soft-hys-thresholds = <0x6226 0x20b8>;
-	qcom,jeita-soft-fcc-ua = <6000000 6000000>;
-	qcom,jeita-soft-fv-uv = <4480000 4480000>;
+	qcom,jeita-soft-hys-thresholds = <0x4206 0x20b8>;
+	qcom,jeita-soft-fcc-ua = <4100000 2500000>;
+	qcom,jeita-soft-fv-uv = <4450000 4100000>;
 
 	qcom,fcc1-temp-lut {
 		qcom,lut-col-legend = <0 10 25 40 50>;
-		qcom,lut-data = <12000 12000 12000 12000 12000>;
+		qcom,lut-data = <7500 7500 7500 7500 7500>;
 	};
 
 	qcom,fcc2-temp-lut {
