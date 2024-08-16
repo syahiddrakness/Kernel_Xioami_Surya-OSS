@@ -89,8 +89,8 @@ walt_dec_cfs_rq_stats(struct cfs_rq *cfs_rq, struct task_struct *p) {}
  *
  * (default: 9ms * (1 + ilog(ncpus)), units: nanoseconds)
  */
-unsigned int sysctl_sched_latency			= 9000ULL;
-unsigned int normalized_sysctl_sched_latency		= 9000ULL;
+unsigned int sysctl_sched_latency			= 1000ULL;
+unsigned int normalized_sysctl_sched_latency		= 1000ULL;
 
 /*
  * Enable/disable honoring sync flag in energy-aware wakeups.
@@ -119,8 +119,8 @@ enum sched_tunable_scaling sysctl_sched_tunable_scaling = SCHED_TUNABLESCALING_L
  *
  * (default: 0.90 msec * (1 + ilog(ncpus)), units: nanoseconds)
  */
-unsigned int sysctl_sched_min_granularity		= 9000ULL;
-unsigned int normalized_sysctl_sched_min_granularity	= 9000ULL;
+unsigned int sysctl_sched_min_granularity		= 1000ULL;
+unsigned int normalized_sysctl_sched_min_granularity	= 1000ULL;
 
 /*
  * This value is kept at sysctl_sched_latency/sysctl_sched_min_granularity
@@ -147,10 +147,10 @@ unsigned int __read_mostly sysctl_sched_energy_aware = 1;
  *
  * (default: 9 msec * (1 + ilog(ncpus)), units: nanoseconds)
  */
-unsigned int sysctl_sched_wakeup_granularity		= 9000UL;
-unsigned int normalized_sysctl_sched_wakeup_granularity	= 9000UL;
+unsigned int sysctl_sched_wakeup_granularity		= 1000UL;
+unsigned int normalized_sysctl_sched_wakeup_granularity	= 1000UL;
 
-const_debug unsigned int sysctl_sched_migration_cost	= 9000UL;
+const_debug unsigned int sysctl_sched_migration_cost	= 1000UL;
 DEFINE_PER_CPU_READ_MOSTLY(int, sched_load_boost);
 
 #ifdef CONFIG_SCHED_WALT
@@ -181,7 +181,7 @@ int __weak arch_asym_cpu_priority(int cpu)
  *
  * (default: 9 msec, units: microseconds)
  */
-unsigned int sysctl_sched_cfs_bandwidth_slice		= 9000UL;
+unsigned int sysctl_sched_cfs_bandwidth_slice		= 1000UL;
 #endif
 
 /*
@@ -190,51 +190,51 @@ unsigned int sysctl_sched_cfs_bandwidth_slice		= 9000UL;
  *
  * (default: ~10%)
  */
-unsigned int capacity_margin				= 2048;
+unsigned int capacity_margin				= 1024;
 
 /* Migration margins */
 unsigned int sysctl_sched_capacity_margin_up[MAX_MARGIN_LEVELS] = {
-	[0 ... MAX_MARGIN_LEVELS - 1] = 2048
+	[0 ... MAX_MARGIN_LEVELS - 1] = 1024
 }; /* ~10% margin */
 unsigned int sysctl_sched_capacity_margin_down[MAX_MARGIN_LEVELS] = {
-	[0 ... MAX_MARGIN_LEVELS - 1] = 2048
+	[0 ... MAX_MARGIN_LEVELS - 1] = 1024
 }; /* ~10% margin */
 unsigned int sysctl_sched_capacity_margin_up_boosted[MAX_MARGIN_LEVELS] = {
-	[0 ... MAX_MARGIN_LEVELS-1] = 2048
+	[0 ... MAX_MARGIN_LEVELS-1] = 1024
 }; /* ~10% margin */
 unsigned int sysctl_sched_capacity_margin_down_boosted[MAX_MARGIN_LEVELS] = {
-	2048, 2048
+	1024, 1024
 }; /* ~10% margin for big, ~10% margin for big+ */
 
 #if NR_CPUS == 8
 unsigned int sched_capacity_margin_up[NR_CPUS] = {
-	2048, 2048, 2048, 2048, 2048, 2048, 2048, 2048
+	1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024
 }; /* ~10% margin for small and big, 10% for big+ */
 unsigned int sched_capacity_margin_down[NR_CPUS] = {
-	[0 ... NR_CPUS-1] = 2048
+	[0 ... NR_CPUS-1] = 1024
 }; /* ~10% margin */
 unsigned int sched_capacity_margin_up_boosted[NR_CPUS] = {
-	2048, 2048, 2048, 2048, 2048, 2048, 2048, 2048
+	1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024
 }; /* ~10% margin for small and big, 10% for big+ */
 unsigned int sched_capacity_margin_down_boosted[NR_CPUS] = {
-	2048, 2048, 2048, 2048, 2048, 2048, 2048, 2048
+	1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024
 }; /* not used for small cores, ~10% margin for big, ~10% margin for big+ */
 #else
 unsigned int sched_capacity_margin_up[NR_CPUS] = {
-	[0 ... NR_CPUS-1] = 2048}; /* ~10% margin */
+	[0 ... NR_CPUS-1] = 1024}; /* ~10% margin */
 unsigned int sched_capacity_margin_down[NR_CPUS] = {
-	[0 ... NR_CPUS-1] = 2048}; /* ~10% margin */
+	[0 ... NR_CPUS-1] = 1024}; /* ~10% margin */
 unsigned int sched_capacity_margin_up_boosted[NR_CPUS] = {
-	[0 ... NR_CPUS-1] = 2048}; /* ~10% margin */
+	[0 ... NR_CPUS-1] = 1024}; /* ~10% margin */
 unsigned int sched_capacity_margin_down_boosted[NR_CPUS] = {
-	[0 ... NR_CPUS-1] = 2048}; /* ~10% margin */
+	[0 ... NR_CPUS-1] = 1024}; /* ~10% margin */
 #endif
 
 
 #ifdef CONFIG_SCHED_WALT
-/* 1ms default for 20ms window size scaled to 2048 */
+/* 1ms default for 20ms window size scaled to 1024 */
 unsigned int sysctl_sched_min_task_util_for_boost = 120;
-/* 0.68ms default for 20ms window size scaled to 2048 */
+/* 0.68ms default for 20ms window size scaled to 1024 */
 unsigned int sysctl_sched_min_task_util_for_colocation = 90;
 #endif
 static unsigned int __maybe_unused sched_small_task_threshold = 240;
@@ -835,7 +835,7 @@ void init_entity_runnable_average(struct sched_entity *se)
 	 * we give it 1023 to make sure it is almost a period (1024us), and
 	 * will definitely be update (after enqueue).
 	 */
-	sa->period_contrib = 2048;
+	sa->period_contrib = 1024;
 	/*
 	 * Tasks are intialized with full load to be seen as heavy tasks until
 	 * they get a chance to stabilize to their real load level.
@@ -2991,7 +2991,7 @@ static u32 __accumulate_pelt_segments(u64 periods, u32 d1, u32 d3)
 	 *    = 1024 ( \Sum y^n - \Sum y^n - y^0 )
 	 *              n=0        n=p
 	 */
-	c2 = LOAD_AVG_MAX - decay_load(LOAD_AVG_MAX, periods) - 2048;
+	c2 = LOAD_AVG_MAX - decay_load(LOAD_AVG_MAX, periods) - 1024;
 
 	return c1 + c2 + c3;
 }
@@ -3031,7 +3031,7 @@ accumulate_sum(u64 delta, int cpu, struct sched_avg *sa,
 	scale_cpu = arch_scale_cpu_capacity(NULL, cpu);
 
 	delta += sa->period_contrib;
-	periods = delta / 2048; /* A period is 1024us (~1ms) */
+	periods = delta / 1024; /* A period is 1024us (~1ms) */
 
 	/*
 	 * Step 1: decay old *_sum if we crossed period boundaries.
@@ -3047,9 +3047,9 @@ accumulate_sum(u64 delta, int cpu, struct sched_avg *sa,
 		/*
 		 * Step 2
 		 */
-		delta %= 2048;
+		delta %= 1024;
 		contrib = __accumulate_pelt_segments(periods,
-				2048 - sa->period_contrib, delta);
+				1024 - sa->period_contrib, delta);
 	}
 	sa->period_contrib = delta;
 
@@ -3145,12 +3145,12 @@ ___update_load_avg(u64 now, int cpu, struct sched_avg *sa,
 	/*
 	 * Step 2: update *_avg.
 	 */
-	sa->load_avg = div_u64(sa->load_sum, LOAD_AVG_MAX - 2048 + sa->period_contrib);
+	sa->load_avg = div_u64(sa->load_sum, LOAD_AVG_MAX - 1024 + sa->period_contrib);
 	if (cfs_rq) {
 		cfs_rq->runnable_load_avg =
-			div_u64(cfs_rq->runnable_load_sum, LOAD_AVG_MAX - 2048 + sa->period_contrib);
+			div_u64(cfs_rq->runnable_load_sum, LOAD_AVG_MAX - 1024 + sa->period_contrib);
 	}
-	sa->util_avg = sa->util_sum / (LOAD_AVG_MAX - 2048 + sa->period_contrib);
+	sa->util_avg = sa->util_sum / (LOAD_AVG_MAX - 1024 + sa->period_contrib);
 
 	if (cfs_rq) {
 		trace_sched_load_cfs_rq(cfs_rq);
@@ -4485,7 +4485,7 @@ void cfs_bandwidth_usage_dec(void) {}
  */
 static inline u64 default_cfs_period(void)
 {
-	return 9000ULL;
+	return 1000ULL;
 }
 
 static inline u64 sched_cfs_bandwidth_slice(void)
@@ -5538,11 +5538,11 @@ DEFINE_PER_CPU(cpumask_var_t, select_idle_mask);
  * reduction of an arbitrary n in O(log_2 n) steps. (See also
  * fixed_power_int())
  *
- * The calculation is approximated on a 2048 point scale.
+ * The calculation is approximated on a 1024 point scale.
  */
 #define DEGRADE_SHIFT		7
 
-static const u8 degrade_zero_ticks[CPU_LOAD_IDX_MAX] = {0, 8, 32, 64, 128, 256, 512, 1024, 2048};
+static const u8 degrade_zero_ticks[CPU_LOAD_IDX_MAX] = {0, 8, 32, 64, 128, 256, 512, 1024};
 static const u8 degrade_factor[CPU_LOAD_IDX_MAX][DEGRADE_SHIFT + 1] = {
 	{   0,   0,  0,  0,  0,  0, 0, 0 },
 	{  64,  32,  8,  0,  0,  0, 0, 0 },
@@ -7279,7 +7279,7 @@ static int select_idle_cpu(struct task_struct *p, struct sched_domain *sd, int t
 	 * Due to large variance we need a large fuzz factor; hackbench in
 	 * particularly is sensitive here.
 	 */
-	avg_idle = this_rq()->avg_idle / 2048;
+	avg_idle = this_rq()->avg_idle / 1024;
 	avg_cost = this_sd->avg_scan_cost + 1;
 
 	if (sched_feat(SIS_AVG_CPU) && avg_idle < avg_cost)
@@ -7444,7 +7444,7 @@ static inline bool task_fits_capacity(struct task_struct *p,
 			sched_capacity_margin_up_boosted[task_cpu(p)] :
 			sched_capacity_margin_up[task_cpu(p)];
 
-	return capacity * 2048 > boosted_task_util(p) * margin;
+	return capacity * 1024 > boosted_task_util(p) * margin;
 }
 
 static inline bool task_fits_max(struct task_struct *p, int cpu)
@@ -8073,7 +8073,7 @@ static int wake_cap(struct task_struct *p, int cpu, int prev_cpu)
 
 bool __cpu_overutilized(int cpu, int delta)
 {
-	return (capacity_orig_of(cpu) * 2048) <
+	return (capacity_orig_of(cpu) * 1024) <
 		((cpu_util(cpu) + delta) * sched_capacity_margin_up[cpu]);
 }
 
@@ -8311,7 +8311,7 @@ static int find_energy_efficient_cpu(struct sched_domain *sd,
 			 * fit without making the CPU overutilized.
 			 */
 			spare = capacity_spare_without(cpu_iter, p);
-			if (spare * 2048 < sched_capacity_margin_up[cpu_iter] *
+			if (spare * 1024 < sched_capacity_margin_up[cpu_iter] *
 							task_util_est(p))
 				continue;
 
@@ -10080,7 +10080,7 @@ group_smaller_min_cpu_capacity(struct sched_group *sg, struct sched_group *ref)
 {
 	return sg->sgc->min_capacity *
 				sched_capacity_margin_up[group_first_cpu(sg)] <
-						ref->sgc->min_capacity * 2048;
+						ref->sgc->min_capacity * 1024;
 }
 
 /*
@@ -10092,7 +10092,7 @@ group_smaller_max_cpu_capacity(struct sched_group *sg, struct sched_group *ref)
 {
 	return sg->sgc->max_capacity *
 				sched_capacity_margin_up[group_first_cpu(sg)] <
-						ref->sgc->max_capacity * 2048;
+						ref->sgc->max_capacity * 1024;
 }
 
 /*
@@ -10501,7 +10501,7 @@ next_group:
 	 * needs to be done at the next sched domain level as well.
 	 */
 	if (lb_sd_parent(env->sd) &&
-	    sds->total_capacity * 2048 < sds->total_util *
+	    sds->total_capacity * 1024 < sds->total_util *
 			sched_capacity_margin_up[group_first_cpu(sds->local)])
 		set_sd_overutilized(env->sd->parent);
 }
@@ -11012,7 +11012,7 @@ static struct rq *find_busiest_queue(struct lb_env *env,
  * Max backoff if we encounter pinned tasks. Pretty arbitrary value, but
  * so long as it is large enough.
  */
-#define MAX_PINNED_INTERVAL	2048
+#define MAX_PINNED_INTERVAL	1024
 #define NEED_ACTIVE_BALANCE_THRESHOLD 10
 
 static int need_active_balance(struct lb_env *env)
