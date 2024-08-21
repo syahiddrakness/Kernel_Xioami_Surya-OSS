@@ -73,7 +73,7 @@
 		qcom,gpu-quirk-secvid-set-once;
 
 		/* <HZ/12> */
-		qcom,idle-timeout = <120>;
+		qcom,idle-timeout = <60>;
 
 		qcom,highest-bank-bit = <14>;
 
@@ -135,8 +135,8 @@
 		cache-slices = <&llcc 12>, <&llcc 11>;
 
 		/* CPU latency parameter */
-		qcom,pm-qos-active-latency = <120>;
-		qcom,pm-qos-wakeup-latency = <120>;
+		qcom,pm-qos-active-latency = <60>;
+		qcom,pm-qos-wakeup-latency = <60>;
 
 		/* Enable context aware freq. scaling */
 		qcom,enable-ca-jump;
@@ -544,7 +544,7 @@
 				qcom,initial-pwrlevel = <6>;
 				qcom,ca-target-pwrlevel = <6>;
 
-				/* TURBO_L1 */
+				/* NOM_L1 */
 				qcom,gpu-pwrlevel@0 {
 					reg = <0>;
 					qcom,gpu-freq = <800000000>;
@@ -553,7 +553,7 @@
 					qcom,bus-max = <17>;
 				};
 
-				/* TURBO */
+				/* NOM */
 				qcom,gpu-pwrlevel@1 {
 					reg = <1>;
 					qcom,gpu-freq = <750000000>;
@@ -562,7 +562,7 @@
 					qcom,bus-max = <17>;
 				};
 
-				/* NOM_L1 */
+				/* SVS_L2 */
 				qcom,gpu-pwrlevel@2 {
 					reg = <2>;
 					qcom,gpu-freq = <650000000>;
@@ -571,7 +571,7 @@
 					qcom,bus-max = <16>;
 				};
 
-				/* NOM */
+				/* SVS_L1 */
 				qcom,gpu-pwrlevel@3 {
 					reg = <3>;
 					qcom,gpu-freq = <550000000>;
@@ -580,7 +580,7 @@
 					qcom,bus-max = <16>;
 				};
 
-				/* SVS_L1 */
+				/* SVS */
 				qcom,gpu-pwrlevel@4 {
 					reg = <4>;
 					qcom,gpu-freq = <450000000>;
@@ -589,7 +589,7 @@
 					qcom,bus-max = <13>;
 				};
 
-				/* SVS */
+				/* SVS2 */
 				qcom,gpu-pwrlevel@5 {
 					reg = <5>;
 					qcom,gpu-freq = <350000000>;
@@ -598,7 +598,7 @@
 					qcom,bus-max = <10>;
 				};
 
-				/* SVS2 */
+				/* MIN SVS */
 				qcom,gpu-pwrlevel@6 {
 					reg = <6>;
 					qcom,gpu-freq = <250000000>;

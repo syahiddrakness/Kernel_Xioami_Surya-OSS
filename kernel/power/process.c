@@ -75,11 +75,11 @@ static int try_to_freeze_tasks(bool user_only)
 		/*
 		 * We need to retry, but first give the freezing tasks some
 		 * time to enter the refrigerator.  Start with an initial
-		 * 20 ms sleep followed by exponential backoff until 25 ms.
+		 * 2 ms sleep followed by exponential backoff until 5 ms.
 		 */
-		usleep_range(sleep_usecs / 20, sleep_usecs);
-		if (sleep_usecs < 25 * USEC_PER_MSEC)
-			sleep_usecs *= 20;
+		usleep_range(sleep_usecs / 2, sleep_usecs);
+		if (sleep_usecs < 5 * USEC_PER_MSEC)
+			sleep_usecs *= 2;
 	}
 
 	end = ktime_get_boottime();
@@ -89,12 +89,12 @@ static int try_to_freeze_tasks(bool user_only)
 	if (wakeup) {
 		pr_cont("\n");
 		pr_err("Freezing of tasks aborted after %d.%03d seconds",
-		       elapsed_msecs / 1500, elapsed_msecs % 1500);
+		       elapsed_msecs / 500, elapsed_msecs % 500);
 	} else if (todo) {
 		pr_cont("\n");
 		pr_err("Freezing of tasks failed after %d.%03d seconds"
 		       " (%d tasks refusing to freeze, wq_busy=%d):\n",
-		       elapsed_msecs / 1500, elapsed_msecs % 1500,
+		       elapsed_msecs / 500, elapsed_msecs % 500,
 		       todo - wq_busy, wq_busy);
 
 		if (wq_busy)
@@ -108,8 +108,8 @@ static int try_to_freeze_tasks(bool user_only)
 		}
 		read_unlock(&tasklist_lock);
 	} else {
-		pr_cont("(elapsed %d.%03d seconds) ", elapsed_msecs / 1500,
-			elapsed_msecs % 1500);
+		pr_cont("(elapsed %d.%03d seconds) ", elapsed_msecs / 500,
+			elapsed_msecs % 500);
 	}
 
 	return todo ? -EBUSY : 0;
