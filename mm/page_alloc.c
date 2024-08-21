@@ -4280,35 +4280,6 @@ retry:
 			(gfp_mask & __GFP_FS))
 		goto nopage;
 
-	/* Boost when memory is low so allocation latency doesn't get too bad */
-	cpu_input_boost_kick_max(250);
-	devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 250);
-	devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 250);
-
-	/* Try direct reclaim and then allocating */
-	page = __alloc_pages_direct_reclaim(gfp_mask, order, alloc_flags, ac,
-							&did_some_progress);
-	if (page)
-		goto got_pg;
-
-	/* Try direct compaction and then allocating */
-	page = __alloc_pages_direct_compact(gfp_mask, order, alloc_flags, ac,
-					compact_priority, &compact_result);
-	if (page)
-		goto got_pg;
-
-	/* Do not loop if specifically requested */
-	if (gfp_mask & __GFP_NORETRY)
-		goto nopage;
-
-	/*
-	 * Do not retry costly high order allocations unless they are
-	 * __GFP_RETRY_MAYFAIL and we can compact
-	 */
-	if (costly_order && (!can_compact ||
-			     !(gfp_mask & __GFP_RETRY_MAYFAIL)))
-		goto nopage;
-
 #ifdef CONFIG_KPROFILES
 extern int kp_active_mode(void);
 #endif
@@ -4346,6 +4317,30 @@ extern int kp_active_mode(void);
 		devfreq_boost_kick(DEVFREQ_MSM_LLCCBW);
 		devfreq_boost_kick(DEVFREQ_MSM_CPUBW);
 #endif
+
+	/* Try direct reclaim and then allocating */
+	page = __alloc_pages_direct_reclaim(gfp_mask, order, alloc_flags, ac,
+							&did_some_progress);
+	if (page)
+		goto got_pg;
+
+	/* Try direct compaction and then allocating */
+	page = __alloc_pages_direct_compact(gfp_mask, order, alloc_flags, ac,
+					compact_priority, &compact_result);
+	if (page)
+		goto got_pg;
+
+	/* Do not loop if specifically requested */
+	if (gfp_mask & __GFP_NORETRY)
+		goto nopage;
+
+	/*
+	 * Do not retry costly high order allocations unless they are
+	 * __GFP_RETRY_MAYFAIL and we can compact
+	 */
+	if (costly_order && (!can_compact ||
+			     !(gfp_mask & __GFP_RETRY_MAYFAIL)))
+		goto nopage;
 
 	if (should_reclaim_retry(gfp_mask, order, ac, alloc_flags,
 				 did_some_progress > 0, &no_progress_loops))
