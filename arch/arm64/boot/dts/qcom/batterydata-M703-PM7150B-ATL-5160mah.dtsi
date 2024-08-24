@@ -45,12 +45,12 @@
 	qcom,jeita-hard-thresholds = <0x6226 0x15f7>;
 	/* COOL hys = 18 degC, WARM hys = 45 degC */
 	qcom,jeita-soft-hys-thresholds = <0x4206 0x20b8>;
-	qcom,jeita-soft-fcc-ua = <4100000 2500000>;
-	qcom,jeita-soft-fv-uv = <4450000 4100000>;
+	qcom,jeita-soft-fcc-ua = <6000000 6000000>;
+	qcom,jeita-soft-fv-uv = <4480000 4480000>;
 
 	qcom,fcc1-temp-lut {
 		qcom,lut-col-legend = <0 10 25 40 50>;
-		qcom,lut-data = <7500 7500 7500 7500 7500>;
+		qcom,lut-data = <16000 16000 16000 16000 16000>;
 	};
 
 	qcom,fcc2-temp-lut {
