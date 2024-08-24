@@ -13,7 +13,7 @@
 #include "fat.h"
 
 /* this must be > 0. */
-#define FAT_MAX_CACHE	4096
+#define FAT_MAX_CACHE	8
 
 struct fat_cache {
 	struct list_head cache_list;

@@ -17,7 +17,7 @@
 #include "exfat_raw.h"
 #include "exfat_fs.h"
 
-#define EXFAT_MAX_CACHE		8192
+#define EXFAT_MAX_CACHE		16
 
 struct exfat_cache {
 	struct list_head cache_list;
