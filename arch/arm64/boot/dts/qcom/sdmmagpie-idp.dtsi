@@ -417,18 +417,18 @@
 	qcom,qg-ext-sns;
 	mi,software-optimize-ffc-qg-iterm;
 	qcom,soc_decimal_rate = <
-		0  32
-		10 30
-		20 28
-		30 28
-		40 28
-		50 28
-		60 28
-		70 28
-		80 28
-		90 26
+		0  60
+		10 55
+		20 50
+		30 45
+		40 40
+		50 35
+		60 30
+		70 25
+		80 20
+		90 15
 		95 10
-		99 5>;
+		100 5>;
 	qcom,qg-fast-chg-config;
 	qcom,cl-disable = <1>;
 };
