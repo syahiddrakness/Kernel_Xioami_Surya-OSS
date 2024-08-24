@@ -27,7 +27,7 @@
 #include <trace/events/f2fs.h>
 #include <trace/events/android_fs.h>
 
-#define NUM_PREALLOC_POST_READ_CTXS	8192
+#define NUM_PREALLOC_POST_READ_CTXS	128
 
 static struct kmem_cache *bio_post_read_ctx_cache;
 static struct kmem_cache *bio_entry_slab;

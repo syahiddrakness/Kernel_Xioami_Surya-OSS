@@ -47,7 +47,7 @@
 
 #include "ext4.h"
 
-#define NUM_PREALLOC_POST_READ_CTXS	8192
+#define NUM_PREALLOC_POST_READ_CTXS	128
 
 static struct kmem_cache *bio_post_read_ctx_cache;
 static mempool_t *bio_post_read_ctx_pool;
