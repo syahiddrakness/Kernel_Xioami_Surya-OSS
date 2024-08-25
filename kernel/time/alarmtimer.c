@@ -71,7 +71,7 @@ static void alarmtimer_triggered_func(void *p)
 
 	if (!(rtc->irq_data & RTC_AF))
 		return;
-	__pm_wakeup_event(ws, 2 * MSEC_PER_SEC);
+	__pm_wakeup_event(ws, 5 * MSEC_PER_SEC);
 }
 
 static struct rtc_task alarmtimer_rtc_task = {
@@ -311,8 +311,8 @@ static int alarmtimer_suspend(struct device *dev)
 	if (min == 0)
 		return 0;
 
-	if (ktime_to_ns(min) < 2 * NSEC_PER_SEC) {
-		__pm_wakeup_event(ws, 2 * MSEC_PER_SEC);
+	if (ktime_to_ns(min) < 5 * NSEC_PER_SEC) {
+		__pm_wakeup_event(ws, 5 * MSEC_PER_SEC);
 		return -EBUSY;
 	}
 
