@@ -352,7 +352,7 @@
 			reg-names = "lpg-base", "lut-base";
 			#pwm-cells = <2>;
 			qcom,num-lpg-channels = <3>;
-			qcom,lut-patterns = <90 80 70 60 50 45 40 35 30 25 20
+			qcom,lut-patterns = <95 90 85 80 75 70 65 60 55 50 45 40 35 30 25 20
 						15 10 5 0 0 0 0 0 0 0>;
 			lpg1 {
 				qcom,lpg-chan-id = <1>;
@@ -455,18 +455,18 @@
 
 		trips {
 			pm6150l_trip0: trip0 {
-				temperature = <9999999>;
-				hysteresis = <9999999>;
+				temperature = <100000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 			pm6150l_trip1: trip1 {
-				temperature = <9999999>;
-				hysteresis = <9999999>;
+				temperature = <100000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 			trip2 {
-				temperature = <9999999>;
-				hysteresis = <9999999>;
+				temperature = <100000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -532,8 +532,8 @@
 
 		trips {
 			l_bcl_lvl0: l-bcl-lvl0 {
-				temperature = <9999999>;
-				hysteresis = <9999999>;
+				temperature = <100000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -548,8 +548,8 @@
 
 		trips {
 			l_bcl_lvl1: l-bcl-lvl1 {
-				temperature = <9999999>;
-				hysteresis = <9999999>;
+				temperature = <100000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -564,8 +564,8 @@
 
 		trips {
 			l_bcl_lvl2: l-bcl-lvl2 {
-				temperature = <9999999>;
-				hysteresis = <9999999>;
+				temperature = <100000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};

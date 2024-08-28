@@ -33,7 +33,7 @@
 		qcom,mdss-dsi-lane-1-state;
 		qcom,mdss-dsi-lane-2-state;
 		qcom,mdss-dsi-lane-3-state;
-		qcom,mdss-brightness-max-level = <4095>;
+		qcom,mdss-brightness-max-level = <2048>;
 		qcom,mdss-dsi-dma-trigger = "trigger_sw";
 		qcom,mdss-dsi-mdp-trigger = "none";
 		qcom,mdss-dsi-reset-sequence = <1 5>, <0 1>, <1 10>;
@@ -49,7 +49,7 @@
 		qcom,mdss-dsi-panel-blackness-level = <3230>;
 		qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_wled";
 		qcom,mdss-dsi-bl-min-level = <1>;
-		qcom,mdss-dsi-bl-max-level = <4095>;
+		qcom,mdss-dsi-bl-max-level = <2048>;
 		qcom,mdss-dsi-post-init-delay = <1>;
 		qcom,mdss-dsi-qsync-min-refresh-rate = <60>;
 		qcom,mdss-dsi-pan-enable-dynamic-fps;
@@ -300,8 +300,8 @@
 
 					15 01 00 00 00 00 02 FF 10
 					15 01 00 00 00 00 02 FB 01
-					05 01 00 00 60 00 02 11 00
-					05 01 00 00 60 00 02 29 00
+					05 01 00 00 15 00 02 11 00
+					05 01 00 00 15 00 02 29 00
 
 					//give by nova, use for esd check begin
 					15 01 00 00 00 00 02 FF 27
@@ -316,33 +316,33 @@
 				qcom,mdss-dsi-off-command = [
 					15 01 00 00 00 00 02 FF 10
 					15 01 00 00 00 00 02 FB 01
-					05 01 00 00 15 00 02 28 00
-					05 01 00 00 20 00 02 10 00
+					05 01 00 00 05 00 02 28 00
+					05 01 00 00 10 00 02 10 00
 				];
 
 				qcom,mdss-dsi-dispparam-cabcuion-command = [
 					15 01 00 00 00 00 02 FF 10
 					15 01 00 00 00 00 02 FB 01
 					15 01 00 00 00 00 02 53 2C
-					15 01 00 00 20 00 02 55 01
+					15 01 00 00 10 00 02 55 01
 				];
 				qcom,mdss-dsi-dispparam-cabcmovieon-command = [
 					15 01 00 00 00 00 02 FF 10
 					15 01 00 00 00 00 02 FB 01
 					15 01 00 00 00 00 02 53 2C
-					15 01 00 00 20 00 02 55 03
+					15 01 00 00 10 00 02 55 03
 				];
 				qcom,mdss-dsi-dispparam-cabcstillon-command = [
 					15 01 00 00 00 00 02 FF 10
 					15 01 00 00 00 00 02 FB 01
 					15 01 00 00 00 00 02 53 2C
-					15 01 00 00 20 00 02 55 02
+					15 01 00 00 10 00 02 55 02
 				];
 				qcom,mdss-dsi-dispparam-cabcoff-command = [
 					15 01 00 00 00 00 02 FF 10
 					15 01 00 00 00 00 02 FB 01
 					15 01 00 00 00 00 02 53 2C
-					15 01 00 00 20 00 02 55 00
+					15 01 00 00 10 00 02 55 00
 				];
 				qcom,mdss-dsi-dispparam-lcd-hbm-l1-on-command = [
 					15 01 00 00 00 00 02 FF 10
@@ -396,16 +396,16 @@
 
 
 				//delay dimming on
-				qcom,mdss-dsi-dispparam-dimmingon-command = [15 01 00 00 05 00 02 53 24];
+				qcom,mdss-dsi-dispparam-dimmingon-command = [15 01 00 00 02 00 02 53 24];
 				qcom,mdss-dsi-dispparam-dimmingon-command-state = "dsi_lp_mode";
-				qcom,mdss-dsi-dispparam-dimmingoff-command = [15 01 00 00 05 00 02 53 24];
+				qcom,mdss-dsi-dispparam-dimmingoff-command = [15 01 00 00 02 00 02 53 24];
 				qcom,mdss-dsi-dispparam-dimmingoff-command-state = "dsi_lp_mode";
 
                                 //coordinate
                                 qcom,mdss-dsi-panel-xy-coordinate = <0x0F 0x18>;
                                 qcom,mdss-dsi-dispparam-xy-coordinate-command = [
                                         15 01 00 00 00 00 02 FF 10
-                                        06 01 00 05 05 00 02 A1 00
+                                        06 01 00 02 02 00 02 A1 00
                                 ];
                                 qcom,mdss-dsi-dispparam-xy-coordinate-command-state = "dsi_hs_mode";
 
