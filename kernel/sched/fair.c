@@ -89,8 +89,8 @@ walt_dec_cfs_rq_stats(struct cfs_rq *cfs_rq, struct task_struct *p) {}
  *
  * (default: 9ms * (1 + ilog(ncpus)), units: nanoseconds)
  */
-unsigned int sysctl_sched_latency			= 5000ULL;
-unsigned int normalized_sysctl_sched_latency		= 5000ULL;
+unsigned int sysctl_sched_latency			= 100ULL;
+unsigned int normalized_sysctl_sched_latency		= 100ULL;
 
 /*
  * Enable/disable honoring sync flag in energy-aware wakeups.
@@ -119,8 +119,8 @@ enum sched_tunable_scaling sysctl_sched_tunable_scaling = SCHED_TUNABLESCALING_N
  *
  * (default: 0.90 msec * (1 + ilog(ncpus)), units: nanoseconds)
  */
-unsigned int sysctl_sched_min_granularity		= 5000ULL;
-unsigned int normalized_sysctl_sched_min_granularity	= 5000ULL;
+unsigned int sysctl_sched_min_granularity		= 100ULL;
+unsigned int normalized_sysctl_sched_min_granularity	= 100ULL;
 
 /*
  * This value is kept at sysctl_sched_latency/sysctl_sched_min_granularity
@@ -147,10 +147,10 @@ unsigned int __read_mostly sysctl_sched_energy_aware = 1;
  *
  * (default: 9 msec * (1 + ilog(ncpus)), units: nanoseconds)
  */
-unsigned int sysctl_sched_wakeup_granularity		= 5000UL;
-unsigned int normalized_sysctl_sched_wakeup_granularity	= 5000UL;
+unsigned int sysctl_sched_wakeup_granularity		= 100UL;
+unsigned int normalized_sysctl_sched_wakeup_granularity	= 100UL;
 
-const_debug unsigned int sysctl_sched_migration_cost	= 5000UL;
+const_debug unsigned int sysctl_sched_migration_cost	= 100UL;
 DEFINE_PER_CPU_READ_MOSTLY(int, sched_load_boost);
 
 #ifdef CONFIG_SCHED_WALT
@@ -181,7 +181,7 @@ int __weak arch_asym_cpu_priority(int cpu)
  *
  * (default: 9 msec, units: microseconds)
  */
-unsigned int sysctl_sched_cfs_bandwidth_slice		= 5000UL;
+unsigned int sysctl_sched_cfs_bandwidth_slice		= 100UL;
 #endif
 
 /*
@@ -4485,7 +4485,7 @@ void cfs_bandwidth_usage_dec(void) {}
  */
 static inline u64 default_cfs_period(void)
 {
-	return 5000ULL;
+	return 100ULL;
 }
 
 static inline u64 sched_cfs_bandwidth_slice(void)
