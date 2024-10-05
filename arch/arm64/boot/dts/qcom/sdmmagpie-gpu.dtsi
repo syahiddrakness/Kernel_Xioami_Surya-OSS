@@ -82,7 +82,7 @@
 		qcom,ubwc-mode = <2>;
 
 		/* size in bytes */
-		qcom,snapshot-size = <0x400000>;
+		qcom,snapshot-size = <0x80000000>;
 
 		/* base addr, size */
 		qcom,gpu-qdss-stm = <0x161c0000 0x40000>;
