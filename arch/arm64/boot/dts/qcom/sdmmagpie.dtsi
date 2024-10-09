@@ -2905,7 +2905,7 @@
 		compatible = "devfreq-simple-dev";
 		clock-names = "devfreq_clk";
 		clocks = <&clock_cpucc L3_MISC_VOTE_CLK>;
-		governor = "powersave";
+		governor = "performance";
 	};
 
 	cpu0_cpu_l3_lat: qcom,cpu0-cpu-l3-lat {
@@ -3173,7 +3173,7 @@
 
 	snoc_cnoc_keepalive: qcom,snoc_cnoc_keepalive {
 		compatible = "qcom,devbw";
-		governor = "powersave";
+		governor = "performance";
 		qcom,src-dst-ports = <1 627>;
 		qcom,active-only;
 		status = "ok";
