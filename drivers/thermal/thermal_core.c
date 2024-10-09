@@ -88,15 +88,15 @@ static struct workqueue_struct *thermal_passive_wq;
  */
 
 #ifdef CONFIG_THERMAL_SUSPEND_RESUME
-static int prev_sconfig = 50;
-static int suspend_sconfig = 50;
-module_param(suspend_sconfig, int, 0644);
+static int prev_sconfig = 100;
+static int suspend_sconfig = 100;
+module_param(suspend_sconfig, int, 0444);
 #endif
 
-static int lock_enable = 0;
-static int lock_sconfig = 50;
-module_param(lock_enable, int, 0644);
-module_param(lock_sconfig, int, 0644);
+static int lock_enable = 1;
+static int lock_sconfig = 100;
+module_param(lock_enable, int, 0444);
+module_param(lock_sconfig, int, 0444);
 
 static struct thermal_governor *__find_governor(const char *name)
 {
