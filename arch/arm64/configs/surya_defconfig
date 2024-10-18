@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/arm64 4.14.352-OpenELA Kernel Configuration
+# Linux/arm64 4.14.353-OpenELA Kernel Configuration
 #
 
 # KernelSU
@@ -55,7 +55,7 @@ CONFIG_AUTO_KPROFILES_MSM_DRM=y
 # zram
 CONFIG_ZRAM=y
 CONFIG_ZRAM_ENTROPY=y
-CONFIG_ZRAM_SWAPPINESS=150
+CONFIG_ZRAM_SWAPPINESS=100
 # CONFIG_ZRAM_WRITEBACK is not set
 # CONFIG_ZRAM_MEMORY_TRACKING is not set
 CONFIG_VMSTAT_INTERVAL=50
