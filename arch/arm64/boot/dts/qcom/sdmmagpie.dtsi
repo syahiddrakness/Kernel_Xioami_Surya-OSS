@@ -454,7 +454,6 @@
 
 	chosen {
 		bootargs = "rcu_nocbs=0-7 noirqdebug";
-		rng-seed = <0x12345678>;
 	};
 
 	soc: soc { };
