@@ -12,12 +12,12 @@
  */
 
 qcom,m703-atl-6000mah {
-	qcom,max-voltage-uv = <4450000>;
-	qcom,ffc-max-voltage-uv = <4480000>;
+	qcom,max-voltage-uv = <4440000>;
+	qcom,ffc-max-voltage-uv = <4450000>;
 	//qcom,fg-cc-cv-threshold-uv = <4440000>;
 	qcom,fastchg-current-ma = <6000>;
 	qcom,batt-id-kohm = <100>;
-	qcom,battery-beta = <4450>;
+	qcom,battery-beta = <4440>;
 	qcom,battery-therm-kohm = <100>;
 	qcom,battery-type = "m703-atl-6000mah";
 	qcom,qg-batt-profile-ver = <100>;
@@ -31,11 +31,11 @@ qcom,m703-atl-6000mah {
 				151 480  6000000
 				481 580  2500000>;
 
-	qcom,jeita-fv-ranges = <(-100)   0   4450000
-                                1   50   4450000
-				51  100  4450000
-				101 150  4450000
-				151 480  4480000
+	qcom,jeita-fv-ranges = <(-100)   0   4440000
+                                1   50   4440000
+				51  100  4440000
+				101 150  4440000
+				151 480  4450000
 				481 580  4100000>;
 
 	/* COOL = 15 degc, WARM = 48 degC */
@@ -45,11 +45,11 @@ qcom,m703-atl-6000mah {
 	/* COOL hys = 18 degC, WARM hys = 45 degC */
 	qcom,jeita-soft-hys-thresholds = <0x4206 0x20b8>;
 	qcom,jeita-soft-fcc-ua = <4100000 2500000>;
-	qcom,jeita-soft-fv-uv = <4450000 4100000>;
+	qcom,jeita-soft-fv-uv = <4440000 4100000>;
 
 	qcom,fcc1-temp-lut {
 		qcom,lut-col-legend = <0 10 25 40 50>;
-		qcom,lut-data = <7500 7500 7500 7500 7500>;
+		qcom,lut-data = <16000 16000 16000 16000 16000>;
 	};
 
 	qcom,fcc2-temp-lut {
