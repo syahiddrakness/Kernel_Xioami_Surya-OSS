@@ -1,10 +1,10 @@
-# AnyKernel3 Ramdisk Mod Script
-# osm0sis @ xda-developers
+### AnyKernel3 Ramdisk Mod Script
+## osm0sis @ xda-developers
 
-## AnyKernel setup
-# begin properties
+### AnyKernel setup
+# global properties
 properties() { '
-kernel.string=Kernel Kernel Falcon by syahid
+kernel.string=Kernel Kernel Cabai Rawit by syahid
 do.devicecheck=1
 do.modules=0
 do.cleanup=1
@@ -1126,32 +1126,23 @@ device.name1234=
 supported.versions=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20,21,22,23,24,25,26,27,28,29,30
 '; } # end properties
 
-# shell variables
-block=/dev/block/bootdevice/by-name/boot
-is_slot_device=0;
-ramdisk_compression=none;
+### AnyKernel install
+## boot files attributes
+boot_attributes() {
+set_perm_recursive 0 0 755 644 $RAMDISK/*;
+set_perm_recursive 0 0 750 750 $RAMDISK/init* $RAMDISK/sbin;
+} # end attributes
 
-## AnyKernel methods (DO NOT CHANGE)
-# import patching functions/variables - see for reference
+# boot shell variables
+BLOCK=/dev/block/bootdevice/by-name/boot;
+IS_SLOT_DEVICE=0;
+RAMDISK_COMPRESSION=auto;
+PATCH_VBMETA_FLAG=auto;
+
+# import functions/variables and setup patching - see for reference (DO NOT REMOVE)
 . tools/ak3-core.sh;
 
-set_perm_recursive 0 0 755 644 $ramdisk/*;
-set_perm_recursive 0 0 750 750 $ramdisk/init* $ramdisk/sbin;
-
-dump_boot;
-mount -o rw /data;
-
-if [ ! -d /data/adb/service.d ]; then
-mkdir /data/adb;
-mkdir /data/adb/service.d;
-fi;
-replace_file /data/adb/service.d/init.qcom.post_boot.sh 0777 init.qcom.post_boot.sh;
-if [ -d $ramdisk/.backup ]; then
-  ui_print " "; ui_print "Update Magisk V26.4 (stable) !!!!!!...";
-  patch_cmdline "skip_override" "skip_override";
-else
-  patch_cmdline "skip_override" "";
-fi;
-remove_section init.rc "service flash_recovery" "";
-write_boot;
-
+# boot install
+dump_boot; # use split_boot to skip ramdisk unpack, e.g. for devices with init_boot ramdisk
+write_boot; # use flash_boot to skip ramdisk repack, e.g. for devices with init_boot ramdisk
+## end boot install

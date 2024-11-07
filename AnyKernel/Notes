@@ -3807,13 +3807,14 @@
 #                                                  #
 ####################################################
 #                                                  #
-# - Name Kernel     = FALCON                       #
-# - Status          = TESTING                      #
-# - Category Kernel = BALANCE                      #
-# - Device          = surya                        #
-# - Version Android = 11,12,13,14                  #
-# - Vendor          = OSS & MIUI                   #
-# - Build Date      = 05062024                     #
+# - Name Kernel     = CABAI RAWIT                  #
+# - Status          =                              #
+# - Category Kernel =                              #
+# - Device          =                              #
+# - Version Android =                              #
+# - Vendor          =                              #
+# - Build Date      =                              #
+# - Last Commit     =                              #
 # - Build Clock     =                              #
 #                                                  #
 ####################################################
@@ -3822,7 +3823,7 @@
 #                                                  #
 # CHANGELOG                                        #
 #                                                  #
-# KERNEL FALCON FOR SURYA                          #
+# KERNEL CABAI RAWIT FOR SURYA                     #
 # - IMPROVER & STABILIZER PERFORMANCE              #
 # - FIXED MORE BUGS                                #
 # - AND MORE                                       #
