@@ -61,15 +61,15 @@
 #define LZ4_COMPRESSBOUND(isize)	(\
 	(unsigned int)(isize) > (unsigned int)LZ4_MAX_INPUT_SIZE \
 	? 0 \
-	: (isize) + ((isize)/512) + 20)
+	: (isize) + ((isize)/255) + 20)
 
 #define LZ4_ACCELERATION_DEFAULT 1
 #define LZ4_HASHLOG	 (LZ4_MEMORY_USAGE-2)
 #define LZ4_HASHTABLESIZE (1 << LZ4_MEMORY_USAGE)
 #define LZ4_HASH_SIZE_U32 (1 << LZ4_HASHLOG)
 
-#define LZ4HC_MIN_CLEVEL			8
-#define LZ4HC_DEFAULT_CLEVEL			14
+#define LZ4HC_MIN_CLEVEL			1
+#define LZ4HC_DEFAULT_CLEVEL			9
 #define LZ4HC_MAX_CLEVEL			20
 
 #define LZ4HC_DICTIONARY_LOGSIZE 20
