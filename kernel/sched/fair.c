@@ -89,8 +89,8 @@ walt_dec_cfs_rq_stats(struct cfs_rq *cfs_rq, struct task_struct *p) {}
  *
  * (default: 9ms * (1 + ilog(ncpus)), units: nanoseconds)
  */
-unsigned int sysctl_sched_latency			= 500ULL;
-unsigned int normalized_sysctl_sched_latency		= 500ULL;
+unsigned int sysctl_sched_latency			= 500000ULL;
+unsigned int normalized_sysctl_sched_latency		= 500000ULL;
 
 /*
  * Enable/disable honoring sync flag in energy-aware wakeups.
@@ -119,8 +119,8 @@ enum sched_tunable_scaling sysctl_sched_tunable_scaling = SCHED_TUNABLESCALING_N
  *
  * (default: 0.90 msec * (1 + ilog(ncpus)), units: nanoseconds)
  */
-unsigned int sysctl_sched_min_granularity		= 500ULL;
-unsigned int normalized_sysctl_sched_min_granularity	= 500ULL;
+unsigned int sysctl_sched_min_granularity		= 500000ULL;
+unsigned int normalized_sysctl_sched_min_granularity	= 500000ULL;
 
 /*
  * This value is kept at sysctl_sched_latency/sysctl_sched_min_granularity
@@ -4485,7 +4485,7 @@ void cfs_bandwidth_usage_dec(void) {}
  */
 static inline u64 default_cfs_period(void)
 {
-	return 500ULL;
+	return 1000000ULL;
 }
 
 static inline u64 sched_cfs_bandwidth_slice(void)
