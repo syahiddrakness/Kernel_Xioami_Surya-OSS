@@ -972,6 +972,7 @@
 
 		#clock-cells = <1>;
 		qcom,cpufreq-table-0 =
+			< 300000>,
 			< 576000>,
 			< 768000>,
 			<1017600>,
@@ -983,6 +984,7 @@
 			<1804800>;
 
 		qcom,cpufreq-table-6 =
+			< 300000>,
 			< 652800>,
 			< 806400>,
 			< 979200>,
@@ -2852,7 +2854,6 @@
 
 	ddr_bw_opp_table: ddr-bw-opp-table {
 		compatible = "operating-points-v2";
-		BW_OPP_ENTRY(   0, 4); /*     0 MB/s */
 		BW_OPP_ENTRY( 100, 4); /*   381 MB/s */
 		BW_OPP_ENTRY( 200, 4); /*   762 MB/s */
 		BW_OPP_ENTRY( 300, 4); /*  1144 MB/s */
@@ -2893,7 +2894,6 @@
 
 	suspendable_ddr_bw_opp_table: suspendable-ddr-bw-opp-table {
 		compatible = "operating-points-v2";
-		BW_OPP_ENTRY(   0, 4); /*     0 MB/s */
 		BW_OPP_ENTRY( 100, 4); /*   381 MB/s */
 		BW_OPP_ENTRY( 200, 4); /*   762 MB/s */
 		BW_OPP_ENTRY( 300, 4); /*  1144 MB/s */
@@ -2975,7 +2975,6 @@
 		qcom,target-dev = <&cpu0_cpu_llcc_lat>;
 		qcom,cachemiss-ev = <0x2A>;
 		qcom,core-dev-table =
-			<	0 MHZ_TO_MBPS(   0, 16) >,
 			<  300000 MHZ_TO_MBPS( 300, 16) >,
 			<  576000 MHZ_TO_MBPS( 466, 16) >,
 			<  768000 MHZ_TO_MBPS( 600, 16) >,
@@ -3003,7 +3002,6 @@
 		qcom,target-dev = <&cpu6_cpu_llcc_lat>;
 		qcom,cachemiss-ev = <0x2A>;
 		qcom,core-dev-table =
-			<	0 MHZ_TO_MBPS(   0, 16) >,
 			<  300000 MHZ_TO_MBPS( 300, 16) >,
 			<  652800 MHZ_TO_MBPS( 466, 16) >,
 			<  806400 MHZ_TO_MBPS( 600, 16) >,
@@ -3035,7 +3033,6 @@
 		qcom,target-dev = <&cpu0_llcc_ddr_lat>;
 		qcom,cachemiss-ev = <0x1000>;
 		qcom,core-dev-table =
-			<	0 MHZ_TO_MBPS(   0, 4) >,
 			<  300000 MHZ_TO_MBPS( 451, 4) >,
 			<  576000 MHZ_TO_MBPS( 547, 4) >,
 			<  768000 MHZ_TO_MBPS( 768, 4) >,
@@ -3063,7 +3060,6 @@
 		qcom,target-dev = <&cpu6_llcc_ddr_lat>;
 		qcom,cachemiss-ev = <0x1000>;
 		qcom,core-dev-table =
-			<	0 MHZ_TO_MBPS(   0, 4) >,
 			<  300000 MHZ_TO_MBPS( 451, 4) >,
 			<  652800 MHZ_TO_MBPS( 547, 4) >,
 			<  806400 MHZ_TO_MBPS( 681, 4) >,
@@ -3094,7 +3090,6 @@
 		qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5>;
 		qcom,target-dev = <&cpu0_cpu_ddr_latfloor>;
 		qcom,core-dev-table =
-			<	0 MHZ_TO_MBPS(   0, 4) >,
 			<  300000 MHZ_TO_MBPS( 451, 4) >,
 			<  576000 MHZ_TO_MBPS( 547, 4) >,
 			<  768000 MHZ_TO_MBPS( 768, 4) >,
@@ -3121,7 +3116,6 @@
 		qcom,cpulist = <&CPU6 &CPU7>;
 		qcom,target-dev = <&cpu6_cpu_ddr_latfloor>;
 		qcom,core-dev-table =
-			<	0 MHZ_TO_MBPS(   0, 4) >,
 			<  300000 MHZ_TO_MBPS( 451, 4) >,
 			<  652800 MHZ_TO_MBPS( 547, 4) >,
 			<  806400 MHZ_TO_MBPS( 681, 4) >,
