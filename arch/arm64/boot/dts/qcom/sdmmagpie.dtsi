@@ -372,6 +372,7 @@
 
 		CPU_COST_0: core-cost0 {
 			busy-cost-data = <
+				300000	3000
 				576000	4000
 				768000	4100
 				1017600	4200
@@ -389,6 +390,7 @@
 
 		CPU_COST_1: core-cost1 {
 			busy-cost-data = <
+				300000	3000
 				652800	4000
 				806400	4100
 				979200	4200
@@ -410,15 +412,16 @@
 
 		CLUSTER_COST_0: cluster-cost0 {
 			busy-cost-data = <
-				576000	100
-				768000	200
-				1017600	300
-				1248000	400
-				1324800	500
-				1497600	600
-				1612800	700
-				1708800	800
-				1804800	900
+				300000	100
+				576000	200
+				768000	300
+				1017600	400
+				1248000	500
+				1324800	600
+				1497600	700
+				1612800	800
+				1708800	900
+				1804800	1000
 			>;
 			idle-cost-data = <
 				120 120 120 120 120
@@ -427,19 +430,20 @@
 
 		CLUSTER_COST_1: cluster-cost1 {
 			busy-cost-data = <
-				652800	100
-				806400	200
-				979200	300
-				1094400	400
-				1209600	500
-				1324800	600
-				1555200	700
-				1708800	800
-				1843200	900
-				1939200	1000
-				2169600	1100
-				2208000	1200
-				2304000	1300
+				300000	100
+				652800	200
+				806400	300
+				979200	400
+				1094400	500
+				1209600	600
+				1324800	700
+				1555200	800
+				1708800	900
+				1843200	1000
+				1939200	1100
+				2169600	1200
+				2208000	1300
+				2304000	1400
 			>;
 			idle-cost-data = <
 				120 120 120 120 120
@@ -2796,6 +2800,7 @@
 
 	llcc_bw_opp_table: llcc-bw-opp-table {
 		compatible = "operating-points-v2";
+		BW_OPP_ENTRY(	0, 16); /*     0 MB/s */
 		BW_OPP_ENTRY( 150, 16); /*  2288 MB/s */
 		BW_OPP_ENTRY( 300, 16); /*  4577 MB/s */
 		BW_OPP_ENTRY( 466, 16); /*  7110 MB/s */
@@ -2970,6 +2975,8 @@
 		qcom,target-dev = <&cpu0_cpu_llcc_lat>;
 		qcom,cachemiss-ev = <0x2A>;
 		qcom,core-dev-table =
+			<	0 MHZ_TO_MBPS(   0, 16) >,
+			<  300000 MHZ_TO_MBPS( 300, 16) >,
 			<  576000 MHZ_TO_MBPS( 466, 16) >,
 			<  768000 MHZ_TO_MBPS( 600, 16) >,
 			< 1017600 MHZ_TO_MBPS(1100, 16) >,
@@ -2996,6 +3003,8 @@
 		qcom,target-dev = <&cpu6_cpu_llcc_lat>;
 		qcom,cachemiss-ev = <0x2A>;
 		qcom,core-dev-table =
+			<	0 MHZ_TO_MBPS(   0, 16) >,
+			<  300000 MHZ_TO_MBPS( 300, 16) >,
 			<  652800 MHZ_TO_MBPS( 466, 16) >,
 			<  806400 MHZ_TO_MBPS( 600, 16) >,
 			<  979200 MHZ_TO_MBPS( 806, 16) >,
@@ -3026,6 +3035,8 @@
 		qcom,target-dev = <&cpu0_llcc_ddr_lat>;
 		qcom,cachemiss-ev = <0x1000>;
 		qcom,core-dev-table =
+			<	0 MHZ_TO_MBPS(   0, 4) >,
+			<  300000 MHZ_TO_MBPS( 451, 4) >,
 			<  576000 MHZ_TO_MBPS( 547, 4) >,
 			<  768000 MHZ_TO_MBPS( 768, 4) >,
 			< 1017600 MHZ_TO_MBPS(1017, 4) >,
@@ -3052,6 +3063,8 @@
 		qcom,target-dev = <&cpu6_llcc_ddr_lat>;
 		qcom,cachemiss-ev = <0x1000>;
 		qcom,core-dev-table =
+			<	0 MHZ_TO_MBPS(   0, 4) >,
+			<  300000 MHZ_TO_MBPS( 451, 4) >,
 			<  652800 MHZ_TO_MBPS( 547, 4) >,
 			<  806400 MHZ_TO_MBPS( 681, 4) >,
 			<  979200 MHZ_TO_MBPS( 768, 4) >,
@@ -3081,6 +3094,8 @@
 		qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5>;
 		qcom,target-dev = <&cpu0_cpu_ddr_latfloor>;
 		qcom,core-dev-table =
+			<	0 MHZ_TO_MBPS(   0, 4) >,
+			<  300000 MHZ_TO_MBPS( 451, 4) >,
 			<  576000 MHZ_TO_MBPS( 547, 4) >,
 			<  768000 MHZ_TO_MBPS( 768, 4) >,
 			< 1017600 MHZ_TO_MBPS(1017, 4) >,
@@ -3106,6 +3121,8 @@
 		qcom,cpulist = <&CPU6 &CPU7>;
 		qcom,target-dev = <&cpu6_cpu_ddr_latfloor>;
 		qcom,core-dev-table =
+			<	0 MHZ_TO_MBPS(   0, 4) >,
+			<  300000 MHZ_TO_MBPS( 451, 4) >,
 			<  652800 MHZ_TO_MBPS( 547, 4) >,
 			<  806400 MHZ_TO_MBPS( 681, 4) >,
 			<  979200 MHZ_TO_MBPS( 768, 4) >,
