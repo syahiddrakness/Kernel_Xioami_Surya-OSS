@@ -34,6 +34,7 @@
                 mi,qc3-bus-volt-max = <12000>;
                 mi,qc3-bus-curr-max = <6000>;
 		mi,qc3-bus-curr-compensate = <100>;
+        };
 
 	usbpd_pm {
 		compatible = "xiaomi,usbpd-pm";
@@ -461,7 +462,7 @@
 	qcom,sec-charger-config = <0>;
 	qcom,thermal-mitigation = <6000000 5500000 4900000 4600000 4500000 4400000 4200000
 				   3800000 3800000 3600000 3400000 3200000 3000000 2200000
-				   800000 700000>;
+				   800000 700000 600000 500000 400000 300000 200000>;
 	dpdm-supply = <&qusb_phy0>;
 	qcom,charger-temp-max = <1500>;
 	qcom,smb-temp-max = <1500>;
