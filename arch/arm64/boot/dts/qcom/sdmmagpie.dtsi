@@ -191,7 +191,7 @@
 			reg = <0x0 0x400>;
 			enable-method = "psci";
 			capacity-dmips-mhz = <4800>;
-			sched-energy-costs = <&CPU_COST_1 &CLUSTER_COST_1>;
+			sched-energy-costs = <&CPU_COST_0 &CLUSTER_COST_0>;
 			next-level-cache = <&L2_400>;
 			qcom,lmh-dcvs = <&lmh_dcvs0>;
 			#cooling-cells = <2>;
@@ -199,29 +199,20 @@
 			      compatible = "arm,arch-cache";
 			      cache-level = <2>;
 			      next-level-cache = <&L3_0>;
-			      qcom,dump-size = <0x48000>;
 			};
 
 			L1_I_400: l1-icache {
 				compatible = "arm,arch-cache";
-				qcom,dump-size = <0x11000>;
+				qcom,dump-size = <0x8800>;
 			};
 
 			L1_D_400: l1-dcache {
 				compatible = "arm,arch-cache";
-				qcom,dump-size = <0x12000>;
-			};
-
-			L1_ITLB_400: l1-itlb {
-				qcom,dump-size = <0x300>;
-			};
-
-			L1_DTLB_400: l1-dtlb {
-				qcom,dump-size = <0x480>;
+				qcom,dump-size = <0x9000>;
 			};
 
 			L2_TLB_400: l2-tlb {
-				qcom,dump-size = <0x7800>;
+				qcom,dump-size = <0x5000>;
 			};
 		};
 
@@ -231,7 +222,7 @@
 			reg = <0x0 0x500>;
 			enable-method = "psci";
 			capacity-dmips-mhz = <4800>;
-			sched-energy-costs = <&CPU_COST_1 &CLUSTER_COST_1>;
+			sched-energy-costs = <&CPU_COST_0 &CLUSTER_COST_0>;
 			next-level-cache = <&L2_500>;
 			qcom,lmh-dcvs = <&lmh_dcvs0>;
 			#cooling-cells = <2>;
@@ -239,29 +230,20 @@
 			      compatible = "arm,arch-cache";
 			      cache-level = <2>;
 			      next-level-cache = <&L3_0>;
-			      qcom,dump-size = <0x48000>;
 			};
 
 			L1_I_500: l1-icache {
 				compatible = "arm,arch-cache";
-				qcom,dump-size = <0x11000>;
+				qcom,dump-size = <0x8800>;
 			};
 
 			L1_D_500: l1-dcache {
 				compatible = "arm,arch-cache";
-				qcom,dump-size = <0x12000>;
-			};
-
-			L1_ITLB_500: l1-itlb {
-				qcom,dump-size = <0x300>;
-			};
-
-			L1_DTLB_500: l1-dtlb {
-				qcom,dump-size = <0x480>;
+				qcom,dump-size = <0x9000>;
 			};
 
 			L2_TLB_500: l2-tlb {
-				qcom,dump-size = <0x7800>;
+				qcom,dump-size = <0x5000>;
 			};
 		};
 
@@ -363,22 +345,22 @@
 					cpu = <&CPU3>;
 				};
 
+				core4 {
+					cpu = <&CPU4>;
+				};
+
+				core5 {
+					cpu = <&CPU5>;
+				};
+
 			};
 
 			cluster1 {
 				core0 {
-					cpu = <&CPU4>;
-				};
-
-				core1 {
-					cpu = <&CPU5>;
-				};
-
-				core2 {
 					cpu = <&CPU6>;
 				};
 
-				core3 {
+				core1 {
 					cpu = <&CPU7>;
 				};
 			};
@@ -390,6 +372,7 @@
 
 		CPU_COST_0: core-cost0 {
 			busy-cost-data = <
+				300000	3000
 				576000	4000
 				768000	4100
 				1017600	4200
@@ -407,6 +390,7 @@
 
 		CPU_COST_1: core-cost1 {
 			busy-cost-data = <
+				300000	3000
 				652800	4000
 				806400	4100
 				979200	4200
@@ -428,6 +412,7 @@
 
 		CLUSTER_COST_0: cluster-cost0 {
 			busy-cost-data = <
+				300000	100
 				576000	200
 				768000	300
 				1017600	400
@@ -445,6 +430,7 @@
 
 		CLUSTER_COST_1: cluster-cost1 {
 			busy-cost-data = <
+				300000	100
 				652800	200
 				806400	300
 				979200	400
@@ -986,6 +972,7 @@
 
 		#clock-cells = <1>;
 		qcom,cpufreq-table-0 =
+			< 300000>,
 			< 576000>,
 			< 768000>,
 			<1017600>,
@@ -996,7 +983,8 @@
 			<1708800>,
 			<1804800>;
 
-		qcom,cpufreq-table-4 =
+		qcom,cpufreq-table-6 =
+			< 300000>,
 			< 652800>,
 			< 806400>,
 			< 979200>,
@@ -2220,6 +2208,15 @@
 			/* 200 MB/s */
 			<81 512 100000 200000>,
 			<1 608 60000 120000>,
+			/* 300 MB/s */
+			<81 512 200000 200000>,
+			<1 608 70000 120000>,
+			/* 400 MB/s */
+			<81 512 300000 200000>,
+			<1 608 80000 120000>,
+			/* 500 MB/s */
+			<81 512 400000 200000>,
+			<1 608 90000 120000>,
 			/* Max. bandwidth */
 			<81 512 1338562 4096000>,
 			<1 608 1338562 4096000>;
@@ -2941,7 +2938,7 @@
 
 	cpu0_cpu_l3_latmon: qcom,cpu0-cpu-l3-latmon {
 		compatible = "qcom,arm-memlat-mon";
-		qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3>;
+		qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5>;
 		qcom,target-dev = <&cpu0_cpu_l3_lat>;
 		qcom,cachemiss-ev = <0x32>;
 		qcom,core-dev-table =
@@ -2961,7 +2958,7 @@
 
 	cpu6_cpu_l3_latmon: qcom,cpu6-cpu-l3-latmon {
 		compatible = "qcom,arm-memlat-mon";
-		qcom,cpulist = <&CPU4 &CPU5 &CPU6 &CPU7>;
+		qcom,cpulist = <&CPU6 &CPU7>;
 		qcom,target-dev = <&cpu6_cpu_l3_lat>;
 		qcom,cachemiss-ev = <0x32>;
 		qcom,core-dev-table =
@@ -2983,10 +2980,11 @@
 
 	cpu0_cpu_llcc_latmon: qcom,cpu0-cpu-llcc-latmon {
 		compatible = "qcom,arm-memlat-mon";
-		qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3>;
+		qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5>;
 		qcom,target-dev = <&cpu0_cpu_llcc_lat>;
 		qcom,cachemiss-ev = <0x4A>;
 		qcom,core-dev-table =
+			<  300000 MHZ_TO_MBPS( 300, 16) >,
 			<  576000 MHZ_TO_MBPS( 466, 16) >,
 			<  768000 MHZ_TO_MBPS( 600, 16) >,
 			< 1017600 MHZ_TO_MBPS(1100, 16) >,
@@ -3009,10 +3007,11 @@
 
 	cpu6_cpu_llcc_latmon: qcom,cpu6-cpu-llcc-latmon {
 		compatible = "qcom,arm-memlat-mon";
-		qcom,cpulist = <&CPU4 &CPU5 &CPU6 &CPU7>;
+		qcom,cpulist = <&CPU6 &CPU7>;
 		qcom,target-dev = <&cpu6_cpu_llcc_lat>;
 		qcom,cachemiss-ev = <0x4A>;
 		qcom,core-dev-table =
+			<  300000 MHZ_TO_MBPS( 300, 16) >,
 			<  652800 MHZ_TO_MBPS( 466, 16) >,
 			<  806400 MHZ_TO_MBPS( 600, 16) >,
 			<  979200 MHZ_TO_MBPS( 806, 16) >,
@@ -3039,10 +3038,11 @@
 
 	cpu0_llcc_ddr_latmon: qcom,cpu0-llcc-ddr-latmon {
 		compatible = "qcom,arm-memlat-mon";
-		qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3>;
+		qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5>;
 		qcom,target-dev = <&cpu0_llcc_ddr_lat>;
 		qcom,cachemiss-ev = <0x4000>;
 		qcom,core-dev-table =
+			<  300000 MHZ_TO_MBPS( 451, 4) >,
 			<  576000 MHZ_TO_MBPS( 547, 4) >,
 			<  768000 MHZ_TO_MBPS( 768, 4) >,
 			< 1017600 MHZ_TO_MBPS(1017, 4) >,
@@ -3065,10 +3065,11 @@
 
 	cpu6_llcc_ddr_latmon: qcom,cpu6-llcc-ddr-latmon {
 		compatible = "qcom,arm-memlat-mon";
-		qcom,cpulist = <&CPU4 &CPU5 &CPU6 &CPU7>;
+		qcom,cpulist = <&CPU6 &CPU7>;
 		qcom,target-dev = <&cpu6_llcc_ddr_lat>;
 		qcom,cachemiss-ev = <0x4000>;
 		qcom,core-dev-table =
+			<  300000 MHZ_TO_MBPS( 451, 4) >,
 			<  652800 MHZ_TO_MBPS( 547, 4) >,
 			<  806400 MHZ_TO_MBPS( 681, 4) >,
 			<  979200 MHZ_TO_MBPS( 768, 4) >,
@@ -3095,9 +3096,10 @@
 
 	cpu0_computemon: qcom,cpu0-computemon {
 		compatible = "qcom,arm-cpu-mon";
-		qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3>;
+		qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5>;
 		qcom,target-dev = <&cpu0_cpu_ddr_latfloor>;
 		qcom,core-dev-table =
+			<  300000 MHZ_TO_MBPS( 451, 4) >,
 			<  576000 MHZ_TO_MBPS( 547, 4) >,
 			<  768000 MHZ_TO_MBPS( 768, 4) >,
 			< 1017600 MHZ_TO_MBPS(1017, 4) >,
@@ -3120,9 +3122,10 @@
 
 	cpu6_computemon: qcom,cpu6-computemon {
 		compatible = "qcom,arm-cpu-mon";
-		qcom,cpulist = <&CPU4 &CPU5 &CPU6 &CPU7>;
+		qcom,cpulist = <&CPU6 &CPU7>;
 		qcom,target-dev = <&cpu6_cpu_ddr_latfloor>;
 		qcom,core-dev-table =
+			<  300000 MHZ_TO_MBPS( 451, 4) >,
 			<  652800 MHZ_TO_MBPS( 547, 4) >,
 			<  806400 MHZ_TO_MBPS( 681, 4) >,
 			<  979200 MHZ_TO_MBPS( 768, 4) >,
