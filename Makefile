@@ -281,7 +281,7 @@ include scripts/Kbuild.include
 
 # Read KERNELRELEASE from include/config/kernel.release (if it exists)
 KERNELRELEASE = $(shell cat include/config/kernel.release 2> /dev/null)
-KERNELVERSION = 5$(if 15,.15$(if 175,.175))$(EXTRAVERSION)
+KERNELVERSION = 5$(if 10,.10$(if 232,.232))$(EXTRAVERSION)
 export VERSION PATCHLEVEL SUBLEVEL KERNELRELEASE KERNELVERSION
 
 # SUBARCH tells the usermode build what the underlying arch is.  That is set
