@@ -2145,7 +2145,7 @@
 		/* PM QoS */
 		qcom,pm-qos-irq-type = "affine_irq";
 		qcom,pm-qos-irq-latency = <120 120>;
-		qcom,pm-qos-cpu-groups = <0x3f 0xc0>;
+		qcom,pm-qos-cpu-groups = <0x120 0x120>;
 		qcom,pm-qos-cmdq-latency-us = <120 120>, <120 120>;
 		qcom,pm-qos-legacy-latency-us = <120 120>, <120 120>;
 
@@ -2226,7 +2226,7 @@
 		/* PM QoS */
 		qcom,pm-qos-irq-type = "affine_irq";
 		qcom,pm-qos-irq-latency = <120 120>;
-		qcom,pm-qos-cpu-groups = <0x3f 0xc0>;
+		qcom,pm-qos-cpu-groups = <0x120 0x120>;
 		qcom,pm-qos-legacy-latency-us = <120 120>, <120 120>;
 
 		clocks = <&clock_gcc GCC_SDCC2_AHB_CLK>,
@@ -2391,7 +2391,7 @@
 		"MAX";
 
 		/* PM QoS */
-		qcom,pm-qos-cpu-groups = <0x3f 0xC0>;
+		qcom,pm-qos-cpu-groups = <0x120 0x120>;
 		qcom,pm-qos-cpu-group-latency-us = <120 120>;
 		qcom,pm-qos-default-cpu = <0>;
 
