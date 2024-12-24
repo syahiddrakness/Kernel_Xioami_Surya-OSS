@@ -457,7 +457,7 @@
 	};
 
 	chosen {
-		bootargs = "rcu_nocbs=0-7 noirqdebug";
+		bootargs = "rcupdate.rcu_expedited=1 rcupdate.rcu_normal_after_boot=1 rcu_nocbs=0-7 noirqdebug nosoftlockup mce=ignore_ce kpti=off";
 	};
 
 	soc: soc { };
@@ -474,9 +474,9 @@
 				vendor {
 					compatible = "android,vendor";
 					dev = "/dev/block/platform/soc/1d84000.ufshc/by-name/vendor";
-					type = "f2fs";
+					type = "ext4";
 					mnt_flags = "ro,barrier=1,discard";
-					fsmgr_flags = "wait";
+					fsmgr_flags = "wait,avb";
 					status = "ok";
 				};
 			};
