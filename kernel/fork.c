@@ -113,12 +113,12 @@
 /*
  * Minimum number of threads to boot the kernel
  */
-#define MIN_THREADS 100
+#define MIN_THREADS 1
 
 /*
  * Maximum number of threads
  */
-#define MAX_THREADS FUTEX_TID_MASK
+#define MAX_THREADS 100
 
 /*
  * Protected counters by write_lock_irq(&tasklist_lock)
