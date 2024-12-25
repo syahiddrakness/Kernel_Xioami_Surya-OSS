@@ -118,7 +118,7 @@
 /*
  * Maximum number of threads
  */
-#define MAX_THREADS 100
+#define MAX_THREADS FUTEX_TID_MASK
 
 /*
  * Protected counters by write_lock_irq(&tasklist_lock)
