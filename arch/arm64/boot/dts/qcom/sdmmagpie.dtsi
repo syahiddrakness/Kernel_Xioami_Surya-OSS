@@ -2940,7 +2940,7 @@
 		compatible = "qcom,arm-memlat-mon";
 		qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5>;
 		qcom,target-dev = <&cpu0_cpu_l3_lat>;
-		qcom,cachemiss-ev = <0x32>;
+		qcom,cachemiss-ev = <0x17>;
 		qcom,core-dev-table =
 			< 1017600  556800000 >,
 			< 1248000  768000000 >,
@@ -2960,7 +2960,7 @@
 		compatible = "qcom,arm-memlat-mon";
 		qcom,cpulist = <&CPU6 &CPU7>;
 		qcom,target-dev = <&cpu6_cpu_l3_lat>;
-		qcom,cachemiss-ev = <0x32>;
+		qcom,cachemiss-ev = <0x17>;
 		qcom,core-dev-table =
 			< 1324000  652800000 >,
 			< 1708800  806400000 >,
@@ -2982,7 +2982,7 @@
 		compatible = "qcom,arm-memlat-mon";
 		qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5>;
 		qcom,target-dev = <&cpu0_cpu_llcc_lat>;
-		qcom,cachemiss-ev = <0x4A>;
+		qcom,cachemiss-ev = <0x2A>;
 		qcom,core-dev-table =
 			<  300000 MHZ_TO_MBPS( 300, 16) >,
 			<  576000 MHZ_TO_MBPS( 466, 16) >,
@@ -3009,7 +3009,7 @@
 		compatible = "qcom,arm-memlat-mon";
 		qcom,cpulist = <&CPU6 &CPU7>;
 		qcom,target-dev = <&cpu6_cpu_llcc_lat>;
-		qcom,cachemiss-ev = <0x4A>;
+		qcom,cachemiss-ev = <0x2A>;
 		qcom,core-dev-table =
 			<  300000 MHZ_TO_MBPS( 300, 16) >,
 			<  652800 MHZ_TO_MBPS( 466, 16) >,
@@ -3040,7 +3040,7 @@
 		compatible = "qcom,arm-memlat-mon";
 		qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5>;
 		qcom,target-dev = <&cpu0_llcc_ddr_lat>;
-		qcom,cachemiss-ev = <0x4000>;
+		qcom,cachemiss-ev = <0x1000>;
 		qcom,core-dev-table =
 			<  300000 MHZ_TO_MBPS( 451, 4) >,
 			<  576000 MHZ_TO_MBPS( 547, 4) >,
@@ -3067,7 +3067,7 @@
 		compatible = "qcom,arm-memlat-mon";
 		qcom,cpulist = <&CPU6 &CPU7>;
 		qcom,target-dev = <&cpu6_llcc_ddr_lat>;
-		qcom,cachemiss-ev = <0x4000>;
+		qcom,cachemiss-ev = <0x1000>;
 		qcom,core-dev-table =
 			<  300000 MHZ_TO_MBPS( 451, 4) >,
 			<  652800 MHZ_TO_MBPS( 547, 4) >,
