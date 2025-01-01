@@ -2812,12 +2812,12 @@
 	llcc_bw_opp_table: llcc-bw-opp-table {
 		compatible = "operating-points-v2";
 		BW_OPP_ENTRY(	0, 16); /*     0 MB/s */
-		BW_OPP_ENTRY( 150, 16); /*  2288 MB/s */
-		BW_OPP_ENTRY( 300, 16); /*  4577 MB/s */
-		BW_OPP_ENTRY( 466, 16); /*  7110 MB/s */
-		BW_OPP_ENTRY( 600, 16); /*  9155 MB/s */
-		BW_OPP_ENTRY( 806, 16); /* 12298 MB/s */
-		BW_OPP_ENTRY( 933, 16); /* 14236 MB/s */
+		BW_OPP_ENTRY( 400, 16); /*  4096 MB/s */
+		BW_OPP_ENTRY( 500, 16); /*  7500 MB/s */
+		BW_OPP_ENTRY( 600, 16); /* 10000 MB/s */
+		BW_OPP_ENTRY( 700, 16); /* 12500 MB/s */
+		BW_OPP_ENTRY( 800, 16); /* 15000 MB/s */
+		BW_OPP_ENTRY( 900, 16); /* 17500 MB/s */
 		BW_OPP_ENTRY(1000, 16); /* 20000 MB/s */
 		BW_OPP_ENTRY(1100, 16); /* 21000 MB/s */
 		BW_OPP_ENTRY(1200, 16); /* 22000 MB/s */
@@ -2984,9 +2984,9 @@
 		qcom,target-dev = <&cpu0_cpu_llcc_lat>;
 		qcom,cachemiss-ev = <0x2A>;
 		qcom,core-dev-table =
-			<  300000 MHZ_TO_MBPS( 300, 16) >,
-			<  576000 MHZ_TO_MBPS( 466, 16) >,
-			<  768000 MHZ_TO_MBPS( 600, 16) >,
+			<  300000 MHZ_TO_MBPS( 500, 16) >,
+			<  576000 MHZ_TO_MBPS( 600, 16) >,
+			<  768000 MHZ_TO_MBPS( 700, 16) >,
 			< 1017600 MHZ_TO_MBPS(1100, 16) >,
 			< 1248000 MHZ_TO_MBPS(1300, 16) >,
 			< 1324800 MHZ_TO_MBPS(1500, 16) >,
@@ -3011,11 +3011,11 @@
 		qcom,target-dev = <&cpu6_cpu_llcc_lat>;
 		qcom,cachemiss-ev = <0x2A>;
 		qcom,core-dev-table =
-			<  300000 MHZ_TO_MBPS( 300, 16) >,
-			<  652800 MHZ_TO_MBPS( 466, 16) >,
-			<  806400 MHZ_TO_MBPS( 600, 16) >,
-			<  979200 MHZ_TO_MBPS( 806, 16) >,
-			< 1094400 MHZ_TO_MBPS( 933, 16) >,
+			<  300000 MHZ_TO_MBPS( 500, 16) >,
+			<  652800 MHZ_TO_MBPS( 600, 16) >,
+			<  806400 MHZ_TO_MBPS( 700, 16) >,
+			<  979200 MHZ_TO_MBPS( 800, 16) >,
+			< 1094400 MHZ_TO_MBPS( 900, 16) >,
 			< 1209600 MHZ_TO_MBPS(1100, 16) >,
 			< 1324800 MHZ_TO_MBPS(1300, 16) >,
 			< 1555200 MHZ_TO_MBPS(1500, 16) >,
