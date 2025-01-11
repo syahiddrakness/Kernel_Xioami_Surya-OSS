@@ -11,12 +11,12 @@
 						 * whether IO subsystem is idle
 						 * or not
 						 */
-#define DEF_GC_THREAD_URGENT_SLEEP_TIME	500	/* 500 ms */
-#define DEF_GC_THREAD_MIN_SLEEP_TIME	30000	/* milliseconds */
-#define DEF_GC_THREAD_MAX_SLEEP_TIME	60000
-#define DEF_GC_THREAD_NOGC_SLEEP_TIME	300000	/* wait 5 min */
-#define LIMIT_INVALID_BLOCK	40 /* percentage over total user space */
-#define LIMIT_FREE_BLOCK	40 /* percentage over invalid + free space */
+#define DEF_GC_THREAD_URGENT_SLEEP_TIME	1000	/* 1000 ms */
+#define DEF_GC_THREAD_MIN_SLEEP_TIME	15000	/* milliseconds */
+#define DEF_GC_THREAD_MAX_SLEEP_TIME	120000
+#define DEF_GC_THREAD_NOGC_SLEEP_TIME	600000	/* wait 10 min */
+#define LIMIT_INVALID_BLOCK	20 /* percentage over total user space */
+#define LIMIT_FREE_BLOCK	20 /* percentage over invalid + free space */
 
 #define DEF_GC_FAILED_PINNED_FILES	2048
 
