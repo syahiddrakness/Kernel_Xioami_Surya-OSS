@@ -281,7 +281,7 @@ include scripts/Kbuild.include
 
 # Read KERNELRELEASE from include/config/kernel.release (if it exists)
 KERNELRELEASE = $(shell cat include/config/kernel.release 2> /dev/null)
-KERNELVERSION = 4$(if 19,.19$(if 0,.0))$(EXTRAVERSION)
+KERNELVERSION = 4$(if 19,.19$(if 0,.0))-cabai-rawit
 export VERSION PATCHLEVEL SUBLEVEL KERNELRELEASE KERNELVERSION
 
 # SUBARCH tells the usermode build what the underlying arch is.  That is set
