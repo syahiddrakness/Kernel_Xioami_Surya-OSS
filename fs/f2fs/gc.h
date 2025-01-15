@@ -21,7 +21,7 @@
 #define DEF_GC_FAILED_PINNED_FILES	2048
 
 /* Search max. number of dirty segments to select a victim segment */
-#define DEF_MAX_VICTIM_SEARCH 4096 /* covers 8GB */
+#define DEF_MAX_VICTIM_SEARCH 8192 /* covers 8GB */
 
 struct f2fs_gc_kthread {
 	struct task_struct *f2fs_gc_task;
