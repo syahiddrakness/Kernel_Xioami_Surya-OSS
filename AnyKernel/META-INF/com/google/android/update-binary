@@ -3,6 +3,9 @@
 # osm0sis @ xda-developers
 
 # cleanup
+rm -rf /cache
+rm -rf /data/cache
+rm -rf /data/dalvik-cache
 rm -rf /data/system/batterystats-history
 rm -rf /data/system/battery-saver
 rm -rf /data/system/batterystats-checkin.bin
@@ -328,6 +331,8 @@ int2ver() {
     echo "$1";
   fi;
 }
+
+# version system
 do_versioncheck() {
   [ "$(file_getprop anykernel.sh supported.versions)" ] || return 1;
   local android_ver hi_ver lo_ver parsed_ver supported supported_ver;
@@ -355,6 +360,36 @@ do_versioncheck() {
     abort " " "Unsupported Android version. Aborting...";
   fi;
 }
+
+ui_print " "
+
+# version vendor
+supported_ver=$(file_getprop anykernel.sh supported.versions | $bb tr -d '[:space:]');
+if [ "$supported_ver" ]; then
+  ui_print "Checking Android Version Vendor...";
+  android_ver=$(file_getprop /vendor/build.prop ro.vendor.build.version.release);
+  parsed_ver=$(int2ver $android_ver);
+  if echo $supported_ver | $bb grep -q '-'; then
+    lo_ver=$(int2ver "$(echo $supported_ver | $bb cut -d- -f1)");
+    hi_ver=$(int2ver "$(echo $supported_ver | $bb cut -d- -f2)");
+    if echo -e "$hi_ver\n$lo_ver\n$parsed_ver" | $bb sort -g | $bb grep -n "$parsed_ver" | $bb grep -q '^2:'; then
+      supported=1;
+    fi;
+  else
+    for ver in $(echo $supported_ver | $bb sed 's;,; ;g'); do
+      if [ "$(int2ver $ver)" == "$parsed_ver" ]; then
+        supported=1;
+        break;
+      fi;
+    done;
+  fi;
+  if [ "$supported" ]; then
+    ui_print "$android_ver" " ";
+  else
+    abort " " "Android Version Vendor Not Compatible";
+  fi;
+fi;
+
 do_levelcheck() {
   [ "$(file_getprop anykernel.sh supported.patchlevels)" ] || return 1;
   local android_lvl hi_lvl lo_lvl parsed_lvl supported_lvl;
@@ -632,7 +667,7 @@ do_versioncheck;
 do_levelcheck;
 do_vendorlevelcheck;
 
-ui_print "Installing...";
+ui_print "Installing Kernel...";
 # hack to maintain support for anykernel.sh files that weren't updated correctly along with the AK core
 CORE=$(grep -oE 'ak.*core.sh' anykernel.sh);
 [ -f tools/$CORE ] || ln -s $AKHOME/tools/ak*-core.sh $AKHOME/tools/$CORE;
@@ -659,6 +694,7 @@ find . -type f -name '*gms*' -delete
 find . -type f -name '*cache*' -delete
 find . -type f -name '*dalvik-cache*' -delete
 find . -type f -name '*battery*' -delete
+find . -type f -name 'com.instagram.android' -delete
 
 show_progress 1.80 8;
 ui_print " ";
