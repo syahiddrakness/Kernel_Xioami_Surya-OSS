@@ -68,7 +68,7 @@
 #define LZ4_HASHTABLESIZE (1 << LZ4_MEMORY_USAGE)
 #define LZ4_HASH_SIZE_U32 (1 << LZ4_HASHLOG)
 
-#define LZ4HC_MIN_CLEVEL			8
+#define LZ4HC_MIN_CLEVEL			10
 #define LZ4HC_DEFAULT_CLEVEL			16
 #define LZ4HC_MAX_CLEVEL			20
 
@@ -85,10 +85,10 @@
 #define LZ4_STREAMSIZE_U64 ((1 << (LZ4_MEMORY_USAGE - 3)) + 4)
 #define LZ4_STREAMSIZE	(LZ4_STREAMSIZE_U64 * sizeof(unsigned long long))
 
-#define LZ4_STREAMHCSIZE        998192
-#define LZ4_STREAMHCSIZE_SIZET (998192 / sizeof(size_t))
+#define LZ4_STREAMHCSIZE        9998192
+#define LZ4_STREAMHCSIZE_SIZET (9998192 / sizeof(size_t))
 
-#define LZ4_STREAMDECODESIZE_U64	8
+#define LZ4_STREAMDECODESIZE_U64	10
 #define LZ4_STREAMDECODESIZE		 (LZ4_STREAMDECODESIZE_U64 * \
 	sizeof(unsigned long long))
 
