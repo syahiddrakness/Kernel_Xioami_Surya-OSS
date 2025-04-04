@@ -73,7 +73,7 @@
 		qcom,gpu-quirk-secvid-set-once;
 
 		/* <HZ/12> */
-		qcom,idle-timeout = <120>;
+		qcom,idle-timeout = <70>;
 
 		qcom,highest-bank-bit = <14>;
 
@@ -101,7 +101,7 @@
 		qcom,gpubw-dev = <&gpubw>;
 		qcom,bus-control;
 		qcom,msm-bus,name = "grp3d";
-		qcom,bus-width = <8192>;
+		qcom,bus-width = <64>;
 		qcom,msm-bus,num-cases = <18>;
 		qcom,msm-bus,num-paths = <1>;
 		qcom,msm-bus,vectors-KBps =
@@ -135,8 +135,8 @@
 		cache-slices = <&llcc 12>, <&llcc 11>;
 
 		/* CPU latency parameter */
-		qcom,pm-qos-active-latency = <1500>;
-		qcom,pm-qos-wakeup-latency = <1500>;
+		qcom,pm-qos-active-latency = <70>;
+		qcom,pm-qos-wakeup-latency = <70>;
 
 		/* Enable context aware freq. scaling */
 		qcom,enable-ca-jump;
