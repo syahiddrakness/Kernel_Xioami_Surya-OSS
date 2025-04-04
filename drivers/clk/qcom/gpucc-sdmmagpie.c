@@ -181,7 +181,7 @@ static struct clk_alpha_pll gpu_cc_pll0 = {
 				[VDD_MIN] = 615000000,
 				[VDD_LOW] = 1066000000,
 				[VDD_LOW_L1] = 1600000000,
-				[VDD_NOMINAL] = 2000000000},
+				[VDD_LOW_L2] = 2000000000},
 		},
 	},
 };
@@ -238,7 +238,7 @@ static struct clk_alpha_pll gpu_cc_pll1 = {
 				[VDD_MIN] = 615000000,
 				[VDD_LOW] = 1066000000,
 				[VDD_LOW_L1] = 1600000000,
-				[VDD_NOMINAL] = 2000000000},
+				[VDD_LOW_L2] = 2000000000},
 		},
 	},
 };
