@@ -103,7 +103,7 @@ static struct clk_alpha_pll video_pll0 = {
 			.vdd_class = &vdd_cx,
 			.num_rate_max = VDD_NUM,
 			.rate_max = (unsigned long[VDD_NUM]) {
-				[VDD_LOWER] = 1066000000,
+				[VDD_LOWER] = 615000000,
 				[VDD_LOW] = 1066000000,
 				[VDD_LOW_L1] = 1600000000,
 				[VDD_NOMINAL] = 2000000000},
@@ -419,6 +419,7 @@ static struct platform_driver video_cc_sdmmagpie_driver = {
 	.driver = {
 		.name = "video_cc-sdmmagpie",
 		.of_match_table = video_cc_sdmmagpie_match_table,
+		.probe_type = PROBE_FORCE_SYNCHRONOUS,
 	},
 };
 
