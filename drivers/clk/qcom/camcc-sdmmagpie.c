@@ -678,10 +678,10 @@ static struct clk_rcg2 cam_cc_fast_ahb_clk_src = {
 		.vdd_class = &vdd_cx,
 		.num_rate_max = VDD_NUM,
 		.rate_max = (unsigned long[VDD_NUM]) {
-			[VDD_LOWER] = 100000000,
-			[VDD_LOW] = 200000000,
-			[VDD_LOW_L1] = 300000000,
-			[VDD_NOMINAL] = 400000000},
+			[VDD_LOW] = 100000000,
+			[VDD_LOW_L1] = 200000000,
+			[VDD_NOMINAL] = 300000000,
+			[VDD_HIGH] = 400000000},
 	},
 };
 
@@ -740,7 +740,7 @@ static struct clk_rcg2 cam_cc_icp_clk_src = {
 		.vdd_class = &vdd_cx,
 		.num_rate_max = VDD_NUM,
 		.rate_max = (unsigned long[VDD_NUM]) {
-			[VDD_LOWER] = 400000000,
+			[VDD_LOW] = 400000000,
 			[VDD_LOW_L1] = 600000000},
 	},
 };
@@ -883,10 +883,10 @@ static struct clk_rcg2 cam_cc_ife_lite_clk_src = {
 		.vdd_class = &vdd_cx,
 		.num_rate_max = VDD_NUM,
 		.rate_max = (unsigned long[VDD_NUM]) {
-			[VDD_LOWER] = 320000000,
-			[VDD_LOW] = 400000000,
-			[VDD_LOW_L1] = 480000000,
-			[VDD_NOMINAL] = 600000000},
+			[VDD_LOW] = 320000000,
+			[VDD_LOW_L1] = 400000000,
+			[VDD_NOMINAL] = 480000000,
+			[VDD_HIGH] = 600000000},
 	},
 };
 
@@ -936,10 +936,10 @@ static struct clk_rcg2 cam_cc_ipe_0_clk_src = {
 		.vdd_class = &vdd_cx,
 		.num_rate_max = VDD_NUM,
 		.rate_max = (unsigned long[VDD_NUM]) {
-			[VDD_LOWER] = 340000000,
-			[VDD_LOW] = 430000000,
-			[VDD_LOW_L1] = 520000000,
-			[VDD_NOMINAL] = 600000000},
+			[VDD_LOW] = 340000000,
+			[VDD_LOW_L1] = 430000000,
+			[VDD_NOMINAL] = 520000000,
+			[VDD_HIGH] = 600000000},
 	},
 };
 
@@ -990,10 +990,10 @@ static struct clk_rcg2 cam_cc_lrme_clk_src = {
 		.vdd_class = &vdd_cx,
 		.num_rate_max = VDD_NUM,
 		.rate_max = (unsigned long[VDD_NUM]) {
-			[VDD_LOWER] = 240000000,
-			[VDD_LOW] = 300000000,
-			[VDD_LOW_L1] = 320000000,
-			[VDD_NOMINAL] = 400000000},
+			[VDD_LOW] = 240000000,
+			[VDD_LOW_L1] = 300000000,
+			[VDD_NOMINAL] = 320000000,
+			[VDD_HIGH] = 400000000},
 	},
 };
 
