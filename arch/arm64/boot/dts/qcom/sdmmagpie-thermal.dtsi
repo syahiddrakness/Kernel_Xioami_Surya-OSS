@@ -1765,17 +1765,17 @@
 		wake-capable-sensor;
 		trips {
 			batt_trip0: batt-trip0 {
-				temperature = <43000>;
+				temperature = <45000>;
 				hysteresis = <4000>;
 				type = "passive";
 			};
 			batt_trip1: batt-trip1 {
-				temperature = <45000>;
+				temperature = <50000>;
 				hysteresis = <2000>;
 				type = "passive";
 			};
 			batt_trip2: batt-trip2 {
-				temperature = <47000>;
+				temperature = <55000>;
 				hysteresis = <2000>;
 				type = "passive";
 			};
@@ -1785,7 +1785,7 @@
 				type = "passive";
 			};
 			batt_trip3: batt-trip3 {
-				temperature = <49000>;
+				temperature = <57000>;
 				hysteresis = <2000>;
 				type = "passive";
 			};
@@ -1800,7 +1800,7 @@
 				type = "passive";
 			};
 			batt_trip4: batt-trip4 {
-				temperature = <51000>;
+				temperature = <60000>;
 				hysteresis = <2000>;
 				type = "passive";
 			};
