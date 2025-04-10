@@ -607,8 +607,8 @@
 
 		trips {
 			vbat_lvl0: vbat-lvl0 {
-				temperature = <3000>;
-				hysteresis = <200>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -624,8 +624,8 @@
 
 		trips {
 			vbat_lvl1:vbat-lvl1 {
-				temperature = <2800>;
-				hysteresis = <200>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -641,8 +641,8 @@
 
 		trips {
 			vbat_lvl2:vbat-lvl2 {
-				temperature = <2600>;
-				hysteresis = <200>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
@@ -706,7 +706,7 @@
 
 		trips {
 			soc_trip:soc-trip {
-				temperature = <1>;
+				temperature = <0>;
 				hysteresis = <0>;
 				type = "passive";
 			};
