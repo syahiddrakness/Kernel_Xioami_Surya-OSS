@@ -762,8 +762,8 @@
 		wake-capable-sensor;
 		trips {
 			silver-trip {
-				temperature = <120000>;
-				hysteresis = <0>;
+				temperature = <150000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -776,8 +776,8 @@
 		wake-capable-sensor;
 		trips {
 			gold-trip {
-				temperature = <120000>;
-				hysteresis = <0>;
+				temperature = <150000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -791,7 +791,7 @@
 		wake-capable-sensor;
 		trips {
 			cpu0_config: cpu0-config {
-				temperature = <110000>;
+				temperature = <115000>;
 				hysteresis = <10000>;
 				type = "passive";
 			};
@@ -814,7 +814,7 @@
 		wake-capable-sensor;
 		trips {
 			cpu1_config: cpu1-config {
-				temperature = <110000>;
+				temperature = <115000>;
 				hysteresis = <10000>;
 				type = "passive";
 			};
@@ -837,7 +837,7 @@
 		wake-capable-sensor;
 		trips {
 			cpu2_config: cpu2-config {
-				temperature = <110000>;
+				temperature = <115000>;
 				hysteresis = <10000>;
 				type = "passive";
 			};
@@ -860,7 +860,7 @@
 		wake-capable-sensor;
 		trips {
 			cpu3_config: cpu3-config {
-				temperature = <110000>;
+				temperature = <115000>;
 				hysteresis = <10000>;
 				type = "passive";
 			};
@@ -883,7 +883,7 @@
 		wake-capable-sensor;
 		trips {
 			cpu4_config: cpu4-config {
-				temperature = <110000>;
+				temperature = <115000>;
 				hysteresis = <10000>;
 				type = "passive";
 			};
@@ -906,7 +906,7 @@
 		wake-capable-sensor;
 		trips {
 			cpu5_config: cpu5-config {
-				temperature = <110000>;
+				temperature = <115000>;
 				hysteresis = <10000>;
 				type = "passive";
 			};
@@ -929,7 +929,7 @@
 		wake-capable-sensor;
 		trips {
 			cpu6_0_config: cpu6-0-config {
-				temperature = <110000>;
+				temperature = <115000>;
 				hysteresis = <10000>;
 				type = "passive";
 			};
@@ -952,7 +952,7 @@
 		wake-capable-sensor;
 		trips {
 			cpu6_1_config: cpu6-1-config {
-				temperature = <110000>;
+				temperature = <115000>;
 				hysteresis = <10000>;
 				type = "passive";
 			};
@@ -975,7 +975,7 @@
 		wake-capable-sensor;
 		trips {
 			cpu7_0_config: cpu7-0-config {
-				temperature = <110000>;
+				temperature = <115000>;
 				hysteresis = <10000>;
 				type = "passive";
 			};
@@ -998,7 +998,7 @@
 		wake-capable-sensor;
 		trips {
 			cpu7_1_config: cpu7-1-config {
-				temperature = <110000>;
+				temperature = <115000>;
 				hysteresis = <10000>;
 				type = "passive";
 			};
@@ -1699,7 +1699,7 @@
 		trips {
 			npu_trip0: npu-trip0 {
 				temperature = <115000>;
-				hysteresis = <0>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 		};
@@ -1728,12 +1728,12 @@
 
 			q6_hvx_trip1: q6-hvx-trip1 {
 				temperature = <115000>;
-				hysteresis = <0>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 
 			q6_hvx_trip2: q6-hvx-trip2 {
-				temperature = <105000>;
+				temperature = <110000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
@@ -1766,42 +1766,42 @@
 		trips {
 			batt_trip0: batt-trip0 {
 				temperature = <45000>;
-				hysteresis = <4000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 			batt_trip1: batt-trip1 {
 				temperature = <50000>;
-				hysteresis = <2000>;
+				hysteresis = <3000>;
 				type = "passive";
 			};
 			batt_trip2: batt-trip2 {
 				temperature = <55000>;
-				hysteresis = <2000>;
+				hysteresis = <3000>;
 				type = "passive";
 			};
 			modem_trip0: modem-trip0 {
-				temperature = <48000>;
-				hysteresis = <4000>;
+				temperature = <65000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 			batt_trip3: batt-trip3 {
 				temperature = <57000>;
-				hysteresis = <2000>;
+				hysteresis = <3000>;
 				type = "passive";
 			};
 			modem_trip1_hvx_trip: modem-trip1-hvx-trip {
-				temperature = <50000>;
-				hysteresis = <2000>;
+				temperature = <70000>;
+				hysteresis = <3000>;
 				type = "passive";
 			};
 			gold_trip: gold-trip {
-				temperature = <50000>;
-				hysteresis = <0>;
+				temperature = <80000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 			batt_trip4: batt-trip4 {
 				temperature = <60000>;
-				hysteresis = <2000>;
+				hysteresis = <3000>;
 				type = "passive";
 			};
 			skin_gpu_trip: skin-gpu-trip {
@@ -1810,18 +1810,18 @@
 				type = "passive";
 			};
 			modem_trip2: modem-trip2 {
-				temperature = <52000>;
-				hysteresis = <2000>;
+				temperature = <75000>;
+				hysteresis = <3000>;
 				type = "passive";
 			};
 			silver_trip: silver-trip {
-				temperature = <54000>;
-				hysteresis = <0>;
+				temperature = <80000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 			modem_trip3: modem-trip3 {
-				temperature = <58000>;
-				hysteresis = <4000>;
+				temperature = <80000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 		};
