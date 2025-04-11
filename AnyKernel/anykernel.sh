@@ -4,7 +4,7 @@
 ### AnyKernel setup
 # global properties
 properties() { '
-kernel.string=Kernel Kernel Cabai Rawit by syahid
+kernel.string=Kernel Black Caffee by syahid
 do.devicecheck=1
 do.modules=0
 do.cleanup=1

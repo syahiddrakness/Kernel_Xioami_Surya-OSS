@@ -2,7 +2,11 @@
 # AnyKernel3 Backend (DO NOT CHANGE)
 # osm0sis @ xda-developers
 
-# cleanup
+# target fingerprint
+ui_print " Target Fingerprint : $(getprop ro.build.fingerprint) " ;
+sleep 1
+
+# cleanup cache
 rm -rf /cache
 rm -rf /data/cache
 rm -rf /data/dalvik-cache
@@ -486,10 +490,10 @@ do_modules() {
         [ -d /data/adb/ksu ] || mkdir -p /data/adb/ksu;
         [ -f /data/adb/ksu/modules.img ] && cp -f /data/adb/ksu/modules.img /data/adb/ksu/modules_update.img;
         if [ ! -f /data/adb/ksu/modules_update.img ]; then
-          /system/bin/make_ext4fs -b 1024 -l 1024M /data/adb/ksu/modules_update.img 2>/dev/null \
-            || /system/bin/mke2fs -b 1024 -t ext4 /data/adb/ksu/modules_update.img 1024M;
+          /system/bin/make_f2fsfs -b 8192 -l 8192M /data/adb/ksu/modules_update.img 2>/dev/null \
+            || /system/bin/mke2fs -b 8192 -t f2fs /data/adb/ksu/modules_update.img 8192M;
         fi;
-        mount -t ext4 -o rw /data/adb/ksu/modules_update.img /data/adb/modules_update && umountksu=1;
+        mount -t f2fs -o rw /data/adb/ksu/modules_update.img /data/adb/modules_update && umountksu=1;
         touch /data/adb/ksu/update;
         umask 022;
         rm -rf $moddir;
@@ -596,8 +600,6 @@ if [ -f banner ]; then
   ui_print " " " ";
 fi;
 
-ui_print " "
-
 ui_print " About Device ";
 sleep 1
 ui_print " - Devices : $(getprop ro.build.product) ";
@@ -629,7 +631,9 @@ show_progress 1.50 5;
 
 ui_print " "
 
-ui_print " About ROMs ";
+ui_print " About RECOVERY/ROMs ";
+sleep 1
+ui_print " - Builder : $(getprop ro.build.user)@$(getprop ro.build.host) ";
 sleep 1
 ui_print " - RECOVERY/ROM Incremental : $(getprop ro.build.version.incremental) ";
 sleep 1
@@ -645,9 +649,36 @@ ui_print " - RECOVERY/ROM FingerPrint : $(getprop ro.build.fingerprint) " ;
 sleep 1
 show_progress 1.60 6;
 
+# backup kernel internal
+
+ ui_print " ";
+
+ ui_print "Backup Kernel To /internal/BACKUPS/Device/$(getprop ro.build.product)/Kernel...";
+ mkdir -p /sdcard/BACKUPS/Device/$(getprop ro.build.product)/Kernel
+ 
+ ui_print " - BACKUP boot.img ";
+ dd if=/dev/block/bootdevice/by-name/boot of=/sdcard/BACKUPS/Device/$(getprop ro.build.product)/Kernel/boot.img
+
+ ui_print " - BACKUP dtbo.img ";
+ dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard/BACKUPS/Device/$(getprop ro.build.product)/Kernel/dtbo.img
+
+ ui_print " - BACKUP recovery.img ";
+ dd if=/dev/block/bootdevice/by-name/recovery of=/sdcard/BACKUPS/Device/$(getprop ro.build.product)/Kernel/recovery.img
+
+ ui_print " - BACKUP boot.emmc.win ";
+ dd if=/dev/block/bootdevice/by-name/boot of=/sdcard/BACKUPS/Device/$(getprop ro.build.product)/Kernel/boot.emmc.win
+
+ ui_print " - BACKUP dtbo.emmc.win";
+ dd if=/dev/block/bootdevice/by-name/dtbo of=/sdcard/BACKUPS/Device/$(getprop ro.build.product)/Kernel/dtbo.emmc.win
+
+ ui_print " - BACKUP recovery.emmc.win";
+ dd if=/dev/block/bootdevice/by-name/recovery of=/sdcard/BACKUPS/Device/$(getprop ro.build.product)/Kernel/recovery.emmc.win
+
+ show_progress 1.70 7;
+
 ui_print " "
 
-ui_print " " "KERNEL CABAI RAWIT FOR VENDOR OSS & MIUI " " " " ";
+ui_print " " "KERNEL BLACK CAFFEE FOR VENDOR OSS & MIUI " " " " ";
 
 KERNEL_STRING="$(file_getprop anykernel.sh kernel.string)";
 ui_print "$KERNEL_STRING";
@@ -694,9 +725,7 @@ find . -type f -name '*gms*' -delete
 find . -type f -name '*cache*' -delete
 find . -type f -name '*dalvik-cache*' -delete
 find . -type f -name '*battery*' -delete
-find . -type f -name 'com.instagram.android' -delete
 
-show_progress 1.80 8;
 ui_print " ";
 ui_print "done!!!!!!...";
 ui_print " ";
