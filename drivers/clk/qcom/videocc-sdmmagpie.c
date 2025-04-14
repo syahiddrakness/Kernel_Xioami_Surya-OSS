@@ -104,9 +104,9 @@ static struct clk_alpha_pll video_pll0 = {
 			.num_rate_max = VDD_NUM,
 			.rate_max = (unsigned long[VDD_NUM]) {
 				[VDD_MIN] = 615000000,
-				[VDD_LOWER] = 1066000000,
-				[VDD_LOW] = 1600000000,
-				[VDD_LOW_L1] = 2000000000},
+				[VDD_LOW] = 1066000000,
+				[VDD_LOW_L1] = 1600000000,
+				[VDD_NOMINAL] = 2000000000},
 		},
 	},
 };
@@ -140,11 +140,11 @@ static struct clk_rcg2 video_cc_iris_clk_src = {
 		.vdd_class = &vdd_cx,
 		.num_rate_max = VDD_NUM,
 		.rate_max = (unsigned long[VDD_NUM]) {
-			[VDD_MIN] = 240000000,
-			[VDD_LOWER] = 338000000,
-			[VDD_LOW] = 365000000,
-			[VDD_LOW_L1] = 444000000,
-			[VDD_NOMINAL] = 533000000},
+			[VDD_LOWER] = 240000000,
+			[VDD_LOW] = 338000000,
+			[VDD_LOW_L1] = 365000000,
+			[VDD_NOMINAL] = 444000000,
+			[VDD_HIGH] = 533000000},
 	},
 };
 
