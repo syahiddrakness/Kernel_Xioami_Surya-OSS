@@ -548,18 +548,18 @@
 
 		trips {
 			pm6150_trip0: trip0 {
-				temperature = <70000>;
-				hysteresis = <4000>;
+				temperature = <75000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 			pm6150_trip1: trip1 {
-				temperature = <85000>;
+				temperature = <95000>;
 				hysteresis = <1000>;
 				type = "passive";
 			};
 			trip2 {
-				temperature = <115000>;
-				hysteresis = <750>;
+				temperature = <130000>;
+				hysteresis = <500>;
 				type = "passive";
 			};
 		};
@@ -574,8 +574,8 @@
 
 		trips {
 			ibat_lvl0:ibat-lvl0 {
-				temperature = <3000>;
-				hysteresis = <100>;
+				temperature = <5500>;
+				hysteresis = <200>;
 				type = "passive";
 			};
 		};
@@ -590,8 +590,8 @@
 
 		trips {
 			ibat_lvl1:ibat-lvl1 {
-				temperature = <5000>;
-				hysteresis = <100>;
+				temperature = <6000>;
+				hysteresis = <200>;
 				type = "passive";
 			};
 		};
