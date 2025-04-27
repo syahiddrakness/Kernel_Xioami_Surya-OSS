@@ -1216,6 +1216,7 @@ SYSCALL_DEFINE1(newuname, struct new_utsname __user *, name)
 	memcpy(&tmp, utsname(), sizeof(tmp));
 #ifdef CONFIG_KSU_SUSFS_SPOOF_UNAME
 	susfs_spoof_uname(&tmp);
+#endif
 #ifdef CONFIG_ANDROID_SPOOF_KERNEL_VERSION_FOR_BPF
 	if (!strncmp(current->comm, "netbpfload", 10) &&
 		current->pid != netbpfload_pid) {
