@@ -101,3 +101,4 @@ obj-$(CONFIG_LDO_WL2866D)     += wl2866d.o
 obj-$(CONFIG_FORCE_FAST_CHARGE) += fastchg.o
 # KernelSU
 obj-$(CONFIG_KSU)		+= KernelSU/
+obj-$(CONFIG_KSU_NEXT)		+= KernelSUNext/
