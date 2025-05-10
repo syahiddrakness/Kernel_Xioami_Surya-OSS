@@ -14,7 +14,7 @@ kernelsu-objs += selinux/rules.o
 ccflags-y += -I$(srctree)/security/selinux -I$(srctree)/security/selinux/include
 ccflags-y += -I$(objtree)/security/selinux -include $(srctree)/include/uapi/asm-generic/errno.h
 
-obj-$(CONFIG_KSU_NEXT) += kernelsu.o
+obj-$(CONFIG_KSU) += kernelsu.o
 
 KSU_GIT_VERSION := 12490
 # ksu_version: major + git version for historical reasons

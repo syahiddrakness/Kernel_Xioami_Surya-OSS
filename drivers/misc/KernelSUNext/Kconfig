@@ -1,6 +1,6 @@
 menu "KernelSU"
 
-config KSU_NEXT
+config KSU
 	tristate "KernelSU function support"
 	depends on OVERLAY_FS
 	default y
