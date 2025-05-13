@@ -328,12 +328,16 @@ config DYNAMIC_FSYNC
 	help
 	  An experimental file sync control using new power_suspend driver 
 
+menu "SUSFS"
 config KSU_SUSFS
-    bool "KernelSU addon - SUSFS"
+    bool "SUSFS"
     depends on KSU
+    select ANDROID_KABI_RESERVE
     default y
     help
       Patch and Enable SUSFS to kernel with KernelSU.
+
+endmenu
 
 endmenu
 
