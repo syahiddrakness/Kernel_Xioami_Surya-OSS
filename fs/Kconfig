@@ -332,7 +332,6 @@ menu "SUSFS"
 config KSU_SUSFS
     bool "SUSFS"
     depends on KSU
-    select ANDROID_KABI_RESERVE
     default y
     help
       Patch and Enable SUSFS to kernel with KernelSU.
