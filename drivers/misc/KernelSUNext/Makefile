@@ -16,10 +16,10 @@ ccflags-y += -I$(objtree)/security/selinux -include $(srctree)/include/uapi/asm-
 
 obj-$(CONFIG_KSU) += kernelsu.o
 
-KSU_GIT_VERSION := 12490
+KSU_GIT_VERSION := 12602
 # ksu_version: major + git version for historical reasons
 $(eval KSU_VERSION=$(shell expr + $(KSU_GIT_VERSION)))
-$(info -- KernelSU version: $(KSU_VERSION))
+$(info -- KernelSU-Next version: $(KSU_VERSION))
 ccflags-y += -DKSU_VERSION=$(KSU_VERSION)
 
 ifeq ($(shell grep -q " current_sid(void)" $(srctree)/security/selinux/include/objsec.h; echo $$?),0)
