@@ -328,16 +328,6 @@ config DYNAMIC_FSYNC
 	help
 	  An experimental file sync control using new power_suspend driver 
 
-menu "SUSFS"
-config KSU_SUSFS
-    bool "SUSFS"
-    depends on KSU
-    default y
-    help
-      Patch and Enable SUSFS to kernel with KernelSU.
-
-endmenu
-
 endmenu
 
 config BLOCK_UNWANTED_FILES
