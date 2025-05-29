@@ -1,19 +1,16 @@
 // SPDX-License-Identifier: GPL-2.0
 /*
- * Copyright (C) 2019-2023 Sultan Alsawaf <sultan@kerneltoast.com>.
+ * Copyright (C) 2019-2020 Sultan Alsawaf <sultan@kerneltoast.com>.
  */
 
 #define pr_fmt(fmt) "simple_lmk: " fmt
 
-#include <linux/freezer.h>
 #include <linux/kthread.h>
 #include <linux/mm.h>
 #include <linux/moduleparam.h>
 #include <linux/oom.h>
-#include <linux/ratelimit.h>
 #include <linux/sort.h>
 #include <linux/vmpressure.h>
-#include <linux/msm_drm_notify.h>
 #include <uapi/linux/sched/types.h>
 
 /* The minimum number of pages to free per reclaim */
@@ -54,10 +51,8 @@ static DECLARE_WAIT_QUEUE_HEAD(oom_waitq);
 static DECLARE_COMPLETION(reclaim_done);
 static DEFINE_RWLOCK(mm_free_lock);
 static int nr_victims;
-static atomic_t min_pressure = ATOMIC_INIT(0);
 static atomic_t needs_reclaim = ATOMIC_INIT(0);
 static atomic_t nr_killed = ATOMIC_INIT(0);
-static bool screen_on = true;
 
 static int victim_size_cmp(const void *lhs_ptr, const void *rhs_ptr)
 {
@@ -188,7 +183,7 @@ static void scan_and_kill(unsigned long pages_needed)
 
 	/* Pretty unlikely but it can happen */
 	if (unlikely(!nr_found)) {
-		pr_err_ratelimited("No processes available to kill!\n");
+		printk_once("No processes available to kill!\n");
 		return;
 	}
 
@@ -212,41 +207,28 @@ static void scan_and_kill(unsigned long pages_needed)
 
 	/* Kill the victims */
 	for (i = 0; i < nr_to_kill; i++) {
-		static const struct sched_param min_rt_prio = {
-			.sched_priority = 1
-		};
+		static const struct sched_param sched_zero_prio;
 		struct victim_info *victim = &victims[i];
 		struct task_struct *t, *vtsk = victim->tsk;
 
 		pr_info("Killing %s with adj %d to free %lu KiB\n", vtsk->comm,
 			vtsk->signal->oom_score_adj,
-			victim->size << (PAGE_SHIFT - 50));
+			victim->size << (PAGE_SHIFT - 10));
 
 		/* Accelerate the victim's death by forcing the kill signal */
 		do_send_sig_info(SIGKILL, SEND_SIG_FORCED, vtsk, true);
 
-		/*
-		 * Mark the thread group dead so that other kernel code knows,
-		 * and then elevate the thread group to SCHED_RR with minimum RT
-		 * priority. The entire group needs to be elevated because
-		 * there's no telling which threads have references to the mm as
-		 * well as which thread will happen to put the final reference
-		 * and release the mm's memory. If the mm is released from a
-		 * thread with low scheduling priority then it may take a very
-		 * long time for exit_mmap() to complete.
-		 */
+		/* Mark the thread group dead so that other kernel code knows */
 		rcu_read_lock();
 		for_each_thread(vtsk, t)
 			set_tsk_thread_flag(t, TIF_MEMDIE);
-		for_each_thread(vtsk, t)
-			sched_setscheduler_nocheck(t, SCHED_RR, &min_rt_prio);
 		rcu_read_unlock();
+
+		/* Elevate the victim to SCHED_RR with zero RT priority */
+		sched_setscheduler_nocheck(vtsk, SCHED_RR, &sched_zero_prio);
 
 		/* Allow the victim to run on any CPU. This won't schedule. */
 		set_cpus_allowed_ptr(vtsk, cpu_all_mask);
-
-		/* Signals can't wake frozen tasks; only a thaw operation can */
-		__thaw_task(vtsk);
 
 		/* Finally release the victim's task lock acquired earlier */
 		task_unlock(vtsk);
@@ -271,10 +253,9 @@ static int simple_lmk_reclaim_thread(void *data)
 	};
 
 	sched_setscheduler_nocheck(current, SCHED_FIFO, &sched_max_rt_prio);
-	set_freezable();
 
 	while (1) {
-		wait_event_freezable(oom_waitq, atomic_read(&needs_reclaim));
+		wait_event(oom_waitq, atomic_read(&needs_reclaim));
 		scan_and_kill(MIN_FREE_PAGES);
 		atomic_set_release(&needs_reclaim, 0);
 	}
@@ -298,67 +279,18 @@ void simple_lmk_mm_freed(struct mm_struct *mm)
 	read_unlock(&mm_free_lock);
 }
 
-static bool is_oom_conditions(unsigned long old_pressure, unsigned long new_pressure, unsigned long min_pressure)
-{
-	return old_pressure == min_pressure && new_pressure == old_pressure && new_pressure >= min_pressure;
-}
-
 static int simple_lmk_vmpressure_cb(struct notifier_block *nb,
 				    unsigned long pressure, void *data)
 {
-	unsigned long min_pressure_margin = atomic_read_acquire(&min_pressure);
-	static unsigned long new_pressure = 0;
-	static unsigned long old_pressure;
-
-	old_pressure = new_pressure;
-	new_pressure = pressure;
-
-	if (is_oom_conditions(old_pressure, new_pressure, min_pressure_margin) &&
-			!atomic_cmpxchg_acquire(&needs_reclaim, 0, 1))
+	if (pressure == 100 && !atomic_cmpxchg_acquire(&needs_reclaim, 0, 1))
 		wake_up(&oom_waitq);
 
-	return NOTIFY_OK;
-}
-
-static int msm_drm_notifier_callback(struct notifier_block *self,
-				unsigned long event, void *data)
-{
-	struct msm_drm_notifier *evdata = data;
-	int *blank;
-
-	if (event != MSM_DRM_EVENT_BLANK)
-		goto out;
-
-	if (!evdata || !evdata->data || evdata->id != MSM_DRM_PRIMARY_DISPLAY)
-		goto out;
-
-	blank = evdata->data;
-	switch (*blank) {
-	case MSM_DRM_BLANK_POWERDOWN:
-		if (!screen_on)
-			break;
-		screen_on = false;
-		atomic_set_release(&min_pressure, 100);
-		break;
-	case MSM_DRM_BLANK_UNBLANK:
-		if (screen_on)
-			break;
-		screen_on = true;
-		atomic_set_release(&min_pressure, 100);
-		break;
-	}
-
-out:
 	return NOTIFY_OK;
 }
 
 static struct notifier_block vmpressure_notif = {
 	.notifier_call = simple_lmk_vmpressure_cb,
 	.priority = INT_MAX
-};
-
-static struct notifier_block fb_notifier_block = {
-	.notifier_call = msm_drm_notifier_callback,
 };
 
 /* Initialize Simple LMK when lmkd in Android writes to the minfree parameter */
@@ -368,12 +300,10 @@ static int simple_lmk_init_set(const char *val, const struct kernel_param *kp)
 	struct task_struct *thread;
 
 	if (!atomic_cmpxchg(&init_done, 0, 1)) {
-		thread = kthread_run_perf_critical(cpu_perf_mask, 
-						   simple_lmk_reclaim_thread,
-						   NULL, "simple_lmkd");
+		thread = kthread_run(simple_lmk_reclaim_thread, NULL,
+				     "simple_lmkd");
 		BUG_ON(IS_ERR(thread));
 		BUG_ON(vmpressure_notifier_register(&vmpressure_notif));
-		BUG_ON(msm_drm_register_client(&fb_notifier_block));
 	}
 
 	return 0;
