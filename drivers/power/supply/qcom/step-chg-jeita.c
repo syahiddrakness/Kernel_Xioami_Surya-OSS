@@ -863,7 +863,7 @@ static int handle_jeita(struct step_chg_info *chip)
 		return rc;
 	}
 	if (pval.intval) {
-		if (batt_soc < 95) {
+		if (batt_soc < 99) {
 		rc = power_supply_get_property(chip->batt_psy,
 				POWER_SUPPLY_PROP_CHARGE_TERM_CURRENT, &pval);
 		chg_term_current = pval.intval;
