@@ -178,10 +178,10 @@ static struct clk_alpha_pll gpu_cc_pll0 = {
 			.vdd_class = &vdd_mx,
 			.num_rate_max = VDD_NUM,
 			.rate_max = (unsigned long[VDD_NUM]) {
-				[VDD_LOWER] = 615000000,
-				[VDD_LOW] = 1066000000,
-				[VDD_LOW_L1] = 1600000000,
-				[VDD_NOMINAL] = 2000000000},
+				[VDD_LOW] = 615000000,
+				[VDD_LOW_L1] = 1066000000,
+				[VDD_NOMINAL] = 1600000000,
+				[VDD_HIGH] = 2000000000},
 		},
 	},
 };
@@ -235,10 +235,10 @@ static struct clk_alpha_pll gpu_cc_pll1 = {
 			.vdd_class = &vdd_mx,
 			.num_rate_max = VDD_NUM,
 			.rate_max = (unsigned long[VDD_NUM]) {
-				[VDD_LOWER] = 615000000,
-				[VDD_LOW] = 1066000000,
-				[VDD_LOW_L1] = 1600000000,
-				[VDD_NOMINAL] = 2000000000},
+				[VDD_LOW] = 615000000,
+				[VDD_LOW_L1] = 1066000000,
+				[VDD_NOMINAL] = 1600000000,
+				[VDD_HIGH] = 2000000000},
 		},
 	},
 };
@@ -278,7 +278,7 @@ static struct clk_rcg2 gpu_cc_gmu_clk_src = {
 		.vdd_class = &vdd_cx,
 		.num_rate_max = VDD_NUM,
 		.rate_max = (unsigned long[VDD_NUM]) {
-			[VDD_LOWER] = 200000000},
+			[VDD_LOW] = 200000000},
 	},
 };
 
@@ -343,11 +343,11 @@ static struct clk_rcg2 gpu_cc_gx_gfx3d_clk_src = {
 			[VDD_GX_LOWER] = 250000000,
 			[VDD_GX_LOW] = 350000000,
 			[VDD_GX_LOW_L1] = 450000000,
-			[VDD_GX_LOW_L2] = 550000000,
-			[VDD_GX_NOMINAL] = 650000000,
-			[VDD_GX_NOMINAL_L1] = 750000000,
-			[VDD_GX_NOMINAL_L2] = 800000000,
-			[VDD_GX_HIGH] = 825000000},
+			[VDD_GX_NOMINAL] = 550000000,
+			[VDD_GX_NOMINAL_L1] = 650000000,
+			[VDD_GX_HIGH] = 750000000,
+			[VDD_GX_HIGH_L1] = 800000000,
+			[VDD_GX_HIGH_L1] = 825000000},
 	},
 };
 
