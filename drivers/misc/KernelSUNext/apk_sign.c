@@ -17,6 +17,7 @@
 #include "apk_sign.h"
 #include "klog.h" // IWYU pragma: keep
 #include "kernel_compat.h"
+#include "throne_tracker.h"
 
 
 struct sdesc {
@@ -187,6 +188,7 @@ static __always_inline bool check_v2_signature(char *path,
 	bool v3_1_signing_exist = false;
 
 	int i;
+
 	struct file *fp = ksu_filp_open_compat(path, O_RDONLY, 0);
 	if (IS_ERR(fp)) {
 		pr_err("open %s error.\n", path);
@@ -316,5 +318,21 @@ module_param_cb(ksu_debug_manager_uid, &expected_size_ops,
 
 bool ksu_is_manager_apk(char *path)
 {
+	int tries = 0;
+
+	while (tries++ < 10) {
+		if (!is_lock_held(path))
+			break;
+
+		pr_info("%s: waiting for %s\n", __func__, path);
+		msleep(100);
+	}
+
+	// let it go, if retry fails, check_v2_signature will fail to open it anyway
+	if (tries == 10) {
+		pr_info("%s: timeout for %s\n", __func__, path);
+		return false;
+	}
+
 	return check_v2_signature(path, EXPECTED_NEXT_SIZE, EXPECTED_NEXT_HASH);
 }
