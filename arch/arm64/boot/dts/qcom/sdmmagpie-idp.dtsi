@@ -400,7 +400,7 @@
 
 &pm6150_qg {
 	qcom,battery-data = <&mtp_batterydata>;
-	qcom,qg-iterm-ma = <500>;
+	qcom,qg-iterm-ma = <600>;
 	qcom,hold-soc-while-full;
 	qcom,linearize-soc;
 	qcom,cl-feedback-on;
@@ -454,15 +454,13 @@
 	qcom,fcc-max-ua = <6000000>;
 	qcom,fv-max-uv = <4480000>;
 	qcom,chg-term-src = <1>;
-	qcom,chg-term-current-ma = <(-100)>;
+	qcom,chg-term-current-ma = <(-600)>;
 	qcom,sw-jeita-enable;
 	//qcom,fcc-stepping-enable;
 	qcom,suspend-input-on-debug-batt;
 	qcom,sec-charger-config = <0>;
 	qcom,thermal-mitigation = <6000000 5500000 4900000 4600000 4500000 4400000 4200000
-				   3800000 3800000 3600000 3400000 3200000 3000000 2200000
-				   800000 700000 600000 500000 400000 300000 200000
-				   100000 90000 80000 70000 60000 50000 40000>;
+				   3800000 3800000 3600000 3400000 3200000 3000000 2200000>;
 	dpdm-supply = <&qusb_phy0>;
 	qcom,charger-temp-max = <1500>;
 	qcom,smb-temp-max = <1500>;
