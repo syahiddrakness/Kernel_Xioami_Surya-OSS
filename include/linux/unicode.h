@@ -6,7 +6,6 @@
 #include <linux/dcache.h>
 
 struct utf8data;
-struct utf8data_table;
 
 #define UNICODE_MAJ_SHIFT		16
 #define UNICODE_MIN_SHIFT		8
@@ -50,7 +49,6 @@ enum utf8_normalization {
 struct unicode_map {
 	unsigned int version;
 	const struct utf8data *ntab[UTF8_NMAX];
-	const struct utf8data_table *tables;
 };
 
 int utf8_validate(const struct unicode_map *um, const struct qstr *str);
