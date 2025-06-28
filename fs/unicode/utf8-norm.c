@@ -26,6 +26,7 @@ int utf8version_is_supported(const struct unicode_map *um, unsigned int version)
 	}
 	return 0;
 }
+EXPORT_SYMBOL(utf8version_is_supported);
 
 /*
  * UTF-8 valid ranges.
@@ -415,6 +416,7 @@ ssize_t utf8nlen(const struct unicode_map *um, enum utf8_normalization n,
 	}
 	return ret;
 }
+EXPORT_SYMBOL(utf8nlen);
 
 /*
  * Set up an utf8cursor for use by utf8byte().
@@ -449,6 +451,7 @@ int utf8ncursor(struct utf8cursor *u8c, const struct unicode_map *um,
 		return -1;
 	return 0;
 }
+EXPORT_SYMBOL(utf8ncursor);
 
 /*
  * Get one byte from the normalized form of the string described by u8c.
@@ -594,10 +597,4 @@ ccc_mismatch:
 		}
 	}
 }
-
-#ifdef CONFIG_UNICODE_NORMALIZATION_SELFTEST_MODULE
-EXPORT_SYMBOL_GPL(utf8version_is_supported);
-EXPORT_SYMBOL_GPL(utf8nlen);
-EXPORT_SYMBOL_GPL(utf8ncursor);
-EXPORT_SYMBOL_GPL(utf8byte);
-#endif
+EXPORT_SYMBOL(utf8byte);
