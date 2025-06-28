@@ -6,7 +6,7 @@
 #include <linux/dcache.h>
 
 struct unicode_map {
-	unsigned int version;
+	int version;
 };
 
 int utf8_validate(const struct unicode_map *um, const struct qstr *str);
