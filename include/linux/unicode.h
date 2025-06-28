@@ -6,6 +6,7 @@
 #include <linux/dcache.h>
 
 struct unicode_map {
+	const char *charset;
 	int version;
 };
 
