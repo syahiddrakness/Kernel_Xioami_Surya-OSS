@@ -318,19 +318,21 @@ utf8hangul(const char *str, unsigned char *hangul)
  * is well-formed and corresponds to a known unicode code point.  The
  * shorthand for this will be "is valid UTF-8 unicode".
  */
-static utf8leaf_t *utf8nlookup(const struct unicode_map *um,
-		enum utf8_normalization n, unsigned char *hangul, const char *s,
-		size_t len)
+static utf8leaf_t *utf8nlookup(const struct utf8data *data,
+			       unsigned char *hangul, const char *s, size_t len)
 {
-	utf8trie_t	*trie = utf8data + um->ntab[n]->offset;
+	utf8trie_t	*trie = NULL;
 	int		offlen;
 	int		offset;
 	int		mask;
 	int		node;
 
+	if (!data)
+		return NULL;
 	if (len == 0)
 		return NULL;
 
+	trie = utf8data + data->offset;
 	node = 1;
 	while (node) {
 		offlen = (*trie & OFFLEN) >> OFFLEN_SHIFT;
@@ -392,28 +394,29 @@ static utf8leaf_t *utf8nlookup(const struct unicode_map *um,
  *
  * Forwards to utf8nlookup().
  */
-static utf8leaf_t *utf8lookup(const struct unicode_map *um,
-		enum utf8_normalization n, unsigned char *hangul, const char *s)
+static utf8leaf_t *utf8lookup(const struct utf8data *data,
+			      unsigned char *hangul, const char *s)
 {
-	return utf8nlookup(um, n, hangul, s, (size_t)-1);
+	return utf8nlookup(data, hangul, s, (size_t)-1);
 }
 
 /*
  * Length of the normalization of s, touch at most len bytes.
  * Return -1 if s is not valid UTF-8 unicode.
  */
-ssize_t utf8nlen(const struct unicode_map *um, enum utf8_normalization n,
-		const char *s, size_t len)
+ssize_t utf8nlen(const struct utf8data *data, const char *s, size_t len)
 {
 	utf8leaf_t	*leaf;
 	size_t		ret = 0;
 	unsigned char	hangul[UTF8HANGULLEAF];
 
+	if (!data)
+		return -1;
 	while (len && *s) {
-		leaf = utf8nlookup(um, n, hangul, s, len);
+		leaf = utf8nlookup(data, hangul, s, len);
 		if (!leaf)
 			return -1;
-		if (utf8agetab[LEAF_GEN(leaf)] > um->ntab[n]->maxage)
+		if (utf8agetab[LEAF_GEN(leaf)] > data->maxage)
 			ret += utf8clen(s);
 		else if (LEAF_CCC(leaf) == DECOMPOSE)
 			ret += strlen(LEAF_STR(leaf));
@@ -436,13 +439,14 @@ EXPORT_SYMBOL(utf8nlen);
  *
  * Returns -1 on error, 0 on success.
  */
-int utf8ncursor(struct utf8cursor *u8c, const struct unicode_map *um,
-		enum utf8_normalization n, const char *s, size_t len)
+int utf8ncursor(struct utf8cursor *u8c, const struct utf8data *data,
+		const char *s, size_t len)
 {
+	if (!data)
+		return -1;
 	if (!s)
 		return -1;
-	u8c->um = um;
-	u8c->n = n;
+	u8c->data = data;
 	u8c->s = s;
 	u8c->p = NULL;
 	u8c->ss = NULL;
@@ -517,9 +521,9 @@ int utf8byte(struct utf8cursor *u8c)
 
 		/* Look up the data for the current character. */
 		if (u8c->p) {
-			leaf = utf8lookup(u8c->um, u8c->n, u8c->hangul, u8c->s);
+			leaf = utf8lookup(u8c->data, u8c->hangul, u8c->s);
 		} else {
-			leaf = utf8nlookup(u8c->um, u8c->n, u8c->hangul,
+			leaf = utf8nlookup(u8c->data, u8c->hangul,
 					   u8c->s, u8c->len);
 		}
 
@@ -529,8 +533,7 @@ int utf8byte(struct utf8cursor *u8c)
 
 		ccc = LEAF_CCC(leaf);
 		/* Characters that are too new have CCC 0. */
-		if (utf8agetab[LEAF_GEN(leaf)] >
-		    u8c->um->ntab[u8c->n]->maxage) {
+		if (utf8agetab[LEAF_GEN(leaf)] > u8c->data->maxage) {
 			ccc = STOPPER;
 		} else if (ccc == DECOMPOSE) {
 			u8c->len -= utf8clen(u8c->s);
@@ -544,7 +547,7 @@ int utf8byte(struct utf8cursor *u8c)
 				goto ccc_mismatch;
 			}
 
-			leaf = utf8lookup(u8c->um, u8c->n, u8c->hangul, u8c->s);
+			leaf = utf8lookup(u8c->data, u8c->hangul, u8c->s);
 			if (!leaf)
 				return -1;
 			ccc = LEAF_CCC(leaf);
@@ -617,6 +620,7 @@ const struct utf8data *utf8nfdi(unsigned int maxage)
 		return NULL;
 	return &utf8nfdidata[i];
 }
+EXPORT_SYMBOL(utf8nfdi);
 
 const struct utf8data *utf8nfdicf(unsigned int maxage)
 {
@@ -628,3 +632,4 @@ const struct utf8data *utf8nfdicf(unsigned int maxage)
 		return NULL;
 	return &utf8nfdicfdata[i];
 }
+EXPORT_SYMBOL(utf8nfdicf);
