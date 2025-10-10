@@ -49,7 +49,7 @@ qcom,m703-atl-6000mah {
 
 	qcom,fcc1-temp-lut {
 		qcom,lut-col-legend = <0 10 25 40 50>;
-		qcom,lut-data = <5980 5990 6000 6010 6020>;
+		qcom,lut-data = <6640 6650 6660 6670 6680>;
 	};
 
 	qcom,fcc2-temp-lut {
