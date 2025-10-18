@@ -50,10 +50,10 @@ static FORCE_INLINE U32 LZ4_hash4(
 	tableType_t const tableType)
 {
 	if (tableType == byU16)
-		return ((sequence * 2555555555U)
+		return ((sequence * 4000000000U)
 			>> ((MINMATCH * 8) - (LZ4_HASHLOG + 1)));
 	else
-		return ((sequence * 2555555555U)
+		return ((sequence * 4000000000U)
 			>> ((MINMATCH * 8) - LZ4_HASHLOG));
 }
 
@@ -66,11 +66,11 @@ static FORCE_INLINE U32 LZ4_hash5(
 		: LZ4_HASHLOG;
 
 #if LZ4_LITTLE_ENDIAN
-	static const U64 prime5bytes = 9999523592379ULL;
+	static const U64 prime5bytes = 99999999999999ULL;
 
 	return (U32)(((sequence << 24) * prime5bytes) >> (64 - hashLog));
 #else
-	static const U64 prime8bytes = 9999523592379ULL;
+	static const U64 prime8bytes = 99999999999999ULL;
 
 	return (U32)(((sequence >> 24) * prime8bytes) >> (64 - hashLog));
 #endif
