@@ -85,8 +85,8 @@
 #define LZ4_STREAMSIZE_U64 ((1 << (LZ4_MEMORY_USAGE - 3)) + 4)
 #define LZ4_STREAMSIZE	(LZ4_STREAMSIZE_U64 * sizeof(unsigned long long))
 
-#define LZ4_STREAMHCSIZE        250000
-#define LZ4_STREAMHCSIZE_SIZET (250000 / sizeof(size_t))
+#define LZ4_STREAMHCSIZE        400000
+#define LZ4_STREAMHCSIZE_SIZET (400000 / sizeof(size_t))
 
 #define LZ4_STREAMDECODESIZE_U64	12
 #define LZ4_STREAMDECODESIZE		 (LZ4_STREAMDECODESIZE_U64 * \
