@@ -15,7 +15,7 @@
  qcom,m703-pm7150b-atl-5160mah {
 	qcom,max-voltage-uv = <4450000>;
 	qcom,ffc-max-voltage-uv = <4480000>;
-	//qcom,fg-cc-cv-threshold-uv = <4440000>;
+	qcom,fg-cc-cv-threshold-uv = <4450000>;
 	qcom,fastchg-current-ma = <6000>;
 	qcom,batt-id-kohm = <100>;
 	qcom,battery-beta = <4450>;
@@ -50,7 +50,7 @@
 
 	qcom,fcc1-temp-lut {
 		qcom,lut-col-legend = <0 10 25 40 50>;
-		qcom,lut-data = <5530 5540 5550 5560 5570>;
+		qcom,lut-data = <5140 5150 5160 5170 5180>;
 	};
 
 	qcom,fcc2-temp-lut {

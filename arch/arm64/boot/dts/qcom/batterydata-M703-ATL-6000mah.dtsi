@@ -14,7 +14,7 @@
 qcom,m703-atl-6000mah {
 	qcom,max-voltage-uv = <4450000>;
 	qcom,ffc-max-voltage-uv = <4480000>;
-	//qcom,fg-cc-cv-threshold-uv = <4440000>;
+	qcom,fg-cc-cv-threshold-uv = <4450000>;
 	qcom,fastchg-current-ma = <6000>;
 	qcom,batt-id-kohm = <100>;
 	qcom,battery-beta = <4450>;
@@ -49,7 +49,7 @@ qcom,m703-atl-6000mah {
 
 	qcom,fcc1-temp-lut {
 		qcom,lut-col-legend = <0 10 25 40 50>;
-		qcom,lut-data = <6640 6650 6660 6670 6680>;
+		qcom,lut-data = <5800 5900 6000 6100 6200>;
 	};
 
 	qcom,fcc2-temp-lut {
