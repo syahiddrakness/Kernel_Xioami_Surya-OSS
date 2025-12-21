@@ -50,7 +50,7 @@
 
 	qcom,fcc1-temp-lut {
 		qcom,lut-col-legend = <0 10 25 40 50>;
-		qcom,lut-data = <5140 5150 5160 5170 5180>;
+		qcom,lut-data = <5150 5155 5160 5165 5170>;
 	};
 
 	qcom,fcc2-temp-lut {
