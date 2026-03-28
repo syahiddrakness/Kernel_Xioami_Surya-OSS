@@ -1,48 +1,129 @@
 #include <linux/export.h>
 #include <linux/fs.h>
 #include <linux/kobject.h>
+#include <linux/init.h>
 #include <linux/module.h>
-#include <linux/workqueue.h>
+#include <generated/utsrelease.h>
+#include <generated/compile.h>
+#include <linux/version.h> /* LINUX_VERSION_CODE, KERNEL_VERSION macros */
 
-#include "allowlist.h"
-#include "arch.h"
-#include "core_hook.h"
-#include "klog.h" // IWYU pragma: keep
-#include "ksu.h"
-#include "throne_tracker.h"
-
-#ifdef CONFIG_KSU_SUSFS
-#include <linux/susfs.h>
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 7, 0)
+#include <uapi/asm-generic/errno.h>
+#else
+#include <asm-generic/errno.h>
 #endif
 
-static struct workqueue_struct *ksu_workqueue;
+#define ksu_get_uid_t(x) *(unsigned int *)&(x)
 
-bool ksu_queue_work(struct work_struct *work)
+#include "allowlist.h"
+#include "apk_sign.h"
+#include "app_profile.h"
+#include "arch.h"
+#include "core_hook.h"
+#include "feature.h"
+#include "file_wrapper.h"
+#include "kernel_compat.h"
+#include "klog.h"
+#include "ksud.h"
+#include "ksu.h"
+#include "manager.h"
+#include "sucompat.h"
+#include "supercalls.h"
+#include "throne_tracker.h"
+#include "su_mount_ns.h"
+#include "selinux/selinux.h"
+#include "selinux/sepolicy.h"
+
+// selinux includes
+#include <linux/lsm_audit.h>
+#include "avc_ss.h"
+#include "objsec.h"
+#include "ss/services.h"
+#include "ss/symtab.h"
+#include "xfrm.h"
+#ifndef KSU_COMPAT_USE_SELINUX_STATE
+#include "avc.h"
+#endif
+
+// unity build
+#include "tiny_sulog.c"
+#include "allowlist.c"
+#include "app_profile.c"
+#include "apk_sign.c"
+#include "sucompat.c"
+#include "throne_tracker.c"
+#include "core_hook.c"
+#include "supercalls.c"
+#include "feature.c"
+#include "su_mount_ns.c"
+#include "ksud.c"
+#include "kernel_compat.c"
+#include "file_wrapper.c"
+
+#include "selinux/selinux.c"
+#include "selinux/sepolicy.c"
+#include "selinux/rules.c"
+
+#ifdef CONFIG_KSU_TAMPER_SYSCALL_TABLE
+#ifdef CONFIG_ARM64
+#include "syscall_table_hook.c"
+#elif CONFIG_ARM
+#include "syscall_table_hook_arm.c"
+#endif
+#endif
+
+#ifdef CONFIG_KSU_KPROBES_KSUD
+#include "kp_ksud.c"
+#endif
+
+#ifdef CONFIG_KSU_KRETPROBES_SUCOMPAT
+#include "rp_sucompat.c"
+#endif
+
+#ifdef CONFIG_KSU_EXTRAS
+#include "extras.c"
+#endif
+
+struct cred* ksu_cred;
+
+extern void ksu_supercalls_init();
+
+// track backports and other quirks here
+// ref: kernel_compat.c, Makefile
+// yes looks nasty
+#if defined(CONFIG_KSU_KPROBES_KSUD)
+	#define FEAT_1 " +kprobes_ksud"
+#else
+	#define FEAT_1 ""
+#endif
+
+#if defined(CONFIG_KSU_KRETPROBES_SUCOMPAT)
+	#define FEAT_2 " +rp_sucompat"
+#else
+	#define FEAT_2 ""
+#endif
+#if defined(CONFIG_KSU_EXTRAS)
+	#define FEAT_3 " +extras"
+#else
+	#define FEAT_3 ""
+#endif
+#if defined(CONFIG_KSU_TAMPER_SYSCALL_TABLE)
+	#define FEAT_4 " +sys_call_table_hook"
+#else
+	#define FEAT_4 ""
+#endif
+#if !defined(CONFIG_KSU_LSM_SECURITY_HOOKS)
+	#define FEAT_5 " -lsm_hooks"
+#else
+	#define FEAT_5 ""
+#endif
+
+#define EXTRA_FEATURES FEAT_1 FEAT_2 FEAT_3 FEAT_4 FEAT_5
+
+int __init kernelsu_init(void)
 {
-	return queue_work(ksu_workqueue, work);
-}
+	pr_info("Initialized on: %s (%s) with ksuver: %s%s\n", UTS_RELEASE, UTS_MACHINE, __stringify(KSU_VERSION), EXTRA_FEATURES);
 
-extern int ksu_handle_execveat_sucompat(int *fd, struct filename **filename_ptr,
-					void *argv, void *envp, int *flags);
-
-extern int ksu_handle_execveat_ksud(int *fd, struct filename **filename_ptr,
-				    void *argv, void *envp, int *flags);
-
-int ksu_handle_execveat(int *fd, struct filename **filename_ptr, void *argv,
-			void *envp, int *flags)
-{
-	ksu_handle_execveat_ksud(fd, filename_ptr, argv, envp, flags);
-	return ksu_handle_execveat_sucompat(fd, filename_ptr, argv, envp,
-					    flags);
-}
-
-extern void ksu_sucompat_init();
-extern void ksu_sucompat_exit();
-extern void ksu_ksud_init();
-extern void ksu_ksud_exit();
-
-int __init ksu_kernelsu_init(void)
-{
 #ifdef CONFIG_KSU_DEBUG
 	pr_alert("*************************************************************");
 	pr_alert("**     NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE    **");
@@ -53,56 +134,44 @@ int __init ksu_kernelsu_init(void)
 	pr_alert("*************************************************************");
 #endif
 
-#ifdef CONFIG_KSU_SUSFS
-	susfs_init();
-#endif
+	ksu_cred = prepare_creds();
+	if (!ksu_cred) {
+		pr_err("prepare cred failed!\n");
+	}
+
+	ksu_feature_init();
+
+	ksu_supercalls_init();
+
+	ksu_sucompat_init(); // so the feature is registered
 
 	ksu_core_init();
-
-	ksu_workqueue = alloc_ordered_workqueue("kernelsu_work_queue", 0);
 
 	ksu_allowlist_init();
 
 	ksu_throne_tracker_init();
 
-#ifdef CONFIG_KSU_KPROBES_HOOK
-	ksu_sucompat_init();
 	ksu_ksud_init();
-#else
-	pr_alert("KPROBES is disabled, KernelSU may not work, please check https://kernelsu.org/guide/how-to-integrate-for-non-gki.html");
+
+	ksu_file_wrapper_init();
+
+#ifdef CONFIG_KSU_TAMPER_SYSCALL_TABLE
+	ksu_syscall_table_hook_init();
 #endif
 
-#ifdef MODULE
-#ifndef CONFIG_KSU_DEBUG
-	kobject_del(&THIS_MODULE->mkobj.kobj);
+#ifdef CONFIG_KSU_KPROBES_KSUD
+	kp_ksud_init();
 #endif
+
+#ifdef CONFIG_KSU_EXTRAS
+	ksu_avc_spoof_init(); // so the feature is registered
 #endif
+
 	return 0;
 }
 
-void ksu_kernelsu_exit(void)
-{
-	ksu_allowlist_exit();
+fs_initcall(kernelsu_init);
 
-	ksu_throne_tracker_exit();
-
-	destroy_workqueue(ksu_workqueue);
-
-#ifdef CONFIG_KSU_KPROBES_HOOK
-	ksu_ksud_exit();
-	ksu_sucompat_exit();
-#endif
-
-	ksu_core_exit();
-}
-
-module_init(ksu_kernelsu_init);
-module_exit(ksu_kernelsu_exit);
-
-MODULE_LICENSE("GPL");
-MODULE_AUTHOR("weishu");
-MODULE_DESCRIPTION("Android KernelSU");
-
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 0, 0)
-MODULE_IMPORT_NS(VFS_internal_I_am_really_a_filesystem_and_am_NOT_a_driver);
-#endif
+// MODULE_LICENSE("GPL");
+// MODULE_AUTHOR("weishu");
+// MODULE_DESCRIPTION("Android KernelSU");

@@ -2,14 +2,16 @@
 #include <linux/fs.h>
 #include <linux/nsproxy.h>
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 10, 0)
+#include <linux/sched/signal.h> // signal_struct
 #include <linux/sched/task.h>
 #else
 #include <linux/sched.h>
 #endif
 #include <linux/uaccess.h>
-#include "klog.h" // IWYU pragma: keep
-#include "kernel_compat.h" // Add check Huawei Device
-#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 10, 0) || defined(CONFIG_IS_HW_HISI) || defined(CONFIG_KSU_ALLOWLIST_WORKAROUND)
+#include <linux/filter.h>
+#include <linux/seccomp.h>
+
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 8, 0) && LINUX_VERSION_CODE < KERNEL_VERSION(5, 2, 0)
 #include <linux/key.h>
 #include <linux/errno.h>
 #include <linux/cred.h>
@@ -32,154 +34,140 @@ static inline int install_session_keyring(struct key *keyring)
 
 	return commit_creds(new);
 }
-#endif
 
-extern struct task_struct init_task;
-
-// mnt_ns context switch for environment that android_init->nsproxy->mnt_ns != init_task.nsproxy->mnt_ns, such as WSA
-struct ksu_ns_fs_saved {
-	struct nsproxy *ns;
-	struct fs_struct *fs;
-};
-
-static void ksu_save_ns_fs(struct ksu_ns_fs_saved *ns_fs_saved)
+// this is on tgcred on < 3.8
+// while we can grab that one, it seems to not actually be needed 
+static void ksu_grab_init_session_keyring(const char *filename)
 {
-	ns_fs_saved->ns = current->nsproxy;
-	ns_fs_saved->fs = current->fs;
-}
-
-static void ksu_load_ns_fs(struct ksu_ns_fs_saved *ns_fs_saved)
-{
-	current->nsproxy = ns_fs_saved->ns;
-	current->fs = ns_fs_saved->fs;
-}
-
-static bool android_context_saved_checked = false;
-static bool android_context_saved_enabled = false;
-static struct ksu_ns_fs_saved android_context_saved;
-
-void ksu_android_ns_fs_check()
-{
-	if (android_context_saved_checked)
+	if (init_session_keyring)
 		return;
-	android_context_saved_checked = true;
-	task_lock(current);
-	if (current->nsproxy && current->fs &&
-	    current->nsproxy->mnt_ns != init_task.nsproxy->mnt_ns) {
-		android_context_saved_enabled = true;
-		pr_info("android context saved enabled due to init mnt_ns(%p) != android mnt_ns(%p)\n",
-			current->nsproxy->mnt_ns, init_task.nsproxy->mnt_ns);
-		ksu_save_ns_fs(&android_context_saved);
-	} else {
-		pr_info("android context saved disabled\n");
-	}
-	task_unlock(current);
-}
+		
+	if (!strstr(filename, "init")) 
+		return;
 
-int ksu_access_ok(const void *addr, unsigned long size) {
-#if LINUX_VERSION_CODE < KERNEL_VERSION(5,0,0)
-    /* For kernels before 5.0.0, pass the type argument to access_ok. */
-    return access_ok(VERIFY_READ, addr, size);
-#else
-    /* For kernels 5.0.0 and later, ignore the type argument. */
-    return access_ok(addr, size);
-#endif
-}
+	if (!!strcmp(current->comm, "init"))
+		return;
 
+	if (!!!is_init(get_current_cred()))
+		return;
+
+	// thats surely some exclamation comedy
+	// and now we are sure that this is the key we want
+	// up to 5.1, struct key __rcu *session_keyring; /* keyring inherited over fork */
+	// so we need to grab this using rcu_dereference
+	struct key *keyring = rcu_dereference(current->cred->session_keyring);
+	if (!keyring)
+		return;
+
+	init_session_keyring = key_get(keyring);
+
+	pr_info("%s: init_session_keyring: 0x%p \n", __func__, init_session_keyring);
+
+}
 struct file *ksu_filp_open_compat(const char *filename, int flags, umode_t mode)
 {
-#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 10, 0) || defined(CONFIG_IS_HW_HISI) || defined(CONFIG_KSU_ALLOWLIST_WORKAROUND)
-	if (init_session_keyring != NULL && !current_cred()->session_keyring &&
-	    (current->flags & PF_WQ_WORKER)) {
-		pr_info("installing init session keyring for older kernel\n");
+	// normally we only put this on ((current->flags & PF_WQ_WORKER) || (current->flags & PF_KTHREAD))
+	// but in the grand scale of things, this does NOT matter.
+	// pr_info("installing init session keyring for older kernel\n");
+	if (init_session_keyring != NULL && !current_cred()->session_keyring) {
 		install_session_keyring(init_session_keyring);
 	}
-#endif
-	// switch mnt_ns even if current is not wq_worker, to ensure what we open is the correct file in android mnt_ns, rather than user created mnt_ns
-	struct ksu_ns_fs_saved saved;
-	if (android_context_saved_enabled) {
-		pr_info("start switch current nsproxy and fs to android context\n");
-		task_lock(current);
-		ksu_save_ns_fs(&saved);
-		ksu_load_ns_fs(&android_context_saved);
-		task_unlock(current);
-	}
-	struct file *fp = filp_open(filename, flags, mode);
-	if (android_context_saved_enabled) {
-		task_lock(current);
-		ksu_load_ns_fs(&saved);
-		task_unlock(current);
-		pr_info("switch current nsproxy and fs back to saved successfully\n");
-	}
-	return fp;
+	return filp_open(filename, flags, mode);
 }
-
-ssize_t ksu_kernel_read_compat(struct file *p, void *buf, size_t count,
-			       loff_t *pos)
+#else
+struct file *ksu_filp_open_compat(const char *filename, int flags, umode_t mode)
 {
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 14, 0) || defined(KSU_KERNEL_READ)
+	return filp_open(filename, flags, mode);
+}
+#endif
+
+ssize_t ksu_kernel_read_compat(struct file *p, void *buf, size_t count, loff_t *pos)
+{
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 14, 0)
 	return kernel_read(p, buf, count, pos);
-#else
-	loff_t offset = pos ? *pos : 0;
-	ssize_t result = kernel_read(p, offset, (char *)buf, count);
-	if (pos && result > 0) {
-		*pos = offset + result;
-	}
+#else // https://elixir.bootlin.com/linux/v4.14.336/source/fs/read_write.c#L418
+	mm_segment_t old_fs;
+	old_fs = get_fs();
+	set_fs(get_ds());
+	ssize_t result = vfs_read(p, (void __user *)buf, count, pos);
+	set_fs(old_fs);
 	return result;
 #endif
 }
 
-ssize_t ksu_kernel_write_compat(struct file *p, const void *buf, size_t count,
-				loff_t *pos)
+ssize_t ksu_kernel_write_compat(struct file *p, const void *buf, size_t count, loff_t *pos)
 {
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 14, 0) || defined(KSU_KERNEL_WRITE)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 14, 0)
 	return kernel_write(p, buf, count, pos);
-#else
-	loff_t offset = pos ? *pos : 0;
-	ssize_t result = kernel_write(p, buf, count, offset);
-	if (pos && result > 0) {
-		*pos = offset + result;
-	}
-	return result;
+#else // https://elixir.bootlin.com/linux/v4.14.336/source/fs/read_write.c#L512
+	mm_segment_t old_fs;
+	old_fs = get_fs();
+	set_fs(get_ds());
+	ssize_t res = vfs_write(p, (__force const char __user *)buf, count, pos);
+	set_fs(old_fs);
+	return res;
 #endif
 }
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 8, 0) || defined(KSU_STRNCPY_FROM_USER_NOFAULT)
-long ksu_strncpy_from_user_nofault(char *dst, const void __user *unsafe_addr,
-				   long count)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 9, 0)
+__weak int path_mount(const char *dev_name, struct path *path, 
+	const char *type_page, unsigned long flags, void *data_page)
 {
-	return strncpy_from_user_nofault(dst, unsafe_addr, count);
-}
-#elif LINUX_VERSION_CODE >= KERNEL_VERSION(5, 3, 0)
-long ksu_strncpy_from_user_nofault(char *dst, const void __user *unsafe_addr,
-				   long count)
-{
-	return strncpy_from_unsafe_user(dst, unsafe_addr, count);
-}
-#else
-// Copied from: https://elixir.bootlin.com/linux/v4.9.337/source/mm/maccess.c#L201
-long ksu_strncpy_from_user_nofault(char *dst, const void __user *unsafe_addr,
-				   long count)
-{
-	mm_segment_t old_fs = get_fs();
-	long ret;
+	// 384 is enough 
+	char buf[384] = {0};
 
-	if (unlikely(count <= 0))
-		return 0;
+	// -1 on the size as implicit null termination
+	// as we zero init the thing
+	char *realpath = d_path(path, buf, sizeof(buf) - 1);
+	if (!(realpath && realpath != buf)) 
+		return -ENOENT;
+
+	mm_segment_t old_fs = get_fs();
+	set_fs(KERNEL_DS);
+	long ret = do_mount(dev_name, (const char __user *)realpath, type_page, flags, data_page);
+	set_fs(old_fs);
+	return ret;
+}
+#endif
+
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 8, 0) 
+__weak long copy_from_user_nofault(void *dst, const void __user *src, size_t size)
+{
+	// https://elixir.bootlin.com/linux/v5.8/source/mm/maccess.c#L205
+	long ret = -EFAULT;
+	mm_segment_t old_fs = get_fs();
 
 	set_fs(USER_DS);
+
+	// normally theres an access_ok check here
+	// but for what we use it, it will always be true.
+
 	pagefault_disable();
-	ret = strncpy_from_user(dst, unsafe_addr, count);
+	ret = __copy_from_user_inatomic(dst, src, size);
+	pagefault_enable();
+
+	set_fs(old_fs);
+
+	if (ret)
+		return -EFAULT;
+	return 0;
+}
+#endif
+
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 8, 0)
+__weak long copy_from_kernel_nofault(void *dst, const void *src, size_t size)
+{
+	// https://elixir.bootlin.com/linux/v5.2.21/source/mm/maccess.c#L27
+	long ret;
+	mm_segment_t old_fs = get_fs();
+
+	set_fs(KERNEL_DS);
+	pagefault_disable();
+	ret = __copy_from_user_inatomic(dst,
+			(__force const void __user *)src, size);
 	pagefault_enable();
 	set_fs(old_fs);
 
-	if (ret >= count) {
-		ret = count;
-		dst[ret - 1] = '\0';
-	} else if (ret > 0) {
-		ret++;
-	}
-
-	return ret;
+	return ret ? -EFAULT : 0;
 }
 #endif
