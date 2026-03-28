@@ -2826,10 +2826,10 @@
 		BW_OPP_ENTRY(2400, 16); /* 34000 MB/s */
 		BW_OPP_ENTRY(2500, 16); /* 35000 MB/s */
 		BW_OPP_ENTRY(2600, 16); /* 36000 MB/s */
-		BW_OPP_ENTRY(2700, 16); /* 37000 MB/s */
-		BW_OPP_ENTRY(2800, 16); /* 38000 MB/s */
-		BW_OPP_ENTRY(2900, 16); /* 39000 MB/s */
 		BW_OPP_ENTRY(3000, 16); /* 40000 MB/s */
+		BW_OPP_ENTRY(3500, 16); /* 45000 MB/s */
+		BW_OPP_ENTRY(4000, 16); /* 50000 MB/s */
+		BW_OPP_ENTRY(4500, 16); /* 55000 MB/s */
 	};
 
 	cpu_cpu_llcc_bw: qcom,cpu-cpu-llcc-bw {
@@ -3014,8 +3014,8 @@
 			< 1843200 MHZ_TO_MBPS(2000, 16) >,
 			< 1939200 MHZ_TO_MBPS(2300, 16) >,
 			< 2169600 MHZ_TO_MBPS(2500, 16) >,
-			< 2208000 MHZ_TO_MBPS(2700, 16) >,
-			< 2304000 MHZ_TO_MBPS(3000, 16) >;
+			< 2208000 MHZ_TO_MBPS(3000, 16) >,
+			< 2304000 MHZ_TO_MBPS(4500, 16) >;
 	};
 
 	cpu0_llcc_ddr_lat: qcom,cpu0-llcc-ddr-lat {
