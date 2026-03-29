@@ -3,41 +3,35 @@
 
 #include "linux/types.h"
 #include "linux/version.h"
-#include "linux/cred.h"
 
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 10, 0)) || defined(KSU_COMPAT_HAS_SELINUX_STATE)
 #define KSU_COMPAT_USE_SELINUX_STATE
 #endif
 
-// TODO: rename to "ksu"
-#define KERNEL_SU_DOMAIN "su"
-#define KERNEL_SU_FILE "ksu_file"
+void ksu_setup_selinux(const char *);
 
-#define KERNEL_SU_CONTEXT "u:r:" KERNEL_SU_DOMAIN ":s0"
-#define KSU_FILE_CONTEXT "u:object_r:" KERNEL_SU_FILE ":s0"
-#define ZYGOTE_CONTEXT "u:r:zygote:s0"
-#define INIT_CONTEXT "u:r:init:s0"
+void ksu_setenforce(bool);
 
-void setup_selinux(const char *, struct cred *);
+bool ksu_getenforce();
 
-void setenforce(bool);
+bool ksu_is_ksu_domain();
 
-bool getenforce();
+bool ksu_is_zygote(void *cred);
 
-void cache_sid(void);
+void ksu_apply_kernelsu_rules();
 
-bool is_task_ksu_domain(const struct cred* cred);
+#ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
+bool susfs_is_sid_equal(void *sec, u32 sid2);
+u32 susfs_get_sid_from_name(const char *secctx_name);
+u32 susfs_get_current_sid(void);
+void susfs_set_zygote_sid(void);
+bool susfs_is_current_zygote_domain(void);
+void susfs_set_ksu_sid(void);
+bool susfs_is_current_ksu_domain(void);
+void susfs_set_init_sid(void);
+bool susfs_is_current_init_domain(void);
+#endif
 
-bool is_ksu_domain();
-
-bool is_zygote(const struct cred* cred);
-
-bool is_init(const struct cred* cred);
-
-void apply_kernelsu_rules();
-
-int handle_sepolicy(unsigned long arg3, void __user *arg4);
-
-void setup_ksu_cred();
+u32 ksu_get_devpts_sid();
 
 #endif
