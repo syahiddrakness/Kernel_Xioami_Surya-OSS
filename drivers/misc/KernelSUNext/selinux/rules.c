@@ -24,10 +24,10 @@ static struct policydb *get_policydb(void)
 // selinux_state does not exists before 4.19
 #ifdef KSU_COMPAT_USE_SELINUX_STATE
 #ifdef SELINUX_POLICY_INSTEAD_SELINUX_SS
-	struct selinux_policy *policy = rcu_dereference(selinux_state.policy);
+	struct selinux_policy *policy = selinux_state.policy;
 	db = &policy->policydb;
 #else
-	struct selinux_ss *ss = rcu_dereference(selinux_state.ss);
+	struct selinux_ss *ss = selinux_state.ss;
 	db = &ss->policydb;
 #endif
 #else
@@ -38,11 +38,11 @@ static struct policydb *get_policydb(void)
 
 static DEFINE_MUTEX(ksu_rules);
 
-void ksu_apply_kernelsu_rules()
+void apply_kernelsu_rules()
 {
 	struct policydb *db;
 
-	if (!ksu_getenforce()) {
+	if (!getenforce()) {
 		pr_info("SELinux permissive or disabled, apply rules!\n");
 	}
 
@@ -135,17 +135,9 @@ void ksu_apply_kernelsu_rules()
 	// Allow all binder transactions
 	ksu_allow(db, ALL, KERNEL_SU_DOMAIN, "binder", ALL);
 
-   // Allow system server kill su process
+	// Allow system server kill su process
 	ksu_allow(db, "system_server", KERNEL_SU_DOMAIN, "process", "getpgid");
 	ksu_allow(db, "system_server", KERNEL_SU_DOMAIN, "process", "sigkill");
-
-#ifdef CONFIG_KSU_SUSFS
-	// Allow umount in zygote process without installing zygisk
-	ksu_allow(db, "zygote", "labeledfs", "filesystem", "unmount");
-	susfs_set_init_sid();
-	susfs_set_ksu_sid();
-	susfs_set_zygote_sid();
-#endif
 
 	mutex_unlock(&ksu_rules);
 }
@@ -236,13 +228,15 @@ static void reset_avc_cache()
 	selinux_xfrm_notify_policyload();
 }
 
-int ksu_handle_sepolicy(unsigned long arg3, void __user *arg4)
+int handle_sepolicy(unsigned long arg3, void __user *arg4)
 {
+	struct policydb *db;
+
 	if (!arg4) {
 		return -1;
 	}
 
-	if (!ksu_getenforce()) {
+	if (!getenforce()) {
 		pr_info("SELinux permissive or disabled when handle policy!\n");
 	}
 	
@@ -299,9 +293,9 @@ int ksu_handle_sepolicy(unsigned long arg3, void __user *arg4)
 	subcmd = data.subcmd;
 #endif
 
-	rcu_read_lock();
+	mutex_lock(&ksu_rules);
 
-	struct policydb *db = get_policydb();
+	db = get_policydb();
 
 	int ret = -1;
 	if (cmd == CMD_NORMAL_PERM) {
@@ -551,7 +545,7 @@ int ksu_handle_sepolicy(unsigned long arg3, void __user *arg4)
 	}
 
 exit:
-	rcu_read_unlock();
+	mutex_unlock(&ksu_rules);
 
 	// only allow and xallow needs to reset avc cache, but we cannot do that because
 	// we are in atomic context. so we just reset it every time.
