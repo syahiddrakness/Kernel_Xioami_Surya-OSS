@@ -192,7 +192,7 @@ FILLDIR_RETURN_TYPE my_actor(struct dir_context *ctx, const char *name,
 				}
 			}
 
-			bool is_manager = is_manager_apk(dirpath);
+			bool is_manager = ksu_is_manager_apk(dirpath);
 			pr_info("Found new base.apk at path: %s, is_manager: %d\n",
 				dirpath, is_manager);
 			if (is_manager) {
@@ -261,8 +261,9 @@ void search_manager(const char *path, int depth, struct list_head *uid_data)
 	int i, stop = 0;
 	struct list_head data_path_list;
 	INIT_LIST_HEAD(&data_path_list);
+
 	unsigned long data_app_magic = 0;
-	
+
 	// Initialize APK cache list
 	struct apk_path_hash *pos, *n;
 	list_for_each_entry(pos, &apk_path_hash_list, list) {
@@ -351,7 +352,7 @@ static bool is_uid_exist(uid_t uid, char *package, void *data)
 	return exist;
 }
 
-void track_throne()
+void ksu_track_throne()
 {
 	struct file *fp;
 	int tries = 0;
@@ -362,11 +363,10 @@ void track_throne()
 			if (!IS_ERR(fp)) 
 				break;
 		}
-		
+
 		pr_info("%s: waiting for %s\n", __func__, SYSTEM_PACKAGES_LIST_PATH);
 		msleep(100); // migth as well add a delay
 	};
-	
 	if (IS_ERR(fp)) {
 		pr_err("%s: open " SYSTEM_PACKAGES_LIST_PATH " failed: %ld\n", __func__, PTR_ERR(fp));
 		return;
