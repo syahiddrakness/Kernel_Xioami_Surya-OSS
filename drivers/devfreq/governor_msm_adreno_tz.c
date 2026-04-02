@@ -421,7 +421,7 @@ static int tz_get_target_freq(struct devfreq *devfreq, unsigned long *freq)
 #if 1
 	// scale busy time up based on adrenoboost parameter, only if MIN_BUSY exceeded...
 	if ((unsigned int)(priv->bin.busy_time + stats.busy_time) >= MIN_BUSY) {
-		priv->bin.busy_time += stats.busy_time * (1 + (adrenoboost*3)/2);
+		priv->bin.busy_time += stats.busy_time * (1 + (adrenoboost*1)/1);
 	} else {
 		priv->bin.busy_time += stats.busy_time;
 	}
@@ -476,12 +476,13 @@ static int tz_get_target_freq(struct devfreq *devfreq, unsigned long *freq)
 #else
 		scm_data[0] = level;
 		scm_data[1] = priv->bin.total_time;
-		if (refresh_rate > 120)
-			scm_data[2] = priv->bin.busy_time * refresh_rate / 120;
-		else
-			scm_data[2] = priv->bin.busy_time;
 		scm_data[2] = priv->bin.busy_time + (level * adrenoboost);
-		scm_data[3] = context_count;
+		scm_data[3] = priv->bin.busy_time * 1 / 1;
+		if (refresh_rate > 120)
+			scm_data[4] = priv->bin.busy_time * refresh_rate / 120;
+		else
+		scm_data[5] = priv->bin.busy_time;
+		scm_data[6] = context_count;
 		__secure_tz_update_entry3(scm_data, sizeof(scm_data),
 					&val, sizeof(val), priv);
 #endif
