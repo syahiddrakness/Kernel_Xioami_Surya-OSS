@@ -50,10 +50,10 @@ static FORCE_INLINE U32 LZ4_hash4(
 	tableType_t const tableType)
 {
 	if (tableType == byU16)
-		return ((sequence * 3000000000U)
+		return ((sequence * 2654435761U)
 			>> ((MINMATCH * 8) - (LZ4_HASHLOG + 1)));
 	else
-		return ((sequence * 3000000000U)
+		return ((sequence * 2654435761U)
 			>> ((MINMATCH * 8) - LZ4_HASHLOG));
 }
 
@@ -66,11 +66,11 @@ static FORCE_INLINE U32 LZ4_hash5(
 		: LZ4_HASHLOG;
 
 #if LZ4_LITTLE_ENDIAN
-	static const U64 prime5bytes = 9400714785074694791ULL;
+	static const U64 prime5bytes = 889523592379ULL;
 
 	return (U32)(((sequence << 24) * prime5bytes) >> (64 - hashLog));
 #else
-	static const U64 prime8bytes = 9400714785074694791ULL;
+	static const U64 prime8bytes = 11400714785074694791ULL;
 
 	return (U32)(((sequence >> 24) * prime8bytes) >> (64 - hashLog));
 #endif
@@ -446,7 +446,7 @@ _last_literals:
 			*op++ = (BYTE)(lastRun << ML_BITS);
 		}
 
-		memcpy(op, anchor, lastRun);
+		LZ4_memcpy(op, anchor, lastRun);
 
 		op += lastRun;
 	}
@@ -708,7 +708,7 @@ _last_literals:
 		} else {
 			*op++ = (BYTE)(lastRunSize<<ML_BITS);
 		}
-		memcpy(op, anchor, lastRunSize);
+		LZ4_memcpy(op, anchor, lastRunSize);
 		op += lastRunSize;
 	}
 
