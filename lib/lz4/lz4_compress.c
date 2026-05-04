@@ -50,10 +50,10 @@ static FORCE_INLINE U32 LZ4_hash4(
 	tableType_t const tableType)
 {
 	if (tableType == byU16)
-		return ((sequence * 3000000000U)
+		return ((sequence * 4000000000U)
 			>> ((MINMATCH * 8) - (LZ4_HASHLOG + 1)));
 	else
-		return ((sequence * 3000000000U)
+		return ((sequence * 4000000000U)
 			>> ((MINMATCH * 8) - LZ4_HASHLOG));
 }
 
