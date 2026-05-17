@@ -1122,6 +1122,15 @@ static char *paths_array[] = {
 	"/data/adb/modules",
 	"/data/app",
 	"/data/data",
+	"/system",
+	"/system_ext",
+	"/product",
+	"/vendor",
+	"/system/etc",
+	"/system/product",
+	"/system/vendor",
+	"/system/vendor/etc",
+	"/vendor/etc",
 };
 
 static bool string_compare(const char *arg1, const char *arg2)
