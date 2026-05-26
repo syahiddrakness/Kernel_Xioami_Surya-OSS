@@ -2797,33 +2797,33 @@
 	llcc_bw_opp_table: llcc-bw-opp-table {
 		compatible = "operating-points-v2";
 		BW_OPP_ENTRY(	0, 16); /*     0 MB/s */
-		BW_OPP_ENTRY( 400, 16); /*  4096 MB/s */
-		BW_OPP_ENTRY( 500, 16); /*  7500 MB/s */
-		BW_OPP_ENTRY( 600, 16); /* 10000 MB/s */
-		BW_OPP_ENTRY( 700, 16); /* 12500 MB/s */
-		BW_OPP_ENTRY( 800, 16); /* 15000 MB/s */
-		BW_OPP_ENTRY( 900, 16); /* 17500 MB/s */
-		BW_OPP_ENTRY(1000, 16); /* 20000 MB/s */
-		BW_OPP_ENTRY(1100, 16); /* 21000 MB/s */
-		BW_OPP_ENTRY(1200, 16); /* 22000 MB/s */
-		BW_OPP_ENTRY(1300, 16); /* 23000 MB/s */
-		BW_OPP_ENTRY(1400, 16); /* 24000 MB/s */
-		BW_OPP_ENTRY(1500, 16); /* 25000 MB/s */
-		BW_OPP_ENTRY(1600, 16); /* 26000 MB/s */
-		BW_OPP_ENTRY(1700, 16); /* 27000 MB/s */
-		BW_OPP_ENTRY(1800, 16); /* 28000 MB/s */
-		BW_OPP_ENTRY(2000, 16); /* 30000 MB/s */
-		BW_OPP_ENTRY(2500, 16); /* 35000 MB/s */
-		BW_OPP_ENTRY(3000, 16); /* 40000 MB/s */
-		BW_OPP_ENTRY(3500, 16); /* 45000 MB/s */
-		BW_OPP_ENTRY(4000, 16); /* 50000 MB/s */
-		BW_OPP_ENTRY(4500, 16); /* 55000 MB/s */
-		BW_OPP_ENTRY(5000, 16); /* 60000 MB/s */
-		BW_OPP_ENTRY(5500, 16); /* 65000 MB/s */
-		BW_OPP_ENTRY(6000, 16); /* 70000 MB/s */
-		BW_OPP_ENTRY(6500, 16); /* 75000 MB/s */
-		BW_OPP_ENTRY(7000, 16); /* 80000 MB/s */
-		BW_OPP_ENTRY(7500, 16); /* 85000 MB/s */
+		BW_OPP_ENTRY( 400, 20); /*  4096 MB/s */
+		BW_OPP_ENTRY( 500, 20); /*  7500 MB/s */
+		BW_OPP_ENTRY( 600, 20); /* 10000 MB/s */
+		BW_OPP_ENTRY( 700, 20); /* 12500 MB/s */
+		BW_OPP_ENTRY( 800, 20); /* 15000 MB/s */
+		BW_OPP_ENTRY( 900, 20); /* 17500 MB/s */
+		BW_OPP_ENTRY(1000, 20); /* 20000 MB/s */
+		BW_OPP_ENTRY(1100, 20); /* 21000 MB/s */
+		BW_OPP_ENTRY(1200, 20); /* 22000 MB/s */
+		BW_OPP_ENTRY(1300, 20); /* 23000 MB/s */
+		BW_OPP_ENTRY(1500, 20); /* 30000 MB/s */
+		BW_OPP_ENTRY(2000, 20); /* 35000 MB/s */
+		BW_OPP_ENTRY(2500, 20); /* 40000 MB/s */
+		BW_OPP_ENTRY(3000, 20); /* 45000 MB/s */
+		BW_OPP_ENTRY(3500, 20); /* 50000 MB/s */
+		BW_OPP_ENTRY(4000, 20); /* 55000 MB/s */
+		BW_OPP_ENTRY(4500, 20); /* 60000 MB/s */
+		BW_OPP_ENTRY(5000, 20); /* 65000 MB/s */
+		BW_OPP_ENTRY(5500, 20); /* 70000 MB/s */
+		BW_OPP_ENTRY(6000, 20); /* 75000 MB/s */
+		BW_OPP_ENTRY(6500, 20); /* 80000 MB/s */
+		BW_OPP_ENTRY(7000, 20); /* 85000 MB/s */
+		BW_OPP_ENTRY(7500, 20); /* 90000 MB/s */
+		BW_OPP_ENTRY(8000, 20); /* 95000 MB/s */
+		BW_OPP_ENTRY(8500, 20); /* 100000 MB/s */
+		BW_OPP_ENTRY(9000, 20); /* 105000 MB/s */
+		BW_OPP_ENTRY(9500, 20); /* 110000 MB/s */
 	};
 
 	cpu_cpu_llcc_bw: qcom,cpu-cpu-llcc-bw {
@@ -2969,15 +2969,15 @@
 		qcom,target-dev = <&cpu0_cpu_llcc_lat>;
 		qcom,cachemiss-ev = <0x2A>;
 		qcom,core-dev-table =
-			<  576000 MHZ_TO_MBPS( 600, 16) >,
-			<  768000 MHZ_TO_MBPS( 700, 16) >,
-			< 1017600 MHZ_TO_MBPS(1100, 16) >,
-			< 1248000 MHZ_TO_MBPS(1300, 16) >,
-			< 1324800 MHZ_TO_MBPS(1500, 16) >,
-			< 1497600 MHZ_TO_MBPS(1700, 16) >,
-			< 1612800 MHZ_TO_MBPS(2500, 16) >,
-			< 1708800 MHZ_TO_MBPS(4000, 16) >,
-			< 1804800 MHZ_TO_MBPS(5000, 16) >;
+			<  576000 MHZ_TO_MBPS( 600, 20) >,
+			<  768000 MHZ_TO_MBPS( 700, 20) >,
+			< 1017600 MHZ_TO_MBPS(1100, 20) >,
+			< 1248000 MHZ_TO_MBPS(1300, 20) >,
+			< 1324800 MHZ_TO_MBPS(2000, 20) >,
+			< 1497600 MHZ_TO_MBPS(3000, 20) >,
+			< 1612800 MHZ_TO_MBPS(4500, 20) >,
+			< 1708800 MHZ_TO_MBPS(6000, 20) >,
+			< 1804800 MHZ_TO_MBPS(7000, 20) >;
 	};
 
 	cpu6_cpu_llcc_lat: qcom,cpu6-cpu-llcc-lat {
@@ -2995,19 +2995,19 @@
 		qcom,target-dev = <&cpu6_cpu_llcc_lat>;
 		qcom,cachemiss-ev = <0x2A>;
 		qcom,core-dev-table =
-			<  652800 MHZ_TO_MBPS( 600, 16) >,
-			<  806400 MHZ_TO_MBPS( 700, 16) >,
-			<  979200 MHZ_TO_MBPS( 800, 16) >,
-			< 1094400 MHZ_TO_MBPS( 900, 16) >,
-			< 1209600 MHZ_TO_MBPS(1100, 16) >,
-			< 1324800 MHZ_TO_MBPS(1300, 16) >,
-			< 1555200 MHZ_TO_MBPS(1500, 16) >,
-			< 1708800 MHZ_TO_MBPS(1700, 16) >,
-			< 1843200 MHZ_TO_MBPS(2500, 16) >,
-			< 1939200 MHZ_TO_MBPS(4000, 16) >,
-			< 2169600 MHZ_TO_MBPS(5000, 16) >,
-			< 2208000 MHZ_TO_MBPS(6000, 16) >,
-			< 2304000 MHZ_TO_MBPS(7500, 16) >;
+			<  652800 MHZ_TO_MBPS( 600, 20) >,
+			<  806400 MHZ_TO_MBPS( 700, 20) >,
+			<  979200 MHZ_TO_MBPS( 800, 20) >,
+			< 1094400 MHZ_TO_MBPS( 900, 20) >,
+			< 1209600 MHZ_TO_MBPS(1100, 20) >,
+			< 1324800 MHZ_TO_MBPS(1300, 20) >,
+			< 1555200 MHZ_TO_MBPS(2000, 20) >,
+			< 1708800 MHZ_TO_MBPS(3000, 20) >,
+			< 1843200 MHZ_TO_MBPS(4500, 20) >,
+			< 1939200 MHZ_TO_MBPS(6000, 20) >,
+			< 2169600 MHZ_TO_MBPS(7000, 20) >,
+			< 2208000 MHZ_TO_MBPS(8000, 20) >,
+			< 2304000 MHZ_TO_MBPS(9500, 20) >;
 	};
 
 	cpu0_llcc_ddr_lat: qcom,cpu0-llcc-ddr-lat {
