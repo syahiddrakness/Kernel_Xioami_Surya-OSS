@@ -1923,7 +1923,7 @@ CONFIG_LDO_WL2866D=y
 #
 # FingerprintCard fingerprint driver
 #
-CONFIG_FPR_FPC=y
+# CONFIG_FPR_FPC is not set
 CONFIG_AW8624_HAPTIC=y
 CONFIG_DRV2624_HAPTIC=y
 
