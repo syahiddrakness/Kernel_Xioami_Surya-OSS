@@ -1116,35 +1116,12 @@ static char *files_array[] = {
 	"com.xnxx.app",
 	"com.nkl.xnxx.nativeapp",
 	"catch_.me_.if_.you_.can_",
-	"mi_thermald",
-	"thermal-engine",
-	"thermal-4k.conf",
-	"thermal-arvr.conf",
-	"thermal-camera.conf",
-	"thermal-chg-only.conf",
-	"thermal-engine.conf",
-	"thermal-map.conf",
-	"thermal-nolimits.conf",
-	"thermal-normal.conf",
-	"thermal-phone.conf",
-	"thermal-tgame.conf",
-	"thermald-devices.conf",
-	"libthermalclient.so",
-	"libthermalfeature.so",
 };
 
 static char *paths_array[] = {
 	"/data/adb/modules",
 	"/data/app",
 	"/data/data",
-	"/system/vendor/bin",
-	"/system/vendor/etc",
-	"/system/vendor/lib",
-	"/system/vendor/lib64",
-	"/vendor/bin",
-	"/vendor/etc",
-	"/vendor/lib",
-	"/vendor/lib64",
 };
 
 static bool string_compare(const char *arg1, const char *arg2)
