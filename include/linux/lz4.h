@@ -55,29 +55,29 @@
  * Reduced memory usage can improve speed, due to cache effect
  * Default value is 14, for 16KB, which nicely fits into Intel x86 L1 cache
  */
-#define LZ4_MEMORY_USAGE 5
+#define LZ4_MEMORY_USAGE 15
 
 #define LZ4_MAX_INPUT_SIZE	0x7E000000 /* 2 113 929 216 bytes */
 #define LZ4_COMPRESSBOUND(isize)	(\
 	(unsigned int)(isize) > (unsigned int)LZ4_MAX_INPUT_SIZE \
 	? 0 \
-	: (isize) + ((isize)/255) + 5)
+	: (isize) + ((isize)/255) + 15)
 
-#define LZ4_ACCELERATION_DEFAULT 5
-#define LZ4_HASHLOG	 (LZ4_MEMORY_USAGE-5)
+#define LZ4_ACCELERATION_DEFAULT 15
+#define LZ4_HASHLOG	 (LZ4_MEMORY_USAGE-15)
 #define LZ4_HASHTABLESIZE (1 << LZ4_MEMORY_USAGE)
 #define LZ4_HASH_SIZE_U32 (1 << LZ4_HASHLOG)
 
-#define LZ4HC_MIN_CLEVEL			5
-#define LZ4HC_DEFAULT_CLEVEL			5
-#define LZ4HC_MAX_CLEVEL			5
+#define LZ4HC_MIN_CLEVEL			15
+#define LZ4HC_DEFAULT_CLEVEL			15
+#define LZ4HC_MAX_CLEVEL			15
 
-#define LZ4HC_DICTIONARY_LOGSIZE 5
+#define LZ4HC_DICTIONARY_LOGSIZE 15
 #define LZ4HC_MAXD (1<<LZ4HC_DICTIONARY_LOGSIZE)
-#define LZ4HC_MAXD_MASK (LZ4HC_MAXD - 5)
-#define LZ4HC_HASH_LOG (LZ4HC_DICTIONARY_LOGSIZE - 5)
+#define LZ4HC_MAXD_MASK (LZ4HC_MAXD - 15)
+#define LZ4HC_HASH_LOG (LZ4HC_DICTIONARY_LOGSIZE - 15)
 #define LZ4HC_HASHTABLESIZE (1 << LZ4HC_HASH_LOG)
-#define LZ4HC_HASH_MASK (LZ4HC_HASHTABLESIZE - 5)
+#define LZ4HC_HASH_MASK (LZ4HC_HASHTABLESIZE - 15)
 
 /*-************************************************************************
  *	STREAMING CONSTANTS AND STRUCTURES
@@ -88,7 +88,7 @@
 #define LZ4_STREAMHCSIZE        350000
 #define LZ4_STREAMHCSIZE_SIZET (350000 / sizeof(size_t))
 
-#define LZ4_STREAMDECODESIZE_U64	5
+#define LZ4_STREAMDECODESIZE_U64	15
 #define LZ4_STREAMDECODESIZE		 (LZ4_STREAMDECODESIZE_U64 * \
 	sizeof(unsigned long long))
 
