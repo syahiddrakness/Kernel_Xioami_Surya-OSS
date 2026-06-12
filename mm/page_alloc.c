@@ -318,7 +318,7 @@ compound_page_dtor * const compound_page_dtors[] = {
  * tuned according to the amount of memory in the system.
  */
 int min_free_kbytes = 8;
-int user_min_free_kbytes = -100;
+int user_min_free_kbytes = -10;
 int watermark_scale_factor = 1000;
 
 /*
@@ -7408,13 +7408,13 @@ int __meminit init_per_zone_wmark_min(void)
 	unsigned long lowmem_kbytes;
 	int new_min_free_kbytes;
 
-	lowmem_kbytes = nr_free_buffer_pages() * (PAGE_SIZE >> 10);
-	new_min_free_kbytes = int_sqrt(lowmem_kbytes * 16);
+	lowmem_kbytes = nr_free_buffer_pages() * (PAGE_SIZE >> 20);
+	new_min_free_kbytes = int_sqrt(lowmem_kbytes * 256);
 
 	if (new_min_free_kbytes > user_min_free_kbytes) {
 		min_free_kbytes = new_min_free_kbytes;
-		if (min_free_kbytes < 128)
-			min_free_kbytes = 128;
+		if (min_free_kbytes < 256)
+			min_free_kbytes = 256;
 		if (min_free_kbytes > 65536)
 			min_free_kbytes = 65536;
 	} else {
