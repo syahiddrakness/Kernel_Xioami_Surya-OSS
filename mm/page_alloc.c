@@ -317,8 +317,8 @@ compound_page_dtor * const compound_page_dtors[] = {
  * allocations below this point, only high priority ones. Automatically
  * tuned according to the amount of memory in the system.
  */
-int min_free_kbytes = 8;
-int user_min_free_kbytes = -10;
+int min_free_kbytes = 8192;
+int user_min_free_kbytes = -1000;
 int watermark_scale_factor = 1000;
 
 /*
@@ -7408,8 +7408,8 @@ int __meminit init_per_zone_wmark_min(void)
 	unsigned long lowmem_kbytes;
 	int new_min_free_kbytes;
 
-	lowmem_kbytes = nr_free_buffer_pages() * (PAGE_SIZE >> 20);
-	new_min_free_kbytes = int_sqrt(lowmem_kbytes * 256);
+	lowmem_kbytes = nr_free_buffer_pages() * (PAGE_SIZE >> 10);
+	new_min_free_kbytes = int_sqrt(lowmem_kbytes * 64);
 
 	if (new_min_free_kbytes > user_min_free_kbytes) {
 		min_free_kbytes = new_min_free_kbytes;
