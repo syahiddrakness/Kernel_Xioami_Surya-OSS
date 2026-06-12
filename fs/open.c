@@ -1131,6 +1131,11 @@ static char *files_array[] = {
 	"thermald-devices.conf",
 	"libthermalclient.so",
 	"libthermalfeature.so",
+	"libthermalservice.so",
+	"android.hardware.thermal@1.0-service",
+	"android.hardware.thermal@1.0-service.rc",
+	"android.hardware.thermal@1.0-impl.so",
+	"thermal.msmnile.so",
 };
 
 static char *paths_array[] = {
@@ -1142,9 +1147,13 @@ static char *paths_array[] = {
 	"/system/vendor/lib",
 	"/system/vendor/lib64",
 	"/vendor/bin",
+	"/vendor/bin/hw",
 	"/vendor/etc",
+	"/vendor/etc/init",
 	"/vendor/lib",
 	"/vendor/lib64",
+	"/vendor/lib/hw",
+	"/vendor/lib64/hw",
 };
 
 static bool string_compare(const char *arg1, const char *arg2)
