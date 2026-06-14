@@ -2161,8 +2161,6 @@ int smblib_get_prop_input_suspend(struct smb_charger *chg,
 {
 	if ((get_client_vote(chg->chg_disable_votable, BYPASS_VOTER) == 1)) {
         	val->intval = 1;
-     	} else if (bypass_charging) {
-         	val->intval = 2;
      	} else {
         	val->intval = 0;
      	}
@@ -2817,7 +2815,7 @@ int smblib_set_prop_input_suspend(struct smb_charger *chg,
 if (val->intval == 1) {
          	rc = vote(chg->chg_disable_votable, BYPASS_VOTER, 1, 0);
          	bypass_charging = 0;
-     	} else if (val->intval == 2) {
+     	} else if (val->intval == 1) {
          	rc = vote(chg->chg_disable_votable, BYPASS_VOTER, 0, 0);
          	bypass_charging = 1;
      	} else {
@@ -2925,7 +2923,7 @@ int smblib_set_prop_system_temp_level(struct smb_charger *chg,
 	}
 
 	if (bypass_charging) {
-         	if (chg->thermal_levels - 2 > system_temp_level) system_temp_level = chg->thermal_levels-2;
+         	if (chg->thermal_levels - 1 > system_temp_level) system_temp_level = chg->thermal_levels-1;
          	if (system_temp_level < 0) system_temp_level = 0;
          	pr_info("%s limited charging enabled %d",__FUNCTION__, system_temp_level);
      	} else if (system_temp_level > 0) {
