@@ -25,18 +25,18 @@ qcom,m703-atl-6000mah {
 	mi,six-pin-battery;
 
 	qcom,jeita-fcc-ranges = <(-100)  0   4450000
-                                1  50   4450000
-				51  100  4450000
-				101 150  4450000
-				151 480  6000000
-				481 580  4450000>;
+                                1  100   4450000
+				100 150  4450000
+				151 480  4450000
+				481 580  6000000
+				581 600  4450000>;
 
 	qcom,jeita-fv-ranges = <(-100)   0   4450000
-                                1   50   4450000
-				51  100  4450000
-				101 150  4450000
-				151 480  4480000
-				481 580  4450000>;
+                                1  100   4450000
+				100 150  4450000
+				151 480  4450000
+				481 580  4480000
+				581 600  4450000>;
 
 	/* COOL = 15 degc, WARM = 48 degC */
 	qcom,jeita-soft-thresholds = <0x4621 0x1de6>;
@@ -48,17 +48,17 @@ qcom,m703-atl-6000mah {
 	qcom,jeita-soft-fv-uv = <4450000 4450000>;
 
 	qcom,fcc1-temp-lut {
-		qcom,lut-col-legend = <0 10 25 40 50>;
+		qcom,lut-col-legend = <0 10 25 50 75>;
 		qcom,lut-data = <6646 6656 6666 6676 6686>;
 	};
 
 	qcom,fcc2-temp-lut {
-		qcom,lut-col-legend = <(-10) 0 10 25 40 50>;
+		qcom,lut-col-legend = <(-10) 0 10 25 50 75>;
 		qcom,lut-data = <5881 5936 5953 5955 5958 5955>;
 	};
 
 	qcom,pc-temp-v1-lut {
-		qcom,lut-col-legend = <0 10 25 40 50>;
+		qcom,lut-col-legend = <0 10 25 50 75>;
 		qcom,lut-row-legend = <10000 9800 9600 9400 9200>,
 			<9000 8800 8600 8400 8200>,
 			<8000 7800 7600 7400 7200>,
@@ -130,7 +130,7 @@ qcom,m703-atl-6000mah {
 	};
 
 	qcom,pc-temp-v2-lut {
-		qcom,lut-col-legend = <(-10) 0 10 25 40 50>;
+		qcom,lut-col-legend = <(-10) 0 10 25 50 75>;
 		qcom,lut-row-legend = <10000 9800 9600 9400 9200 9000>,
 			<8800 8600 8400 8200 8000 7800>,
 			<7600 7400 7200 7000 6800 6600>,
@@ -200,7 +200,7 @@ qcom,m703-atl-6000mah {
 	};
 
 	qcom,pc-temp-z1-lut {
-		qcom,lut-col-legend = <0 10 25 40 50>;
+		qcom,lut-col-legend = <0 10 25 50 75>;
 		qcom,lut-row-legend = <10000 9800 9600 9400 9200>,
 			<9000 8800 8600 8400 8200>,
 			<8000 7800 7600 7400 7200>,
@@ -272,7 +272,7 @@ qcom,m703-atl-6000mah {
 	};
 
 	qcom,pc-temp-z2-lut {
-		qcom,lut-col-legend = <0 10 25 40 50>;
+		qcom,lut-col-legend = <0 10 25 50 75>;
 		qcom,lut-row-legend = <10000 9800 9600 9400 9200>,
 			<9000 8800 8600 8400 8200>,
 			<8000 7800 7600 7400 7200>,
@@ -344,7 +344,7 @@ qcom,m703-atl-6000mah {
 	};
 
 	qcom,pc-temp-z3-lut {
-		qcom,lut-col-legend = <0 10 25 40 50>;
+		qcom,lut-col-legend = <0 10 25 50 75>;
 		qcom,lut-row-legend = <10000 9800 9600 9400 9200>,
 			<9000 8800 8600 8400 8200>,
 			<8000 7800 7600 7400 7200>,
@@ -416,7 +416,7 @@ qcom,m703-atl-6000mah {
 	};
 
 	qcom,pc-temp-z4-lut {
-		qcom,lut-col-legend = <0 10 25 40 50>;
+		qcom,lut-col-legend = <0 10 25 50 75>;
 		qcom,lut-row-legend = <10000 9800 9600 9400 9200>,
 			<9000 8800 8600 8400 8200>,
 			<8000 7800 7600 7400 7200>,
@@ -488,7 +488,7 @@ qcom,m703-atl-6000mah {
 	};
 
 	qcom,pc-temp-z5-lut {
-		qcom,lut-col-legend = <0 10 25 40 50>;
+		qcom,lut-col-legend = <0 10 25 50 75>;
 		qcom,lut-row-legend = <10000 9800 9600 9400 9200>,
 			<9000 8800 8600 8400 8200>,
 			<8000 7800 7600 7400 7200>,
@@ -560,7 +560,7 @@ qcom,m703-atl-6000mah {
 	};
 
 	qcom,pc-temp-z6-lut {
-		qcom,lut-col-legend = <0 10 25 40 50>;
+		qcom,lut-col-legend = <0 10 25 50 75>;
 		qcom,lut-row-legend = <10000 9800 9600 9400 9200>,
 			<9000 8800 8600 8400 8200>,
 			<8000 7800 7600 7400 7200>,
@@ -632,7 +632,7 @@ qcom,m703-atl-6000mah {
 	};
 
 	qcom,pc-temp-y1-lut {
-		qcom,lut-col-legend = <(-10) 0 10 25 40 50>;
+		qcom,lut-col-legend = <(-10) 0 10 25 50 75>;
 		qcom,lut-row-legend = <10000 9800 9600 9400 9200 9000>,
 			<8800 8600 8400 8200 8000 7800>,
 			<7600 7400 7200 7000 6800 6600>,
@@ -702,7 +702,7 @@ qcom,m703-atl-6000mah {
 	};
 
 	qcom,pc-temp-y2-lut {
-		qcom,lut-col-legend = <(-10) 0 10 25 40 50>;
+		qcom,lut-col-legend = <(-10) 0 10 25 50 75>;
 		qcom,lut-row-legend = <10000 9800 9600 9400 9200 9000>,
 			<8800 8600 8400 8200 8000 7800>,
 			<7600 7400 7200 7000 6800 6600>,
@@ -772,7 +772,7 @@ qcom,m703-atl-6000mah {
 	};
 
 	qcom,pc-temp-y3-lut {
-		qcom,lut-col-legend = <(-10) 0 10 25 40 50>;
+		qcom,lut-col-legend = <(-10) 0 10 25 50 75>;
 		qcom,lut-row-legend = <10000 9800 9600 9400 9200 9000>,
 			<8800 8600 8400 8200 8000 7800>,
 			<7600 7400 7200 7000 6800 6600>,
@@ -842,7 +842,7 @@ qcom,m703-atl-6000mah {
 	};
 
 	qcom,pc-temp-y4-lut {
-		qcom,lut-col-legend = <(-10) 0 10 25 40 50>;
+		qcom,lut-col-legend = <(-10) 0 10 25 50 75>;
 		qcom,lut-row-legend = <10000 9800 9600 9400 9200 9000>,
 			<8800 8600 8400 8200 8000 7800>,
 			<7600 7400 7200 7000 6800 6600>,
@@ -912,7 +912,7 @@ qcom,m703-atl-6000mah {
 	};
 
 	qcom,pc-temp-y5-lut {
-		qcom,lut-col-legend = <(-10) 0 10 25 40 50>;
+		qcom,lut-col-legend = <(-10) 0 10 25 50 75>;
 		qcom,lut-row-legend = <10000 9800 9600 9400 9200 9000>,
 			<8800 8600 8400 8200 8000 7800>,
 			<7600 7400 7200 7000 6800 6600>,
@@ -982,7 +982,7 @@ qcom,m703-atl-6000mah {
 	};
 
 	qcom,pc-temp-y6-lut {
-		qcom,lut-col-legend = <(-10) 0 10 25 40 50>;
+		qcom,lut-col-legend = <(-10) 0 10 25 50 75>;
 		qcom,lut-row-legend = <10000 9800 9600 9400 9200 9000>,
 			<8800 8600 8400 8200 8000 7800>,
 			<7600 7400 7200 7000 6800 6600>,
