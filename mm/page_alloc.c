@@ -318,8 +318,8 @@ compound_page_dtor * const compound_page_dtors[] = {
  * tuned according to the amount of memory in the system.
  */
 int min_free_kbytes = 8192;
-int user_min_free_kbytes = -15;
-int watermark_scale_factor = 30;
+int user_min_free_kbytes = -5;
+int watermark_scale_factor = 5;
 
 /*
  * Extra memory for the system to try freeing. Used to temporarily
