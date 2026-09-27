@@ -10,9 +10,9 @@
 
 #define SUSFS_VERSION "v1.5.7"
 #if LINUX_VERSION_CODE < KERNEL_VERSION(5,0,0)
-#define SUSFS_VARIANT "NON-GKI"
+#define SUSFS_VARIANT ""
 #else
-#define SUSFS_VARIANT "GKI"
+#define SUSFS_VARIANT ""
 #endif
 
 /*********/
