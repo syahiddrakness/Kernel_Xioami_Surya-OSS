@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2018-2019, The Linux Foundation. All rights reserved.
- * Copyright (C) 2020 XiaoMi, Inc.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
  * only version 2 as published by the Free Software Foundation.
@@ -44,25 +44,12 @@
 				qcom,pon-type = <PON_POWER_ON_TYPE_KPDPWR>;
 				qcom,pull-up;
 				linux,code = <KEY_POWER>;
-				qcom,support-reset = <1>;
-				qcom,s1-timer = <4480>;
-				qcom,s2-timer = <2000>;
-				qcom,s2-type = <PON_POWER_OFF_TYPE_HARD_RESET>;
 			};
 
 			qcom,pon_2 {
 				qcom,pon-type = <PON_POWER_ON_TYPE_RESIN>;
 				qcom,pull-up;
 				linux,code = <KEY_VOLUMEDOWN>;
-			};
-
-			qcom,pon_3 {
-				qcom,pon-type = <3>;
-				qcom,pull-up = <1>;
-				qcom,support-reset = <1>;
-				qcom,s1-timer = <3072>;
-				qcom,s2-timer = <2000>;
-				qcom,s2-type = <PON_POWER_OFF_TYPE_WARM_RESET>;
 			};
 		};
 
@@ -423,6 +410,13 @@
 			#address-cells = <1>;
 			#size-cells = <1>;
 
+			qcom,vbatt-cutoff-mv = <3200>;
+			qcom,vbatt-low-mv = <3300>;
+			qcom,vbatt-low-cold-mv = <3700>;
+			qcom,vbatt-empty-mv = <3000>;
+			qcom,vbatt-empty-cold-mv = <3000>;
+			qcom,s3-entry-fifo-length = <2>;
+
 			qcom,pmic-revid = <&pm6150_revid>;
 			io-channels = <&pm6150_vadc ADC_BAT_THERM_PU2>,
 				      <&pm6150_vadc ADC_BAT_ID_PU2>;
@@ -540,35 +534,35 @@
 
 &thermal_zones {
 	pm6150_temp_alarm: pm6150-tz {
-		polling-delay-passive = <100>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "step_wise";
+		thermal-governor = "user_space";
 		thermal-sensors = <&pm6150_tz>;
 		wake-capable-sensor;
 
 		trips {
 			pm6150_trip0: trip0 {
-				temperature = <115000>;
-				hysteresis = <5000>;
+				temperature = <170000>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 			pm6150_trip1: trip1 {
-				temperature = <150000>;
-				hysteresis = <1000>;
+				temperature = <180000>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 			trip2 {
-				temperature = <195000>;
-				hysteresis = <500>;
+				temperature = <200000>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
 	};
 
 	pm6150-ibat-lvl0 {
-		polling-delay-passive = <100>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "step_wise";
+		thermal-governor = "user_space";
 		thermal-sensors = <&pm6150_bcl 0>;
 		wake-capable-sensor;
 
@@ -582,9 +576,9 @@
 	};
 
 	pm6150-ibat-lvl1 {
-		polling-delay-passive = <100>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "step_wise";
+		thermal-governor = "user_space";
 		thermal-sensors = <&pm6150_bcl 1>;
 		wake-capable-sensor;
 
@@ -598,7 +592,7 @@
 	};
 
 	pm6150-vbat-lvl0 {
-		polling-delay-passive = <100>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-governor = "low_limits_cap";
 		thermal-sensors = <&pm6150_bcl 2>;
@@ -607,15 +601,15 @@
 
 		trips {
 			vbat_lvl0: vbat-lvl0 {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <3000>;
+				hysteresis = <200>;
 				type = "passive";
 			};
 		};
 	};
 
 	pm6150-vbat-lvl1 {
-		polling-delay-passive = <100>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-governor = "low_limits_cap";
 		thermal-sensors = <&pm6150_bcl 3>;
@@ -624,15 +618,15 @@
 
 		trips {
 			vbat_lvl1:vbat-lvl1 {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <2800>;
+				hysteresis = <200>;
 				type = "passive";
 			};
 		};
 	};
 
 	pm6150-vbat-lvl2 {
-		polling-delay-passive = <100>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-governor = "low_limits_cap";
 		thermal-sensors = <&pm6150_bcl 4>;
@@ -641,63 +635,63 @@
 
 		trips {
 			vbat_lvl2:vbat-lvl2 {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <2600>;
+				hysteresis = <200>;
 				type = "passive";
 			};
 		};
 	};
 
 	pm6150-bcl-lvl0 {
-		polling-delay-passive = <1000>;
+		polling-delay-passive = <100>;
 		polling-delay = <0>;
-		thermal-governor = "step_wise";
+		thermal-governor = "user_space";
 		thermal-sensors = <&pm6150_bcl 5>;
 		wake-capable-sensor;
 
 		trips {
 			bcl_lvl0: bcl-lvl0 {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <1>;
+				hysteresis = <1>;
 				type = "passive";
 			};
 		};
 	};
 
 	pm6150-bcl-lvl1 {
-		polling-delay-passive = <1000>;
+		polling-delay-passive = <100>;
 		polling-delay = <0>;
-		thermal-governor = "step_wise";
+		thermal-governor = "user_space";
 		thermal-sensors = <&pm6150_bcl 6>;
 		wake-capable-sensor;
 
 		trips {
 			bcl_lvl1: bcl-lvl1 {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <1>;
+				hysteresis = <1>;
 				type = "passive";
 			};
 		};
 	};
 
 	pm6150-bcl-lvl2 {
-		polling-delay-passive = <1000>;
+		polling-delay-passive = <100>;
 		polling-delay = <0>;
-		thermal-governor = "step_wise";
+		thermal-governor = "user_space";
 		thermal-sensors = <&pm6150_bcl 7>;
 		wake-capable-sensor;
 
 		trips {
 			bcl_lvl2: bcl-lvl2 {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <1>;
+				hysteresis = <1>;
 				type = "passive";
 			};
 		};
 	};
 
 	soc {
-		polling-delay-passive = <1000>;
+		polling-delay-passive = <100>;
 		polling-delay = <0>;
 		thermal-governor = "low_limits_cap";
 		thermal-sensors = <&bcl_soc>;
@@ -706,8 +700,8 @@
 
 		trips {
 			soc_trip:soc-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <1>;
+				hysteresis = <1>;
 				type = "passive";
 			};
 		};
