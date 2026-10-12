@@ -4,7 +4,7 @@
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
  * only version 2 as published by the Free Software Foundation.
- *
+ * Copyright (C) 2020 XiaoMi, Inc.
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -282,6 +282,14 @@
 				status = "disabled";
 			};
 
+qcom,flashlight_0 {
+				label = "flashlight";
+				qcom,led-name = "flashlight";
+				qcom,torch-name = "led:torch_0", "led:torch_1";
+				qcom,switch-name = "led:switch_0";
+				qcom,id = <0>;
+			};
+
 			pm6150l_switch0: qcom,led_switch_0 {
 				label = "switch";
 				qcom,led-name = "led:switch_0";
@@ -315,8 +323,11 @@
 			interrupt-names = "ovp-irq", "pre-flash-irq",
 					  "flash-irq";
 			qcom,pmic-revid = <&pm6150l_revid>;
+			qcom,fs-current-limit = <25000>;
 			qcom,auto-calibration;
-			status = "disabled";
+			qcom,en-cabc;
+			qcom,cabc-sel = <1>;
+			status = "ok";
 
 			wled_flash: qcom,wled-flash {
 				label = "flash";
@@ -513,7 +524,7 @@
 	};
 
 	pm6150l-bcl-lvl0 {
-		polling-delay-passive = <100>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&pm6150l_bcl 5>;
@@ -529,7 +540,7 @@
 	};
 
 	pm6150l-bcl-lvl1 {
-		polling-delay-passive = <100>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&pm6150l_bcl 6>;
@@ -545,7 +556,7 @@
 	};
 
 	pm6150l-bcl-lvl2 {
-		polling-delay-passive = <100>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&pm6150l_bcl 7>;
