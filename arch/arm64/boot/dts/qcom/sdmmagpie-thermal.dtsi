@@ -4,7 +4,7 @@
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
  * only version 2 as published by the Free Software Foundation.
- *
+ * Copyright (C) 2020 XiaoMi, Inc.
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -1022,8 +1022,8 @@
 		tracks-low;
 		trips {
 			aoss0_trip: aoss0-trip {
-				temperature = <5000>;
-				hysteresis = <5000>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1073,8 +1073,8 @@
 		tracks-low;
 		trips {
 			cpu_0_0_trip: cpu-0-0-trip {
-				temperature = <5000>;
-				hysteresis = <5000>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1124,8 +1124,8 @@
 		tracks-low;
 		trips {
 			cpu_1_0_trip: cpu-1-0-trip {
-				temperature = <5000>;
-				hysteresis = <5000>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1226,8 +1226,8 @@
 		tracks-low;
 		trips {
 			cwlan_trip: cwlan-trip {
-				temperature = <5000>;
-				hysteresis = <5000>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1277,8 +1277,8 @@
 		tracks-low;
 		trips {
 			audio_trip: audio-trip {
-				temperature = <5000>;
-				hysteresis = <5000>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1328,8 +1328,8 @@
 		tracks-low;
 		trips {
 			ddr_trip: ddr-trip {
-				temperature = <5000>;
-				hysteresis = <5000>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1379,8 +1379,8 @@
 		tracks-low;
 		trips {
 			q6_hvx_trip: q6-hvx-trip {
-				temperature = <5000>;
-				hysteresis = <5000>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1430,8 +1430,8 @@
 		tracks-low;
 		trips {
 			camera_trip: camera-trip {
-				temperature = <5000>;
-				hysteresis = <5000>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1481,8 +1481,8 @@
 		tracks-low;
 		trips {
 			mdm_core_trip: mdm-core-trip {
-				temperature = <5000>;
-				hysteresis = <5000>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1532,8 +1532,8 @@
 		tracks-low;
 		trips {
 			mdm_dsp_trip: mdm-dsp-lowf-trip {
-				temperature = <5000>;
-				hysteresis = <5000>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1583,8 +1583,8 @@
 		tracks-low;
 		trips {
 			npu_trip: npu-trip {
-				temperature = <5000>;
-				hysteresis = <5000>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1634,8 +1634,8 @@
 		tracks-low;
 		trips {
 			video_trip: video-trip {
-				temperature = <5000>;
-				hysteresis = <5000>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1780,7 +1780,7 @@
 				type = "passive";
 			};
 			modem_trip0: modem-trip0 {
-				temperature = <48000>;
+				temperature = <35000>;
 				hysteresis = <4000>;
 				type = "passive";
 			};
@@ -1790,7 +1790,7 @@
 				type = "passive";
 			};
 			modem_trip1_hvx_trip: modem-trip1-hvx-trip {
-				temperature = <50000>;
+				temperature = <45000>;
 				hysteresis = <2000>;
 				type = "passive";
 			};
@@ -1801,26 +1801,26 @@
 			};
 			batt_trip4: batt-trip4 {
 				temperature = <45000>;
-				hysteresis = <1000>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 			skin_gpu_trip: skin-gpu-trip {
-				temperature = <50000>;
+				temperature = <45000>;
 				hysteresis = <4000>;
 				type = "passive";
 			};
 			modem_trip2: modem-trip2 {
-				temperature = <50000>;
+				temperature = <40000>;
 				hysteresis = <2000>;
 				type = "passive";
 			};
 			silver_trip: silver-trip {
-				temperature = <50000>;
+				temperature = <45000>;
 				hysteresis = <0>;
 				type = "passive";
 			};
 			modem_trip3: modem-trip3 {
-				temperature = <50000>;
+				temperature = <45000>;
 				hysteresis = <4000>;
 				type = "passive";
 			};
