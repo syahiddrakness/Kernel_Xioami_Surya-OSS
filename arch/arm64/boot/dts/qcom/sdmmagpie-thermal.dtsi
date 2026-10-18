@@ -735,8 +735,8 @@
 	};
 
 	gpuss-max-step {
-		polling-delay-passive = <1000>;
-		polling-delay = <2000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "user_space";
 		wake-capable-sensor;
 		trips {
@@ -1022,8 +1022,8 @@
 		tracks-low;
 		trips {
 			aoss0_trip: aoss0-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <10000>;
+				hysteresis = <10000>;
 				type = "passive";
 			};
 		};
@@ -1073,8 +1073,8 @@
 		tracks-low;
 		trips {
 			cpu_0_0_trip: cpu-0-0-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <10000>;
+				hysteresis = <10000>;
 				type = "passive";
 			};
 		};
@@ -1124,8 +1124,8 @@
 		tracks-low;
 		trips {
 			cpu_1_0_trip: cpu-1-0-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <10000>;
+				hysteresis = <10000>;
 				type = "passive";
 			};
 		};
@@ -1175,8 +1175,8 @@
 		tracks-low;
 		trips {
 			gpuss_0_trip: gpuss-0-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <10000>;
+				hysteresis = <10000>;
 				type = "passive";
 			};
 		};
@@ -1226,8 +1226,8 @@
 		tracks-low;
 		trips {
 			cwlan_trip: cwlan-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <10000>;
+				hysteresis = <10000>;
 				type = "passive";
 			};
 		};
@@ -1277,8 +1277,8 @@
 		tracks-low;
 		trips {
 			audio_trip: audio-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <10000>;
+				hysteresis = <10000>;
 				type = "passive";
 			};
 		};
@@ -1328,8 +1328,8 @@
 		tracks-low;
 		trips {
 			ddr_trip: ddr-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <10000>;
+				hysteresis = <10000>;
 				type = "passive";
 			};
 		};
@@ -1379,8 +1379,8 @@
 		tracks-low;
 		trips {
 			q6_hvx_trip: q6-hvx-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <10000>;
+				hysteresis = <10000>;
 				type = "passive";
 			};
 		};
@@ -1430,8 +1430,8 @@
 		tracks-low;
 		trips {
 			camera_trip: camera-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <10000>;
+				hysteresis = <10000>;
 				type = "passive";
 			};
 		};
@@ -1481,8 +1481,8 @@
 		tracks-low;
 		trips {
 			mdm_core_trip: mdm-core-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <10000>;
+				hysteresis = <10000>;
 				type = "passive";
 			};
 		};
@@ -1532,8 +1532,8 @@
 		tracks-low;
 		trips {
 			mdm_dsp_trip: mdm-dsp-lowf-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <10000>;
+				hysteresis = <10000>;
 				type = "passive";
 			};
 		};
@@ -1583,8 +1583,8 @@
 		tracks-low;
 		trips {
 			npu_trip: npu-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <10000>;
+				hysteresis = <10000>;
 				type = "passive";
 			};
 		};
@@ -1634,8 +1634,8 @@
 		tracks-low;
 		trips {
 			video_trip: video-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <10000>;
+				hysteresis = <10000>;
 				type = "passive";
 			};
 		};
@@ -1691,7 +1691,7 @@
 	};
 
 	npu-step {
-		polling-delay-passive = <1000>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens1 8>;
 		thermal-governor = "user_space";
@@ -1699,7 +1699,7 @@
 		trips {
 			npu_trip0: npu-trip0 {
 				temperature = <105000>;
-				hysteresis = <0>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 		};
@@ -1714,7 +1714,7 @@
 	};
 
 	q6-hvx-step {
-		polling-delay-passive = <1000>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens1 4>;
 		thermal-governor = "user_space";
@@ -1722,13 +1722,13 @@
 		trips {
 			q6_hvx_trip0: q6-hvx-trip0 {
 				temperature = <105000>;
-				hysteresis = <20000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 
 			q6_hvx_trip1: q6-hvx-trip1 {
 				temperature = <105000>;
-				hysteresis = <20000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 
@@ -1758,7 +1758,7 @@
 	};
 
 	quiet-therm-step {
-		polling-delay-passive = <5000>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-governor = "user_space";
 		thermal-sensors = <&pm6150_adc_tm ADC_AMUX_THM4_PU2>;
