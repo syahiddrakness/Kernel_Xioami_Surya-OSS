@@ -1,10 +1,10 @@
 /*
  * Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
- *
+ * Copyright (C) 2020 XiaoMi, Inc.
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
  * only version 2 as published by the Free Software Foundation.
- * Copyright (C) 2020 XiaoMi, Inc.
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -447,9 +447,9 @@
 
 &thermal_zones {
 	pm6150l_temp_alarm: pm6150l-tz {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
-		thermal-governor = "user_space";
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
+		thermal-governor = "step_wise";
 		thermal-sensors = <&pm6150l_tz>;
 		wake-capable-sensor;
 
@@ -473,8 +473,8 @@
 	};
 
 	pm6150l-vph-lvl0 {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "low_limits_cap";
 		thermal-sensors = <&pm6150l_bcl 2>;
 		wake-capable-sensor;
@@ -482,16 +482,16 @@
 
 		trips {
 			vph_lvl0: vph-lvl0 {
-				temperature = <3000>;
-				hysteresis = <200>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
 	};
 
 	pm6150l-vph-lvl1 {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "low_limits_cap";
 		thermal-sensors = <&pm6150l_bcl 3>;
 		wake-capable-sensor;
@@ -507,8 +507,8 @@
 	};
 
 	pm6150l-vph-lvl2 {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
 		thermal-governor = "low_limits_cap";
 		thermal-sensors = <&pm6150l_bcl 4>;
 		wake-capable-sensor;
@@ -516,17 +516,17 @@
 
 		trips {
 			vph_lvl2:vph-lvl2 {
-				temperature = <2500>;
-				hysteresis = <200>;
+				temperature = <0>;
+				hysteresis = <0>;
 				type = "passive";
 			};
 		};
 	};
 
 	pm6150l-bcl-lvl0 {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
-		thermal-governor = "user_space";
+		polling-delay-passive = <100>;
+		polling-delay = <0>;
+		thermal-governor = "step_wise";
 		thermal-sensors = <&pm6150l_bcl 5>;
 		wake-capable-sensor;
 
@@ -540,9 +540,9 @@
 	};
 
 	pm6150l-bcl-lvl1 {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
-		thermal-governor = "user_space";
+		polling-delay-passive = <100>;
+		polling-delay = <0>;
+		thermal-governor = "step_wise";
 		thermal-sensors = <&pm6150l_bcl 6>;
 		wake-capable-sensor;
 
@@ -556,9 +556,9 @@
 	};
 
 	pm6150l-bcl-lvl2 {
-		polling-delay-passive = <1000>;
-		polling-delay = <1000>;
-		thermal-governor = "user_space";
+		polling-delay-passive = <100>;
+		polling-delay = <0>;
+		thermal-governor = "step_wise";
 		thermal-sensors = <&pm6150l_bcl 7>;
 		wake-capable-sensor;
 
