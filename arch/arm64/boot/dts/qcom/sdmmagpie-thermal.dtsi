@@ -703,7 +703,7 @@
 	};
 
 	gpuss-max-step {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <100>;
 		thermal-governor = "step_wise";
 		wake-capable-sensor;
@@ -760,7 +760,7 @@
 		trips {
 			cpu0_config: cpu0-config {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 		};
@@ -783,7 +783,7 @@
 		trips {
 			cpu1_config: cpu1-config {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 		};
@@ -806,7 +806,7 @@
 		trips {
 			cpu2_config: cpu2-config {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 		};
@@ -829,7 +829,7 @@
 		trips {
 			cpu3_config: cpu3-config {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 		};
@@ -852,7 +852,7 @@
 		trips {
 			cpu4_config: cpu4-config {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 		};
@@ -875,7 +875,7 @@
 		trips {
 			cpu5_config: cpu5-config {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 		};
@@ -898,7 +898,7 @@
 		trips {
 			cpu6_0_config: cpu6-0-config {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 		};
@@ -921,7 +921,7 @@
 		trips {
 			cpu6_1_config: cpu6-1-config {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 		};
@@ -944,7 +944,7 @@
 		trips {
 			cpu7_0_config: cpu7-0-config {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 		};
@@ -967,7 +967,7 @@
 		trips {
 			cpu7_1_config: cpu7-1-config {
 				temperature = <110000>;
-				hysteresis = <10000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 		};
@@ -990,8 +990,8 @@
 		tracks-low;
 		trips {
 			aoss0_trip: aoss0-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1041,8 +1041,8 @@
 		tracks-low;
 		trips {
 			cpu_0_0_trip: cpu-0-0-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1092,8 +1092,8 @@
 		tracks-low;
 		trips {
 			cpu_1_0_trip: cpu-1-0-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1143,8 +1143,8 @@
 		tracks-low;
 		trips {
 			gpuss_0_trip: gpuss-0-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1194,8 +1194,8 @@
 		tracks-low;
 		trips {
 			cwlan_trip: cwlan-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1245,8 +1245,8 @@
 		tracks-low;
 		trips {
 			audio_trip: audio-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1296,8 +1296,8 @@
 		tracks-low;
 		trips {
 			ddr_trip: ddr-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1347,8 +1347,8 @@
 		tracks-low;
 		trips {
 			q6_hvx_trip: q6-hvx-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1398,8 +1398,8 @@
 		tracks-low;
 		trips {
 			camera_trip: camera-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1449,8 +1449,8 @@
 		tracks-low;
 		trips {
 			mdm_core_trip: mdm-core-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1500,8 +1500,8 @@
 		tracks-low;
 		trips {
 			mdm_dsp_trip: mdm-dsp-lowf-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1551,8 +1551,8 @@
 		tracks-low;
 		trips {
 			npu_trip: npu-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1602,8 +1602,8 @@
 		tracks-low;
 		trips {
 			video_trip: video-trip {
-				temperature = <0>;
-				hysteresis = <0>;
+				temperature = <1000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
@@ -1659,7 +1659,7 @@
 	};
 
 	npu-step {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens1 8>;
 		thermal-governor = "step_wise";
@@ -1682,7 +1682,7 @@
 	};
 
 	q6-hvx-step {
-		polling-delay-passive = <10>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-sensors = <&tsens1 4>;
 		thermal-governor = "step_wise";
@@ -1690,7 +1690,7 @@
 		trips {
 			q6_hvx_trip0: q6-hvx-trip0 {
 				temperature = <105000>;
-				hysteresis = <20000>;
+				hysteresis = <5000>;
 				type = "passive";
 			};
 
@@ -1726,70 +1726,70 @@
 	};
 
 	quiet-therm-step {
-		polling-delay-passive = <1000>;
+		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-governor = "step_wise";
 		thermal-sensors = <&pm6150_adc_tm ADC_AMUX_THM4_PU2>;
 		wake-capable-sensor;
 		trips {
 			batt_trip0: batt-trip0 {
-				temperature = <20000>;
+				temperature = <15000>;
 				hysteresis = <5000>;
 				type = "passive";
 			};
 			batt_trip1: batt-trip1 {
-				temperature = <25000>;
+				temperature = <20000>;
 				hysteresis = <4000>;
 				type = "passive";
 			};
 			batt_trip2: batt-trip2 {
-				temperature = <30000>;
+				temperature = <25000>;
 				hysteresis = <3000>;
 				type = "passive";
 			};
 			modem_trip0: modem-trip0 {
-				temperature = <40000>;
-				hysteresis = <4000>;
+				temperature = <20000>;
+				hysteresis = <3000>;
 				type = "passive";
 			};
 			batt_trip3: batt-trip3 {
-				temperature = <35000>;
+				temperature = <30000>;
 				hysteresis = <2000>;
 				type = "passive";
 			};
 			modem_trip1_hvx_trip: modem-trip1-hvx-trip {
-				temperature = <47000>;
-				hysteresis = <2000>;
+				temperature = <35000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 			gold_trip: gold-trip {
-				temperature = <50000>;
+				temperature = <35000>;
 				hysteresis = <0>;
 				type = "passive";
 			};
 			batt_trip4: batt-trip4 {
-				temperature = <40000>;
+				temperature = <35000>;
 				hysteresis = <1000>;
 				type = "passive";
 			};
 			skin_gpu_trip: skin-gpu-trip {
-				temperature = <45000>;
-				hysteresis = <4000>;
+				temperature = <35000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 			modem_trip2: modem-trip2 {
-				temperature = <45000>;
+				temperature = <30000>;
 				hysteresis = <2000>;
 				type = "passive";
 			};
 			silver_trip: silver-trip {
-				temperature = <50000>;
+				temperature = <35000>;
 				hysteresis = <0>;
 				type = "passive";
 			};
 			modem_trip3: modem-trip3 {
-				temperature = <50000>;
-				hysteresis = <4000>;
+				temperature = <35000>;
+				hysteresis = <1000>;
 				type = "passive";
 			};
 		};
