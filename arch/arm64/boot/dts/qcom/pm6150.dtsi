@@ -706,7 +706,7 @@
 
 		trips {
 			soc_trip:soc-trip {
-				temperature = <1>;
+				temperature = <0>;
 				hysteresis = <0>;
 				type = "passive";
 			};
