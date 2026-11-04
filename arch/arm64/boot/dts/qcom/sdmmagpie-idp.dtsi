@@ -450,11 +450,11 @@
 			   "vph_voltage";
 	qcom,battery-data = <&mtp_batterydata>;
 	qcom,usb-icl-ua = <3000000>;
-	qcom,auto-recharge-soc = <99>;
+	qcom,auto-recharge-soc = <80>;
 	qcom,fcc-max-ua = <6000000>;
 	qcom,fv-max-uv = <4480000>;
 	qcom,chg-term-src = <1>;
-	qcom,chg-term-current-ma = <(-600)>;
+	qcom,chg-term-current-ma = <(-50)>;
 	qcom,sw-jeita-enable;
 	//qcom,fcc-stepping-enable;
 	qcom,suspend-input-on-debug-batt;
@@ -462,8 +462,8 @@
 	qcom,thermal-mitigation = <6000000 5500000 4900000 4600000 4500000 4400000 4200000
 				   3800000 3800000 3600000 3400000 3200000 3000000 2200000>;
 	dpdm-supply = <&qusb_phy0>;
-	qcom,charger-temp-max = <1500>;
-	qcom,smb-temp-max = <1500>;
+	qcom,charger-temp-max = <2000>;
+	qcom,smb-temp-max = <2000>;
 	qcom,fcc-step-delay-ms = <100>;
 	qcom,fcc-step-size-ua = <4450000>;
 	qcom,disable-sw-thermal-regulation;
