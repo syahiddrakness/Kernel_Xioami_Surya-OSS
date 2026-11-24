@@ -30,9 +30,10 @@
                 status = "ok";
                 mi,qc3-bat-volt-max = <4450>;
                 mi,qc3-ffc-bat-volt-max = <4480>;
-                mi,qc3-bat-curr-max = <5400>;
+                mi,qc3-bat-curr-max = <6000>;
                 mi,qc3-bus-volt-max = <12000>;
-                mi,qc3-bus-curr-max = <2100>;
+                mi,qc3-bus-curr-max = <3000>;
+                mi,qc3-bus-curr-compensate = <100>;
         };
 
 	usbpd_pm {
@@ -454,7 +455,7 @@
 	qcom,fcc-max-ua = <6000000>;
 	qcom,fv-max-uv = <4480000>;
 	qcom,chg-term-src = <1>;
-	qcom,chg-term-current-ma = <(-50)>;
+	qcom,chg-term-current-ma = <(-40)>;
 	qcom,sw-jeita-enable;
 	//qcom,fcc-stepping-enable;
 	qcom,suspend-input-on-debug-batt;
